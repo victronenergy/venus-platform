@@ -27,6 +27,7 @@ Application::Application::Application(int &argc, char **argv) :
 	}
 
 	VeQItemDbusProducer *producer = new VeQItemDbusProducer(VeQItems::getRoot(), "dbus", false, false);
+	producer->setAutoCreateItems(false);
 	producer->open(VBusItems::getConnection());
 	mServices = producer->services();
 	mSettings = new VeQItemDbusSettings(producer->services(), QString("com.victronenergy.settings"));
