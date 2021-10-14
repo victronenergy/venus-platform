@@ -67,7 +67,7 @@ void Application::onLocalSettingsTimeout()
 
 void Application::manageDaemontoolsServices()
 {
-	new DeamonToolsConsole(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
+	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
 	new DeamonToolsConsole(mSettings, "/service/vegetty", "Settings/Services/Console", this);
 
 	QList<QString> sshdlist = QList<QString>() << "Settings/System/RemoteSupport" << "Settings/System/SSHLocal" << "Settings/System/VncInternet";
