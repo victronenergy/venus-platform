@@ -8,6 +8,8 @@ class SettingsInfo : public VeQItemSettingsInfo
 public:
 	SettingsInfo()
 	{
+		add("Relay/Function", 0, 0, 0);
+		add("Relay/Polarity", 0, 0, 0);
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/Console", 0, 0, 0);
 		add("System/RemoteSupport", 0, 0, 1);
@@ -76,6 +78,12 @@ void Application::manageDaemontoolsServices()
 
 	QList<QString> list = QList<QString>() << "Settings/System/RemoteSupport" << "Settings/System/VncInternet";
 	new DaemonToolsService(mSettings, "/service/ssh-tunnel", list, this, false);
+
+	new DaemonToolsService(mSettings, "/service/dbus-pump", "Settings/Relay/Function", 3, this);
+
+	// Generator start/stop
+	QList<QString> generatorList = QList<QString>() << "Settings/Relay/Function" << "Settings/Services/FischerPandaAutoStartStop";
+	new DaemonToolsService(mSettings, "/service/dbus-generator-starter", generatorList, this, false);
 }
 
 void Application::remoteSupportChanged(VeQItem *item, QVariant var)
