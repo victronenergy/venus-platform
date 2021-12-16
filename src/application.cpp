@@ -10,6 +10,8 @@ public:
 	{
 		add("Relay/Function", 0, 0, 0);
 		add("Relay/Polarity", 0, 0, 0);
+		add("Relay/1/Function", 0, 0, 0);
+		add("Relay/1/Polarity", 0, 0, 0);
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/Console", 0, 0, 0);
 		add("System/RemoteSupport", 0, 0, 1);
@@ -84,6 +86,10 @@ void Application::manageDaemontoolsServices()
 	// Generator start/stop
 	QList<QString> generatorList = QList<QString>() << "Settings/Relay/Function" << "Settings/Services/FischerPandaAutoStartStop";
 	new DaemonToolsService(mSettings, "/service/dbus-generator-starter", generatorList, this, false);
+
+	// Temperature relay
+	QList<QString> tempSensorRelayList = QList<QString>() << "Settings/Relay/Function" << "Settings/Relay/1/Function";
+	new DaemonToolsService(mSettings, "/service/dbus-tempsensor-relay", tempSensorRelayList, 4, this, false);
 }
 
 void Application::remoteSupportChanged(VeQItem *item, QVariant var)
