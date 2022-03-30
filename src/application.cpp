@@ -14,10 +14,17 @@ public:
 		add("Relay/1/Polarity", 0, 0, 0);
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/Console", 0, 0, 0);
+		add("Services/SignalK", 0, 0, 1);
+		add("Services/NodeRed", 0, 0, 2);
+		add("System/ImageType", 0, 0, 1);
 		add("System/RemoteSupport", 0, 0, 1);
 		add("System/SSHLocal", 0, 0, 1);
 	}
 };
+
+static bool serviceExists(QString const &svc) {
+	return QDir("/service/" + svc).exists();
+}
 
 Application::Application::Application(int &argc, char **argv) :
 	QCoreApplication(argc, argv),
@@ -90,6 +97,15 @@ void Application::manageDaemontoolsServices()
 	// Temperature relay
 	QList<QString> tempSensorRelayList = QList<QString>() << "Settings/Relay/Function" << "Settings/Relay/1/Function";
 	new DaemonToolsService(mSettings, "/service/dbus-tempsensor-relay", tempSensorRelayList, 4, this, false);
+
+	// Large image services
+	if (serviceExists("node-red-venus")) {
+		QList<int> start = QList<int>() << 1 << 2;
+		new DaemonToolsService(mSettings, "/service/node-red-venus", "Settings/Services/NodeRed", start, this);
+	}
+	if (serviceExists("signalk-server")) {
+		new DaemonToolsService(mSettings, "/service/signalk-server", "Settings/Services/SignalK", this);
+	}
 }
 
 void Application::remoteSupportChanged(VeQItem *item, QVariant var)
