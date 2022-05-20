@@ -85,10 +85,6 @@ void Application::manageDaemontoolsServices()
 
 	new DaemonToolsService(mSettings, "/service/dbus-pump", "Settings/Relay/Function", 3, this);
 
-	// Generator start/stop
-	QList<QString> generatorList = QList<QString>() << "Settings/Relay/Function" << "Settings/Services/FischerPandaAutoStartStop";
-	new DaemonToolsService(mSettings, "/service/dbus-generator-starter", generatorList, this, false);
-
 	// Temperature relay
 	QList<QString> tempSensorRelayList = QList<QString>() << "Settings/Relay/Function" << "Settings/Relay/1/Function";
 	new DaemonToolsService(mSettings, "/service/dbus-tempsensor-relay", tempSensorRelayList, 4, this, false);
