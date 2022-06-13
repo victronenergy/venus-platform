@@ -13,12 +13,9 @@ public:
 		add("Relay/1/Function", 2, 0, 0);
 		add("Relay/1/Polarity", 0, 0, 0);
 		add("Services/BleSensors", 0, 0, 1);
-		add("Services/Console", 0, 0, 0);
 		add("Services/SignalK", 0, 0, 1);
 		add("Services/NodeRed", 0, 0, 2);
 		add("System/ImageType", 0, 0, 1);
-		add("System/RemoteSupport", 0, 0, 1);
-		add("System/SSHLocal", 0, 0, 1);
 	}
 };
 
@@ -79,14 +76,6 @@ void Application::onLocalSettingsTimeout()
 void Application::manageDaemontoolsServices()
 {
 	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
-	new DeamonToolsConsole(mSettings, "/service/vegetty", "Settings/Services/Console", this);
-
-	QList<QString> sshdlist = QList<QString>() << "Settings/System/RemoteSupport" << "Settings/System/SSHLocal" << "Settings/System/VncInternet";
-	// false: no restart -> symlinks / firewall rules will be changed instead.
-	new DaemonToolsService(mSettings, "/service/openssh", sshdlist, this, false);
-
-	QList<QString> list = QList<QString>() << "Settings/System/RemoteSupport" << "Settings/System/VncInternet";
-	new DaemonToolsService(mSettings, "/service/ssh-tunnel", list, this, false);
 
 	new DaemonToolsService(mSettings, "/service/dbus-pump", "Settings/Relay/Function", 3, this);
 
@@ -108,33 +97,6 @@ void Application::manageDaemontoolsServices()
 	}
 }
 
-void Application::remoteSupportChanged(VeQItem *item, QVariant var)
-{
-	Q_UNUSED(item);
-
-	if (!var.isValid())
-		return;
-
-	if (var.toBool())
-		QFile::link("/usr/share/support-keys/authorized_keys",
-				"/run/ssh_support_keys");
-	else
-		QFile::remove("/run/ssh_support_keys");
-}
-
-void Application::sshLocalChanged(VeQItem *item, QVariant var)
-{
-	Q_UNUSED(item);
-
-	if (!var.isValid())
-		return;
-
-	if (var.toBool())
-		system("firewall allow tcp ssh");
-	else
-		system("firewall deny tcp ssh");
-}
-
 void Application::init()
 {
 	qDebug() << "Creating settings";
@@ -142,14 +104,6 @@ void Application::init()
 		qCritical() << "Creating settings failed";
 		::exit(EXIT_FAILURE);
 	}
-
-	// Remote support
-	VeQItem *remoteSupport = mSettings->root()->itemGetOrCreate("Settings/System/RemoteSupport");
-	remoteSupport->getValueAndChanges(this, SLOT(remoteSupportChanged(VeQItem *, QVariant)));
-
-	// SSH on LAN
-	VeQItem *sshLocal = mSettings->root()->itemGetOrCreate("Settings/System/SSHLocal");
-	sshLocal->getValueAndChanges(this, SLOT(sshLocalChanged(VeQItem *, QVariant)));
 
 	manageDaemontoolsServices();
 }

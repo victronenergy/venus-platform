@@ -12,8 +12,6 @@ public:
 protected slots:
 	void onLocalSettingsStateChanged(VeQItem *item);
 	void onLocalSettingsTimeout();
-	void remoteSupportChanged(VeQItem *item, QVariant var);
-	void sshLocalChanged(VeQItem *item, QVariant var);
 
 private:
 	void manageDaemontoolsServices();
