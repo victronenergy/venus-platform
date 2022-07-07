@@ -1,0 +1,268 @@
+#!/bin/sh
+
+TEMPLATE_DIR="/opt/victronenergy/service-templates"
+SERVICE_DIR="/run/service"
+PERMANENT_SERVICE_DIR="/opt/victronenergy/service"
+CONFIG_DIR="$TEMPLATE_DIR/conf"
+
+usage() {
+    echo "$0 -- install or remove services on a Venus Device."
+    echo
+    echo "Services on Venus are typically supervised by daemontools. For devices which are"
+    echo "discovered later these service can be created once found. Typically they need some"
+    echo "parameter to be change, e.g. the tty or network interface. This script reads which"
+    echo "parameters to change from /opt/victronenergy/service-templates/conf and creates"
+    echo "the corresponding service from /opt/victronenergy/service-templates/[service] in"
+    echo "/run/service after changing the parameters. Optionally it can be created in the"
+    echo "rootfs as well, so it will survive a reboot, but in normal cases the rootfs is"
+    echo "readonly."
+    echo
+    echo "Options:"
+    echo "-D var=value  set service dependend parameters"
+    echo "-h            this help"
+    echo "-l            list the avialable services"
+    echo "-p            permanently install the service in the rootfs as well."
+    echo "              This requires a writable rootfs!"
+    echo "-r            remove the service"
+    echo "-s            the service to be installed, see -l"
+    echo "-t            the template dir to be used, /opt/victronenergy/service-templates by default"
+    echo "-w            wait for a service dir to be supervised when adding a service"
+    echo
+    exit
+}
+
+error() {
+    printf "%s\n" "$*" >&2
+    exit 1
+}
+
+# Checks if the first sentence contains the word passed as second argument.
+# returns 0 if that is the case, 1 otherwise.
+contains() {
+    for word in $1; do
+        if [ "$word" = "$2" ]; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+reset_config() {
+    PARAMS=""
+    PARAM_HELP=""
+    SERVICE_EXT=""
+}
+
+parse_config_file() {
+    local file
+    file="$1"
+
+    if [ ! -f "$file" ]; then
+        error "The config file $file doesn't exists"
+    fi
+
+    local config
+    config="$(sed -e 's/#.*//' -e '/^[[:space:]]*$/d' -e 's/[[:space:]]*=[[:space:]]*/=/' "${file}")"
+
+    while read -r line; do
+        firstword="${line%% *}"
+        case "$firstword" in
+            # instructions
+            include)
+                inc="$CONFIG_DIR/${line#* }"
+                if contains "$INCLUDED" "$inc"; then
+                    error "$inc is included multiple times!"
+                fi
+                INCLUDED="${INCLUDED} $inc"
+                parse_config_file "$inc"
+                ;;
+
+            # assumed to be variables
+            *)
+                # split in var=value
+                var="${line%%=*}"
+                value="${line#*=}"
+
+                case "$var" in
+                    "PARAM")
+                        param="${value%%:*}"
+                        PARAMS="${PARAMS} $param"
+                        PARAM_HELP="${PARAM_HELP}$value\n"
+                    ;;
+                    "SERVICE_EXT")
+                        SERVICE_EXT="$value"
+                    ;;
+                    *)
+                        error "unknown config option $var in $file"
+                    ;;
+                esac
+                ;;
+        esac
+
+    done <<EOF
+        $config
+EOF
+}
+
+parse_config() {
+    reset_config
+    parse_config_file "$1"
+}
+
+create_service_dir() {
+    src="$1"
+    tg="$2"
+    subst="$3"
+
+    # check if service already exists
+    test -d "$tg" && return 0
+
+    # copy service template
+    if ! mkdir -p "$tg"; then
+        return 1
+    fi
+    cp -a "$src/." "$tg"
+
+    # patch run files for CAN-bus device
+    cmd="sed -i $subst '$tg/run'" && eval "$cmd"
+    cmd="sed -i $subst '$tg/log/run'" && eval "$cmd"
+}
+
+check_supervise() {
+    sv="$1"
+
+    for i in {1..70}; do
+        sleep 0.1
+        if [ -e "$sv/supervise/control" ] && [ -e "$sv/log/supervise/control" ]; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+# substitute nothing by default
+subst="-e ''"
+permanent=0
+action="add"
+wait=0
+
+while getopts "h:D:lprs:t:w" arg; do
+    case $arg in
+        h)
+            usage
+            ;;
+        D)
+            var="${OPTARG%=*}"
+            value="${OPTARG#*=}"
+            subst="$subst -e 's:$var:$value:'"
+            vars="$vars $var"
+            ;;
+        l)
+            echo "Available services:"
+            for service in $(find /opt/victronenergy/service-templates/conf/ -name "*.conf" -exec sh -c 'f="$1"; basename "$f" .conf' dummy {} \; | sort); do
+                echo " - $service"
+            done
+            exit
+            ;;
+        p)
+            permanent=1
+            ;;
+        r)
+            action="remove"
+            ;;
+        s)
+            service=$OPTARG
+            ;;
+        t)
+            TEMPLATE_DIR="$OPTARG"
+            ;;
+        w)
+            wait=1
+            ;;
+    esac
+done
+
+if [ -z "$service" ]; then
+    echo "Service is not set, see -s"
+    usage
+fi
+
+src="$TEMPLATE_DIR/$service"
+if [ ! -d "$src" ]; then
+    error "The template directory $src doesn't exist"
+fi
+
+config="${CONFIG_DIR}/$service.conf"
+parse_config "${config}"
+
+# make sure all additional variables are set.
+for arg in $PARAMS; do
+    if ! contains "$vars" "$arg" ; then
+        echo "$arg is needed, but is not defined, -D $arg=..."
+        exit 1
+    fi
+done
+
+# make sure no garbage is set.
+for var in $vars; do
+    if ! contains "$PARAMS" "$var" ; then
+        echo "$var is defined, but is not valid"
+        exit 1
+    fi
+done
+
+cmd="echo $SERVICE_EXT | sed $subst"
+service_dir="$service$(eval "$cmd")"
+tg="$SERVICE_DIR/$service_dir"
+svc="/service/$service_dir"
+perm="${PERMANENT_SERVICE_DIR}/$service_dir"
+
+case $action in
+
+    "add")
+        # By default only a service is created on the RAM-disk, since Venus OS uses a readonly
+        # rootfs. After a reboot, they are no longer present and will be re-added by serial-starter,
+        # venus-platform etc. This option will add them permanently, but that does require a
+        # writable rootfs.
+        if [ $permanent -eq 1 ]; then
+            echo "Adding permanent service: $perm"
+            if ! create_service_dir "$src" "$perm" "$subst" 2>/dev/null; then
+                error "Adding permanent service failed. Forgot to run /opt/victronenergy/swupdate-scripts/resize2fs.sh ?"
+            fi
+        fi
+
+        # The RAM-disk service
+        echo "Adding runtime service: $tg"
+        create_service_dir "$src" "$tg" "$subst"
+
+        # symlink into /service for svscan to find
+        echo "Adding svc service (symlink): $svc"
+        ln -sf "$tg" "$svc"
+
+        if [ -e "$svc/down" ]; then
+            echo "NOTE: the service ($svc) is still down."
+        fi
+
+        # This is venus specific, with a stock daemontools, this can take up to 5 seconds.
+        # In venus daemontools is patched, so it can be signalled to scan. Since svscan
+        # will be killed in an unpatched case, make sure to only signal it when supported.
+        if which svrescan; then
+            svrescan
+        fi
+
+        if [ $wait -eq 1 ]; then
+            check_supervise "$svc"
+        fi
+        ;;
+
+    "remove")
+        [ -e "$svc" ] && echo "Removing svc service $svc" && rm -rf "$svc"
+        [ -e "$tg" ] && echo "Stopping: $tg" && svc -dx "$tg" "$tg/log"
+        [ -e "$tg" ] && echo "Removing runtime service: $tg" && rm -rf "$tg"
+        [ -e "$perm" ] && echo "Removing permanent service: $perm" && rm -rf "$perm"
+        exit 0
+        ;;
+
+esac
