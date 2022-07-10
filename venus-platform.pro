@@ -23,6 +23,7 @@ INCLUDEPATH += ext/velib/inc
 
 HEADERS += \
     ext/velib/inc/velib/qt/canbus_interfaces.hpp \
+    ext/velib/inc/velib/qt/canbus_monitor.hpp \
     ext/velib/inc/velib/qt/daemontools_service.hpp \
     ext/velib/inc/velib/qt/q_udev.hpp \
     ext/velib/inc/velib/qt/v_busitems.h \
@@ -33,6 +34,7 @@ HEADERS += \
 
 SOURCES += \
     ext/velib/src/qt/canbus_interfaces.cpp \
+    ext/velib/src/qt/canbus_monitor.cpp \
     ext/velib/src/qt/daemontools_service.cpp \
     ext/velib/src/qt/q_udev.cpp \
     ext/velib/src/qt/v_busitems.cpp \

@@ -1,7 +1,7 @@
 #include <QCoreApplication>
 
 #include <velib/qt/ve_qitems_dbus.hpp>
-#include <velib/qt/canbus_interfaces.hpp>
+#include <velib/qt/canbus_monitor.hpp>
 
 class Application : public QCoreApplication
 {
