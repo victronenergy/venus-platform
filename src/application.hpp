@@ -20,4 +20,6 @@ private:
 	VeQItemSettings *mSettings;
 	VeQItem *mServices;
 	QTimer mLocalSettingsTimeout;
+
+	VeQItem *mService;
 };

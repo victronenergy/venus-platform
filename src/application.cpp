@@ -1,5 +1,6 @@
 #include <velib/qt/daemontools_service.hpp>
 #include <velib/qt/v_busitems.h>
+#include <velib/qt/ve_qitem_dbus_publisher.hpp>
 
 #include "application.hpp"
 
@@ -106,4 +107,11 @@ void Application::init()
 	}
 
 	manageDaemontoolsServices();
+
+	// The part exporting items from the dbus..
+	VeQItemProducer *toDbus = new VeQItemProducer(VeQItems::getRoot(), "to-dbus", this);
+	mService = toDbus->services()->itemGetOrCreate("com.victronenergy.platform");
+	VeQItemDbusPublisher *publisher = new VeQItemDbusPublisher(toDbus->services(), this);
+	publisher->open(VBusItems::getDBusAddress());
+	mService->produceValue(QString());
 }
