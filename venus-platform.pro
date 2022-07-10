@@ -22,7 +22,9 @@ INCLUDEPATH += src
 INCLUDEPATH += ext/velib/inc
 
 HEADERS += \
+    ext/velib/inc/velib/qt/canbus_interfaces.hpp \
     ext/velib/inc/velib/qt/daemontools_service.hpp \
+    ext/velib/inc/velib/qt/q_udev.hpp \
     ext/velib/inc/velib/qt/v_busitems.h \
     ext/velib/inc/velib/qt/ve_qitem.hpp \
     ext/velib/inc/velib/qt/ve_qitems_dbus.hpp \
@@ -30,7 +32,9 @@ HEADERS += \
     ext/velib/src/qt/ve_qitem_dbus_virtual_object.hpp \
 
 SOURCES += \
+    ext/velib/src/qt/canbus_interfaces.cpp \
     ext/velib/src/qt/daemontools_service.cpp \
+    ext/velib/src/qt/q_udev.cpp \
     ext/velib/src/qt/v_busitems.cpp \
     ext/velib/src/qt/ve_qitem.cpp \
     ext/velib/src/qt/ve_qitems_dbus.cpp \
@@ -40,3 +44,5 @@ SOURCES += \
 *g++* {
     QMAKE_CXX += -Wno-class-memaccess -Wno-deprecated-copy
 }
+
+LIBS += -ludev

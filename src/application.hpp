@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 
 #include <velib/qt/ve_qitems_dbus.hpp>
+#include <velib/qt/canbus_interfaces.hpp>
 
 class Application : public QCoreApplication
 {
@@ -12,6 +13,7 @@ public:
 protected slots:
 	void onLocalSettingsStateChanged(VeQItem *item);
 	void onLocalSettingsTimeout();
+	void onCanInterfacesChanged();
 
 private:
 	void manageDaemontoolsServices();
@@ -20,6 +22,7 @@ private:
 	VeQItemSettings *mSettings;
 	VeQItem *mServices;
 	QTimer mLocalSettingsTimeout;
+	CanInterfaceMonitor *mCanInterfaceMonitor;
 
 	VeQItem *mService;
 };

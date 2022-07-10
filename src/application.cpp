@@ -74,6 +74,11 @@ void Application::onLocalSettingsTimeout()
 	::exit(EXIT_FAILURE);
 }
 
+void Application::onCanInterfacesChanged()
+{
+	mService->itemGetOrCreateAndProduce("CanBus/Interfaces", QVariant::fromValue(mCanInterfaceMonitor->canInfo()));
+}
+
 void Application::manageDaemontoolsServices()
 {
 	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
@@ -114,4 +119,8 @@ void Application::init()
 	VeQItemDbusPublisher *publisher = new VeQItemDbusPublisher(toDbus->services(), this);
 	publisher->open(VBusItems::getDBusAddress());
 	mService->produceValue(QString());
+
+	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, this);
+	connect(mCanInterfaceMonitor, SIGNAL(interfacesChanged()), SLOT(onCanInterfacesChanged()));
+	mCanInterfaceMonitor->enumerate();
 }
