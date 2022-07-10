@@ -115,7 +115,8 @@ void Application::init()
 
 	// The part exporting items from the dbus..
 	VeQItemProducer *toDbus = new VeQItemProducer(VeQItems::getRoot(), "to-dbus", this);
-	mService = toDbus->services()->itemGetOrCreate("com.victronenergy.platform");
+	mService = toDbus->services()->itemGetOrCreate("com.victronenergy.platform", false);
+
 	VeQItemDbusPublisher *publisher = new VeQItemDbusPublisher(toDbus->services(), this);
 	publisher->open(VBusItems::getDBusAddress());
 	mService->produceValue(QString());
