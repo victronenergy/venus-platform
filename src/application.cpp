@@ -16,6 +16,8 @@ public:
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/SignalK", 0, 0, 1);
 		add("Services/NodeRed", 0, 0, 2);
+		// Note: only for debugging over tcp/ip, _not_ socketcan itself...
+		add("Services/Socketcand", 0, 0, 1);
 		add("System/ImageType", 0, 0, 1);
 	}
 };
@@ -97,6 +99,10 @@ void Application::manageDaemontoolsServices()
 
 	if (serviceExists("signalk-server"))
 		new DaemonToolsService(mSettings, "/service/signalk-server", "Settings/Services/SignalK", this);
+
+	// CAN-bus debugging over tcp/ip
+	new DaemonToolsService(mSettings, "/service/socketcand", "Settings/Services/Socketcand",
+						   this, QStringList() << "-s" << "socketcand");
 }
 
 void Application::init()
