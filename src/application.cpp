@@ -94,9 +94,9 @@ void Application::manageDaemontoolsServices()
 		QList<int> start = QList<int>() << 1 << 2;
 		new DaemonToolsService(mSettings, "/service/node-red-venus", "Settings/Services/NodeRed", start, this);
 	}
-	if (serviceExists("signalk-server")) {
+
+	if (serviceExists("signalk-server"))
 		new DaemonToolsService(mSettings, "/service/signalk-server", "Settings/Services/SignalK", this);
-	}
 }
 
 void Application::init()
