@@ -15,6 +15,7 @@ public:
 		add("Relay/1/Polarity", 0, 0, 0);
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/Bluetooth", 1, 0, 1);
+		add("Services/Modbus", 0, 0, 1);
 		add("Services/SignalK", 0, 0, 1);
 		add("Services/NodeRed", 0, 0, 2);
 		// Note: only for debugging over tcp/ip, _not_ socketcan itself...
@@ -87,6 +88,9 @@ void Application::manageDaemontoolsServices()
 	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
 
 	new DaemonToolsService(mSettings, "/service/dbus-pump", "Settings/Relay/Function", 3, this);
+
+	new DaemonToolsService(mSettings, "/service/dbus-modbustcp", "Settings/Services/Modbus",
+						   this, QStringList() << "-s" << "dbus-modbustcp");
 
 	// Temperature relay
 	QList<QString> tempSensorRelayList = QList<QString>() << "Settings/Relay/Function" << "Settings/Relay/1/Function";
