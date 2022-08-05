@@ -19,8 +19,8 @@ public:
 		add("Services/MqttLocal", 0, 0, 1);
 		add("Services/MqttLocalInsecure", 0, 0, 1);
 		add("Services/MqttVrm", 0, 0, 1);
-		add("Services/SignalK", 0, 0, 1);
 		add("Services/NodeRed", 0, 0, 2);
+		add("Services/SignalK", 0, 0, 1);
 		// Note: only for debugging over tcp/ip, _not_ socketcan itself...
 		add("Services/Socketcand", 0, 0, 1);
 		add("System/ImageType", 0, 0, 1);
