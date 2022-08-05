@@ -4,11 +4,6 @@
 
 #include "application.hpp"
 
-// FIXME: Since September 2019 Service/Mqtt no longer exists, see:
-//   https://github.com/victronenergy/localsettings/commit/f8a7cb23943a8cc68df6e92e4fdbbf0f44dc8ce3#diff-27332c9bf657f3f9b7b8f1ea9e16aea18c2d62c2761b1419da3f2ce1d71de4a9R110
-//   https://github.com/victronenergy/gui/commit/241e4e9c643dfd8e56b9bf7108d5456669b35878#diff-af69aaf026a1bde8ff3b133d8937dc397ea94aad22f1e92128bba3c61b41da5eL54
-// Hence MqttN2k is broken for 3 years as well...
-
 class SettingsInfo : public VeQItemSettingsInfo
 {
 public:
@@ -23,7 +18,6 @@ public:
 		add("Services/Modbus", 0, 0, 1);
 		add("Services/MqttLocal", 0, 0, 1);
 		add("Services/MqttLocalInsecure", 0, 0, 1);
-		add("Services/MqttN2k", 0, 0, 1);
 		add("Services/MqttVrm", 0, 0, 1);
 		add("Services/SignalK", 0, 0, 1);
 		add("Services/NodeRed", 0, 0, 2);
