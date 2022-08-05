@@ -117,10 +117,10 @@ void Application::mqttLocalChanged(VeQItem *item, QVariant var)
 
 	if (var.toBool()) {
 		qDebug() << "[Firewall] Allow local MQTT over SSL, port 8883";
-		system("firewall allow tcp 8883");
+		spawn("firewall", QStringList() << "allow" << "tcp" << "8883");
 	} else {
 		qDebug() << "[Firewall] Disallow local MQTT over SSL, port 8883";
-		system("firewall deny tcp 8883");
+		spawn("firewall", QStringList() << "deny" << "tcp" << "8883");
 		mqttCheckLocalInsecure();
 	}
 }
@@ -134,13 +134,13 @@ void Application::mqttLocalInsecureChanged(VeQItem *item, QVariant var)
 
 	if (var.toBool()) {
 		qDebug() << "[Firewall] Allow insecure access to MQTT, port 1883 / 9001";
-		system("firewall allow tcp 1883");
-		system("firewall allow tcp 9001");
+		spawn("firewall", QStringList() << "allow" << "tcp" << "1883");
+		spawn("firewall", QStringList() << "allow" << "tcp" << "9001");
 		mqttCheckLocalInsecure();
 	} else {
 		qDebug() << "[Firewall] Disallow insecure access to MQTT, port 1883 / 9001";
-		system("firewall deny tcp 1883");
-		system("firewall deny tcp 9001");
+		spawn("firewall", QStringList() << "deny" << "tcp" << "1883");
+		spawn("firewall", QStringList() << "deny" << "tcp" << "9001");
 	}
 }
 
@@ -208,4 +208,11 @@ void Application::init()
 	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, this);
 	connect(mCanInterfaceMonitor, SIGNAL(interfacesChanged()), SLOT(onCanInterfacesChanged()));
 	mCanInterfaceMonitor->enumerate();
+}
+
+void Application::spawn(QString const &cmd, const QStringList &args)
+{
+	QProcess *proc = new QProcess();
+	connect(proc, SIGNAL(finished(int)), proc, SLOT(deleteLater()));
+	proc->start(cmd, args);
 }

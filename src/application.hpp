@@ -21,6 +21,7 @@ private:
 	void manageDaemontoolsServices();
 	void mqttCheckLocalInsecure();
 	void init();
+	void spawn(const QString &cmd, QStringList const &args = QStringList());
 
 	VeQItemSettings *mSettings;
 	VeQItem *mServices;
