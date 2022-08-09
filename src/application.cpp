@@ -195,19 +195,20 @@ void Application::init()
 		::exit(EXIT_FAILURE);
 	}
 
-	manageDaemontoolsServices();
-
-	// The part exporting items from the dbus..
+	// The items exported to the dbus..
 	VeQItemProducer *toDbus = new VeQItemProducer(VeQItems::getRoot(), "to-dbus", this);
 	mService = toDbus->services()->itemGetOrCreate("com.victronenergy.platform", false);
 
-	VeQItemDbusPublisher *publisher = new VeQItemDbusPublisher(toDbus->services(), this);
-	publisher->open(VBusItems::getDBusAddress());
-	mService->produceValue(QString());
+	manageDaemontoolsServices();
 
 	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, this);
 	connect(mCanInterfaceMonitor, SIGNAL(interfacesChanged()), SLOT(onCanInterfacesChanged()));
 	mCanInterfaceMonitor->enumerate();
+
+	// With everything ready, do export the service to the dbus
+	VeQItemDbusPublisher *publisher = new VeQItemDbusPublisher(toDbus->services(), this);
+	mService->produceValue(QString());
+	publisher->open(VBusItems::getDBusAddress());
 }
 
 void Application::spawn(QString const &cmd, const QStringList &args)
