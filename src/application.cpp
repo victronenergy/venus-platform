@@ -4,6 +4,14 @@
 
 #include "application.hpp"
 
+static bool serviceExists(QString const &svc) {
+	return QDir("/service/" + svc).exists();
+}
+
+static bool templateExists(QString const &name) {
+	return QFile("/opt/victronenergy/service-templates/conf/" + name + ".conf").exists();
+}
+
 class SettingsInfo : public VeQItemSettingsInfo
 {
 public:
@@ -13,6 +21,8 @@ public:
 		add("Relay/Polarity", 0, 0, 0);
 		add("Relay/1/Function", 2, 0, 0);
 		add("Relay/1/Polarity", 0, 0, 0);
+		if (templateExists("hostapd"))
+			add("Services/AccessPoint", 1, 0, 1);
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/Bluetooth", 1, 0, 1);
 		add("Services/Modbus", 0, 0, 1);
@@ -26,10 +36,6 @@ public:
 		add("System/ImageType", 0, 0, 1);
 	}
 };
-
-static bool serviceExists(QString const &svc) {
-	return QDir("/service/" + svc).exists();
-}
 
 Application::Application::Application(int &argc, char **argv) :
 	QCoreApplication(argc, argv),
@@ -181,6 +187,13 @@ void Application::manageDaemontoolsServices()
 	// MQTT on LAN
 	mMqttLocal = mSettings->root()->itemGetOrCreate("Settings/Services/MqttLocal");
 	mMqttLocal->getValueAndChanges(this, SLOT(mqttLocalChanged(VeQItem*,QVariant)));
+
+	if (templateExists("hostapd")) {
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/AccessPoint"), "Enabled",
+							   mSettings->root()->itemGetOrCreate("Settings/Services/AccessPoint"));
+		new DaemonToolsService(mSettings, "/service/hostapd", "Settings/Services/AccessPoint",
+							   this, QStringList() << "-s" << "hostapd");
+	}
 
 	// CAN-bus debugging over tcp/ip
 	new DaemonToolsService(mSettings, "/service/socketcand", "Settings/Services/Socketcand",
