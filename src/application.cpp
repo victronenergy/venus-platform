@@ -195,6 +195,15 @@ void Application::manageDaemontoolsServices()
 							   this, QStringList() << "-s" << "hostapd");
 	}
 
+	/*
+	 * On behalf of venus-access, since that one should be kept as simple as possible.
+	 * This only handles the optional settings: venus-platform -> localsettings -> venus-access.
+	 */
+	if (QFile("/dev/ttyconsole").exists()) {
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/Console"), "Enabled",
+							   mSettings->root()->itemGetOrCreate("Settings/Services/Console"));
+	}
+
 	// CAN-bus debugging over tcp/ip
 	new DaemonToolsService(mSettings, "/service/socketcand", "Settings/Services/Socketcand",
 						   this, QStringList() << "-s" << "socketcand");
