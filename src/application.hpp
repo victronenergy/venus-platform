@@ -16,6 +16,7 @@ protected slots:
 	void onCanInterfacesChanged();
 	void mqttLocalChanged(VeQItem *item, QVariant var);
 	void mqttLocalInsecureChanged(VeQItem *item, QVariant var);
+	void mk3UpdateAllowedChanged(VeQItem *item, QVariant var);
 
 private:
 	void manageDaemontoolsServices();

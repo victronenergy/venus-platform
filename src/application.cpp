@@ -12,10 +12,16 @@ static bool templateExists(QString const &name) {
 	return QFile("/opt/victronenergy/service-templates/conf/" + name + ".conf").exists();
 }
 
+enum Mk3Update {
+	DISALLOWED,
+	ALLOWED,
+	NOT_APPLICABLE
+};
+
 class SettingsInfo : public VeQItemSettingsInfo
 {
 public:
-	SettingsInfo()
+	SettingsInfo(enum Mk3Update mk3update)
 	{
 		add("Relay/Function", 0, 0, 0);
 		add("Relay/Polarity", 0, 0, 0);
@@ -34,6 +40,7 @@ public:
 		// Note: only for debugging over tcp/ip, _not_ socketcan itself...
 		add("Services/Socketcand", 0, 0, 1);
 		add("System/ImageType", 0, 0, 1);
+		add("Vebus/AllowMk3Fw212Update", mk3update, 0, 2);
 	}
 };
 
@@ -150,6 +157,20 @@ void Application::mqttLocalInsecureChanged(VeQItem *item, QVariant var)
 	}
 }
 
+void Application::mk3UpdateAllowedChanged(VeQItem *item, QVariant var)
+{
+	static QVariant lastValue;
+	bool ok;
+	Q_UNUSED(item);
+
+	if (lastValue.toInt(&ok) == 0 && ok && var.toInt(&ok) == 1 && ok) {
+		qDebug() << "restarting all Vebus services";
+		spawn("sh", QStringList() << "-c" << "svc -t /service/mk2-dbus.*");
+	}
+
+	lastValue = var;
+}
+
 void Application::manageDaemontoolsServices()
 {
 	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
@@ -188,6 +209,9 @@ void Application::manageDaemontoolsServices()
 	mMqttLocal = mSettings->root()->itemGetOrCreate("Settings/Services/MqttLocal");
 	mMqttLocal->getValueAndChanges(this, SLOT(mqttLocalChanged(VeQItem*,QVariant)));
 
+	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Vebus/AllowMk3Fw212Update");
+	item->getValueAndChanges(this, SLOT(mk3UpdateAllowedChanged(VeQItem*,QVariant)));
+
 	if (templateExists("hostapd")) {
 		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/AccessPoint"), "Enabled",
 							   mSettings->root()->itemGetOrCreate("Settings/Services/AccessPoint"));
@@ -211,8 +235,21 @@ void Application::manageDaemontoolsServices()
 
 void Application::init()
 {
+	QString installerVersion;
+	QFile file("/data/venus/installer-version");
+	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		file.readLine(); // version number
+		file.readLine(); // Victron
+		installerVersion = file.readLine();
+	}
+
+	// mk3 firmware 212 should not automatically be updated after a Venus update.
+	// When shipped with a newer version it should be fine. Since the mk3 version is unknown
+	// without the service being started (which will update it), check the installer date instead.
+	enum Mk3Update mk3update = !installerVersion.isEmpty() && installerVersion >= "202210050000" ? NOT_APPLICABLE : DISALLOWED;
+
 	qDebug() << "Creating settings";
-	if (!mSettings->addSettings(SettingsInfo())) {
+	if (!mSettings->addSettings(SettingsInfo(mk3update))) {
 		qCritical() << "Creating settings failed";
 		::exit(EXIT_FAILURE);
 	}
