@@ -268,6 +268,8 @@ void Application::init()
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
 	mService->produceValue(QString());
 	publisher->open(VBusItems::getDBusAddress());
+
+	mUpdater = new Updater(mService, this);
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)

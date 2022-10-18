@@ -3,6 +3,8 @@
 #include <velib/qt/ve_qitems_dbus.hpp>
 #include <velib/qt/canbus_monitor.hpp>
 
+#include "updater.hpp"
+
 class Application : public QCoreApplication
 {
 	Q_OBJECT
@@ -29,6 +31,7 @@ private:
 	VeQItem *mServices;
 	QTimer mLocalSettingsTimeout;
 	CanInterfaceMonitor *mCanInterfaceMonitor;
+	Updater *mUpdater;
 
 	VeQItem *mMqttLocalInsecure = nullptr;
 	VeQItem *mMqttLocal = nullptr;

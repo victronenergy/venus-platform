@@ -1,4 +1,4 @@
-QT = core dbus
+QT = core dbus network
 
 unix {
     bindir = $$(bindir)
@@ -12,11 +12,13 @@ unix {
 
 HEADERS = \
     src/application.hpp \
+    src/updater.hpp \
     src/velib/velib_config_app.h \
 
 SOURCES = \
     src/application.cpp \
     src/main.cpp \
+    src/updater.cpp \
 
 INCLUDEPATH += src
 INCLUDEPATH += ext/velib/inc
@@ -25,11 +27,13 @@ HEADERS += \
     ext/velib/inc/velib/qt/canbus_interfaces.hpp \
     ext/velib/inc/velib/qt/canbus_monitor.hpp \
     ext/velib/inc/velib/qt/daemontools_service.hpp \
+    ext/velib/inc/velib/qt/firmware_updater_data.hpp \
     ext/velib/inc/velib/qt/q_udev.hpp \
     ext/velib/inc/velib/qt/v_busitems.h \
     ext/velib/inc/velib/qt/ve_qitem.hpp \
     ext/velib/inc/velib/qt/ve_qitems_dbus.hpp \
     ext/velib/inc/velib/qt/ve_qitem_exported_dbus_services.hpp \
+    ext/velib/inc/velib/qt/ve_qitem_utils.hpp \
     ext/velib/src/qt/ve_qitem_exported_dbus_service.hpp \
 
 SOURCES += \
