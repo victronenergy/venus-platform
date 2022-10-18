@@ -10,6 +10,8 @@ class Application : public QCoreApplication
 public:
 	Application(int &argc, char **argv);
 
+	static QProcess *spawn(const QString &cmd, QStringList const &args = QStringList());
+
 protected slots:
 	void onLocalSettingsStateChanged(VeQItem *item);
 	void onLocalSettingsTimeout();
@@ -22,7 +24,6 @@ private:
 	void manageDaemontoolsServices();
 	void mqttCheckLocalInsecure();
 	void init();
-	void spawn(const QString &cmd, QStringList const &args = QStringList());
 
 	VeQItemSettings *mSettings;
 	VeQItem *mServices;

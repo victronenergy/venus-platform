@@ -270,9 +270,10 @@ void Application::init()
 	publisher->open(VBusItems::getDBusAddress());
 }
 
-void Application::spawn(QString const &cmd, const QStringList &args)
+QProcess *Application::spawn(QString const &cmd, const QStringList &args)
 {
 	QProcess *proc = new QProcess();
 	connect(proc, SIGNAL(finished(int)), proc, SLOT(deleteLater()));
 	proc->start(cmd, args);
+	return proc;
 }
