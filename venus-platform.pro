@@ -29,8 +29,8 @@ HEADERS += \
     ext/velib/inc/velib/qt/v_busitems.h \
     ext/velib/inc/velib/qt/ve_qitem.hpp \
     ext/velib/inc/velib/qt/ve_qitems_dbus.hpp \
-    ext/velib/inc/velib/qt/ve_qitem_dbus_publisher.hpp \
-    ext/velib/src/qt/ve_qitem_dbus_virtual_object.hpp \
+    ext/velib/inc/velib/qt/ve_qitem_exported_dbus_services.hpp \
+    ext/velib/src/qt/ve_qitem_exported_dbus_service.hpp \
 
 SOURCES += \
     ext/velib/src/qt/canbus_interfaces.cpp \
@@ -40,8 +40,8 @@ SOURCES += \
     ext/velib/src/qt/v_busitems.cpp \
     ext/velib/src/qt/ve_qitem.cpp \
     ext/velib/src/qt/ve_qitems_dbus.cpp \
-    ext/velib/src/qt/ve_qitem_dbus_publisher.cpp \
-    ext/velib/src/qt/ve_qitem_dbus_virtual_object.cpp \
+    ext/velib/src/qt/ve_qitem_exported_dbus_service.cpp \
+    ext/velib/src/qt/ve_qitem_exported_dbus_services.cpp \
 
 *g++* {
     QMAKE_CXX += -Wno-class-memaccess -Wno-deprecated-copy

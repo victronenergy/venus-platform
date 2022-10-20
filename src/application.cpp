@@ -1,6 +1,6 @@
 #include <velib/qt/daemontools_service.hpp>
 #include <velib/qt/v_busitems.h>
-#include <velib/qt/ve_qitem_dbus_publisher.hpp>
+#include <velib/qt/ve_qitem_exported_dbus_services.hpp>
 
 #include "application.hpp"
 
@@ -265,7 +265,7 @@ void Application::init()
 	mCanInterfaceMonitor->enumerate();
 
 	// With everything ready, do export the service to the dbus
-	VeQItemDbusPublisher *publisher = new VeQItemDbusPublisher(toDbus->services(), this);
+	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
 	mService->produceValue(QString());
 	publisher->open(VBusItems::getDBusAddress());
 }
