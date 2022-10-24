@@ -310,12 +310,12 @@ void Application::init()
 	connect(mCanInterfaceMonitor, SIGNAL(interfacesChanged()), SLOT(onCanInterfacesChanged()));
 	mCanInterfaceMonitor->enumerate();
 
+	mUpdater = new Updater(mService, this);
+
 	// With everything ready, do export the service to the dbus
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
 	mService->produceValue(QString());
 	publisher->open(VBusItems::getDBusAddress());
-
-	mUpdater = new Updater(mService, this);
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)
