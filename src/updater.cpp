@@ -126,6 +126,8 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 
 	VeQItem *state = mItem->itemAddChild("State", new VeQItemUpdateState());
 	VeQItem *progress = mItem->itemAddChild("Progress", new VeQItemQuantity(0, "%"));
+	mItem->itemGetOrCreateAndProduce("LargeImageSupport", getFeature("large_image_support") == "1" ? 1 : 0);
+
 	VeQItem *installed = mItem->itemGetOrCreate("Installed");
 	installed->itemAddChild("Version", new VeQItemQuantity());
 	installed->itemAddChild("Build", new VeQItemQuantity());

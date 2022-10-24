@@ -5,6 +5,9 @@
 
 #include "updater.hpp"
 
+QStringList getFeatureList(const QString &name, bool lines = false);
+QString getFeature(QString const &name, bool optional = true);
+
 class Application : public QCoreApplication
 {
 	Q_OBJECT

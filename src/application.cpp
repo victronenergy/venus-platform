@@ -4,12 +4,53 @@
 
 #include "application.hpp"
 
+static QDir machineRuntimeDir = QDir("/etc/venus");
+
 static bool serviceExists(QString const &svc) {
 	return QDir("/service/" + svc).exists();
 }
 
 static bool templateExists(QString const &name) {
 	return QFile("/opt/victronenergy/service-templates/conf/" + name + ".conf").exists();
+}
+
+QStringList getFeatureList(QString const &name, bool lines)
+{
+	QStringList ret;
+	QFile file(machineRuntimeDir.filePath(name));
+
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+		return ret;
+
+	QString line;
+	while (!file.atEnd()) {
+		line = file.readLine();
+		if (lines) {
+			line = line.trimmed();
+			if (!line.isEmpty())
+				ret.append(line);
+		} else {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+			ret.append(line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts));
+#else
+			ret.append(line.split(QRegExp("\\s+"), QString::SkipEmptyParts));
+#endif
+		}
+	}
+
+	return ret;
+}
+
+QString getFeature(QString const &name, bool optional)
+{
+	QStringList list = getFeatureList(name);
+
+	if (!optional && list.count() != 1) {
+		qCritical() << "required machine feature " + name + " does not exist";
+		exit(EXIT_FAILURE);
+	}
+
+	return (list.count() >= 1 ? list[0] : QString());
 }
 
 enum Mk3Update {
@@ -188,10 +229,15 @@ void Application::manageDaemontoolsServices()
 	if (serviceExists("node-red-venus")) {
 		QList<int> start = QList<int>() << 1 << 2;
 		new DaemonToolsService(mSettings, "/service/node-red-venus", "Settings/Services/NodeRed", start, this);
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/NodeRed"), "Mode",
+							   mSettings->root()->itemGetOrCreate("Settings/Services/NodeRed"));
 	}
 
-	if (serviceExists("signalk-server"))
+	if (serviceExists("signalk-server")) {
 		new DaemonToolsService(mSettings, "/service/signalk-server", "Settings/Services/SignalK", this);
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/SignalK"), "Enabled",
+							   mSettings->root()->itemGetOrCreate("Settings/Services/SignalK"));
+	}
 
 	new DaemonToolsService(mSettings, "/service/vesmart-server", "Settings/Services/Bluetooth",
 						   this, QStringList() << "-s" << "vesmart-server");
