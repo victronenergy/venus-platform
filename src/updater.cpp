@@ -224,7 +224,11 @@ void Updater::touchFile(QString const &fileName)
 
 void Updater::getVersionInfoFromLine(QString const &line, QVariant &build, QVariant &version)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	QStringList parts = line.trimmed().split(" ", Qt::SkipEmptyParts);
+#else
 	QStringList parts = line.trimmed().split(" ", QString::SkipEmptyParts);
+#endif
 
 	build = parts.length() >= 1 ? parts[0] : QVariant();
 	version = parts.length() >= 2 ? parts[1] : QVariant();
