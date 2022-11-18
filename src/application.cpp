@@ -103,7 +103,7 @@ Application::Application::Application(int &argc, char **argv) :
 	mSettings = new VeQItemDbusSettings(producer->services(), QString("com.victronenergy.settings"));
 
 	VeQItem *item = mServices->itemGetOrCreate("com.victronenergy.settings");
-	connect(item, SIGNAL(stateChanged(VeQItem*,State)), SLOT(onLocalSettingsStateChanged(VeQItem*)));
+	connect(item, SIGNAL(stateChanged(VeQItem::State)), SLOT(onLocalSettingsStateChanged(VeQItem::State)));
 	if (item->getState() == VeQItem::Synchronized) {
 		qDebug() << "Localsettings found";
 		init();
@@ -116,12 +116,12 @@ Application::Application::Application(int &argc, char **argv) :
 	}
 }
 
-void Application::onLocalSettingsStateChanged(VeQItem *item)
+void Application::onLocalSettingsStateChanged(VeQItem::State state)
 {
 	mLocalSettingsTimeout.stop();
 
-	if (item->getState() != VeQItem::Synchronized) {
-		qCritical() << "Localsettings not available" << item->getState();
+	if (state != VeQItem::Synchronized) {
+		qCritical() << "Localsettings not available" << state;
 		::exit(EXIT_FAILURE);
 	}
 
@@ -156,10 +156,8 @@ void Application::mqttCheckLocalInsecure()
 		mMqttLocalInsecure->setValue(false);
 }
 
-void Application::mqttLocalChanged(VeQItem *item, QVariant var)
+void Application::mqttLocalChanged(QVariant var)
 {
-	Q_UNUSED(item);
-
 	if (!var.isValid())
 		return;
 
@@ -179,11 +177,9 @@ void Application::mqttLocalChanged(VeQItem *item, QVariant var)
 	}
 }
 
-void Application::mqttLocalInsecureChanged(VeQItem *item, QVariant var)
+void Application::mqttLocalInsecureChanged(QVariant var)
 {
-	Q_UNUSED(item);
-
-	if (!var.isValid())
+if (!var.isValid())
 		return;
 
 	if (var.toBool()) {
@@ -198,11 +194,10 @@ void Application::mqttLocalInsecureChanged(VeQItem *item, QVariant var)
 	}
 }
 
-void Application::mk3UpdateAllowedChanged(VeQItem *item, QVariant var)
+void Application::mk3UpdateAllowedChanged(QVariant var)
 {
 	static QVariant lastValue;
 	bool ok;
-	Q_UNUSED(item);
 
 	if (lastValue.toInt(&ok) == 0 && ok && var.toInt(&ok) == 1 && ok) {
 		qDebug() << "restarting all Vebus services";
@@ -249,14 +244,14 @@ void Application::manageDaemontoolsServices()
 
 	// MQTT on LAN insecure
 	mMqttLocalInsecure = mSettings->root()->itemGetOrCreate("Settings/Services/MqttLocalInsecure");
-	mMqttLocalInsecure->getValueAndChanges(this, SLOT(mqttLocalInsecureChanged(VeQItem*,QVariant)));
+	mMqttLocalInsecure->getValueAndChanges(this, SLOT(mqttLocalInsecureChanged(QVariant)));
 
 	// MQTT on LAN
 	mMqttLocal = mSettings->root()->itemGetOrCreate("Settings/Services/MqttLocal");
-	mMqttLocal->getValueAndChanges(this, SLOT(mqttLocalChanged(VeQItem*,QVariant)));
+	mMqttLocal->getValueAndChanges(this, SLOT(mqttLocalChanged(QVariant)));
 
 	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Vebus/AllowMk3Fw212Update");
-	item->getValueAndChanges(this, SLOT(mk3UpdateAllowedChanged(VeQItem*,QVariant)));
+	item->getValueAndChanges(this, SLOT(mk3UpdateAllowedChanged(QVariant)));
 
 	if (templateExists("hostapd")) {
 		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/AccessPoint"), "Enabled",

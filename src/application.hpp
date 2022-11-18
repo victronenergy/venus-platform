@@ -18,12 +18,12 @@ public:
 	static QProcess *spawn(const QString &cmd, QStringList const &args = QStringList());
 
 protected slots:
-	void onLocalSettingsStateChanged(VeQItem *item);
+	void onLocalSettingsStateChanged(VeQItem::State state);
 	void onLocalSettingsTimeout();
 	void onCanInterfacesChanged();
-	void mqttLocalChanged(VeQItem *item, QVariant var);
-	void mqttLocalInsecureChanged(VeQItem *item, QVariant var);
-	void mk3UpdateAllowedChanged(VeQItem *item, QVariant var);
+	void mqttLocalChanged(QVariant var);
+	void mqttLocalInsecureChanged(QVariant var);
+	void mk3UpdateAllowedChanged(QVariant var);
 
 private:
 	void manageDaemontoolsServices();
