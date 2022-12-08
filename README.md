@@ -4,5 +4,3 @@ Some services are disabled by default, like ssh daemon and console access
 on a Color Control. They can be enabled with settings. This process makes
 sure they are actually started when the setting is enabled.
 
-NOTE: part of the services are still controlled by the gui (August 2021).
-
