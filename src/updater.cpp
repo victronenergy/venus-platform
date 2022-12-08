@@ -5,8 +5,8 @@
 
 #include "application.hpp"
 #include "updater.hpp"
-#include <velib/qt/ve_qitem_utils.hpp>
-#include <velib/qt/firmware_updater_data.hpp>
+#include <veutil/qt/ve_qitem_utils.hpp>
+#include <veutil/qt/firmware_updater_data.hpp>
 
 QString updateFile = QString::fromUtf8("/var/run/swupdate-status");
 QString updateScript = QString::fromUtf8("/opt/victronenergy/swupdate-scripts/check-updates.sh");

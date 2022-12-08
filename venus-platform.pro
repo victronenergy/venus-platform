@@ -13,42 +13,14 @@ unix {
 HEADERS = \
     src/application.hpp \
     src/updater.hpp \
-    src/velib/velib_config_app.h \
 
 SOURCES = \
     src/application.cpp \
     src/main.cpp \
     src/updater.cpp \
 
-INCLUDEPATH += src
-INCLUDEPATH += ext/velib/inc
+VE_CONFIG += udev
+include("ext/veutil/veutil.pri")
 
-HEADERS += \
-    ext/velib/inc/velib/qt/canbus_interfaces.hpp \
-    ext/velib/inc/velib/qt/canbus_monitor.hpp \
-    ext/velib/inc/velib/qt/daemontools_service.hpp \
-    ext/velib/inc/velib/qt/firmware_updater_data.hpp \
-    ext/velib/inc/velib/qt/q_udev.hpp \
-    ext/velib/inc/velib/qt/ve_dbus_connection.hpp \
-    ext/velib/inc/velib/qt/ve_qitem.hpp \
-    ext/velib/inc/velib/qt/ve_qitems_dbus.hpp \
-    ext/velib/inc/velib/qt/ve_qitem_exported_dbus_services.hpp \
-    ext/velib/inc/velib/qt/ve_qitem_utils.hpp \
-    ext/velib/src/qt/ve_qitem_exported_dbus_service.hpp \
-
-SOURCES += \
-    ext/velib/src/qt/canbus_interfaces.cpp \
-    ext/velib/src/qt/canbus_monitor.cpp \
-    ext/velib/src/qt/daemontools_service.cpp \
-    ext/velib/src/qt/q_udev.cpp \
-    ext/velib/src/qt/ve_dbus_connection.cpp \
-    ext/velib/src/qt/ve_qitem.cpp \
-    ext/velib/src/qt/ve_qitems_dbus.cpp \
-    ext/velib/src/qt/ve_qitem_exported_dbus_service.cpp \
-    ext/velib/src/qt/ve_qitem_exported_dbus_services.cpp \
-
-*g++* {
-    QMAKE_CXX += -Wno-class-memaccess -Wno-deprecated-copy
-}
-
-LIBS += -ludev
+QMAKE_CXXFLAGS *= -ffunction-sections
+QMAKE_LFLAGS *= -Wl,--gc-sections

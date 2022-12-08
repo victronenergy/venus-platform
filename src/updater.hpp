@@ -4,8 +4,8 @@
 #include <QFile>
 #include <QLocalSocket>
 
-#include <velib/qt/ve_qitem.hpp>
-#include <velib/qt/ve_qitem_utils.hpp>
+#include <veutil/qt/ve_qitem.hpp>
+#include <veutil/qt/ve_qitem_utils.hpp>
 
 class Updater;
 

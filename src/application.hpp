@@ -1,7 +1,7 @@
 #include <QCoreApplication>
 
-#include <velib/qt/ve_qitems_dbus.hpp>
-#include <velib/qt/canbus_monitor.hpp>
+#include <veutil/qt/ve_qitems_dbus.hpp>
+#include <veutil/qt/canbus_monitor.hpp>
 
 #include "updater.hpp"
 

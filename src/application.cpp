@@ -1,7 +1,7 @@
-#include <velib/qt/daemontools_service.hpp>
-#include <velib/qt/ve_dbus_connection.hpp>
-#include <velib/qt/ve_qitem.hpp>
-#include <velib/qt/ve_qitem_exported_dbus_services.hpp>
+#include <veutil/qt/daemontools_service.hpp>
+#include <veutil/qt/ve_dbus_connection.hpp>
+#include <veutil/qt/ve_qitem.hpp>
+#include <veutil/qt/ve_qitem_exported_dbus_services.hpp>
 
 #include "application.hpp"
 
