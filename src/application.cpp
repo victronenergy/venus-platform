@@ -179,7 +179,7 @@ void Application::mqttLocalChanged(QVariant var)
 
 void Application::mqttLocalInsecureChanged(QVariant var)
 {
-if (!var.isValid())
+	if (!var.isValid())
 		return;
 
 	if (var.toBool()) {
