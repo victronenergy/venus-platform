@@ -1,3 +1,5 @@
+#include <signal.h>
+
 #include <veutil/qt/daemontools_service.hpp>
 #include <veutil/qt/ve_dbus_connection.hpp>
 #include <veutil/qt/ve_qitem.hpp>
@@ -52,6 +54,22 @@ QString getFeature(QString const &name, bool optional)
 	}
 
 	return (list.count() >= 1 ? list[0] : QString());
+}
+
+int VeQItemReboot::setValue(const QVariant &value)
+{
+	qDebug() << "Rebooting";
+
+	/*
+	 * Note: this used to spawn a child process to call reboot. Since it was found,
+	 * that that can fail, just signal init directly. It should have been fixed in
+	 * a later linux release...
+	 *
+	 * @note this only works if init accepts SIGINT.
+	 */
+	kill(1, SIGINT);
+
+	return VeQItemAction::setValue(value);
 }
 
 enum Mk3Update {
@@ -306,6 +324,8 @@ void Application::init()
 	mCanInterfaceMonitor->enumerate();
 
 	mUpdater = new Updater(mService, this);
+
+	mService->itemGetOrCreate("Device")->itemAddChild("Reboot", new VeQItemReboot());
 
 	// With everything ready, do export the service to the dbus
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);

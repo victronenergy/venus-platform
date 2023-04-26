@@ -8,6 +8,16 @@
 QStringList getFeatureList(const QString &name, bool lines = false);
 QString getFeature(QString const &name, bool optional = true);
 
+// Since this class needs to be in a header file for moc, just place it
+// here for now...
+class VeQItemReboot : public VeQItemAction {
+	Q_OBJECT
+
+public:
+	VeQItemReboot() : VeQItemAction() {}
+	int setValue(const QVariant &value) override;
+};
+
 class Application : public QCoreApplication
 {
 	Q_OBJECT
