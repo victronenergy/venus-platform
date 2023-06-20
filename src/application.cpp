@@ -329,6 +329,10 @@ void Application::init()
 	mService->itemGetOrCreate("Device")->itemAddChild("Reboot", new VeQItemReboot());
 	mService->itemGetOrCreate("Device")->itemAddChild("Time", new VeQItemTime());
 
+	QProcess *proc = Application::spawn("get-unique-id");
+	proc->waitForFinished();
+	mService->itemGetOrCreateAndProduce("Device/UniqueId", QString(proc->readAllStandardOutput().trimmed()));
+
 	// With everything ready, do export the service to the dbus
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
 	mService->produceValue(QString());
