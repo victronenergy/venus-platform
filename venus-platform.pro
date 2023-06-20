@@ -12,11 +12,13 @@ unix {
 
 HEADERS = \
     src/application.hpp \
+    src/time.hpp \
     src/updater.hpp \
 
 SOURCES = \
     src/application.cpp \
     src/main.cpp \
+    src/time.cpp \
     src/updater.cpp \
 
 VE_CONFIG += udev
