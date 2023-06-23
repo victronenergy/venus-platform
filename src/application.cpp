@@ -320,7 +320,7 @@ void Application::init()
 
 	manageDaemontoolsServices();
 
-	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, this);
+	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, mService, this);
 	connect(mCanInterfaceMonitor, SIGNAL(interfacesChanged()), SLOT(onCanInterfacesChanged()));
 	mCanInterfaceMonitor->enumerate();
 
