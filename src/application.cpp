@@ -57,6 +57,19 @@ QString getFeature(QString const &name, bool optional)
 	return (list.count() >= 1 ? list[0] : QString());
 }
 
+
+static bool dataPartionError()
+{
+	QFile file("/run/data-partition-state");
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text) || file.atEnd())
+		return false;
+
+	QTextStream in(&file);
+	QString line = in.readLine();
+
+	return line == "failed" || line == "failed-to-mount";
+}
+
 int VeQItemReboot::setValue(const QVariant &value)
 {
 	qDebug() << "Rebooting";
@@ -332,6 +345,9 @@ void Application::init()
 	QProcess *proc = Application::spawn("get-unique-id");
 	proc->waitForFinished();
 	mService->itemGetOrCreateAndProduce("Device/UniqueId", QString(proc->readAllStandardOutput().trimmed()));
+
+	int error = dataPartionError() ? 1 : 0;
+	mService->itemGetOrCreateAndProduce("Device/DataPartitionError", error);
 
 	// With everything ready, do export the service to the dbus
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
