@@ -111,6 +111,7 @@ public:
 		add("Services/MqttVrm", 0, 0, 1);
 		add("Services/NodeRed", 0, 0, 2);
 		add("Services/SignalK", 0, 0, 1);
+		add("Services/GrafanaStack", 0, 0, 1);
 		// Note: only for debugging over tcp/ip, _not_ socketcan itself...
 		add("Services/Socketcand", 0, 0, 1);
 		add("System/ImageType", 0, 0, 1);
@@ -264,6 +265,24 @@ void Application::manageDaemontoolsServices()
 		new DaemonToolsService(mSettings, "/service/signalk-server", "Settings/Services/SignalK", this);
 		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/SignalK"), "Enabled",
 							   mSettings->root()->itemGetOrCreate("Settings/Services/SignalK"));
+	}
+
+	if (serviceExists("grafana")) {
+		new DaemonToolsService(mSettings, "/service/grafana", "Settings/Services/GrafanaStack", this);
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/GrafanaStack"), "Enabled",
+							   mSettings->root()->itemGetOrCreate("Settings/Services/GrafanaStack"));
+	}
+
+	if (serviceExists("influxdb")) {
+		new DaemonToolsService(mSettings, "/service/influxdb", "Settings/Services/GrafanaStack", this);
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/GrafanaStack"), "Enabled",
+							   mSettings->root()->itemGetOrCreate("Settings/Services/GrafanaStack"));
+	}
+
+	if (serviceExists("venus-influx-loader")) {
+		new DaemonToolsService(mSettings, "/service/venus-influx-loader", "Settings/Services/GrafanaStack", this);
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/GrafanaStack"), "Enabled",
+							   mSettings->root()->itemGetOrCreate("Settings/Services/GrafanaStack"));
 	}
 
 	new DaemonToolsService(mSettings, "/service/vesmart-server", "Settings/Services/Bluetooth",
