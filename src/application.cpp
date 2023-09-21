@@ -6,6 +6,7 @@
 #include <veutil/qt/ve_qitem_exported_dbus_services.hpp>
 
 #include "application.hpp"
+#include "mqtt_bridge_registrar.hpp"
 #include "time.hpp"
 
 static QDir machineRuntimeDir = QDir("/etc/venus");
@@ -348,6 +349,8 @@ void Application::init()
 
 	int error = dataPartionError() ? 1 : 0;
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionError", error);
+
+	mService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", new VeQItemMqttBridgeRegistrar());
 
 	// With everything ready, do export the service to the dbus
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
