@@ -99,6 +99,7 @@ class SettingsInfo : public VeQItemSettingsInfo
 public:
 	SettingsInfo(enum Mk3Update mk3update)
 	{
+		add("Gui/DemoMode", 0, 0, 3);
 		add("Relay/Function", 0, 0, 0);
 		add("Relay/Polarity", 0, 0, 0);
 		add("Relay/1/Function", 2, 0, 0);
