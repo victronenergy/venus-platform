@@ -34,6 +34,7 @@ protected slots:
 	void mqttLocalChanged(QVariant var);
 	void mqttLocalInsecureChanged(QVariant var);
 	void mk3UpdateAllowedChanged(QVariant var);
+	void demoSettingChanged(QVariant var);
 
 private:
 	void manageDaemontoolsServices();

@@ -10,6 +10,7 @@
 #include "time.hpp"
 
 static QDir machineRuntimeDir = QDir("/etc/venus");
+static QDir venusDir = QDir("/opt/victronenergy");
 
 static bool serviceExists(QString const &svc) {
 	return QDir("/service/" + svc).exists();
@@ -240,6 +241,27 @@ void Application::mk3UpdateAllowedChanged(QVariant var)
 	lastValue = var;
 }
 
+void Application::demoSettingChanged(QVariant var)
+{
+	static bool isStarted = false;
+
+	if (var.isValid()) {
+		if (var.toInt() > 0) {
+			isStarted = true;
+			spawn(venusDir.filePath("dbus-recorder/startdemo.sh"),
+				QStringList() << QString::number(var.toInt()));
+		} else if (isStarted) {
+			/*
+			 * NOTE: isStarted prevents calling stopdemo during a normal boot
+			 * without the demo mode enabled, since the stop script restarts
+			 * normal services and that can interfere with the normal startup.
+			 */
+			isStarted = false;
+			spawn(venusDir.filePath("dbus-recorder/stopdemo.sh"));
+		}
+	}
+}
+
 void Application::manageDaemontoolsServices()
 {
 	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
@@ -351,6 +373,10 @@ void Application::init()
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionError", error);
 
 	mService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", new VeQItemMqttBridgeRegistrar());
+
+	// Demo mode
+	VeQItem *demoModeSetting = mSettings->root()->itemGetOrCreate("Settings/Gui/DemoMode");
+	demoModeSetting->getValueAndChanges(this, SLOT(demoSettingChanged(QVariant)));
 
 	// With everything ready, do export the service to the dbus
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
