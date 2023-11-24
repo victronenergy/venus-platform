@@ -11,16 +11,33 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS = \
+    src/alarmbusitem.h \
+    src/alarmmonitor.h \
     src/application.hpp \
+    src/buzzer.h \
+    src/dbus_service.h \
+    src/dbus_services.h \
     src/mqtt_bridge_registrar.hpp \
     src/time.hpp \
     src/updater.hpp \
+    /usr/include/libudev.h \
+    src/notification_center.h \
+    src/notification.h \
+    src/relay.h \
 
 SOURCES = \
+    src/alarmbusitem.cpp \
+    src/alarmmonitor.cpp \
     src/application.cpp \
+    src/buzzer.cpp \
+    src/dbus_service.cpp \
+    src/dbus_services.cpp \
     src/main.cpp \
     src/time.cpp \
     src/updater.cpp \
+    src/notification_center.cpp \
+    src/notification.cpp \
+    src/relay.cpp \
 
 VE_CONFIG += udev
 include("ext/veutil/veutil.pri")
