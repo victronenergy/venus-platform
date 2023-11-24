@@ -131,8 +131,7 @@ Application::Application::Application(int &argc, char **argv) :
 		::exit(EXIT_FAILURE);
 	}
 
-	VeQItemDbusProducer *producer = new VeQItemDbusProducer(VeQItems::getRoot(), "dbus", false, false);
-	producer->setAutoCreateItems(false);
+	VeQItemDbusProducer *producer = new VeQItemDbusProducer(VeQItems::getRoot(), "dbus");
 	producer->open(dbus);
 	mServices = producer->services();
 	mSettings = new VeQItemDbusSettings(producer->services(), QString("com.victronenergy.settings"));
@@ -288,6 +287,8 @@ void Application::init()
 	VeQItemProducer *toDbus = new VeQItemProducer(VeQItems::getRoot(), "to-dbus", this);
 	mService = toDbus->services()->itemGetOrCreate("com.victronenergy.platform", false);
 
+	mService->itemGetOrCreateAndProduce("ProductName", "Venus");
+
 	manageDaemontoolsServices();
 
 	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, mService, this);
@@ -316,6 +317,27 @@ void Application::init()
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
 	mService->produceValue(QString());
 	publisher->open(VeDbusConnection::getDBusAddress());
+
+	// Notifications
+	mNotificationCenter = new NotificationCenter(mService, this);
+	mDBusServices = new DBusServices(mServices, this);
+	mAlarmBusitem = new AlarmBusitem(mDBusServices, mNotificationCenter);
+	connect(this, SIGNAL(translationLoaded()), mNotificationCenter, SLOT(languageChanged()));
+
+	// Handle buzer and relay alarms
+	mAudibleAlarm = mSettings->root()->itemGetOrCreate("Settings/Alarm/Audible");
+	mAlert = mService->itemGetOrCreate("/Notifications/Alert");
+	mBuzzer = new Buzzer("dbus/com.victronenergy.system/Buzzer/State");
+	mAlert->getValueAndChanges(this, SLOT(alarmChanged(QVariant)));
+	mAudibleAlarm->getValueAndChanges(this, SLOT(alarmChanged(QVariant)));
+	mRelay = new Relay("dbus/com.victronenergy.system/Relay/0/State", mNotificationCenter, this);
+
+	// Scan for dbus services
+	mDBusServices->initialScan();
+
+	// Enable translations
+	VeQItem *lang = mSettings->root()->itemGetOrCreate("Settings/Gui/Language");
+	lang->getValueAndChanges(this, SLOT(languageChanged(QVariant)));
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)
@@ -324,4 +346,70 @@ QProcess *Application::spawn(QString const &cmd, const QStringList &args)
 	connect(proc, SIGNAL(finished(int)), proc, SLOT(deleteLater()));
 	proc->start(cmd, args);
 	return proc;
+}
+
+bool Application::silenceBuzzer()
+{
+	if (mBuzzer->isBeeping()) {
+		qDebug() << "Platform::silenceBuzzer";
+		mBuzzer->buzzerOff();
+		return true;
+	}
+
+	return false;
+}
+
+void Application::alarmChanged(QVariant var)
+{
+	Q_UNUSED(var);
+	if (mAlert->getValue().toBool()) {
+		if (mAudibleAlarm->getValue().isValid() && mAudibleAlarm->getValue().toBool())
+			mBuzzer->buzzerOn();
+		else
+			mBuzzer->buzzerOff();
+	} else {
+		mBuzzer->buzzerOff();
+	}
+}
+
+void Application::languageChanged(QVariant var)
+{
+	if (!var.isValid())
+		return;
+
+	mLanguage = var.toString();
+	loadTranslation();
+
+	if (!mLanguage.isNull()) {
+		mLanguage = var.toString();
+		qDebug() << "Language changed to" << mLanguage;
+		loadTranslation();
+		emit translationLoaded();
+	}
+}
+
+void Application::loadTranslation()
+{
+	QString language = mLanguage;
+
+	// Remove translation to get original english texts
+	if (language == "en")
+	{
+		qApp->removeTranslator(&mTranslator);
+		return;
+	}
+
+	// Convert to the language as expected by poeditor.
+	if (language == "zh")
+		language = "zh-CN";
+	else if (language == "se")
+		language = "sv";
+
+	QString qmFile(qApp->applicationDirPath() + "/lang/venus_" + language + ".qm");
+	if (mTranslator.load(qmFile)) {
+		qApp->installTranslator(&mTranslator);
+	} else {
+		qCritical() << "[" << __func__ << __FILE__ << ":" << __LINE__ << "] Failed to load translation file: " << qmFile;
+	}
+	emit translationLoaded();
 }
