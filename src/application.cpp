@@ -175,60 +175,6 @@ void Application::onCanInterfacesChanged()
 	mService->itemGetOrCreateAndProduce("CanBus/Interfaces", QVariant::fromValue(mCanInterfaceMonitor->canInfo()));
 }
 
-void Application::mqttCheckLocalInsecure()
-{
-	if (!mMqttLocal || !mMqttLocalInsecure)
-		return;
-
-	QVariant local = mMqttLocal->getLocalValue();
-	QVariant insecure = mMqttLocalInsecure->getLocalValue();
-
-	if (!local.isValid() || !insecure.isValid())
-		return;
-
-	// If local MQTT is disable, disable insecure access as well.
-	if (!local.toBool() && insecure.toBool())
-		mMqttLocalInsecure->setValue(false);
-}
-
-void Application::mqttLocalChanged(QVariant var)
-{
-	if (!var.isValid())
-		return;
-
-	if (mMqttLocalWasValid) {
-		DaemonToolsService upnp("/service/simple-upnpd");
-		upnp.restart();
-	}
-	mMqttLocalWasValid = true;
-
-	if (var.toBool()) {
-		qDebug() << "[Firewall] Allow local MQTT over SSL, port 8883";
-		spawn("firewall", QStringList() << "allow" << "tcp" << "8883");
-	} else {
-		qDebug() << "[Firewall] Disallow local MQTT over SSL, port 8883";
-		spawn("firewall", QStringList() << "deny" << "tcp" << "8883");
-		mqttCheckLocalInsecure();
-	}
-}
-
-void Application::mqttLocalInsecureChanged(QVariant var)
-{
-	if (!var.isValid())
-		return;
-
-	if (var.toBool()) {
-		qDebug() << "[Firewall] Allow insecure access to MQTT, port 1883 / 9001";
-		spawn("firewall", QStringList() << "allow" << "tcp" << "1883");
-		spawn("firewall", QStringList() << "allow" << "tcp" << "9001");
-		mqttCheckLocalInsecure();
-	} else {
-		qDebug() << "[Firewall] Disallow insecure access to MQTT, port 1883 / 9001";
-		spawn("firewall", QStringList() << "deny" << "tcp" << "1883");
-		spawn("firewall", QStringList() << "deny" << "tcp" << "9001");
-	}
-}
-
 void Application::mk3UpdateAllowedChanged(QVariant var)
 {
 	static QVariant lastValue;
@@ -292,19 +238,6 @@ void Application::manageDaemontoolsServices()
 
 	new DaemonToolsService(mSettings, "/service/vesmart-server", "Settings/Services/Bluetooth",
 						   this, QStringList() << "-s" << "vesmart-server");
-
-	QList<QString> mqttList = QList<QString>() << "Settings/Services/MqttLocal" << "Settings/Services/MqttVrm";
-	new DaemonToolsService(mSettings, "/service/mosquitto", mqttList, this, true, QStringList() << "-s" << "mosquitto");
-	new DaemonToolsService(mSettings, "/service/dbus-mqtt", mqttList, this, false, QStringList() << "-s" << "dbus-mqtt");
-	new DaemonToolsService(mSettings, "/service/mqtt-rpc", mqttList, this, false, QStringList() << "-s" << "mqtt-rpc");
-
-	// MQTT on LAN insecure
-	mMqttLocalInsecure = mSettings->root()->itemGetOrCreate("Settings/Services/MqttLocalInsecure");
-	mMqttLocalInsecure->getValueAndChanges(this, SLOT(mqttLocalInsecureChanged(QVariant)));
-
-	// MQTT on LAN
-	mMqttLocal = mSettings->root()->itemGetOrCreate("Settings/Services/MqttLocal");
-	mMqttLocal->getValueAndChanges(this, SLOT(mqttLocalChanged(QVariant)));
 
 	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Vebus/AllowMk3Fw212Update");
 	item->getValueAndChanges(this, SLOT(mk3UpdateAllowedChanged(QVariant)));
@@ -373,7 +306,7 @@ void Application::init()
 	int error = dataPartionError() ? 1 : 0;
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionError", error);
 
-	mService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", new VeQItemMqttBridgeRegistrar());
+	new Mqtt(mService, mSettings, this);
 
 	// Demo mode
 	VeQItem *demoModeSetting = mSettings->root()->itemGetOrCreate("Settings/Gui/DemoMode");

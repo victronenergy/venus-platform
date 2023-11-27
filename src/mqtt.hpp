@@ -42,3 +42,23 @@ private slots:
 private:
 	QProcess *mProc = nullptr;
 };
+
+
+class Mqtt : public QObject
+{
+	Q_OBJECT
+
+public:
+	Mqtt(VeQItem *service, VeQItemSettings *settings, QObject *parent);
+
+private slots:
+	void mqttLocalChanged(QVariant var);
+	void mqttLocalInsecureChanged(QVariant var);
+
+private:
+	void mqttCheckLocalInsecure();
+
+	VeQItem *mMqttLocalInsecure = nullptr;
+	VeQItem *mMqttLocal = nullptr;
+	bool mMqttLocalWasValid = false;
+};

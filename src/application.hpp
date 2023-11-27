@@ -31,14 +31,11 @@ protected slots:
 	void onLocalSettingsStateChanged(VeQItem::State state);
 	void onLocalSettingsTimeout();
 	void onCanInterfacesChanged();
-	void mqttLocalChanged(QVariant var);
-	void mqttLocalInsecureChanged(QVariant var);
 	void mk3UpdateAllowedChanged(QVariant var);
 	void demoSettingChanged(QVariant var);
 
 private:
 	void manageDaemontoolsServices();
-	void mqttCheckLocalInsecure();
 	void init();
 
 	VeQItemSettings *mSettings;
@@ -46,10 +43,6 @@ private:
 	QTimer mLocalSettingsTimeout;
 	CanInterfaceMonitor *mCanInterfaceMonitor;
 	Updater *mUpdater;
-
-	VeQItem *mMqttLocalInsecure = nullptr;
-	VeQItem *mMqttLocal = nullptr;
-	bool mMqttLocalWasValid = false;
 
 	VeQItem *mService;
 };

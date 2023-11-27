@@ -19,6 +19,7 @@ HEADERS = \
 SOURCES = \
     src/application.cpp \
     src/main.cpp \
+    src/mqtt.cpp \
     src/time.cpp \
     src/updater.cpp \
 
