@@ -6,7 +6,7 @@
 #include <veutil/qt/ve_qitem_exported_dbus_services.hpp>
 
 #include "application.hpp"
-#include "mqtt_bridge_registrar.hpp"
+#include "mqtt.hpp"
 #include "time.hpp"
 
 static QDir machineRuntimeDir = QDir("/etc/venus");

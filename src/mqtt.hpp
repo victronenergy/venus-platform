@@ -42,4 +42,3 @@ private slots:
 private:
 	QProcess *mProc = nullptr;
 };
-

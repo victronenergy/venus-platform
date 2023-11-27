@@ -12,7 +12,7 @@ unix {
 
 HEADERS = \
     src/application.hpp \
-    src/mqtt_bridge_registrar.hpp \
+    src/mqtt.hpp \
     src/time.hpp \
     src/updater.hpp \
 
