@@ -9,7 +9,7 @@ Mqtt::Mqtt(VeQItem *service, VeQItemSettings *settings, QObject *parent) :
 	service->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", new VeQItemMqttBridgeRegistrar());
 
 	QList<QString> mqttList = QList<QString>() << "Settings/Services/MqttLocal" << "Settings/Services/MqttVrm";
-    new DaemonToolsService(settings, "/service/flashmq", mqttList, this, true, QStringList() << "-s" << "flashmq");
+	new DaemonToolsService(settings, "/service/flashmq", mqttList, this, true, QStringList() << "-s" << "flashmq");
 	new DaemonToolsService(settings, "/service/mqtt-rpc", mqttList, this, false, QStringList() << "-s" << "mqtt-rpc");
 
 	// MQTT on LAN insecure
