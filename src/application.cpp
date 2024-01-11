@@ -111,6 +111,7 @@ public:
 		add("Gui/DisplayOff", 600, 0, 0);
 		add("Gui/Language", "en");
 		add("Gui/TouchEnabled", 1, 0, 1);
+		add("LEDs/Enable", 1, 0, 1);
 		add("Relay/Function", 0, 0, 0);
 		add("Relay/Polarity", 0, 0, 0);
 		add("Relay/1/Function", 2, 0, 0);
@@ -416,6 +417,18 @@ void Application::start()
 	mCanInterfaceMonitor->enumerate();
 
 	mUpdater = new Updater(mService, this);
+	mLedController = new LedController(this);
+
+	VeQItem *ledEnableSetting = mSettings->root()->itemGetOrCreate("Settings/LEDs/Enable");
+	ledEnableSetting->getValueAndChanges(mLedController, SLOT(ledSettingChanged(QVariant)));
+
+	VeQItem *bluetoothSetting = mSettings->root()->itemGet("Settings/Services/Bluetooth");
+	if (bluetoothSetting)
+		bluetoothSetting->getValueAndChanges(mLedController, SLOT(dbusSettingChanged()));
+
+	VeQItem *accessPointSetting = mSettings->root()->itemGet("Settings/Services/AccessPoint");
+	if (accessPointSetting)
+		accessPointSetting->getValueAndChanges(mLedController, SLOT(dbusSettingChanged()));
 
 	mService->itemGetOrCreate("Device")->itemAddChild("Reboot", new VeQItemReboot());
 	mService->itemGetOrCreate("Device")->itemAddChild("Time", new VeQItemTime());

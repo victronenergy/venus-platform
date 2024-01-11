@@ -19,6 +19,7 @@ HEADERS = \
     src/alarm_monitor.hpp \
     src/application.hpp \
     src/buzzer.hpp \
+    src/led_controller.hpp \
     src/mqtt.hpp \
     src/notification.hpp \
     src/notifications.hpp \
@@ -33,6 +34,7 @@ SOURCES = \
     src/alarm_monitor.cpp \
     src/application.cpp \
     src/buzzer.cpp \
+    src/led_controller.cpp \
     src/main.cpp \
     src/mqtt.cpp \
     src/notification.cpp \

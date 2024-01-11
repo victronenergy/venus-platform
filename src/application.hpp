@@ -6,6 +6,7 @@
 
 #include "alarm_item.hpp"
 #include "buzzer.hpp"
+#include "led_controller.hpp"
 #include "notifications.hpp"
 #include "relay.hpp"
 #include "updater.hpp"
@@ -57,6 +58,7 @@ private:
 	QTimer mLocalSettingsTimeout;
 	CanInterfaceMonitor *mCanInterfaceMonitor;
 	Updater *mUpdater;
+	LedController *mLedController;
 
 	QString mLanguage;
 	QTranslator mTranslator;
