@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+#include <QTranslator>
 
 #include <veutil/qt/ve_qitems_dbus.hpp>
 #include <veutil/qt/canbus_monitor.hpp>
@@ -27,22 +28,31 @@ public:
 
 	static QProcess *spawn(const QString &cmd, QStringList const &args = QStringList());
 
+signals:
+	void languageChanged();
+
 protected slots:
 	void onLocalSettingsStateChanged(VeQItem::State state);
 	void onLocalSettingsTimeout();
 	void onCanInterfacesChanged();
 	void mk3UpdateAllowedChanged(QVariant var);
 	void demoSettingChanged(QVariant var);
+	void onLanguageChanged(QVariant var);
 
 private:
 	void manageDaemontoolsServices();
+	void loadTranslation();
 	void init();
+	void start();
 
 	VeQItemSettings *mSettings;
 	VeQItem *mServices;
 	QTimer mLocalSettingsTimeout;
 	CanInterfaceMonitor *mCanInterfaceMonitor;
 	Updater *mUpdater;
+
+	QString mLanguage;
+	QTranslator mTranslator;
 
 	VeQItem *mService;
 };

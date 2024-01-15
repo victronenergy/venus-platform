@@ -118,6 +118,9 @@ public:
 		add("Services/Socketcand", 0, 0, 1);
 		add("System/ImageType", 0, 0, 1);
 		add("Vebus/AllowMk3Fw212Update", mk3update, 0, 2);
+
+		// Venus / general settings
+		add("Gui/Language", "en");
 	}
 };
 
@@ -283,6 +286,48 @@ void Application::init()
 		::exit(EXIT_FAILURE);
 	}
 
+	// Load the correct translation file first of all. Note, the add settings call above
+	// already obtained the selected language, hence this directly continues in the slot.
+	VeQItem *lang = mSettings->root()->itemGetOrCreate("Settings/Gui/Language");
+	lang->getValueAndChanges(this, SLOT(onLanguageChanged(QVariant)));
+}
+
+void Application::onLanguageChanged(QVariant var)
+{
+	if (!var.isValid())
+		return;
+
+	bool init = mLanguage.isNull();
+
+	QString language = var.toString();
+	if (mLanguage != language) {
+		mLanguage = language;
+		qDebug() << "Language changed to" << language;
+		loadTranslation();
+		emit languageChanged();
+	}
+
+	if (init)
+		start();
+}
+
+void Application::loadTranslation()
+{
+	// Remove translation to get original english texts
+	if (mLanguage == "en") {
+		qApp->removeTranslator(&mTranslator);
+		return;
+	}
+
+	QString qmFile(qApp->applicationDirPath() + "/translations/venus_" + venusPoEditorLanguage(mLanguage) + ".qm");
+	if (mTranslator.load(qmFile))
+		qApp->installTranslator(&mTranslator);
+	else
+		qCritical() << "Failed to load translation file: " << qmFile;
+}
+
+void Application::start()
+{
 	// The items exported to the dbus..
 	VeQItemProducer *toDbus = new VeQItemProducer(VeQItems::getRoot(), "to-dbus", this);
 	mService = toDbus->services()->itemGetOrCreate("com.victronenergy.platform", false);

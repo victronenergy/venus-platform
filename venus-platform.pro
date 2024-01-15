@@ -10,6 +10,10 @@ unix {
 }
 !isEmpty(target.path): INSTALLS += target
 
+translations.path = $${target.path}/translations
+translations.files = translations/*.qm
+INSTALLS += translations
+
 HEADERS = \
     src/application.hpp \
     src/mqtt.hpp \
