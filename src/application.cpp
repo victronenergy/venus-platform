@@ -99,7 +99,18 @@ class SettingsInfo : public VeQItemSettingsInfo
 public:
 	SettingsInfo(enum Mk3Update mk3update)
 	{
+		mMachineRuntimeDir.setPath("/etc/venus");
+		QString mBacklightDevice = getFeature("backlight_device");
+		int mMaxBrightness = readIntFromFile(mBacklightDevice + "/max_brightness", 100);
+
+		add("Gps/Format", 0, 0, 0);
+		add("Gps/SpeedUnit", "km/h");
+		add("Gui/AutoBrightness", 1, 0, 1);
+		add("Gui/Brightness", mMaxBrightness, 0, mMaxBrightness);
 		add("Gui/DemoMode", 0, 0, 3);
+		add("Gui/DisplayOff", 600, 0, 0);
+		add("Gui/Language", "en");
+		add("Gui/TouchEnabled", 1, 0, 1);
 		add("Relay/Function", 0, 0, 0);
 		add("Relay/Polarity", 0, 0, 0);
 		add("Relay/1/Function", 2, 0, 0);
@@ -116,12 +127,76 @@ public:
 		add("Services/SignalK", 0, 0, 1);
 		// Note: only for debugging over tcp/ip, _not_ socketcan itself...
 		add("Services/Socketcand", 0, 0, 1);
+		add("System/AccessLevel", 1, 0, 3);
+		add("System/AutoUpdate", 2, 0, 3);
 		add("System/ImageType", 0, 0, 1);
+		add("System/LogLevel", 2, 0, 0);
+		add("System/ReleaseType", 0, 0, 3);
+		add("System/TimeZone", "/UTC");
+		add("System/Units/Temperature", "");
+		add("System/VolumeUnit", 0, 0, 0);
+		add("SystemSetup/SystemName", "");
 		add("Vebus/AllowMk3Fw212Update", mk3update, 0, 2);
-
-		// Venus / general settings
-		add("Gui/Language", "en");
 	}
+
+private:
+
+	QStringList getFeatureList(QString const &name, bool lines = false)
+	{
+		QStringList ret;
+		QFile file(mMachineRuntimeDir.filePath(name));
+
+		if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+			return ret;
+
+		QString line;
+		while (!file.atEnd()) {
+			line = file.readLine();
+			if (lines) {
+				line = line.trimmed();
+				if (!line.isEmpty())
+					ret.append(line);
+			} else {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+				ret.append(line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts));
+#else
+				ret.append(line.split(QRegExp("\\s+"), QString::SkipEmptyParts));
+#endif
+			}
+		}
+
+		return ret;
+	}
+
+	QString getFeature(QString const &name, bool optional = true)
+	{
+		QStringList list = getFeatureList(name);
+
+		if (!optional && list.count() != 1) {
+			qCritical() << "required machine feature " + name + " does not exist";
+			exit(EXIT_FAILURE);
+		}
+
+		return (list.count() >= 1 ? list[0] : QString());
+	}
+
+	int readIntFromFile(QString const &name, int def)
+	{
+		QFile file(name);
+		bool ok;
+
+		if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+			return def;
+
+		QString line = file.readLine();
+		int val = line.trimmed().toInt(&ok, 0);
+		if (!ok)
+			return def;
+
+		return val;
+	}
+
+	QDir mMachineRuntimeDir;
 };
 
 Application::Application::Application(int &argc, char **argv) :
