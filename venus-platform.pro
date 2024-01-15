@@ -15,6 +15,8 @@ HEADERS = \
     src/mqtt.hpp \
     src/time.hpp \
     src/updater.hpp \
+    src/venus_service.hpp \
+    src/venus_services.hpp \
 
 SOURCES = \
     src/application.cpp \
@@ -22,6 +24,8 @@ SOURCES = \
     src/mqtt.cpp \
     src/time.cpp \
     src/updater.cpp \
+    src/venus_service.cpp \
+    src/venus_services.cpp \
 
 VE_CONFIG += udev
 include("ext/veutil/veutil.pri")

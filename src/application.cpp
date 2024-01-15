@@ -131,8 +131,7 @@ Application::Application::Application(int &argc, char **argv) :
 		::exit(EXIT_FAILURE);
 	}
 
-	VeQItemDbusProducer *producer = new VeQItemDbusProducer(VeQItems::getRoot(), "dbus", false, false);
-	producer->setAutoCreateItems(false);
+	VeQItemDbusProducer *producer = new VeQItemDbusProducer(VeQItems::getRoot(), "dbus");
 	producer->open(dbus);
 	mServices = producer->services();
 	mSettings = new VeQItemDbusSettings(producer->services(), QString("com.victronenergy.settings"));
