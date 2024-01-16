@@ -332,6 +332,8 @@ void Application::start()
 	VeQItemProducer *toDbus = new VeQItemProducer(VeQItems::getRoot(), "to-dbus", this);
 	mService = toDbus->services()->itemGetOrCreate("com.victronenergy.platform", false);
 
+	mService->itemGetOrCreateAndProduce("ProductName", "Venus");
+
 	manageDaemontoolsServices();
 
 	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, mService, this);
