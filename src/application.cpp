@@ -128,12 +128,25 @@ public:
 	SettingsInfo(enum Mk3Update mk3update)
 	{
 		QString mBacklightDevice = getFeature("backlight_device");
-		int mMaxBrightness = readIntFromFile(mBacklightDevice + "/max_brightness", 100);
 
 		add("Gps/Format", 0, 0, 0);
 		add("Gps/SpeedUnit", "km/h");
-		add("Gui/AutoBrightness", 1, 0, 1);
-		add("Gui/Brightness", mMaxBrightness, 0, mMaxBrightness);
+
+		// Create dbus settings. Do not create settings when capabilities do not exist.
+		if (!getFeature("backlight_device").isEmpty()) {
+			int mMaxBrightness = readIntFromFile(mBacklightDevice + "/max_brightness", -1);
+			add("Gui/Brightness", mMaxBrightness, 1, mMaxBrightness);
+
+			// FIXME: delete the setting in the else, it was unconditionally added in the past,
+			// so when switching the gui to use the presence of the setting, it will be incorrect.
+			// Hence set the max value to zero for now, if there is no auto brightness.
+			bool hasAutoBrightness = readIntFromFile(mBacklightDevice + "/auto_brightness", -1) != -1;
+			if (hasAutoBrightness)
+				add("Gui/AutoBrightness", 1, 0, 1);
+			else
+				add("Gui/AutoBrightness", 0, 0, 0);
+		}
+
 		add("Gui/DemoMode", 0, 0, 3);
 		add("Gui/DisplayOff", 600, 0, 0);
 		add("Gui/Language", "en");
@@ -394,6 +407,8 @@ void Application::start()
 	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, mService, this);
 	connect(mCanInterfaceMonitor, SIGNAL(interfacesChanged()), SLOT(onCanInterfacesChanged()));
 	mCanInterfaceMonitor->enumerate();
+
+	mDisplayController = new DisplayController(mSettings, this);
 
 	mUpdater = new Updater(mService, this);
 	mLedController = new LedController(this);

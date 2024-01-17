@@ -6,6 +6,7 @@
 
 #include "alarm_item.hpp"
 #include "buzzer.hpp"
+#include "display_controller.hpp"
 #include "led_controller.hpp"
 #include "notifications.hpp"
 #include "relay.hpp"
@@ -62,6 +63,7 @@ private:
 	CanInterfaceMonitor *mCanInterfaceMonitor;
 	Updater *mUpdater;
 	LedController *mLedController;
+	DisplayController *mDisplayController;
 
 	QString mLanguage;
 	QTranslator mTranslator;
