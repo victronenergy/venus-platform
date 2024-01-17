@@ -4,6 +4,7 @@
 #include <veutil/qt/canbus_monitor.hpp>
 
 #include "updater.hpp"
+#include "display_controller.hpp"
 
 QStringList getFeatureList(const QString &name, bool lines = false);
 QString getFeature(QString const &name, bool optional = true);
@@ -43,6 +44,7 @@ private:
 	QTimer mLocalSettingsTimeout;
 	CanInterfaceMonitor *mCanInterfaceMonitor;
 	Updater *mUpdater;
+	DisplayController *mDisplayController;
 
 	VeQItem *mService;
 };

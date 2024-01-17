@@ -12,12 +12,14 @@ unix {
 
 HEADERS = \
     src/application.hpp \
+    src/display_controller.hpp \
     src/mqtt.hpp \
     src/time.hpp \
     src/updater.hpp \
 
 SOURCES = \
     src/application.cpp \
+    src/display_controller.cpp \
     src/main.cpp \
     src/mqtt.cpp \
     src/time.cpp \

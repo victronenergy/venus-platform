@@ -294,6 +294,8 @@ void Application::init()
 	connect(mCanInterfaceMonitor, SIGNAL(interfacesChanged()), SLOT(onCanInterfacesChanged()));
 	mCanInterfaceMonitor->enumerate();
 
+	mDisplayController = new DisplayController(mSettings, this);
+
 	mUpdater = new Updater(mService, this);
 
 	mService->itemGetOrCreate("Device")->itemAddChild("Reboot", new VeQItemReboot());
