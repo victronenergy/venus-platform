@@ -110,6 +110,7 @@ public:
 		add("Gui/DemoMode", 0, 0, 3);
 		add("Gui/DisplayOff", 600, 0, 0);
 		add("Gui/Language", "en");
+		add("Gui/RunningVersion", 1, 1, 2);
 		add("Gui/TouchEnabled", 1, 0, 1);
 		add("LEDs/Enable", 1, 0, 1);
 		add("Relay/Function", 0, 0, 0);
@@ -289,6 +290,8 @@ void Application::demoSettingChanged(QVariant var)
 
 void Application::manageDaemontoolsServices()
 {
+	new DaemonToolsService(mSettings, "/service/start-gui", "Settings/Gui/RunningVersion", QList<int>() << 1 << 2, this);
+
 	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
 
 	new DaemonToolsService(mSettings, "/service/dbus-pump", "Settings/Relay/Function", 3, this);
