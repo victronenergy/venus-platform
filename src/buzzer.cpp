@@ -25,7 +25,7 @@ bool Buzzer::isBeeping() const
 
 void Buzzer::buzzerOn()
 {
-	//setBuzzer(true);
+	setBuzzer(true);
 }
 
 void Buzzer::buzzerOff()
