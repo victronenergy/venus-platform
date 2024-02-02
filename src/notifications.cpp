@@ -84,6 +84,8 @@ Notification *Notifications::addNotification(Notification::Type type, const QStr
 	if (mNotifications.size() >= mMaxNotifications) {
 		notification = mNotifications.last();
 		index = notification->getIndex();
+		if (notification->isActive())
+			activeNotifications--;
 		removeNotification(notification);
 	}
 
