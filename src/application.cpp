@@ -358,6 +358,23 @@ void Application::start()
 	VeQItem *demoModeSetting = mSettings->root()->itemGetOrCreate("Settings/Gui/DemoMode");
 	demoModeSetting->getValueAndChanges(this, SLOT(demoSettingChanged(QVariant)));
 
+	// Notifications
+	mNotifications = new Notifications(mService, this);
+	mVenusServices = new VenusServices(mServices, this);
+	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
+
+	// Handle buzer and relay alarms
+	mAudibleAlarm = mSettings->root()->itemGetOrCreate("Settings/Alarm/Audible");
+	mAlert = mService->itemGetOrCreate("/Notifications/Alert");
+	mBuzzer = new Buzzer("dbus/com.victronenergy.system/Buzzer/State");
+	mAlert->getValueAndChanges(this, SLOT(alarmChanged(QVariant)));
+	mAudibleAlarm->getValueAndChanges(this, SLOT(alarmChanged(QVariant)));
+
+	mRelay = new Relay("dbus/com.victronenergy.system/Relay/0/State", mNotifications, this);
+
+	// Scan for dbus services
+	mVenusServices->initialScan();
+
 	// With everything ready, do export the service to the dbus
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
 	mService->produceValue(QString());
@@ -370,4 +387,28 @@ QProcess *Application::spawn(QString const &cmd, const QStringList &args)
 	connect(proc, SIGNAL(finished(int)), proc, SLOT(deleteLater()));
 	proc->start(cmd, args);
 	return proc;
+}
+
+bool Application::silenceBuzzer()
+{
+	if (mBuzzer->isBeeping()) {
+		qDebug() << "Platform::silenceBuzzer";
+		mBuzzer->buzzerOff();
+		return true;
+	}
+
+	return false;
+}
+
+void Application::alarmChanged(QVariant var)
+{
+	Q_UNUSED(var);
+	if (mAlert->getValue().toBool()) {
+		if (mAudibleAlarm->getValue().isValid() && mAudibleAlarm->getValue().toBool())
+			mBuzzer->buzzerOn();
+		else
+			mBuzzer->buzzerOff();
+	} else {
+		mBuzzer->buzzerOff();
+	}
 }

@@ -4,7 +4,12 @@
 #include <veutil/qt/ve_qitems_dbus.hpp>
 #include <veutil/qt/canbus_monitor.hpp>
 
+#include "alarm_item.hpp"
+#include "buzzer.hpp"
+#include "notifications.hpp"
+#include "relay.hpp"
 #include "updater.hpp"
+#include "venus_services.hpp"
 
 QStringList getFeatureList(const QString &name, bool lines = false);
 QString getFeature(QString const &name, bool optional = true);
@@ -27,6 +32,7 @@ public:
 	Application(int &argc, char **argv);
 
 	static QProcess *spawn(const QString &cmd, QStringList const &args = QStringList());
+	bool silenceBuzzer();
 
 signals:
 	void languageChanged();
@@ -38,6 +44,7 @@ protected slots:
 	void mk3UpdateAllowedChanged(QVariant var);
 	void demoSettingChanged(QVariant var);
 	void onLanguageChanged(QVariant var);
+	void alarmChanged(QVariant var);
 
 private:
 	void manageDaemontoolsServices();
@@ -55,4 +62,12 @@ private:
 	QTranslator mTranslator;
 
 	VeQItem *mService;
+	VenusServices *mVenusServices;
+
+	Notifications *mNotifications;
+	Buzzer *mBuzzer;
+	AlarmBusitems *mAlarmBusitems;
+	VeQItem *mAudibleAlarm;
+	VeQItem *mAlert;
+	Relay *mRelay;
 };
