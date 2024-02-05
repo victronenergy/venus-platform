@@ -13,10 +13,10 @@ class DeviceAlarms : public QObject {
 	Q_OBJECT
 
 public:
-	DeviceAlarms(VenusService *service, Notifications *notications) :
+	DeviceAlarms(VenusService *service, Notifications *notifications) :
 		QObject(service),
 		mService(service),
-		mNotifications(notications)
+		mNotifications(notifications)
 	{
 	}
 
@@ -28,22 +28,22 @@ public:
 	void addChargerError(const QString &busitemPathAlarm);
 	void addWakespeedError(const QString &busitemPathAlarm);
 
-	static DeviceAlarms *createBatteryAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createSolarChargerAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createAcChargerAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createInverterAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createMultiRsAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createSystemCalcAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createGeneratorStartStopAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createDigitalInputAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createVecanAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createEssAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createTankAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createDcMeterAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createAlternatorAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createDcdcAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createPlatformAlarms(VenusService *service, Notifications *notications);
-	static DeviceAlarms *createTemperatureSensorAlarms(VenusService *service, Notifications *notications);
+	static DeviceAlarms *createBatteryAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createSolarChargerAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createAcChargerAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createInverterAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createMultiRsAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createSystemCalcAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createGeneratorStartStopAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createDigitalInputAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createVecanAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createEssAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createTankAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createDcMeterAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createAlternatorAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createDcdcAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createPlatformAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createTemperatureSensorAlarms(VenusService *service, Notifications *notifications);
 
 	Notifications *notifications() { return mNotifications; }
 
@@ -59,7 +59,7 @@ class VebusAlarms : public DeviceAlarms {
 	Q_OBJECT
 
 public:
-	VebusAlarms(VenusService *service, Notifications *notications);
+	VebusAlarms(VenusService *service, Notifications *notifications);
 
 	QString highTempTextL1(bool single) { return single ? tr("High Temperature") : tr("High Temperature on L1"); }
 	QString inverterOverloadTextL1(bool single) { return single ? tr("Inverter overload") : tr("Inverter overload on L1"); }
@@ -134,7 +134,7 @@ class BatteryAlarms : public DeviceAlarms {
 	Q_OBJECT
 
 public:
-	BatteryAlarms(VenusService *service, Notifications *notications);
+	BatteryAlarms(VenusService *service, Notifications *notifications);
 
 private slots:
 	void numberOfDistributorsChanged(QVariant var);
