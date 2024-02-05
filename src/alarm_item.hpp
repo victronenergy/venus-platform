@@ -43,6 +43,7 @@ public:
 	static DeviceAlarms *createAlternatorAlarms(VenusService *service, Notifications *notications);
 	static DeviceAlarms *createDcdcAlarms(VenusService *service, Notifications *notications);
 	static DeviceAlarms *createPlatformAlarms(VenusService *service, Notifications *notications);
+	static DeviceAlarms *createTemperatureSensorAlarms(VenusService *service, Notifications *notications);
 
 	Notifications *notifications() { return mNotifications; }
 

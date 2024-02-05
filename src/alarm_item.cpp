@@ -193,6 +193,15 @@ DeviceAlarms *DeviceAlarms::createPlatformAlarms(VenusService *service, Notifica
 	return alarms;
 }
 
+DeviceAlarms *DeviceAlarms::createTemperatureSensorAlarms(VenusService *service, Notifications *noticationCenter)
+{
+	DeviceAlarms *alarms = new DeviceAlarms(service, noticationCenter);
+
+	alarms->addTripplet(tr("Low battery"), "/Alarms/LowBattery", nullptr, "/BatteryVoltage");
+
+	return alarms;
+}
+
 VebusAlarms::VebusAlarms(VenusService *service, Notifications *notications) :
 	DeviceAlarms(service, notications)
 {
@@ -384,6 +393,9 @@ void AlarmBusitems::onVenusServiceFound(VenusService *service)
 		break;
 	case VenusServiceType::PLATFORM:
 		DeviceAlarms::createPlatformAlarms(service, mNotifications);
+		break;
+	case VenusServiceType::TEMPERATURE_SENSOR:
+		DeviceAlarms::createTemperatureSensorAlarms(service, mNotifications);
 		break;
 	default:
 		;
