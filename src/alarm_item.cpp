@@ -6,28 +6,28 @@ WarningAlarmMonitor *DeviceAlarms::addTripplet(const QString &description, const
 {
 	WarningAlarmMonitor *ret = new WarningAlarmMonitor(mService, AlarmMonitor::REGULAR, busitemPathAlarm,
 										 description, busitemSetting, busitemPathValue, this);
-	mAlarms.append(ret);
+	mAlarms.push_back(ret);
 	return ret;
 }
 
 void DeviceAlarms::addVebusError(const QString &busitemPathAlarm)
 {
-	mAlarms.append(new AlarmMonitor(mService, AlarmMonitor::VEBUS_ERROR, busitemPathAlarm, "", nullptr, "", this));
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::VEBUS_ERROR, busitemPathAlarm, "", nullptr, "", this));
 }
 
 void DeviceAlarms::addBmsError(const QString &busitemPathAlarm)
 {
-	mAlarms.append(new AlarmMonitor(mService, AlarmMonitor::BMS_ERROR, busitemPathAlarm, "", nullptr, "", this));
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::BMS_ERROR, busitemPathAlarm, "", nullptr, "", this));
 }
 
 void DeviceAlarms::addChargerError(const QString &busitemPathAlarm)
 {
-	mAlarms.append(new AlarmMonitor(mService, AlarmMonitor::CHARGER_ERROR, busitemPathAlarm, "", nullptr, "", this));
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::CHARGER_ERROR, busitemPathAlarm, "", nullptr, "", this));
 }
 
 void DeviceAlarms::addWakespeedError(const QString &busitemPathAlarm)
 {
-	mAlarms.append(new AlarmMonitor(mService, AlarmMonitor::WAKESPEED_ERROR, busitemPathAlarm, "", nullptr, "", this));
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::WAKESPEED_ERROR, busitemPathAlarm, "", nullptr, "", this));
 }
 
 DeviceAlarms *DeviceAlarms::createBatteryAlarms(VenusService *service, Notifications *notications)
