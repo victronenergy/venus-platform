@@ -1,7 +1,6 @@
 #pragma once
 
 #include <QObject>
-#include <QLinkedList>
 
 #include <veutil/qt/ve_qitem.hpp>
 
@@ -49,7 +48,7 @@ public:
 
 protected:
 	VenusService *mService;
-	QLinkedList<AlarmMonitor *> mAlarms;
+	std::vector<AlarmMonitor *> mAlarms;
 	Notifications *mNotifications;
 };
 
