@@ -8,6 +8,15 @@
 
 static const QString leds[3] = {QString::fromUtf8("bluetooth"), QString::fromUtf8("status-orange"), QString::fromUtf8("status-green")};
 
+bool LedController::hasLeds()
+{
+	for (auto &l: leds) {
+		if (QDir(DEST_DIR(l)).exists())
+			return true;
+	}
+	return false;
+}
+
 LedController::LedController(QObject *parent) :
 	QObject(parent), mLedsEnabled(1), mTimerExpired(0)
 {

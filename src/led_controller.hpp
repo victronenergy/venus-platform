@@ -13,7 +13,8 @@ class LedController : public QObject
 	Q_OBJECT
 
 public:
-	LedController(QObject *parent) ;
+	LedController(QObject *parent);
+	static bool hasLeds();
 
 public slots:
 	void dbusSettingChanged();
