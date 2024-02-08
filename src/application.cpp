@@ -112,7 +112,8 @@ public:
 		add("Gui/Language", "en");
 		add("Gui/RunningVersion", 1, 1, 2);
 		add("Gui/TouchEnabled", 1, 0, 1);
-		add("LEDs/Enable", 1, 0, 1);
+		if (QDir("/sys/class/leds/bluetooth").exists())
+			add("LEDs/Enable", 1, 0, 1);
 		add("Relay/Function", 0, 0, 0);
 		add("Relay/Polarity", 0, 0, 0);
 		add("Relay/1/Function", 2, 0, 0);
