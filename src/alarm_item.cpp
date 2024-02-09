@@ -169,8 +169,10 @@ DeviceAlarms *DeviceAlarms::createAlternatorAlarms(VenusService *service, Notifi
 {
 	DeviceAlarms *alarms = createDcMeterAlarms(service, notications);
 
-	/* Wakespeed is the only alternator controller we support for now */
-	alarms->addWakespeedError("/ErrorCode");
+	/* The OrionXS is the "alternator" we are going to support on this path.
+	 * Vecan-dbus also used this path for Wakespeed alternators, but this has been removed
+	 * and in the future it will use /Error/n/Id. */
+	alarms->addChargerError("/ErrorCode");
 
 	return alarms;
 }
