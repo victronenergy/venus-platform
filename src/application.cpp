@@ -122,6 +122,7 @@ public:
 			add("Services/AccessPoint", 1, 0, 1);
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/Bluetooth", 1, 0, 1);
+		add("Services/Evcc", 1, 0, 1);
 		add("Services/Modbus", 0, 0, 1);
 		add("Services/MqttLocal", 0, 0, 1);
 		add("Services/MqttLocalInsecure", 0, 0, 1);
@@ -343,6 +344,12 @@ void Application::manageDaemontoolsServices()
 	// CAN-bus debugging over tcp/ip
 	new DaemonToolsService(mSettings, "/service/socketcand", "Settings/Services/Socketcand",
 						   this, QStringList() << "-s" << "socketcand");
+
+	// An optionally service, which can be installed by e.g. a pendrive.
+	if (QDir("/data/evcc/service/").exists()) {
+		VeQItem *item =	mSettings->root()->itemGetOrCreate("Settings/Services/Evcc");
+		item->getValueAndChanges(this, SLOT(onEvccSettingChanged(QVariant)));
+	}
 }
 
 void Application::init()
@@ -502,5 +509,23 @@ void Application::alarmChanged(QVariant var)
 			mBuzzer->buzzerOff();
 	} else {
 		mBuzzer->buzzerOff();
+	}
+}
+
+void Application::onEvccSettingChanged(QVariant var)
+{
+	if (!var.isValid())
+		return;
+
+	if (var.toBool()) {
+		qDebug() << "[Service] Enabling evcc";
+		QFile::link("/data/evcc/service/", "/service/evcc");
+		system("svc -u /service/evcc");
+	} else {
+		if (QDir("/service/evcc").exists()) {
+			qDebug() << "[Service] Removing evcc";
+			system("svc -d /service/evcc");
+			QFile::remove("/service/evcc");
+		}
 	}
 }

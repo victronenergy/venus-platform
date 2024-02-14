@@ -46,6 +46,7 @@ protected slots:
 	void demoSettingChanged(QVariant var);
 	void onLanguageChanged(QVariant var);
 	void alarmChanged(QVariant var);
+	void onEvccSettingChanged(QVariant var);
 
 private:
 	void manageDaemontoolsServices();
