@@ -424,6 +424,9 @@ void Application::start()
 	if (accessPointSetting)
 		accessPointSetting->getValueAndChanges(mLedController, SLOT(dbusSettingChanged()));
 
+	// Network controller
+	mNetworkController = new NetworkController(mService, this);
+
 	mService->itemGetOrCreate("Device")->itemAddChild("Reboot", new VeQItemReboot());
 	mService->itemGetOrCreate("Device")->itemAddChild("Time", new VeQItemTime());
 
