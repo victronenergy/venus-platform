@@ -21,6 +21,7 @@ HEADERS = \
     src/buzzer.hpp \
     src/led_controller.hpp \
     src/mqtt.hpp \
+	src/network_controller.h \
     src/notification.hpp \
     src/notifications.hpp \
     src/relay.hpp \
@@ -37,6 +38,7 @@ SOURCES = \
     src/led_controller.cpp \
     src/main.cpp \
     src/mqtt.cpp \
+	src/network_controller.cpp \
     src/notification.cpp \
     src/notifications.cpp \
     src/relay.cpp \
@@ -47,6 +49,7 @@ SOURCES = \
 
 VE_CONFIG += udev
 include("ext/veutil/veutil.pri")
+include("connman/connman.pri")
 
 QMAKE_CXXFLAGS *= -ffunction-sections
 QMAKE_LFLAGS *= -Wl,--gc-sections
