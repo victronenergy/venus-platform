@@ -59,6 +59,34 @@ QString getFeature(QString const &name, bool optional)
 	return (list.count() >= 1 ? list[0] : QString());
 }
 
+int readIntFromFile(QString const &name, int def)
+{
+	QFile file(name);
+	bool ok;
+
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+		return def;
+
+	QString line = file.readLine();
+	int val = line.trimmed().toInt(&ok, 0);
+	if (!ok)
+		return def;
+
+	return val;
+}
+
+bool writeIntToFile(QString filename, int value)
+{
+	QFile file(filename);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+		return false;
+
+	QTextStream out(&file);
+	out << QString::number(value);
+	file.close();
+
+	return true;
+}
 
 static bool dataPartionError()
 {

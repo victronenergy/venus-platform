@@ -14,6 +14,8 @@
 
 QStringList getFeatureList(const QString &name, bool lines = false);
 QString getFeature(QString const &name, bool optional = true);
+int readIntFromFile(QString const &name, int def);
+bool writeIntToFile(QString filename, int value);
 
 // Since this class needs to be in a header file for moc, just place it
 // here for now...
