@@ -9,6 +9,7 @@
 #include "led_controller.hpp"
 #include "notifications.hpp"
 #include "relay.hpp"
+#include "network_controller.h"
 #include "updater.hpp"
 #include "venus_services.hpp"
 
@@ -60,6 +61,7 @@ private:
 	CanInterfaceMonitor *mCanInterfaceMonitor;
 	Updater *mUpdater;
 	LedController *mLedController;
+	NetworkController *mNetworkController;
 
 	QString mLanguage;
 	QTranslator mTranslator;
