@@ -19,7 +19,7 @@ public:
 		VEBUS_ERROR,
 		CHARGER_ERROR,
 		BMS_ERROR,
-		WAKESPEED_ERROR
+		ALTERNATOR_ERROR
 	};
 
 	enum Enabled {
@@ -80,9 +80,4 @@ public:
 
 private:
 	QString mDescription;
-};
-
-class WakespeedErrors : public QObject
-{
-	Q_OBJECT
 };

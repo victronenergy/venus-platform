@@ -1,10 +1,10 @@
 #include "alarm_monitor.hpp"
 #include "alarm_item.hpp"
 
+#include <veutil/qt/alternator_error.hpp>
 #include <veutil/qt/charger_error.hpp>
 #include <veutil/qt/bms_error.hpp>
 #include <veutil/qt/vebus_error.hpp>
-#include <veutil/qt/wakespeed_error.hpp>
 
 AlarmMonitor::AlarmMonitor(VenusService *service, Type type, const QString &busitemPathAlarm, const QString &description,
 			VeQItem *alarmEnableItem, const QString &alarmValuePath, DeviceAlarms *parent) :
@@ -103,14 +103,14 @@ void AlarmMonitor::updateAlarm(QVariant var)
 		}
 		break;
 	}
-	case WAKESPEED_ERROR:
+	case ALTERNATOR_ERROR:
 	{
-		int error = var.toInt();
-		if (error == 0) {
+		auto error = var.toString();
+		if (error == "") {
 			alarm = DBUS_NO_ERROR;
 		} else {
-			alarm = WakespeedError::isWarning(error) ? DBUS_WARNING : DBUS_ERROR;
-			mDescription = WakespeedError::getDescription(error);
+			alarm = error.contains(":e-") ? DBUS_ERROR : DBUS_WARNING;
+			mDescription = AlternatorError::getDescription(error);
 		}
 		break;
 	}

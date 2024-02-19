@@ -25,9 +25,9 @@ void DeviceAlarms::addChargerError(const QString &busitemPathAlarm)
 	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::CHARGER_ERROR, busitemPathAlarm, "", nullptr, "", this));
 }
 
-void DeviceAlarms::addWakespeedError(const QString &busitemPathAlarm)
+void DeviceAlarms::addAlternatorError(const QString &busitemPathAlarm)
 {
-	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::WAKESPEED_ERROR, busitemPathAlarm, "", nullptr, "", this));
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::ALTERNATOR_ERROR, busitemPathAlarm, "", nullptr, "", this));
 }
 
 DeviceAlarms *DeviceAlarms::createBatteryAlarms(VenusService *service, Notifications *notications)
@@ -169,10 +169,8 @@ DeviceAlarms *DeviceAlarms::createAlternatorAlarms(VenusService *service, Notifi
 {
 	DeviceAlarms *alarms = createDcMeterAlarms(service, notications);
 
-	/* The OrionXS is the "alternator" we are going to support on this path.
-	 * Vecan-dbus also used this path for Wakespeed alternators, but this has been removed
-	 * and in the future it will use /Error/n/Id. */
-	alarms->addChargerError("/ErrorCode");
+	alarms->addChargerError("/ErrorCode"); /* Victron: Orion XS */
+	alarms->addAlternatorError("/Error/0/Id"); /* Third party: Wakespeed, ARCO, etc */
 
 	return alarms;
 }

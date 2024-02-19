@@ -25,7 +25,7 @@ public:
 	void addVebusError(const QString &busitemPathAlarm);
 	void addBmsError(const QString &busitemPathAlarm);
 	void addChargerError(const QString &busitemPathAlarm);
-	void addWakespeedError(const QString &busitemPathAlarm);
+	void addAlternatorError(const QString &busitemPathAlarm);
 
 	static DeviceAlarms *createBatteryAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createSolarChargerAlarms(VenusService *service, Notifications *notifications);
