@@ -447,9 +447,9 @@ void Application::start()
 
 	// Handle buzer and relay alarms
 	mAudibleAlarm = mSettings->root()->itemGetOrCreate("Settings/Alarm/Audible");
-	mAlert = mService->itemGetOrCreate("/Notifications/Alert");
+	mAlarm = mService->itemGetOrCreate("/Notifications/Alarm");
 	mBuzzer = new Buzzer("dbus/com.victronenergy.system/Buzzer/State");
-	mAlert->getValueAndChanges(this, SLOT(alarmChanged(QVariant)));
+	mAlarm->getValueAndChanges(this, SLOT(alarmChanged(QVariant)));
 	mAudibleAlarm->getValueAndChanges(this, SLOT(alarmChanged(QVariant)));
 
 	mRelay = new Relay("dbus/com.victronenergy.system/Relay/0/State", mNotifications, this);
@@ -485,7 +485,7 @@ bool Application::silenceBuzzer()
 void Application::alarmChanged(QVariant var)
 {
 	Q_UNUSED(var);
-	if (mAlert->getValue().toBool()) {
+	if (mAlarm->getValue().toBool()) {
 		if (mAudibleAlarm->getValue().isValid() && mAudibleAlarm->getValue().toBool())
 			mBuzzer->buzzerOn();
 		else

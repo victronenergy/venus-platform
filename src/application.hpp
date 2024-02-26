@@ -75,6 +75,6 @@ private:
 	Buzzer *mBuzzer;
 	AlarmBusitems *mAlarmBusitems;
 	VeQItem *mAudibleAlarm;
-	VeQItem *mAlert;
+	VeQItem *mAlarm;
 	Relay *mRelay;
 };
