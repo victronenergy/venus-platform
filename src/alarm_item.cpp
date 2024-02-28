@@ -313,6 +313,10 @@ BatteryAlarms::BatteryAlarms(VenusService *service, Notifications *notications) 
 	addTripplet(tr("Low cell voltage"),					"/Alarms/LowCellVoltage",						nullptr,		"/System/MinCellVoltage");
 	addTripplet(tr("Bad contactor"),					"/Alarms/Contactor",							nullptr,		"");
 	addTripplet(tr("BMS cable fault"),					"/Alarms/BmsCable",								nullptr,		"");
+	addErrorFlag(tr("Communication error"),				"/Errors/SmartLithium/Communication",			nullptr);
+	addErrorFlag(tr("Invalid battery configuration"),	"/Errors/SmartLithium/InvalidConfiguration",	nullptr);
+	addErrorFlag(tr("Incorrect number of batteries"),	"/Errors/SmartLithium/NrOfBatteries",			nullptr);
+	addErrorFlag(tr("Battery voltage not supported"),	"/Errors/SmartLithium/Voltage",					nullptr);
 	addBmsError("/ErrorCode");
 }
 
