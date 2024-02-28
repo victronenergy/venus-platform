@@ -114,6 +114,9 @@ void AlarmMonitor::updateAlarm(QVariant var)
 		}
 		break;
 	}
+	case ERROR_FLAG:
+		alarm = var.toBool() ? DBUS_ERROR : DBUS_NO_ERROR;
+		break;
 	default:
 		break;
 	}

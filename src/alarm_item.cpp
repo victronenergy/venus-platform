@@ -10,6 +10,11 @@ WarningAlarmMonitor *DeviceAlarms::addTripplet(const QString &description, const
 	return ret;
 }
 
+void DeviceAlarms::addErrorFlag(const QString &description, const QString &busitemPathAlarm, VeQItem *busitemSetting)
+{
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::ERROR_FLAG, busitemPathAlarm, description, busitemSetting, "", this));
+}
+
 void DeviceAlarms::addVebusError(const QString &busitemPathAlarm)
 {
 	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::VEBUS_ERROR, busitemPathAlarm, "", nullptr, "", this));

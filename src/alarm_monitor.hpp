@@ -19,7 +19,8 @@ public:
 		VEBUS_ERROR,
 		CHARGER_ERROR,
 		BMS_ERROR,
-		ALTERNATOR_ERROR
+		ALTERNATOR_ERROR,
+		ERROR_FLAG
 	};
 
 	enum Enabled {
