@@ -88,15 +88,15 @@ DeviceAlarms *DeviceAlarms::createInverterAlarms(VenusService *service, Notifica
 {
 	DeviceAlarms *alarms = new DeviceAlarms(service, notications);
 
-	alarms->addTripplet(tr("Low battery voltage"),	"/Alarms/LowVoltage",		service->item("/Settings/Alarms/LowVoltage"),		"");
-	alarms->addTripplet(tr("High battery voltage"),	"/Alarms/HighVoltage",		service->item("/Settings/Alarms/HighVoltage"),		"");
-	alarms->addTripplet(tr("Low AC voltage"),		"/Alarms/LowVoltageAcOut",	service->item("/Settings/Alarms/LowVoltageAcOut"),	"/Ac/Out/L1/V");
-	alarms->addTripplet(tr("High AC voltage"),		"/Alarms/HighVoltageAcOut",	service->item("/Settings/Alarms/HighVoltageAcOut"),	"/Ac/Out/L1/V");
-	alarms->addTripplet(tr("Low temperature"),		"/Alarms/LowTemperature",	nullptr,											"");
-	alarms->addTripplet(tr("High temperature"),		"/Alarms/HighTemperature",	service->item("/Settings/Alarms/HighTemperature"),	"");
-	alarms->addTripplet(tr("Inverter overload"),	"/Alarms/Overload",			service->item("/Settings/Alarms/Overload"),			"/Ac/Out/L1/I");
-	alarms->addTripplet(tr("High DC ripple"),		"/Alarms/Ripple",			service->item("/Settings/Alarms/Ripple"),			"");
-	alarms->addTripplet(tr("Low SOC"),				"/Alarms/LowSoc",			service->item("/Settings/Alarms/LowSoc"),			"/Soc");
+	alarms->addTripplet(tr("Low battery voltage"),	"/Alarms/LowVoltage",		service->item("/Settings/AlarmLevel/LowVoltage"),		"");
+	alarms->addTripplet(tr("High battery voltage"),	"/Alarms/HighVoltage",		service->item("/Settings/AlarmLevel/HighVoltage"),		"");
+	alarms->addTripplet(tr("Low AC voltage"),		"/Alarms/LowVoltageAcOut",	service->item("/Settings/AlarmLevel/LowVoltageAcOut"),	"/Ac/Out/L1/V");
+	alarms->addTripplet(tr("High AC voltage"),		"/Alarms/HighVoltageAcOut",	service->item("/Settings/AlarmLevel/HighVoltageAcOut"),	"/Ac/Out/L1/V");
+	alarms->addTripplet(tr("Low temperature"),		"/Alarms/LowTemperature",	nullptr,												"");
+	alarms->addTripplet(tr("High temperature"),		"/Alarms/HighTemperature",	service->item("/Settings/AlarmLevel/HighTemperature"),	"");
+	alarms->addTripplet(tr("Inverter overload"),	"/Alarms/Overload",			service->item("/Settings/AlarmLevel/Overload"),			"/Ac/Out/L1/I");
+	alarms->addTripplet(tr("High DC ripple"),		"/Alarms/Ripple",			service->item("/Settings/AlarmLevel/Ripple"),			"");
+	alarms->addTripplet(tr("Low SOC"),				"/Alarms/LowSoc",			service->item("/Settings/AlarmLevel/LowSoc"),			"/Soc");
 
 	return alarms;
 }
@@ -105,14 +105,14 @@ DeviceAlarms *DeviceAlarms::createMultiRsAlarms(VenusService *service, Notificat
 {
 	DeviceAlarms *alarms = new DeviceAlarms(service, notications);
 
-	alarms->addTripplet(tr("Low battery voltage"),	"/Alarms/LowVoltage",		service->item("/Settings/Alarms/LowVoltage"),		"");
-	alarms->addTripplet(tr("High battery voltage"),	"/Alarms/HighVoltage",		service->item("/Settings/Alarms/HighVoltage"),		"");
-	alarms->addTripplet(tr("Low AC voltage"),		"/Alarms/LowVoltageAcOut",	service->item("/Settings/Alarms/LowVoltageAcOut"),	""); /* Single phase is not always on L1 */
-	alarms->addTripplet(tr("High AC voltage"),		"/Alarms/HighVoltageAcOut",	service->item("/Settings/Alarms/HighVoltageAcOut"),	""); /* Single phase is not always on L1 */
-	alarms->addTripplet(tr("High temperature"),		"/Alarms/HighTemperature",	service->item("/Settings/Alarms/HighTemperature"),	"");
-	alarms->addTripplet(tr("Inverter overload"),	"/Alarms/Overload",			service->item("/Settings/Alarms/Overload"),			""); /* Single phase is not always on L1 */
-	alarms->addTripplet(tr("High DC ripple"),		"/Alarms/Ripple",			service->item("/Settings/Alarms/Ripple"),			"");
-	alarms->addTripplet(tr("Low SOC"),				"/Alarms/LowSoc",			service->item("/Settings/Alarms/LowSoc"),			"/Soc");
+	alarms->addTripplet(tr("Low battery voltage"),	"/Alarms/LowVoltage",		service->item("/Settings/AlarmLevel/LowVoltage"),		"");
+	alarms->addTripplet(tr("High battery voltage"),	"/Alarms/HighVoltage",		service->item("/Settings/AlarmLevel/HighVoltage"),		"");
+	alarms->addTripplet(tr("Low AC voltage"),		"/Alarms/LowVoltageAcOut",	service->item("/Settings/AlarmLevel/LowVoltageAcOut"),	""); /* Single phase is not always on L1 */
+	alarms->addTripplet(tr("High AC voltage"),		"/Alarms/HighVoltageAcOut",	service->item("/Settings/AlarmLevel/HighVoltageAcOut"),	""); /* Single phase is not always on L1 */
+	alarms->addTripplet(tr("High temperature"),		"/Alarms/HighTemperature",	service->item("/Settings/AlarmLevel/HighTemperature"),	"");
+	alarms->addTripplet(tr("Inverter overload"),	"/Alarms/Overload",			service->item("/Settings/AlarmLevel/Overload"),			""); /* Single phase is not always on L1 */
+	alarms->addTripplet(tr("High DC ripple"),		"/Alarms/Ripple",			service->item("/Settings/AlarmLevel/Ripple"),			"");
+	alarms->addTripplet(tr("Low SOC"),				"/Alarms/LowSoc",			service->item("/Settings/AlarmLevel/LowSoc"),			"/Soc");
 	alarms->addChargerError("/ErrorCode");
 
 	return alarms;
