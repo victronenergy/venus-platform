@@ -19,6 +19,8 @@ public:
 	{
 	}
 
+	virtual ~DeviceAlarms() = default; // To allow dynamic_cast
+
 	/* ok, warning, alarm types */
 	WarningAlarmMonitor *addTripplet(const QString &description, const QString &busitemPathAlarm,
 							VeQItem *busitemSetting = nullptr, const QString &busitemPathValue = "");
@@ -27,6 +29,7 @@ public:
 	void addBmsError(const QString &busitemPathAlarm);
 	void addChargerError(const QString &busitemPathAlarm);
 	void addAlternatorError(const QString &busitemPathAlarm);
+	void addGensetError(const QString &busitemPathAlarm);
 
 	static DeviceAlarms *createBatteryAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createSolarChargerAlarms(VenusService *service, Notifications *notifications);
@@ -157,4 +160,20 @@ private slots:
 
 private:
 	Notifications *mNotifications;
+};
+
+class GensetAlarms : public DeviceAlarms {
+	Q_OBJECT
+
+public:
+	GensetAlarms(VenusService *service, Notifications *notifications);
+
+	int nrOfPhases() { return mNumberOfPhases; }
+
+private slots:
+	void numberOfPhasesChanged(QVariant var);
+
+private:
+	VeQItem *mNumberOfPhasesItem;
+	int mNumberOfPhases = 0;
 };

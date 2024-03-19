@@ -35,6 +35,11 @@ void DeviceAlarms::addAlternatorError(const QString &busitemPathAlarm)
 	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::ALTERNATOR_ERROR, busitemPathAlarm, "", nullptr, "", this));
 }
 
+void DeviceAlarms::addGensetError(const QString &busitemPathAlarm)
+{
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::GENSET_ERROR, busitemPathAlarm, "", nullptr, "", this));
+}
+
 DeviceAlarms *DeviceAlarms::createBatteryAlarms(VenusService *service, Notifications *notications)
 {
 	return new BatteryAlarms(service, notications);
@@ -342,6 +347,22 @@ void BatteryAlarms::numberOfDistributorsChanged(QVariant var)
 	mDistributorAlarmsAdded = true;
 }
 
+GensetAlarms::GensetAlarms(VenusService *service, Notifications *notications) :
+	DeviceAlarms(service, notications)
+{
+	mNumberOfPhasesItem = service->item("/NrOfPhases");
+	mNumberOfPhasesItem->getValueAndChanges(this, SLOT(numberOfPhasesChanged(QVariant)));
+
+	addGensetError("/Error/0/Id");
+}
+
+void GensetAlarms::numberOfPhasesChanged(QVariant var)
+{
+	if (!var.isValid())
+		return;
+
+	mNumberOfPhases = var.toInt();
+}
 
 AlarmBusitems::AlarmBusitems(VenusServices *services, Notifications *notifications) :
 	QObject(services),
@@ -386,6 +407,10 @@ void AlarmBusitems::onVenusServiceFound(VenusService *service)
 		break;
 	case VenusServiceType::GENERATOR_STARTSTOP:
 		DeviceAlarms::createGeneratorStartStopAlarms(service, mNotifications);
+		break;
+	case VenusServiceType::GENSET:
+	case VenusServiceType::DCGENSET:
+		new GensetAlarms(service, mNotifications);
 		break;
 	case VenusServiceType::DIGITAL_INPUT:
 		DeviceAlarms::createDigitalInputAlarms(service, mNotifications);

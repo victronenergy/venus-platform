@@ -20,7 +20,8 @@ public:
 		CHARGER_ERROR,
 		BMS_ERROR,
 		ALTERNATOR_ERROR,
-		ERROR_FLAG
+		ERROR_FLAG,
+		GENSET_ERROR,
 	};
 
 	enum Enabled {
