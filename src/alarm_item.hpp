@@ -27,6 +27,7 @@ public:
 	void addBmsError(const QString &busitemPathAlarm);
 	void addChargerError(const QString &busitemPathAlarm);
 	void addAlternatorError(const QString &busitemPathAlarm);
+	void addGensetError(const QString &busitemPathAlarm);
 
 	static DeviceAlarms *createBatteryAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createSolarChargerAlarms(VenusService *service, Notifications *notifications);
@@ -44,6 +45,7 @@ public:
 	static DeviceAlarms *createDcdcAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createPlatformAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createTemperatureSensorAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createGensetAlarms(VenusService *service, Notifications *notifications);
 
 	Notifications *notifications() { return mNotifications; }
 

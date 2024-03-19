@@ -35,6 +35,11 @@ void DeviceAlarms::addAlternatorError(const QString &busitemPathAlarm)
 	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::ALTERNATOR_ERROR, busitemPathAlarm, "", nullptr, "", this));
 }
 
+void DeviceAlarms::addGensetError(const QString &busitemPathAlarm)
+{
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::GENSET_ERROR, busitemPathAlarm, "", nullptr, "", this));
+}
+
 DeviceAlarms *DeviceAlarms::createBatteryAlarms(VenusService *service, Notifications *notications)
 {
 	return new BatteryAlarms(service, notications);
@@ -203,6 +208,15 @@ DeviceAlarms *DeviceAlarms::createTemperatureSensorAlarms(VenusService *service,
 	DeviceAlarms *alarms = new DeviceAlarms(service, noticationCenter);
 
 	alarms->addTripplet(tr("Low battery"), "/Alarms/LowBattery", nullptr, "/BatteryVoltage");
+
+	return alarms;
+}
+
+DeviceAlarms *DeviceAlarms::createGensetAlarms(VenusService *service, Notifications *notications)
+{
+	DeviceAlarms *alarms = new DeviceAlarms(service, notications);
+
+	alarms->addGensetError("/Error/0/Id");
 
 	return alarms;
 }
@@ -384,6 +398,10 @@ void AlarmBusitems::onVenusServiceFound(VenusService *service)
 		break;
 	case VenusServiceType::GENERATOR_STARTSTOP:
 		DeviceAlarms::createGeneratorStartStopAlarms(service, mNotifications);
+		break;
+	case VenusServiceType::GENSET:
+	case VenusServiceType::DCGENSET:
+		DeviceAlarms::createGensetAlarms(service, mNotifications);
 		break;
 	case VenusServiceType::DIGITAL_INPUT:
 		DeviceAlarms::createDigitalInputAlarms(service, mNotifications);
