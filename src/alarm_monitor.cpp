@@ -4,6 +4,7 @@
 #include <veutil/qt/alternator_error.hpp>
 #include <veutil/qt/charger_error.hpp>
 #include <veutil/qt/bms_error.hpp>
+#include <veutil/qt/genset_error.hpp>
 #include <veutil/qt/vebus_error.hpp>
 
 AlarmMonitor::AlarmMonitor(VenusService *service, Type type, const QString &busitemPathAlarm, const QString &description,
@@ -111,6 +112,18 @@ void AlarmMonitor::updateAlarm(QVariant var)
 		} else {
 			alarm = error.contains(":e-") ? DBUS_ERROR : DBUS_WARNING;
 			mDescription = AlternatorError::getDescription(error);
+		}
+		break;
+	}
+	case GENSET_ERROR:
+	{
+		auto error = var.toString();
+		if (error == "") {
+			alarm = DBUS_NO_ERROR;
+		} else {
+			auto *ga = dynamic_cast<GensetAlarms *>(mDeviceAlarms);
+			alarm = error.contains(":e-") ? DBUS_ERROR : DBUS_WARNING;
+			mDescription = GensetError::getDescription(error, ga != nullptr ? ga->nrOfPhases() : 0);
 		}
 		break;
 	}
