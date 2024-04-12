@@ -43,14 +43,14 @@ signals:
 	void languageChanged();
 
 protected slots:
+	void onAlarmChanged(QVariant var);
+	void onCanInterfacesChanged();
+	void onDemoSettingChanged(QVariant var);
+	void onEvccSettingChanged(QVariant var);
+	void onLanguageChanged(QVariant var);
 	void onLocalSettingsStateChanged(VeQItem::State state);
 	void onLocalSettingsTimeout();
-	void onCanInterfacesChanged();
-	void mk3UpdateAllowedChanged(QVariant var);
-	void demoSettingChanged(QVariant var);
-	void onLanguageChanged(QVariant var);
-	void alarmChanged(QVariant var);
-	void onEvccSettingChanged(QVariant var);
+	void onMk3UpdateAllowedChanged(QVariant var);
 
 private:
 	void manageDaemontoolsServices();

@@ -237,7 +237,7 @@ void Application::onCanInterfacesChanged()
 	mService->itemGetOrCreateAndProduce("CanBus/Interfaces", QVariant::fromValue(mCanInterfaceMonitor->canInfo()));
 }
 
-void Application::mk3UpdateAllowedChanged(QVariant var)
+void Application::onMk3UpdateAllowedChanged(QVariant var)
 {
 	static QVariant lastValue;
 	bool ok;
@@ -250,7 +250,7 @@ void Application::mk3UpdateAllowedChanged(QVariant var)
 	lastValue = var;
 }
 
-void Application::demoSettingChanged(QVariant var)
+void Application::onDemoSettingChanged(QVariant var)
 {
 	static bool isStarted = false;
 
@@ -304,7 +304,7 @@ void Application::manageDaemontoolsServices()
 						   this, QStringList() << "-s" << "vesmart-server");
 
 	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Vebus/AllowMk3Fw212Update");
-	item->getValueAndChanges(this, SLOT(mk3UpdateAllowedChanged(QVariant)));
+	item->getValueAndChanges(this, SLOT(onMk3UpdateAllowedChanged(QVariant)));
 
 	if (templateExists("hostapd")) {
 		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/AccessPoint"), "Enabled",
@@ -441,7 +441,7 @@ void Application::start()
 
 	// Demo mode
 	VeQItem *demoModeSetting = mSettings->root()->itemGetOrCreate("Settings/Gui/DemoMode");
-	demoModeSetting->getValueAndChanges(this, SLOT(demoSettingChanged(QVariant)));
+	demoModeSetting->getValueAndChanges(this, SLOT(onDemoSettingChanged(QVariant)));
 
 	// Notifications
 	mNotifications = new Notifications(mService, this);
@@ -452,8 +452,8 @@ void Application::start()
 	mAudibleAlarm = mSettings->root()->itemGetOrCreate("Settings/Alarm/Audible");
 	mAlarm = mService->itemGetOrCreate("/Notifications/Alarm");
 	mBuzzer = new Buzzer("dbus/com.victronenergy.system/Buzzer/State");
-	mAlarm->getValueAndChanges(this, SLOT(alarmChanged(QVariant)));
-	mAudibleAlarm->getValueAndChanges(this, SLOT(alarmChanged(QVariant)));
+	mAlarm->getValueAndChanges(this, SLOT(onAlarmChanged(QVariant)));
+	mAudibleAlarm->getValueAndChanges(this, SLOT(onAlarmChanged(QVariant)));
 
 	mRelay = new Relay("dbus/com.victronenergy.system/Relay/0/State", mNotifications, this);
 
@@ -485,7 +485,7 @@ bool Application::silenceBuzzer()
 	return false;
 }
 
-void Application::alarmChanged(QVariant var)
+void Application::onAlarmChanged(QVariant var)
 {
 	Q_UNUSED(var);
 	if (mAlarm->getValue().toBool()) {
