@@ -1,5 +1,4 @@
-#ifndef CMSERVICE_H
-#define CMSERVICE_H
+#pragma once
 
 #include <QObject>
 #include "cmservice_interface.h"
@@ -148,5 +147,3 @@ private:
 	QVariantMap mProperties;
 	CmServiceInterface mService;
 };
-
-#endif // CMSERVICE_H

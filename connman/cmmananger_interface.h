@@ -1,5 +1,4 @@
-#ifndef CMMANANGER_INTERFACE_H
-#define CMMANANGER_INTERFACE_H
+#pragma once
 
 #include <QDBusAbstractInterface>
 #include <QDBusPendingReply>
@@ -55,5 +54,3 @@ signals:
 	void TechnologyAdded(const QDBusObjectPath &technology, const QVariantMap &properties);
 	void TechnologyRemoved(const QDBusObjectPath &technology);
 };
-
-#endif // CMMANANGER_INTERFACE_H

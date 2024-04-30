@@ -1,5 +1,4 @@
-#ifndef CONNMANDBUSTYPES_H
-#define CONNMANDBUSTYPES_H
+#pragma once
 
 #include <QtCore/QMap>
 #include <QtCore/QList>
@@ -30,5 +29,3 @@ inline void registerConnmanDataTypes() {
 	qDBusRegisterMetaType<QList<QDBusObjectPath> >();
 	qRegisterMetaType<ConnmanObjectList>("ConnmanObjectList");
 }
-
-#endif //CONNMANDBUSTYPES_H

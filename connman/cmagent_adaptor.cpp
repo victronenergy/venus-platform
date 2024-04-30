@@ -31,4 +31,3 @@ void CmAgentAdaptor::Cancel()
 {
 	QMetaObject::invokeMethod(parent(), "cancel");
 }
-

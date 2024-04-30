@@ -1,5 +1,4 @@
-#ifndef CMMANAGER_H
-#define CMMANAGER_H
+#pragma once
 
 #include <QObject>
 #include "cmmananger_interface.h"
@@ -76,5 +75,3 @@ private:
 	QMap<QString, CmService *> mServices;
 	QStringList mServicesOrderList;
 };
-
-#endif // CMMANAGER_H

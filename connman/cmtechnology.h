@@ -1,5 +1,4 @@
-#ifndef CMTECHNOLOGY_H
-#define CMTECHNOLOGY_H
+#pragma once
 
 #include <QObject>
 #include <QDBusVariant>
@@ -53,5 +52,3 @@ private:
 	QVariantMap mProperties;
 	CmTechnologyInterface mTechnology;
 };
-
-#endif // CMTECHNOLOGY_H

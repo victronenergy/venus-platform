@@ -1,5 +1,4 @@
-#ifndef NETWORKCONTROLLER_H
-#define NETWORKCONTROLLER_H
+#pragma once
 
 #include <QObject>
 #include <veutil/qt/ve_qitem.hpp>
@@ -28,6 +27,7 @@ public:
 		VeQItemAction(){}
 
 	int setValue(const QVariant &value) override;
+
 signals:
 	void jsonParsed(const QVariantMap &data);
 
@@ -59,12 +59,9 @@ private:
 	void setDnsServer(CmService *service, QVariant var);
 	void connectServiceSignals(CmService *service);
 
-	VeQItemSettings *mSettings;
 	CmManager *mConnman;
-	CmService *wifiService;
-	CmService *ethernetService;
+	CmService *mWifiService;
+	CmService *mEthernetService;
 	CmAgent *mAgent;
 	VeQItem *mItem;
 };
-
-#endif // NETWORKCONTROLLER_H

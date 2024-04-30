@@ -1,5 +1,4 @@
-#ifndef CMAGENT_INTERFACE_H
-#define CMAGENT_INTERFACE_H
+#pragma once
 
 #include <QDBusAbstractAdaptor>
 #include <QDBusObjectPath>
@@ -16,8 +15,6 @@ public slots:
 	void Release();
 	void ReportError(const QDBusObjectPath &path, const QString &error);
 	void RequestBrowser(const QDBusObjectPath &path, const QString &url);
-	QVariantMap  RequestInput(const QDBusObjectPath &path, const QVariantMap &fields);
+	QVariantMap RequestInput(const QDBusObjectPath &path, const QVariantMap &fields);
 	void Cancel();
 };
-
-#endif // CMAGENT_INTERFACE_H

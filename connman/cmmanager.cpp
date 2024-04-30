@@ -22,11 +22,12 @@ CmManager::CmManager(QObject *parent) :
 {
 	registerConnmanDataTypes();
 
-	QObject::connect(&mWatcher, SIGNAL(serviceRegistered(const QString&)),SLOT(connmanRegistered(const QString&)));
-	QObject::connect(&mWatcher, SIGNAL(serviceUnregistered(const QString&)), SLOT(connmanUnregistered(const QString&)));
+	QObject::connect(&mWatcher, SIGNAL(serviceRegistered(QString)),SLOT(connmanRegistered(QString)));
+	QObject::connect(&mWatcher, SIGNAL(serviceUnregistered(QString)), SLOT(connmanUnregistered(QString)));
 
-	if(mManager.isValid()) {
-		if (getProperties()) connect();
+	if (mManager.isValid()) {
+		if (getProperties())
+			connect();
 	} else {
 		QDBusError err = mManager.lastError ();
 		qCritical() << "Connman connect error: " << err.message();
@@ -45,8 +46,8 @@ void CmManager::connect()
 {
 	connected = true;
 
-	QObject::connect(&mManager, SIGNAL(PropertyChanged(const QString&, const QDBusVariant&)),
-					 SLOT(propertyChanged(const QString&, const QDBusVariant&)));
+	QObject::connect(&mManager, SIGNAL(PropertyChanged(QString,QDBusVariant)),
+					 SLOT(propertyChanged(QString,QDBusVariant)));
 
 	if (getTechnologies())
 		connectTechnologies();
@@ -56,10 +57,10 @@ void CmManager::connect()
 
 void CmManager::connectTechnologies()
 {
-	QObject::connect(&mManager, SIGNAL(TechnologyAdded(const QDBusObjectPath &, const QVariantMap &)),
-					 SLOT(technologyAdded(const QDBusObjectPath &, const QVariantMap &)));
-	QObject::connect(&mManager, SIGNAL(TechnologyRemoved(const QDBusObjectPath &)),
-					 SLOT(technologyRemoved(const QDBusObjectPath &)));
+	QObject::connect(&mManager, SIGNAL(TechnologyAdded(QDBusObjectPath,QVariantMap)),
+					 SLOT(technologyAdded(QDBusObjectPath,QVariantMap)));
+	QObject::connect(&mManager, SIGNAL(TechnologyRemoved(QDBusObjectPath)),
+					 SLOT(technologyRemoved(QDBusObjectPath)));
 }
 
 void CmManager::connectServices()

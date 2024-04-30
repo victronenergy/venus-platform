@@ -1,5 +1,4 @@
-#ifndef CMSERVICE_INTERFACE_H
-#define CMSERVICE_INTERFACE_H
+#pragma once
 
 #include <QDBusAbstractInterface>
 #include <QDBusPendingReply>
@@ -65,5 +64,3 @@ public slots:
 signals:
 	void PropertyChanged(const QString &name, const QDBusVariant &value);
 };
-
-#endif // CMSERVICE_INTERFACE_H

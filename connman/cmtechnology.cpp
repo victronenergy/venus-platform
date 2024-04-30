@@ -22,13 +22,13 @@ CmTechnology::CmTechnology(const QString& path, const QVariantMap& properties, Q
 	mPath = path;
 	mProperties = properties;
 
-	QObject::connect(&mTechnology, SIGNAL(PropertyChanged(const QString&, const QDBusVariant&)),
-					 SLOT(propertyChanged(const QString&, const QDBusVariant&)));
+	QObject::connect(&mTechnology, SIGNAL(PropertyChanged(QString,QDBusVariant)),
+					 SLOT(propertyChanged(QString,QDBusVariant)));
 }
 
 CmTechnology::~CmTechnology()
 {
-	disconnect(this, SLOT(propertyChanged(const QString&, const QDBusVariant&)));
+	disconnect(this, SLOT(propertyChanged(QString,QDBusVariant)));
 }
 
 void CmTechnology::scan()

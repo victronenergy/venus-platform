@@ -42,8 +42,8 @@ CmService::CmService(const QString& path, const QVariantMap& properties, QObject
 {
 	mPath = path;
 	mProperties = properties;
-	QObject::connect(&mService, SIGNAL(PropertyChanged(const QString&, const QDBusVariant&)),
-			SLOT(propertyChanged(const QString&, const QDBusVariant&)));
+	QObject::connect(&mService, SIGNAL(PropertyChanged(QString,QDBusVariant)),
+			SLOT(propertyChanged(QString,QDBusVariant)));
 }
 
 void CmService::autoConnect(const bool autoConnect)

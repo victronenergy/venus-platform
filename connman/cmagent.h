@@ -1,5 +1,4 @@
-#ifndef CMAGENT_H
-#define CMAGENT_H
+#pragma once
 
 #include <QObject>
 #include <QDBusConnection>
@@ -35,5 +34,3 @@ private:
 	QString mPassPhrase;
 	CmAgentAdaptor mAgent;
 };
-
-#endif // CMAGENT_H

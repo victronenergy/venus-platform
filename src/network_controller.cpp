@@ -2,12 +2,12 @@
 
 int VeQItemJson::setValue(const QVariant &value)
 {
-	if(!value.isValid())
+	if (!value.isValid())
 		return VeQItemAction::setValue(value);
 
 	QVariantMap data = parseJson(value.toString());
 
-	if(!data.empty())
+	if (!data.empty())
 		emit jsonParsed(data);
 
 	return VeQItemAction::setValue(value);
@@ -31,60 +31,61 @@ QVariantMap VeQItemJson::parseJson(const QString &json)
 	QString str = "";
 	QString keyStr;
 
-	if((json.size() < 2) || (json[0] != '{') || (json[json.size() - 1] != '}'))
+	if ((json.size() < 2) || (json[0] != '{') || (json[json.size() - 1] != '}'))
 		return data;
 
 	for (const QChar &c:json) {
 		if (c == '\\') {
 			esc = true;
 			continue;
-		}
-		else if (!esc && c == '"') {
+		} else if (!esc && c == '"') {
 			quote = !quote;
 			continue;
 		}
-		if(!quote) {
+		if (!quote) {
 			if (c == ':') {
 				keyStr = str;
 				str = "";
 				value = true;
 				continue;
-			}
-			else if (c == ',' || c == '}')
+			} else if (c == ',' || c == '}') {
 				commaOrBrace = true;
+			}
 		}
 		if (commaOrBrace) {
 			bool ok;
 			QVariant val;
 			val = str.toInt(&ok);
-			if(!ok)
+			if (!ok)
 				val = str.toDouble(&ok);
-			if(!ok)
+			if (!ok)
 				val = str;
 
 			data.insert(keyStr, val);
 			str = "";
 			commaOrBrace = false;
-		}
-		else if(quote || (c != ' ' && value))
+		} else if (quote || (c != ' ' && value)) {
 			str += c;
+		}
+
 		if (esc)
 			esc = false;
 	}
+
 	return data;
 }
 
 int VeQItemScan::setValue(const QVariant &value)
 {
 	CmTechnology *tech = mConnman->getTechnology("wifi");
-	if(tech)
+	if (tech)
 		tech->scan();
 
 	return VeQItemAction::setValue(value);
 }
 
 NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
-	: QObject{parent}, wifiService(nullptr), ethernetService(nullptr)
+	: QObject{parent}, mWifiService(nullptr), mEthernetService(nullptr)
 {
 	mConnman = CmManager::instance(this);
 	VeQItemJson *parser = new VeQItemJson();
@@ -98,18 +99,18 @@ NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
 
 	CmTechnology *tech = mConnman->getTechnology("wifi");
 	QStringList services;
-	if(tech && tech->powered()) {
+	if (tech && tech->powered()) {
 		VeQItem *wifi = mItem->itemGetOrCreate("Wifi");
 		wifi->itemAddChild("Scan", new VeQItemScan(mConnman));
 		wifi->itemAddChild("State", new VeQItemQuantity(-1, "", "Disconnected"));
 		wifi->itemAddChild("SignalStrength", new VeQItemQuantity(2));
 
 		services = mConnman->getServiceList("wifi");
-		for(auto &s:services) {
+		for (auto &s: services) {
 			CmService *service = mConnman->getService(s);
-			if(service && service->favorite()) {
-				wifiService = service;
-				connectServiceSignals(wifiService);
+			if (service && service->favorite()) {
+				mWifiService = service;
+				connectServiceSignals(mWifiService);
 				updateWifiState();
 				break;
 			}
@@ -117,17 +118,16 @@ NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
 	}
 
 	services = mConnman->getServiceList("ethernet");
-	if(!services.empty())
-	{
-		ethernetService = mConnman->getService(services[0]);
-		if(ethernetService) {
-			connectServiceSignals(ethernetService);
+	if (!services.empty()) {
+		mEthernetService = mConnman->getService(services[0]);
+		if (mEthernetService) {
+			connectServiceSignals(mEthernetService);
 			updateLinkLocal();
 		}
 	}
 
 	connect(mConnman, SIGNAL(serviceListChanged()), this, SLOT(buildServicesList()));
-	connect(mConnman, SIGNAL(serviceChanged()), this, SLOT(buildServicesList()));
+	connect(mConnman, SIGNAL(serviceChanged(QString,QVariantMap)), this, SLOT(buildServicesList()));
 	connect(mConnman, SIGNAL(serviceAdded(QString)), this, SLOT(onServiceAdded(QString)));
 	connect(mConnman, SIGNAL(serviceRemoved(QString)), this, SLOT(onServiceRemoved(QString)));
 	connect(parser, SIGNAL(jsonParsed(QVariantMap)), this, SLOT(handleCommand(QVariantMap)));
@@ -142,12 +142,12 @@ void NetworkController::connectServiceSignals(CmService *service)
 	connect(service, SIGNAL(nameserversChanged()), this, SLOT(buildServicesList()));
 	connect(service, SIGNAL(nameserversConfigChanged()), this, SLOT(buildServicesList()));
 
-	if(service->type() == "wifi") {
+	if (service->type() == "wifi") {
 		connect(service, SIGNAL(stateChanged()), this, SLOT(updateWifiState()));
 		connect(service, SIGNAL(strengthChanged()), this, SLOT(updateWifiSignalStrength()));
+	} else {
+		connect(mEthernetService, SIGNAL(stateChanged()), this, SLOT(updateLinkLocal()));
 	}
-	else
-		connect(ethernetService, SIGNAL(stateChanged()), this, SLOT(updateLinkLocal()));
 }
 
 void NetworkController::buildServicesList()
@@ -158,14 +158,14 @@ void NetworkController::buildServicesList()
 	QStringList technologies = mConnman->getTechnologyList();
 	technologies.removeAll("bluetooth");
 	technologies.removeAll("p2p");
-	for(auto &t:technologies) {
+	for (auto &t: technologies) {
 		// Loop over services within technology
 		QStringList services = mConnman->getServiceList(t);
 		json += "\"" + t + "\"";
 		json += ":{";
-		for(auto &s:services) {
+		for (auto &s: services) {
 			CmService *service = mConnman->getService(s);
-			if(service) {
+			if (service) {
 				QVariantMap ipv4 = service->ipv4Config()["Method"] == "dhcp" ? service->ipv4() : service->ipv4Config();
 				QStringList dns = service->nameservers();
 				QStringList security = service->security();
@@ -176,11 +176,11 @@ void NetworkController::buildServicesList()
 				json += ":{";
 				json += "\"Service\":\"" + s + "\",";
 				json += "\"State\":\"" + properties["State"].toString() + "\",";
-				if(properties.contains("Strength"))
+				if (properties.contains("Strength"))
 					json += "\"Strength\":\"" + QString::number(properties["Strength"].toUInt()) + "\",";
-				if(!security.empty())
+				if (!security.empty())
 					json += "\"Secured\":\"" + QString(security.contains("none") ? "no" : "yes") + "\",";
-				if(t == "wifi")
+				if (t == "wifi")
 					json += "\"Favorite\":\"" + QString(service->favorite() ? "yes" : "no") + "\",";
 				json += "\"Address\":\"" + ipv4["Address"].toString() + "\",";
 				json += "\"Gateway\":\"" + ipv4["Gateway"].toString() + "\",";
@@ -188,20 +188,19 @@ void NetworkController::buildServicesList()
 				json += "\"Netmask\":\"" + ipv4["Netmask"].toString() + "\",";
 				json += "\"Mac\":\"" + ethernet["Address"].toString() + "\",";
 				json += "\"Nameservers\":[";
-				for(auto &d:dns) {
+				for (auto &d: dns)
 					json += "\"" + d + "\",";
-				}
-				if(dns.size())
-					json.remove(json.size()-1, 1);
+				if (dns.size())
+					json.remove(json.size() - 1, 1);
 				json += "]},";
 			}
 		}
-		if(services.size())
-			json.remove(json.size()-1, 1);
+		if (services.size())
+			json.remove(json.size() - 1, 1);
 		json += "},";
 	}
 
-	json.remove(json.size()-1, 1);
+	json.remove(json.size() - 1, 1);
 	json+= '}';
 	mItem->itemGetOrCreateAndProduce("Services", json);
 }
@@ -210,37 +209,34 @@ void NetworkController::handleCommand(const QVariantMap &data)
 {
 	CmService *service = nullptr;
 
-	if(data.contains("Service")) {
+	if (data.contains("Service")) {
 		service = mConnman->getService(data["Service"].toString());
 	}
 	if (data.contains("Action")) {
 		if (data["Action"] == "connect") {
-			if(wifiService && wifiService != service)
-				wifiService->disconnect();
+			if (mWifiService && mWifiService != service)
+				mWifiService->disconnect();
 			mAgent = mConnman->registerAgent("/com/victronenergy/ccgx");
 			mAgent->passphrase(data["Passphrase"].toString());
-			wifiService = service;
+			mWifiService = service;
 
-			if(wifiService) {
-				wifiService->connect();
-				connectServiceSignals(wifiService);
+			if (mWifiService) {
+				mWifiService->connect();
+				connectServiceSignals(mWifiService);
 			}
-		}
-		else if (data["Action"] == "disconnect") {
-			if(wifiService) {
-				wifiService->disconnect();
-				wifiService = nullptr;
+		} else if (data["Action"] == "disconnect") {
+			if (mWifiService) {
+				mWifiService->disconnect();
+				mWifiService = nullptr;
 			}
-		}
-		else if (data["Action"] == "remove") {
-			if(service) {
+		} else if (data["Action"] == "remove") {
+			if (service) {
 				service->remove();
-				if(wifiService == service)
-					wifiService = nullptr;
+				if (mWifiService == service)
+					mWifiService = nullptr;
 			}
 		}
-	}
-	else if (service) {
+	} else if (service) {
 		// Check for manual configuration parameters
 		setServiceProperties(service, data);
 	}
@@ -248,11 +244,11 @@ void NetworkController::handleCommand(const QVariantMap &data)
 
 void NetworkController::onServiceAdded(const QString &path)
 {
-	if (!ethernetService) {
+	if (!mEthernetService) {
 		CmService *s = mConnman->getService(path);
-		if(s && s->type() == "ethernet") {
-			ethernetService = s;
-			connectServiceSignals(ethernetService);
+		if (s && s->type() == "ethernet") {
+			mEthernetService = s;
+			connectServiceSignals(mEthernetService);
 			updateLinkLocal();
 		}
 	}
@@ -260,12 +256,11 @@ void NetworkController::onServiceAdded(const QString &path)
 
 void NetworkController::onServiceRemoved(const QString &path)
 {
-	if (ethernetService && path == ethernetService->path()) {
-		ethernetService = nullptr;
+	if (mEthernetService && path == mEthernetService->path()) {
+		mEthernetService = nullptr;
 		updateLinkLocal();
-	}
-	else if (wifiService && path == wifiService->path()) {
-		wifiService = nullptr;
+	} else if (mWifiService && path == mWifiService->path()) {
+		mWifiService = nullptr;
 		updateWifiState();
 	}
 }
@@ -307,7 +302,7 @@ void NetworkController::updateLinkLocal()
 
 void NetworkController::updateWifiState()
 {
-	QString state = wifiService?wifiService->state() : "Disconnected";
+	QString state = mWifiService?mWifiService->state() : "Disconnected";
 	mItem->itemGetOrCreateAndProduce("Wifi/State", state);
 	if (state == "ready" || state == "online" || state == "association" || state == "configuration") {
 		updateWifiSignalStrength();
@@ -319,7 +314,7 @@ void NetworkController::updateWifiState()
 
 void NetworkController::updateWifiSignalStrength()
 {
-	mItem->itemGetOrCreateAndProduce("Wifi/SignalStrength", wifiService ? wifiService->strength() : 0);
+	mItem->itemGetOrCreateAndProduce("Wifi/SignalStrength", mWifiService ? mWifiService->strength() : 0);
 }
 
 void NetworkController::setIpConfiguration(CmService *service, QVariant var)
@@ -336,13 +331,12 @@ void NetworkController::setIpConfiguration(CmService *service, QVariant var)
 	if (method == oldMethod)
 		return;
 
-	if(method == "dhcp") {
+	if (method == "dhcp") {
 		ipv4Config["Address"] = "255.255.255.255";
 		service->ipv4Config(ipv4Config);
 		ipv4Config["Method"] = "dhcp";
 		nameServersConfig.clear();
-	}
-	else if(method == "manual") {
+	} else if (method == "manual") {
 		ipv4Config["Method"] = "manual";
 		QString ipAddress = service->checkIpAddress(ipv4Config["Address"].toString());
 		/*
