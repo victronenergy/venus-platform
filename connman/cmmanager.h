@@ -6,7 +6,6 @@
 #include "cmtechnology.h"
 #include "cmservice.h"
 #include "cmagent.h"
-#include "clockmodel.h"
 
 class CmManager : public QObject
 {
