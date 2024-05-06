@@ -1,4 +1,5 @@
 #include "network_controller.h"
+#include "json.h"
 
 int VeQItemJson::setValue(const QVariant &value)
 {
@@ -15,64 +16,9 @@ int VeQItemJson::setValue(const QVariant &value)
 
 QVariantMap VeQItemJson::parseJson(const QString &json)
 {
-	// Only unnested JSON with key:value pairs supported.
-	// Simple parse algorithm:
-	// Start at opening brace
-	// Find key by searching for quotes
-	// Find colon after closing quote
-	// Extract value --> everything after ':' to ',' or '}'
-	// Parse value
-
-	QVariantMap data;
-	bool esc = false;
-	bool value = false;
-	bool quote = false;
-	bool commaOrBrace = false;
-	QString str = "";
-	QString keyStr;
-
-	if ((json.size() < 2) || (json[0] != '{') || (json[json.size() - 1] != '}'))
-		return data;
-
-	for (const QChar &c:json) {
-		if (c == '\\') {
-			esc = true;
-			continue;
-		} else if (!esc && c == '"') {
-			quote = !quote;
-			continue;
-		}
-		if (!quote) {
-			if (c == ':') {
-				keyStr = str;
-				str = "";
-				value = true;
-				continue;
-			} else if (c == ',' || c == '}') {
-				commaOrBrace = true;
-			}
-		}
-		if (commaOrBrace) {
-			bool ok;
-			QVariant val;
-			val = str.toInt(&ok);
-			if (!ok)
-				val = str.toDouble(&ok);
-			if (!ok)
-				val = str;
-
-			data.insert(keyStr, val);
-			str = "";
-			commaOrBrace = false;
-		} else if (quote || (c != ' ' && value)) {
-			str += c;
-		}
-
-		if (esc)
-			esc = false;
-	}
-
-	return data;
+	bool ok;
+	QVariant data = QtJson::parse(json, ok);
+	return (ok) ? data.toMap() : QVariantMap();
 }
 
 int VeQItemScan::setValue(const QVariant &value)
@@ -152,7 +98,7 @@ void NetworkController::connectServiceSignals(CmService *service)
 
 void NetworkController::buildServicesList()
 {
-	QString json = "{";
+	QVariantMap obj;
 
 	// Loop over technologies
 	QStringList technologies = mConnman->getTechnologyList();
@@ -161,8 +107,8 @@ void NetworkController::buildServicesList()
 	for (auto &t: technologies) {
 		// Loop over services within technology
 		QStringList services = mConnman->getServiceList(t);
-		json += "\"" + t + "\"";
-		json += ":{";
+
+		QVariantMap list;
 		for (auto &s: services) {
 			CmService *service = mConnman->getService(s);
 			if (service) {
@@ -172,37 +118,32 @@ void NetworkController::buildServicesList()
 				QVariantMap properties = service->properties();
 				QVariantMap ethernet = service->ethernet();
 
-				json += "\"" + properties["Name"].toString() + "\"";
-				json += ":{";
-				json += "\"Service\":\"" + s + "\",";
-				json += "\"State\":\"" + properties["State"].toString() + "\",";
+				QVariantMap m;
+				m.insert("Service", s);
+				m.insert("State", properties["State"].toString());
+				m.insert("Strength", properties["State"].toString());
+				m.insert("Secured", properties["State"].toString());
 				if (properties.contains("Strength"))
-					json += "\"Strength\":\"" + QString::number(properties["Strength"].toUInt()) + "\",";
+					m.insert("Strength", properties["Strength"].toUInt());
 				if (!security.empty())
-					json += "\"Secured\":\"" + QString(security.contains("none") ? "no" : "yes") + "\",";
+					m.insert("Secured", QString(security.contains("none") ? "no" : "yes"));
 				if (t == "wifi")
-					json += "\"Favorite\":\"" + QString(service->favorite() ? "yes" : "no") + "\",";
-				json += "\"Address\":\"" + ipv4["Address"].toString() + "\",";
-				json += "\"Gateway\":\"" + ipv4["Gateway"].toString() + "\",";
-				json += "\"Method\":\"" + ipv4["Method"].toString() + "\",";
-				json += "\"Netmask\":\"" + ipv4["Netmask"].toString() + "\",";
-				json += "\"Mac\":\"" + ethernet["Address"].toString() + "\",";
-				json += "\"Nameservers\":[";
-				for (auto &d: dns)
-					json += "\"" + d + "\",";
-				if (dns.size())
-					json.remove(json.size() - 1, 1);
-				json += "]},";
+					m.insert("Favorite", QString(service->favorite() ? "yes" : "no"));
+				m.insert("Address", ipv4["Address"].toString());
+				m.insert("Gateway", ipv4["Gateway"].toString());
+				m.insert("Method", ipv4["Method"].toString());
+				m.insert("Netmask", ipv4["Netmask"].toString());
+				m.insert("Mac", ethernet["Address"].toString());
+				m.insert("Nameservers", dns);
+
+				list.insert(properties["Name"].toString(), m);
 			}
 		}
-		if (services.size())
-			json.remove(json.size() - 1, 1);
-		json += "},";
+		obj.insert(t, list);
 	}
 
-	json.remove(json.size() - 1, 1);
-	json+= '}';
-	mItem->itemGetOrCreateAndProduce("Services", json);
+	QByteArray data = QtJson::serialize(obj);
+	mItem->itemGetOrCreateAndProduce("Services", QString(data));
 }
 
 void NetworkController::handleCommand(const QVariantMap &data)
