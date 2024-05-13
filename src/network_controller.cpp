@@ -121,8 +121,6 @@ void NetworkController::buildServicesList()
 				QVariantMap m;
 				m.insert("Service", s);
 				m.insert("State", properties["State"].toString());
-				m.insert("Strength", properties["State"].toString());
-				m.insert("Secured", properties["State"].toString());
 				if (properties.contains("Strength"))
 					m.insert("Strength", properties["Strength"].toUInt());
 				if (!security.empty())
@@ -137,11 +135,20 @@ void NetworkController::buildServicesList()
 				m.insert("Nameservers", dns);
 
 				list.insert(properties["Name"].toString(), m);
+
+				// If there is a wifi service which is not the current service but has state == "ready",
+				// then set it as the active wifi service.
+				// This may happen when the current connection fails (for some reason) and
+				// connman connects to another favorite network automatically.
+				if ((t == "wifi") && (properties["State"] == "ready") && (mWifiService != service)) {
+					mWifiService = service;
+					connectServiceSignals(service);
+					updateWifiState();
+				}
 			}
 		}
 		obj.insert(t, list);
 	}
-
 	QByteArray data = QtJson::serialize(obj);
 	mItem->itemGetOrCreateAndProduce("Services", QString(data));
 }
@@ -153,11 +160,15 @@ void NetworkController::handleCommand(const QVariantMap &data)
 	if (data.contains("Service")) {
 		service = mConnman->getService(data["Service"].toString());
 	}
-	if (data.contains("Action")) {
+	if (data.contains("Agent")) {
+		if (data["Agent"] == "on")
+			mAgent = mConnman->registerAgent("/com/victronenergy/ccgx");
+		else if (data["Agent"] == "off")
+			mConnman->unRegisterAgent("/com/victronenergy/ccgx");
+	} else if (data.contains("Action")) {
 		if (data["Action"] == "connect") {
 			if (mWifiService && mWifiService != service)
 				mWifiService->disconnect();
-			mAgent = mConnman->registerAgent("/com/victronenergy/ccgx");
 			mAgent->passphrase(data["Passphrase"].toString());
 			mWifiService = service;
 
@@ -243,13 +254,10 @@ void NetworkController::updateLinkLocal()
 
 void NetworkController::updateWifiState()
 {
-	QString state = mWifiService?mWifiService->state() : "Disconnected";
+	QString state = mWifiService?mWifiService->state() : "idle";
 	mItem->itemGetOrCreateAndProduce("Wifi/State", state);
 	if (state == "ready" || state == "online" || state == "association" || state == "configuration") {
 		updateWifiSignalStrength();
-	}
-	if (state == "ready" || state == "online") {
-		mConnman->unRegisterAgent("/com/victronenergy/ccgx");
 	}
 }
 
