@@ -1,3 +1,6 @@
 [submodule "ext/veutil"]
 	path = ext/veutil
 	url = git@github.com:victronenergy/veutil.git
+[submodule "ext/qt-json"]
+	path = ext/qt-json
+	url = git@github.com:victronenergy/qt-json.git

@@ -64,6 +64,7 @@ TRANSLATIONS = \
     translations/venus_zh-CN.ts \
 
 VE_CONFIG += udev
+include("ext/qt-json/qt-json.pri")
 include("ext/veutil/veutil.pri")
 
 QMAKE_CXXFLAGS *= -ffunction-sections
