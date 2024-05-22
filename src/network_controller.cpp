@@ -102,8 +102,11 @@ void NetworkController::buildServicesList()
 
 	// Loop over technologies
 	QStringList technologies = mConnman->getTechnologyList();
+	bool hasBluetooth = technologies.contains("bluetooth");
+	mItem->itemGetOrCreateAndProduce("HasBluetoothSupport", hasBluetooth);
 	technologies.removeAll("bluetooth");
 	technologies.removeAll("p2p");
+
 	for (auto &t: technologies) {
 		// Loop over services within technology
 		QStringList services = mConnman->getServiceList(t);
