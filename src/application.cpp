@@ -439,6 +439,9 @@ void Application::start()
 
 	new Mqtt(mService, mSettings, this);
 
+	bool evccInstalled = QDir("/data/evcc/service/").exists();
+	mService->itemGetOrCreateAndProduce("Services/Evcc/Installed", evccInstalled);
+
 	// Demo mode
 	VeQItem *demoModeSetting = mSettings->root()->itemGetOrCreate("Settings/Gui/DemoMode");
 	demoModeSetting->getValueAndChanges(this, SLOT(onDemoSettingChanged(QVariant)));
