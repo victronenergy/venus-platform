@@ -38,6 +38,8 @@ public:
 	Application(int &argc, char **argv);
 
 	static QProcess *spawn(const QString &cmd, QStringList const &args = QStringList());
+	static bool setRootPassword(QString password);
+	static void invalidateAuthenticatedSessions();
 	bool silenceBuzzer();
 
 	static int runningGuiVersion() {
