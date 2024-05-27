@@ -7,6 +7,7 @@
 
 #include "application.hpp"
 #include "mqtt.hpp"
+#include "security_profiles.hpp"
 #include "time.hpp"
 
 static QDir machineRuntimeDir = QDir("/etc/venus");
@@ -437,8 +438,6 @@ void Application::start()
 	int error = dataPartionError() ? 1 : 0;
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionError", error);
 
-	new Mqtt(mService, mSettings, this);
-
 	bool evccInstalled = QDir("/data/evcc/service/").exists();
 	mService->itemGetOrCreateAndProduce("Services/Evcc/Installed", evccInstalled);
 
@@ -450,6 +449,8 @@ void Application::start()
 	mNotifications = new Notifications(mService, this);
 	mVenusServices = new VenusServices(mServices, this);
 	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
+
+	new SecurityProfiles(mService, mSettings, this);
 
 	// Handle buzer and relay alarms
 	mAudibleAlarm = mSettings->root()->itemGetOrCreate("Settings/Alarm/Audible");
