@@ -42,6 +42,8 @@ public:
 
 	static QProcess *spawn(const QString &cmd, QStringList const &args = QStringList());
 	static int run(QString const &cmd, const QStringList &args = QStringList());
+	static bool setRootPassword(QString password);
+	static void invalidateAuthenticatedSessions();
 	bool silenceBuzzer();
 
 	static int runningGuiVersion() {

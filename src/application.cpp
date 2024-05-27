@@ -7,6 +7,7 @@
 
 #include "application.hpp"
 #include "mqtt.hpp"
+#include "security_profiles.hpp"
 #include "time.hpp"
 
 #define LYNX_BMS_500 0xA3E5
@@ -564,8 +565,6 @@ void Application::start()
 	int error = dataPartionError() ? 1 : 0;
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionError", error);
 
-	new Mqtt(mService, mSettings, this);
-
 	bool evccInstalled = QDir("/data/evcc/service/").exists();
 	mService->itemGetOrCreateAndProduce("Services/Evcc/Installed", evccInstalled);
 
@@ -577,6 +576,8 @@ void Application::start()
 	mNotifications = new Notifications(mService, this);
 	mVenusServices = new VenusServices(mServices, this);
 	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
+
+	new SecurityProfiles(mService, mSettings, mVenusServices, this);
 
 	// Handle buzer and relay alarms
 	mAudibleAlarm = mSettings->root()->itemGetOrCreate("Settings/Alarm/Audible");
@@ -651,5 +652,45 @@ void Application::onEvccSettingChanged(QVariant var)
 			system("svc -d /service/evcc");
 			QFile::remove("/service/evcc");
 		}
+	}
+}
+
+bool Application::setRootPassword(QString password)
+{
+	QProcess process;
+	process.start(venusDir.filePath("swupdate-scripts/resize2fs.sh"));
+	process.waitForFinished();
+
+	process.start("/usr/sbin/chpasswd");
+	process.waitForStarted();
+
+	QString line("root:" + password);
+	process.write(line.toLocal8Bit());
+	process.closeWriteChannel();
+	process.waitForFinished();
+
+	if (process.exitCode() == 0) {
+		qWarning() << "Root password changed";
+		return true;
+	}
+
+	qCritical() << "Changing password failed";
+	return false;
+}
+
+// After e.g. a password change at make sure persistent logins are
+// invalidated and need to re-authenticate.
+void Application::invalidateAuthenticatedSessions()
+{
+	QDir const dir("/data/var/lib/venus-www-sessions");
+	if (!dir.exists()) {
+		qWarning() << dir.absolutePath() << "doesn't exist";
+		return;
+	}
+
+	QFileInfoList const entries = dir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
+	for (QFileInfo const &info: entries) {
+		if (!QFile::remove(info.absoluteFilePath()))
+			qWarning() << "failed to remove" << info.absoluteFilePath();
 	}
 }
