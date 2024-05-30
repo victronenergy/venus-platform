@@ -12,7 +12,7 @@
 static QDir machineRuntimeDir = QDir("/etc/venus");
 static QDir venusDir = QDir("/opt/victronenergy");
 
-static bool serviceExists(QString const &svc) {
+bool serviceExists(QString const &svc) {
 	return QDir("/service/" + svc).exists();
 }
 
