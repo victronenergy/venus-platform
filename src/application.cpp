@@ -450,7 +450,7 @@ void Application::start()
 	mVenusServices = new VenusServices(mServices, this);
 	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
 
-	new SecurityProfiles(mService, mSettings, this);
+	new SecurityProfiles(mService, mSettings, mVenusServices, this);
 
 	// Handle buzer and relay alarms
 	mAudibleAlarm = mSettings->root()->itemGetOrCreate("Settings/Alarm/Audible");
