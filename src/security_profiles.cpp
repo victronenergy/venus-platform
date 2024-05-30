@@ -1,6 +1,12 @@
+#define QT_NO_DEBUG_STREAM
+
+#include <QDir>
+
 #include "application.hpp"
 #include "mqtt.hpp" // FIXME, bridge
 #include "security_profiles.hpp"
+
+static QString sha26Script = "/usr/bin/calc-gui-v2-wasm-sha26.sh";
 
 // The security level can be lowered to allow convenien, but less
 // secure features.
@@ -24,7 +30,164 @@ enum VrmPortal {
 	VRM_PORTAL_FULL // (default)
 };
 
-SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *settings, QObject *parent) :
+VrmTunnelSetup::VrmTunnelSetup(VeQItem *pltService, VeQItemSettings *settings,
+							   VenusServices *venusServices, QObject *parent) :
+		QObject(parent),
+		mPltService(pltService)
+{
+	// NOTE: The venus-access service actually starts the remote tunnel in case
+	// remote support is enabled, hence that doesn't need to be done here.
+	mVrmPortal = settings->root()->itemGetOrCreate("Settings/Network/VrmPortal");
+	mVrmPortal->getValueAndChanges(this, SLOT(checkVrmTunnel()));
+
+	// Is gui-v1 the only option
+	if (QDir("/service/gui").exists()) {
+		mIsGuiv1Running = true;
+
+	// or if configurable, is it running?
+	} else {
+		VeQItem *item = settings->root()->itemGetOrCreate("Settings/Gui/RunningVersion");
+		item->getValueAndChanges(this, SLOT(onRunningGuiVersionObtained(QVariant)));
+	}
+
+	// Even if gui-v1 is running, it only needs a tunnel when also VNC is anabled and
+	// Full VRM portal access.
+	mVncEnabled = settings->root()->itemGetOrCreate("Settings/System/VncLocal");
+	mVncEnabled->getValueAndChanges(this, SLOT(checkVrmTunnel()));
+
+	// Look for EV chargers
+	connect(venusServices, SIGNAL(found(VenusService*)), SLOT(onServiceFound(VenusService*)));
+
+	// Large image services
+	if (serviceExists("node-red-venus")) {
+		mNodeRed = settings->root()->itemGetOrCreate("Settings/Services/NodeRed");
+		mNodeRed->getValueAndChanges(this, SLOT(checkVrmTunnel()));
+	}
+
+	if (serviceExists("signalk-server")) {
+		mSignalK = settings->root()->itemGetOrCreate("Settings/Services/SignalK");
+		mSignalK->getValueAndChanges(this, SLOT(checkVrmTunnel()));
+	}
+
+	// Calculating the checksum takes a couple of seconds or so and is only needed
+	// for development / testing. So only run it if the rootfs is writable and
+	// postpone it a bit, so it isn't done early during boot.
+	if (QFileInfo("/var/www/venus/gui-beta").isWritable()) {
+		mChecksumTimer.setInterval(30000);
+		mChecksumTimer.setSingleShot(true);
+		connect(&mChecksumTimer, SIGNAL(timeout()), SLOT(calculateWasmChecksum()));
+		mChecksumTimer.start();
+	}
+}
+
+void VrmTunnelSetup::checkVrmTunnel()
+{
+	bool doTunnel = false;
+	bool ok;
+
+	// If the VRM mode is “Full” the tunnel should be disabled.. Otherwise only
+	// enable the tunnel if there is a service which requires it.
+	if (mVrmPortal->getLocalValue().toInt(&ok) != VRM_PORTAL_FULL || !ok) {
+		if (ok)
+			qDebug() << "[tunnel] VRM portal is not set to full";
+		goto setTunnel;
+	}
+
+	// Gui-v1 with console on VRM enabled.
+	if (mIsGuiv1Running && mVncEnabled->getLocalValue().toInt(&ok) == 1 && ok) {
+		qDebug() << "[tunnel] tunnel for gui-v1 + remote VNC";
+		doTunnel = true;
+
+	// Optional / large image services.
+	} else if ( (mNodeRed && mNodeRed->getLocalValue().toInt(&ok) == 1) ||
+					(mSignalK && mSignalK->getLocalValue().toInt(&ok) == 1)
+				) {
+		qDebug() << "[tunnel] tunnel for large image service";
+		doTunnel = true;
+
+	// EV Charging Station its admin page depends on the tunnel
+	} else if (mEvChargerFound) {
+		qDebug() << "[tunnel] tunnel for EV charger";
+		doTunnel = true;
+
+	// GUI-v2 development build delivery of WASM
+	} else if (!mWasmChecksum.isEmpty()) {
+		qDebug() << "[tunnel] wasm checksum differs";
+		doTunnel = true;
+	}
+
+setTunnel:
+	qDebug() << "[tunnel] do tunnel:" << doTunnel;
+	mPltService->itemGetOrCreateAndProduce("ConnectVrmTunnel", doTunnel);
+}
+
+void VrmTunnelSetup::onWasmChecksumDone(int exitCode)
+{
+	if (exitCode == 0) {
+		QString checksum = mCheckSha26Proc->readAllStandardOutput().trimmed();
+		qDebug() << "[tunnel] the wasm hash is" << checksum;
+
+		bool equal;
+		QFile fh("/var/www/venus/gui-beta/venus-gui-v2.wasm.sha256");
+		if (fh.open(QIODevice::ReadOnly)) {
+			QString orig = QString(fh.readLine()).section(" ", 0, 0);
+			equal = orig == checksum;
+		} else {
+			equal = false;
+		}
+
+		// If the wasm checksum differs, remember it and setup a tunnel if needed.
+		if (!equal) {
+			mWasmChecksum = checksum;
+			checkVrmTunnel();
+		}
+
+	} else {
+		qCritical() << "[tunnel] Calculcate wasm checksum failed with exitCode" << exitCode;
+	}
+
+	mCheckSha26Proc->deleteLater();
+	mCheckSha26Proc = nullptr;
+}
+
+void VrmTunnelSetup::calculateWasmChecksum()
+{
+	if (mCheckSha26Proc) {
+		qDebug() << "[tunnel]" << __FUNCTION__ << "already busy";
+		return;
+	}
+
+	mCheckSha26Proc = new QProcess(this);
+	connect(mCheckSha26Proc, SIGNAL(finished(int)), SLOT(onWasmChecksumDone(int)));
+	qDebug() << "[tunnel] do check wasm checksum";
+	mCheckSha26Proc->start(sha26Script);
+}
+
+void VrmTunnelSetup::onRunningGuiVersionObtained(QVariant const &var)
+{
+	qDebug() << "[tunnel] gui version" << var;
+
+	bool ok;
+	bool isGuiv1Running = var.toInt(&ok) == 1 && ok;
+
+	if (mIsGuiv1Running != isGuiv1Running) {
+		mIsGuiv1Running = isGuiv1Running;
+		checkVrmTunnel();
+		emit guiv1RunningChanged();
+	}
+}
+
+void VrmTunnelSetup::onServiceFound(VenusService *service)
+{
+	// qDebug() << service->getName() << int(service->getType());
+	if (service->getType() == VenusServiceType::EV_CHARGER) {
+		mEvChargerFound = true;
+		checkVrmTunnel();
+	}
+}
+
+SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *settings,
+								 VenusServices *venusServices, QObject *parent) :
 	QObject(parent)
 {
 	// If flashmq is down, RegisterOnVrm won't be called either.
@@ -55,6 +218,8 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 	// RPC commands are only needed by full access. Mqtt on LAN perhaps as well, but not gui-v2.
 	mMqttRpc = new DaemonToolsService("/service/mqtt-rpc", this);
 	mMqttRpc->setSveCtlArgs(QStringList() << "-s" << "mqtt-rpc");
+
+	mTunnelSetup = new VrmTunnelSetup(pltService, settings, venusServices, this);
 }
 
 void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
