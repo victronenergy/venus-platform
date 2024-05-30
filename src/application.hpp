@@ -14,6 +14,7 @@
 #include "updater.hpp"
 #include "venus_services.hpp"
 
+bool serviceExists(QString const &svc);
 QStringList getFeatureList(const QString &name, bool lines = false);
 QString getFeature(QString const &name, bool optional = true);
 int readIntFromFile(QString const &name, int def);
