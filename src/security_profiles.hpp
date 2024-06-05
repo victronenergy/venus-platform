@@ -4,9 +4,19 @@
 #include <QVariant>
 
 #include <veutil/qt/daemontools_service.hpp>
+#include <veutil/qt/ve_qitem_utils.hpp>
 #include <veutil/qt/ve_qitems_dbus.hpp>
 
 #include "venus_services.hpp"
+
+class SecurityApi : public VeQItemAction
+{
+	Q_OBJECT
+
+public:
+	explicit SecurityApi() : VeQItemAction() {};
+	int setValue(const QVariant &value) override;
+};
 
 class VrmTunnelSetup : public QObject
 {

@@ -3,6 +3,7 @@
 #include <QDir>
 
 #include "application.hpp"
+#include "json.h"
 #include "mqtt.hpp" // FIXME, bridge
 #include "security_profiles.hpp"
 
@@ -29,6 +30,59 @@ enum VrmPortal {
 	VRM_PORTAL_READ_ONLY,
 	VRM_PORTAL_FULL // (default)
 };
+
+int SecurityApi::setValue(const QVariant &value)
+{
+	bool ok;
+	QVariantMap map;
+	QString action;
+	QVariant data;
+
+	ok = value.isValid();
+	if (!ok) {
+		qWarning() << uniqueId() << "invalid value";
+		goto out;
+	}
+
+	data = QtJson::parse(value.toString(), ok);
+	if (!ok) {
+		qWarning() << uniqueId() << "unable to parse the json";
+		goto out;
+	}
+
+	map = data.toMap();
+	action = map.value("Action").toString();
+
+	if (action == "SetPassword") {
+
+		// Allow empty password, but the password field should be given. For some
+		// reason an invalid QVariant is converted to an empty string instead of a
+		// null string, so check the QVariant itself.
+		QVariant password = map.value("Password");
+		if (!password.isValid()) {
+			ok = false;
+			qWarning() << uniqueId() << "Password field is missing in SetPassword";
+			goto out;
+		}
+
+		QProcess cmd;
+		// qDebug() << "Changing password to " << password.toString();
+		cmd.start("/sbin/ve-set-passwd", QStringList() << password.toString());
+		if (!cmd.waitForFinished() || cmd.exitCode() != 0) {
+			qCritical() << "Changing the password failed";
+			ok = false;
+			goto out;
+		}
+	} else {
+		ok = false;
+		qWarning() << uniqueId() << "Unknown or missing action";
+		goto out;
+	}
+
+out:
+	produceValue(QString(), State::Synchronized, true);
+	return ok ? 0 : -1;
+}
 
 VrmTunnelSetup::VrmTunnelSetup(VeQItem *pltService, VeQItemSettings *settings,
 							   VenusServices *venusServices, QObject *parent) :
@@ -192,6 +246,8 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 {
 	// If flashmq is down, RegisterOnVrm won't be called either.
 	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", new VeQItemMqttBridgeRegistrar());
+
+	pltService->itemGetOrCreate("Security")->itemAddChild("Api", new SecurityApi());
 
 	// NOTE: the setting is added system-wide in /etc/venus/settings, since several
 	// programs / scripts depend on it.
