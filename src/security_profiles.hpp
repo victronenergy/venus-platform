@@ -63,6 +63,7 @@ public:
 					VenusServices *venusServices, QObject *parent = nullptr);
 
 private slots:
+	void checkVncWebsocket();
 	void onMqttAccessChanged(QVariant const &var);
 	void onSecurityProfileChanged(QVariant const &var);
 	void onVrmPortalChange(QVariant const &var);
@@ -72,6 +73,8 @@ private:
 	void enableMqtt(bool enabled);
 	void enableMqttOnLan(bool enabled);
 	void enableMqttOnLanInsecure(bool enabled);
+	bool hasPasswordFile();
+	bool isPasswordProtected();
 
 	QVariant mMqttAccess;
 	QVariant mSecurityProfile;
@@ -87,4 +90,7 @@ private:
 	DaemonToolsService *mMqttRpc = nullptr;
 
 	VrmTunnelSetup *mTunnelSetup;
+
+	DaemonToolsService *mVncWebsocket = nullptr;
+	VeQItem *mVncEnabled = nullptr;
 };

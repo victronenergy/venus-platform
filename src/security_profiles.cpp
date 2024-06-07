@@ -276,6 +276,16 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 	mMqttRpc->setSveCtlArgs(QStringList() << "-s" << "mqtt-rpc");
 
 	mTunnelSetup = new VrmTunnelSetup(pltService, settings, venusServices, this);
+
+	// handle the VNC websocket for gui-v1 remote console on LAN.
+	mVncWebsocket = new DaemonToolsService("/service/websockify-c");
+	mVncWebsocket->setSveCtlArgs(QStringList() << "-s" << "websockify-c");
+	mVncWebsocket->setRestart(false);
+
+	mVncEnabled = settings->root()->itemGetOrCreate("Settings/System/VncLocal");
+	mVncEnabled->getValueAndChanges(this, SLOT(checkVncWebsocket()));
+
+	connect(mTunnelSetup, SIGNAL(guiv1RunningChanged()), this, SLOT(checkVncWebsocket()));
 }
 
 void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
@@ -319,6 +329,7 @@ void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
 
 	mSecurityProfile = var;
 	checkMqtt();
+	checkVncWebsocket();
 }
 
 void SecurityProfiles::onMqttAccessChanged(QVariant const &var)
@@ -408,6 +419,20 @@ void SecurityProfiles::enableMqttOnLanInsecure(bool enabled)
 	}
 }
 
+bool SecurityProfiles::hasPasswordFile()
+{
+	return QFile("/data/conf/vncpassword.txt").exists();
+}
+
+bool SecurityProfiles::isPasswordProtected()
+{
+	QFile passwd("/data/conf/vncpassword.txt");
+	if (!passwd.open(QIODevice::ReadOnly))
+		return false;
+
+	return !QString::fromUtf8(passwd.readLine()).trimmed().isEmpty();
+}
+
 void SecurityProfiles::checkMqtt()
 {
 	// Wait till all required settings are valid...
@@ -434,4 +459,24 @@ void SecurityProfiles::checkMqtt()
 	} else {
 		enableMqtt(false);
 	}
+}
+
+void SecurityProfiles::checkVncWebsocket()
+{
+	if (!mVncEnabled || !mVncWebsocket)
+		return;
+
+	// VNC over the websocket is needed for gui-v1 with VNC enabled. Futhermore it
+	// must be allowed; If no password file exists, it is disabled otherwise enabled.
+	// It exists for compatibility reasons. VncLocal = 0, VnvInternet = 1 and no password
+	// used to be a valid setup. New devices should always have a password or explicitly
+	// make create an empty password file.
+
+	bool vncEnabled = mVncEnabled->getLocalValue().toBool();
+	bool hasPassword = hasPasswordFile();
+	bool vncWsEnabled = vncEnabled && hasPassword && mTunnelSetup->isGuiv1Running();
+
+	qDebug() << "VNC enabled: " << vncEnabled << "vncOnLanAllowed: " << hasPassword <<
+				"vncWsEnabled: " << vncWsEnabled << "gui-v1" << mTunnelSetup->isGuiv1Running();
+	mVncWebsocket->installOrRemove(vncWsEnabled);
 }
