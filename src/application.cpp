@@ -537,3 +537,26 @@ void Application::onEvccSettingChanged(QVariant var)
 		}
 	}
 }
+
+bool Application::setRootPassword(QString password)
+{
+	QProcess process;
+	process.start(venusDir.filePath("swupdate-scripts/resize2fs.sh"));
+	process.waitForFinished();
+
+	process.start("/usr/sbin/chpasswd");
+	process.waitForStarted();
+
+	QString line("root:" + password);
+	process.write(line.toLocal8Bit());
+	process.closeWriteChannel();
+	process.waitForFinished();
+
+	if (process.exitCode() == 0) {
+		qWarning() << "Root password changed";
+		return true;
+	}
+
+	qCritical() << "Changing password failed";
+	return false;
+}

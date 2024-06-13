@@ -73,6 +73,15 @@ int SecurityApi::setValue(const QVariant &value)
 			ok = false;
 			goto out;
 		}
+	} else if (action == "SetRootPassword") {
+		QVariant password = map.value("Password");
+		if (!password.isValid()) {
+			ok = false;
+			qWarning() << uniqueId() << "Password field is missing in SetPassword";
+			goto out;
+		}
+
+		ok = Application::setRootPassword(password.toString());
 	} else {
 		ok = false;
 		qWarning() << uniqueId() << "Unknown or missing action";
