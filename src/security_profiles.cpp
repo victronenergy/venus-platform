@@ -4,7 +4,6 @@
 
 #include "application.hpp"
 #include "json.h"
-#include "mqtt.hpp" // FIXME, bridge
 #include "security_profiles.hpp"
 
 static QString sha26Script = "/usr/bin/calc-gui-v2-wasm-sha26.sh";
