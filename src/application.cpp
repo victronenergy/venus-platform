@@ -271,9 +271,27 @@ void Application::onDemoSettingChanged(QVariant var)
 	}
 }
 
+void Application::onRunningGuiVersionObtained(const QVariant &var)
+{
+	if (mRunningGui != var) {
+		if (mRunningGui.isValid() && var.isValid())
+			mGuiSwitcher->restart();
+		mRunningGui = var;
+	}
+}
+
 void Application::manageDaemontoolsServices()
 {
-	new DaemonToolsService(mSettings, "/service/start-gui", "Settings/Gui/RunningVersion", QList<int>() << 1 << 2, this);
+	// Is gui-v1 the only option
+	if (QDir("/service/gui").exists()) {
+		mRunningGui = 1;
+
+	// or if configurable, is it running?
+	} else {
+		mGuiSwitcher = new DaemonToolsService("/service/start-gui");
+		VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Gui/RunningVersion");
+		item->getValueAndChanges(this, SLOT(onRunningGuiVersionObtained(QVariant)));
+	}
 
 	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
 

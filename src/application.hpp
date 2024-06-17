@@ -52,6 +52,7 @@ protected slots:
 	void onLocalSettingsStateChanged(VeQItem::State state);
 	void onLocalSettingsTimeout();
 	void onMk3UpdateAllowedChanged(QVariant var);
+	void onRunningGuiVersionObtained(QVariant const &var);
 
 private:
 	void manageDaemontoolsServices();
@@ -80,4 +81,7 @@ private:
 	VeQItem *mAudibleAlarm;
 	VeQItem *mAlarm;
 	Relay *mRelay;
+
+	DaemonToolsService *mGuiSwitcher = nullptr;
+	QVariant mRunningGui;
 };
