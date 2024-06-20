@@ -114,6 +114,7 @@ DeviceAlarms *DeviceAlarms::createMultiRsAlarms(VenusService *service, Notificat
 	alarms->addTripplet(tr("Inverter overload"),	"/Alarms/Overload",			service->item("/Settings/AlarmLevel/Overload"),			""); /* Single phase is not always on L1 */
 	alarms->addTripplet(tr("High DC ripple"),		"/Alarms/Ripple",			service->item("/Settings/AlarmLevel/Ripple"),			"");
 	alarms->addTripplet(tr("Low SOC"),				"/Alarms/LowSoc",			service->item("/Settings/AlarmLevel/LowSoc"),			"/Soc");
+	alarms->addTripplet(tr("Short circuit"),		"/Alarms/ShortCircuit",		service->item("/Settings/AlarmLevel/ShortCircuit"),		"");
 	alarms->addChargerError("/ErrorCode");
 
 	return alarms;
