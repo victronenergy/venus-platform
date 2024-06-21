@@ -557,3 +557,20 @@ bool Application::setRootPassword(QString password)
 	qCritical() << "Changing password failed";
 	return false;
 }
+
+// After e.g. a password change at make sure persistent logins are
+// invalidated and need to re-authenticate.
+void Application::invalidateAuthenticatedSessions()
+{
+	QDir const dir("/data/var/lib/venus-www-sessions");
+	if (!dir.exists()) {
+		qWarning() << dir.absolutePath() << "doesn't exist";
+		return;
+	}
+
+	QFileInfoList const entries = dir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
+	for (QFileInfo const &info: entries) {
+		if (!QFile::remove(info.absoluteFilePath()))
+			qWarning() << "failed to remove" << info.absoluteFilePath();
+	}
+}

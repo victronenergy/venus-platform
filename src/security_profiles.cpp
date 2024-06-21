@@ -72,6 +72,10 @@ int SecurityApi::setValue(const QVariant &value)
 			ok = false;
 			goto out;
 		}
+
+		// Since the password changed, make sure users need to enter credentials again.
+		Application::invalidateAuthenticatedSessions();
+
 	} else if (action == "SetRootPassword") {
 		QVariant password = map.value("Password");
 		if (!password.isValid()) {
