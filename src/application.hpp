@@ -40,8 +40,15 @@ public:
 	static QProcess *spawn(const QString &cmd, QStringList const &args = QStringList());
 	bool silenceBuzzer();
 
+	static int runningGuiVersion() {
+		if (!mRunningGui.isValid())
+			return -1;
+		return mRunningGui.toInt();
+	}
+
 signals:
 	void languageChanged();
+	void runningGuiVersionChanged();
 
 protected slots:
 	void onAlarmChanged(QVariant var);
@@ -83,5 +90,5 @@ private:
 	Relay *mRelay;
 
 	DaemonToolsService *mGuiSwitcher = nullptr;
-	QVariant mRunningGui;
+	static QVariant mRunningGui;
 };

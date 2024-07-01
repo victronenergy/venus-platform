@@ -11,6 +11,7 @@
 
 static QDir machineRuntimeDir = QDir("/etc/venus");
 static QDir venusDir = QDir("/opt/victronenergy");
+QVariant Application::mRunningGui = false;
 
 bool serviceExists(QString const &svc) {
 	return QDir("/service/" + svc).exists();
@@ -277,6 +278,7 @@ void Application::onRunningGuiVersionObtained(const QVariant &var)
 		if (mRunningGui.isValid() && var.isValid())
 			mGuiSwitcher->restart();
 		mRunningGui = var;
+		emit runningGuiVersionChanged();
 	}
 }
 
