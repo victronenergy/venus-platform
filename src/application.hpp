@@ -28,6 +28,9 @@ class VeQItemReboot : public VeQItemAction {
 public:
 	VeQItemReboot() : VeQItemAction() {}
 	int setValue(const QVariant &value) override;
+
+private slots:
+	void doReboot();
 };
 
 class Application : public QCoreApplication

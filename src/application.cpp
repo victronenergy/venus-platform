@@ -102,7 +102,20 @@ static bool dataPartionError()
 
 int VeQItemReboot::setValue(const QVariant &value)
 {
-	qDebug() << "Rebooting";
+	qDebug() << "[VeQItemReboot] Queuing a reboot";
+
+	QTimer *timer = new QTimer(this);
+	timer->setSingleShot(true);
+	connect(timer, SIGNAL(timeout()), this, SLOT(doReboot()));
+	connect(timer, SIGNAL(timeout()), timer, SLOT(deleteLater())); // a bit silly, rebooting anyway..
+	timer->start(2000);
+
+	return VeQItemAction::setValue(value);
+}
+
+void VeQItemReboot::doReboot()
+{
+	qDebug() << "[VeQItemReboot] Rebooting";
 
 	/*
 	 * Note: this used to spawn a child process to call reboot. Since it was found,
@@ -112,8 +125,6 @@ int VeQItemReboot::setValue(const QVariant &value)
 	 * @note this only works if init accepts SIGINT.
 	 */
 	kill(1, SIGINT);
-
-	return VeQItemAction::setValue(value);
 }
 
 enum Mk3Update {
