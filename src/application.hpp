@@ -41,6 +41,7 @@ public:
 	Application(int &argc, char **argv);
 
 	static QProcess *spawn(const QString &cmd, QStringList const &args = QStringList());
+	static int run(QString const &cmd, const QStringList &args = QStringList());
 	bool silenceBuzzer();
 
 	static int runningGuiVersion() {

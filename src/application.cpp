@@ -604,6 +604,14 @@ QProcess *Application::spawn(QString const &cmd, const QStringList &args)
 	return proc;
 }
 
+int Application::run(QString const &cmd, const QStringList &args)
+{
+	QProcess proc;
+	proc.start(cmd, args);
+	proc.waitForFinished();
+	return proc.exitCode();
+}
+
 bool Application::silenceBuzzer()
 {
 	if (mBuzzer->isBeeping()) {
