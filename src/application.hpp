@@ -56,10 +56,17 @@ protected slots:
 	void onLocalSettingsTimeout();
 	void onMk3UpdateAllowedChanged(QVariant var);
 	void onRunningGuiVersionObtained(QVariant const &var);
+	void onRelaySettingChanged(QVariant var);
+	void onServiceAdded(VeQItem *var);
+	void onGensetStateChanged(VeQItem::State state);
+	void onBatteryProductIdChanged(QVariant var);
 
 private:
 	void manageDaemontoolsServices();
 	void loadTranslation();
+	void initDaemonStartupConditions(VeQItem *service);
+	void manageGeneratorStartStop();
+	void manageParallelBms();
 	void init();
 	void start();
 
@@ -86,5 +93,9 @@ private:
 	Relay *mRelay;
 
 	DaemonToolsService *mGuiSwitcher = nullptr;
+	DaemonToolsService *mGeneratorStarter = nullptr;
+	DaemonToolsService *mParallelBmsStarter = nullptr;
+	QList<QString> mGeneratorStarterConditions;
+	QList<QString> mParallelBmsConditions;
 	QVariant mRunningGui;
 };

@@ -9,6 +9,11 @@
 #include "mqtt.hpp"
 #include "time.hpp"
 
+#define LYNX_BMS_500 0xA3E5
+#define LYNX_BMS_500_NG 0xA3E4
+#define LYNX_BMS_1000 0xA3E6
+#define LYNX_BMS_1000_NG 0xA3E7
+
 static QDir machineRuntimeDir = QDir("/etc/venus");
 static QDir venusDir = QDir("/opt/victronenergy");
 
@@ -291,6 +296,85 @@ void Application::onRunningGuiVersionObtained(const QVariant &var)
 	}
 }
 
+void Application::onServiceAdded(VeQItem *var)
+{
+	if (var->id().startsWith("com.victronenergy.genset") || var->id().startsWith("com.victronenergy.dcgenset")) {
+		connect(var, SIGNAL(stateChanged(VeQItem::State)), SLOT(onGensetStateChanged(VeQItem::State)));
+	} else if (var->id().startsWith("com.victronenergy.battery")) {
+		// Need to look at the product id to decide if the parallel bms service needs to start.
+		VeQItem *item = var->itemGetOrCreate("ProductId");
+		item->getValueAndChanges(this, SLOT(onBatteryProductIdChanged(QVariant)));
+	}
+}
+
+void Application::onGensetStateChanged(VeQItem::State state)
+{
+	VeQItem *item = static_cast<VeQItem *>(sender());
+	if (state == VeQItem::State::Synchronized)
+		mGeneratorStarterConditions << item->id();
+	else
+		mGeneratorStarterConditions.removeAll(item->id());
+	manageGeneratorStartStop();
+}
+
+void Application::onBatteryProductIdChanged(QVariant var)
+{
+	VeQItem *item = static_cast<VeQItem *>(sender());
+	VeQItem *parent = item->itemParent();
+	if (var.isValid()) {
+		int id = var.toInt();
+		if (id == LYNX_BMS_500 || id == LYNX_BMS_500_NG || id == LYNX_BMS_1000 || id == LYNX_BMS_1000_NG)
+			mParallelBmsConditions << parent->id();
+		else
+			mParallelBmsConditions.removeAll(parent->id());
+	} else {
+		mParallelBmsConditions.removeAll(parent->id());
+	}
+	manageParallelBms();
+}
+
+void Application::onRelaySettingChanged(QVariant var)
+{
+	if (var.isValid() && var.toInt() == 1)
+		mGeneratorStarterConditions << "Relay";
+	else
+		mGeneratorStarterConditions.removeAll("Relay");
+	manageGeneratorStartStop();
+}
+
+void Application::manageGeneratorStartStop()
+{
+	if (!mGeneratorStarter)
+		return;
+	if (!mGeneratorStarterConditions.empty() && !mGeneratorStarter->isUp())
+		mGeneratorStarter->start();
+	else if (mGeneratorStarterConditions.empty() && mGeneratorStarter->isUp())
+		mGeneratorStarter->stop();
+}
+
+void Application::manageParallelBms()
+{
+	if (!mParallelBmsStarter)
+		return;
+	if (!mParallelBmsConditions.empty() && !mParallelBmsStarter->isUp())
+		mParallelBmsStarter->start();
+	else if (mParallelBmsConditions.empty() && mParallelBmsStarter->isUp())
+		mParallelBmsStarter->stop();
+}
+
+void Application::initDaemonStartupConditions(VeQItem *service)
+{
+	if (service->getState() == VeQItem::State::Synchronized) {
+		if (service->id().startsWith("com.victronenergy.genset") || service->id().startsWith("com.victronenergy.dcgenset")) {
+			connect(service, SIGNAL(stateChanged(VeQItem::State)), SLOT(onGensetStateChanged(VeQItem::State)));
+			mGeneratorStarterConditions << service->id();
+		} else if (service->id().startsWith("com.victronenergy.battery")) {
+			VeQItem *item = service->itemGetOrCreate("ProductId");
+			item->getValueAndChanges(this, SLOT(onBatteryProductIdChanged(QVariant)));
+		}
+	}
+}
+
 void Application::manageDaemontoolsServices()
 {
 	// Is gui-v1 the only option
@@ -303,6 +387,18 @@ void Application::manageDaemontoolsServices()
 		VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Gui/RunningVersion");
 		item->getValueAndChanges(this, SLOT(onRunningGuiVersionObtained(QVariant)));
 	}
+
+	mParallelBmsStarter = new DaemonToolsService("/service/dbus-parallel-bms");
+	mGeneratorStarter = new DaemonToolsService("/service/dbus-generator-starter");
+	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Relay/Function");
+	item->getValueAndChanges(this, SLOT(onRelaySettingChanged(QVariant)));
+
+	VeQItem::Children const children = mServices->itemChildren();
+	for (VeQItem *child: children)
+		initDaemonStartupConditions(child);
+
+	connect(mServices, SIGNAL(childAdded(VeQItem*)), SLOT(onServiceAdded(VeQItem*)));
+	manageGeneratorStartStop();
 
 	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
 
@@ -332,7 +428,7 @@ void Application::manageDaemontoolsServices()
 	new DaemonToolsService(mSettings, "/service/vesmart-server", "Settings/Services/Bluetooth",
 						   this, QStringList() << "-s" << "vesmart-server");
 
-	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Vebus/AllowMk3Fw212Update");
+	item = mSettings->root()->itemGetOrCreate("Settings/Vebus/AllowMk3Fw212Update");
 	item->getValueAndChanges(this, SLOT(onMk3UpdateAllowedChanged(QVariant)));
 
 	if (templateExists("hostapd")) {
