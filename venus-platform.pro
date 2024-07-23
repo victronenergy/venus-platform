@@ -14,6 +14,8 @@ translations.path = $${target.path}/translations
 translations.files = translations/*.qm
 INSTALLS += translations
 
+equals(QT_MAJOR_VERSION, 6): QMAKE_CXXFLAGS += -std=c++17
+
 HEADERS = \
     src/alarm_item.hpp \
     src/alarm_monitor.hpp \
