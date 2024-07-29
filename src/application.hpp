@@ -93,9 +93,11 @@ private:
 	Relay *mRelay;
 
 	DaemonToolsService *mGuiSwitcher = nullptr;
+	QVariant mRunningGui;
+
 	DaemonToolsService *mGeneratorStarter = nullptr;
 	DaemonToolsService *mParallelBmsStarter = nullptr;
 	QList<QString> mGeneratorStarterConditions;
 	QList<QString> mParallelBmsConditions;
-	QVariant mRunningGui;
+
 };
