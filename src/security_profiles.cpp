@@ -305,6 +305,7 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 	// RPC commands are only needed by full access. Mqtt on LAN perhaps as well, but not gui-v2.
 	mMqttRpc = new DaemonToolsService("/service/mqtt-rpc", this);
 	mMqttRpc->setSveCtlArgs(QStringList() << "-s" << "mqtt-rpc");
+	mMqttRpc->install();
 
 	mTunnelSetup = new VrmTunnelSetup(pltService, settings, venusServices, this);
 
@@ -368,9 +369,6 @@ void SecurityProfiles::enableMqttBridge(bool restart)
 	// flashmq should be able to reload dynamically nowadays.
 	if (restart)
 		mFlashMq->restart();
-
-	bool enabled = mVrmPortal.toInt() == VRM_PORTAL_FULL;
-	mMqttRpc->installOrRemove(enabled);
 }
 
 void SecurityProfiles::restartUpnp()
