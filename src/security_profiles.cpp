@@ -4,8 +4,6 @@
 #include "json.h"
 #include "security_profiles.hpp"
 
-static QString sha26Script = "/usr/bin/calc-gui-v2-wasm-sha26.sh";
-
 // The security level can be lowered to allow convenien, but less
 // secure features.
 enum SecurityProfile {
