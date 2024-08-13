@@ -120,6 +120,8 @@ DeviceAlarms *DeviceAlarms::createMultiRsAlarms(VenusService *service, Notificat
 	alarms->addTripplet(tr("High DC ripple"),		"/Alarms/Ripple",			service->item("/Settings/AlarmLevel/Ripple"),			"");
 	alarms->addTripplet(tr("Low SOC"),				"/Alarms/LowSoc",			service->item("/Settings/AlarmLevel/LowSoc"),			"/Soc");
 	alarms->addTripplet(tr("Short circuit"),		"/Alarms/ShortCircuit",		service->item("/Settings/AlarmLevel/ShortCircuit"),		"");
+	alarms->addTripplet(tr("Grid lost"),			"/Alarms/GridLost",			service->item("/Settings/AlarmLevel/GridLost"),			"");
+	alarms->addTripplet(tr("Phase rotation"),		"/Alarms/PhaseRotation",	service->item("/Settings/AlarmLevel/PhaseRotation"),	"");
 	alarms->addChargerError("/ErrorCode");
 
 	return alarms;
