@@ -186,6 +186,7 @@ public:
 		add("Services/SignalK", 0, 0, 1);
 		// Note: only for debugging over tcp/ip, _not_ socketcan itself...
 		add("Services/Socketcand", 0, 0, 1);
+		add("Services/Tailscale/Enabled", 0, 0, 1);
 		add("System/AccessLevel", 1, 0, 3);
 		add("System/AutoUpdate", 2, 0, 3);
 		add("System/ImageType", 0, 0, 1);
@@ -453,9 +454,16 @@ void Application::manageDaemontoolsServices()
 
 	// An optionally service, which can be installed by e.g. a pendrive.
 	if (QDir("/data/evcc/service/").exists()) {
-		VeQItem *item =	mSettings->root()->itemGetOrCreate("Settings/Services/Evcc");
+		VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Services/Evcc");
 		item->getValueAndChanges(this, SLOT(onEvccSettingChanged(QVariant)));
 	}
+
+	// Tailscale
+	mTailscaleBackend = new DaemonToolsService("/service/tailscale-backend");
+	mTailscaleControl = new DaemonToolsService("/service/tailscale-control");
+
+	item = mSettings->root()->itemGetOrCreate("Settings/Services/Tailscale/Enabled");
+	item->getValueAndChanges(this, SLOT(onTailscaleSettingChanged(QVariant)));
 }
 
 void Application::init()
@@ -649,6 +657,24 @@ void Application::onEvccSettingChanged(QVariant var)
 			system("svc -d /service/evcc");
 			QFile::remove("/service/evcc");
 		}
+	}
+}
+
+void Application::onTailscaleSettingChanged(QVariant var)
+{
+	if (!var.isValid())
+		return;
+
+	if (var.toBool()) {
+		qDebug() << "[Service] Enabling tailscale-backend and tailscale-control";
+		mTailscaleBackend->start();
+		mTailscaleControl->start();
+	} else {
+		qDebug() << "[Service] Disabling tailscale-backend and tailscale-control";
+		system("/usr/bin/tailscale down");
+		qDebug() << "[Service] executed \"/usr/bin/tailscale down\"";
+		mTailscaleBackend->stop();
+		mTailscaleControl->stop();
 	}
 }
 
