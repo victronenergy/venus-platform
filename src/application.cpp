@@ -459,7 +459,7 @@ void Application::manageDaemontoolsServices()
 	}
 
 	// Tailscale
-	mTailscaleBackend = new DaemonToolsService("/service/tailscale-backend");
+	mTailscaleBackend = new DaemonToolsService("/service/tailscale");
 	mTailscaleControl = new DaemonToolsService("/service/tailscale-control");
 
 	item = mSettings->root()->itemGetOrCreate("Settings/Services/Tailscale/Enabled");
@@ -666,11 +666,11 @@ void Application::onTailscaleSettingChanged(QVariant var)
 		return;
 
 	if (var.toBool()) {
-		qDebug() << "[Service] Enabling tailscale-backend and tailscale-control";
+		qDebug() << "[Service] Enabling tailscale and tailscale-control";
 		mTailscaleBackend->start();
 		mTailscaleControl->start();
 	} else {
-		qDebug() << "[Service] Disabling tailscale-backend and tailscale-control";
+		qDebug() << "[Service] Disabling tailscale and tailscale-control";
 		system("/usr/bin/tailscale down");
 		qDebug() << "[Service] executed \"/usr/bin/tailscale down\"";
 		mTailscaleBackend->stop();
