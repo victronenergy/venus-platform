@@ -133,6 +133,45 @@ void VeQItemReboot::doReboot()
 	kill(1, SIGINT);
 }
 
+static void cleanDir(const QString &dirName)
+{
+	QDir dir(dirName);
+
+	if (dir.exists(dirName)) {
+		for (QFileInfo &info: dir.entryInfoList(QDir::AllEntries | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System)) {
+			if (info.isDir()) {
+				cleanDir(info.absoluteFilePath());
+				dir.rmdir(info.fileName());
+			} else {
+				QFile::remove(info.absoluteFilePath());
+			}
+		}
+	}
+}
+
+VeQItemNodeRedReset::VeQItemNodeRedReset(DaemonToolsService *nodeRed, VeQItem *nodeRedMode) :
+	mNodeRed(nodeRed),
+	mNodeRedMode(nodeRedMode)
+{
+}
+
+int VeQItemNodeRedReset::setValue(const QVariant &value)
+{
+	if (value.toInt() == 1) {
+		qDebug() << "Resetting Node Red";
+
+		mNodeRedMode->setValue(0);
+		mNodeRed->stop();
+		mNodeRed->waitTillDown();
+
+		cleanDir("/data/home/nodered/.cache");
+		cleanDir("/data/home/nodered/.node-red");
+		cleanDir("/data/home/nodered/.npm");
+	}
+
+	return VeQItemAction::setValue(value);
+}
+
 enum Mk3Update {
 	DISALLOWED,
 	ALLOWED,
@@ -414,9 +453,11 @@ void Application::manageDaemontoolsServices()
 	// Large image services
 	if (serviceExists("node-red-venus")) {
 		QList<int> start = QList<int>() << 1 << 2;
-		new DaemonToolsService(mSettings, "/service/node-red-venus", "Settings/Services/NodeRed", start, this);
+		mNodeRed = new DaemonToolsService(mSettings, "/service/node-red-venus", "Settings/Services/NodeRed", start, this);
 		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/NodeRed"), "Mode",
 							   mSettings->root()->itemGetOrCreate("Settings/Services/NodeRed"));
+		VeQItemNodeRedReset *reset = new VeQItemNodeRedReset(mNodeRed, mService->itemGet("Services/NodeRed/Mode"));
+		mService->itemGetOrCreate("Services/NodeRed")->itemAddChild("FactoryReset", reset);
 	}
 
 	if (serviceExists("signalk-server")) {

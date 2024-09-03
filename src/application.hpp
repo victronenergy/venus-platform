@@ -33,6 +33,18 @@ private slots:
 	void doReboot();
 };
 
+class VeQItemNodeRedReset : public VeQItemAction {
+	Q_OBJECT
+
+public:
+	VeQItemNodeRedReset(DaemonToolsService *nodeRed, VeQItem *nodeRedMode);
+	int setValue(const QVariant &value) override;
+
+private:
+	DaemonToolsService *mNodeRed;
+	VeQItem *mNodeRedMode;
+};
+
 class Application : public QCoreApplication
 {
 	Q_OBJECT
@@ -110,4 +122,5 @@ private:
 	QList<QString> mGeneratorStarterConditions;
 	QList<QString> mParallelBmsConditions;
 
+	DaemonToolsService *mNodeRed = nullptr;
 };
