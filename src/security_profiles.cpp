@@ -287,9 +287,6 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 								 VenusServices *venusServices, QObject *parent) :
 	QObject(parent)
 {
-	// If flashmq is down, RegisterOnVrm won't be called either.
-	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", new VeQItemMqttBridgeRegistrar());
-
 	pltService->itemGetOrCreate("Security")->itemAddChild("Api", new SecurityApi(pltService, settings));
 
 	enableMqttOnLan(false); // Disable LAN socket access by default, unless explicitly enabled.
@@ -338,6 +335,20 @@ void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
 	checkVncWebsocket();
 }
 
+void SecurityProfiles::onVrmRegistrationFinished() {
+	qDebug() << "[MqttBridgeRegistrar]" << "done";
+	if (mVrmRegistrationProc->exitCode() == 100)
+		enableMqttBridge(true);
+	mVrmRegistrationProc->deleteLater();
+	mVrmRegistrationProc = nullptr;
+}
+
+void SecurityProfiles::onVrmRegistrationErrorOccurred(QProcess::ProcessError error) {
+	qDebug() << "[MqttBridgeRegistrar]" << "error during registration" << error;
+	mVrmRegistrationProc->deleteLater();
+	mVrmRegistrationProc = nullptr;
+}
+
 void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 {
 	if (var != mVrmPortal) {
@@ -354,19 +365,55 @@ void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 		// Flashmq depends on the settings as well, since off, read-only and full change
 		// the bridge configuration.
 		enableMqttBridge(wasValid);
+
+		// Start the VRM registration process if not already running
+		if (!mVrmRegistrationProc) {
+			mVrmRegistrationProc = new QProcess();
+			connect(mVrmRegistrationProc, SIGNAL(finished(int)), this, SLOT(onFinished()));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+			connect(mVrmRegistrationProc, SIGNAL(errorOccurred(QProcess::ProcessError)),
+					this, SLOT(onVrmRegistrationErrorOccurred(QProcess::ProcessError)));
+#else
+			connect(mVrmRegistrationProc, SIGNAL(error(QProcess::ProcessError)),
+					this, SLOT(onVrmRegistrationErrorOccurred(QProcess::ProcessError)));
+#endif
+			qDebug() << "[MqttBridgeRegistrar]" << "registering";
+			mVrmRegistrationProc->start("mosquitto_bridge_registrator.py");
+		}
 	}
 }
 
-void SecurityProfiles::enableMqttBridge(bool restart)
+void SecurityProfiles::enableMqttBridge(bool configChanged)
 {
 	if (!mFlashMq || !mMqttRpc)
 		return;
 
-	// The flashmq start script depends on the VrmPortal setting, so restart
-	// it to update accordingly. NOTE: this should no longer be needed, since
-	// flashmq should be able to reload dynamically nowadays.
-	if (restart)
-		mFlashMq->restart();
+	QFile link("/run/flashmq/vrm_bridge.conf");
+	QFile config("/data/conf/flashmq.d/vrm_bridge.conf");
+
+	if (mVrmPortal == VRM_PORTAL_OFF) {
+		if (link.exists()) {
+			link.remove();
+			configChanged = true;
+		}
+	} else {
+		if (config.exists()) {
+			if (!link.exists()) {
+				QFile::link(config.fileName(), link.fileName());
+				configChanged = true;
+			}
+		} else {
+			if (link.exists()) {
+				link.remove();
+				configChanged = true;
+			}
+		}
+	}
+
+	if (configChanged) {
+		qDebug() << "flashmq config changed";
+		system("killall -HUP flashmq");
+	}
 }
 
 void SecurityProfiles::restartUpnp()

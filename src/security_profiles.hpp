@@ -9,48 +9,6 @@
 
 #include "venus_services.hpp"
 
-class VeQItemMqttBridgeRegistrar: public VeQItemAction {
-	Q_OBJECT
-
-public:
-	VeQItemMqttBridgeRegistrar() :
-		VeQItemAction()
-	{}
-
-	int setValue(const QVariant &value) override {
-		if (mProc)
-			return -1;
-
-		mProc = new QProcess();
-		connect(mProc, SIGNAL(finished(int)), this, SLOT(onFinished()));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
-		connect(mProc, SIGNAL(errorOccurred(QProcess::ProcessError)), this, SLOT(onErrorOccurred(QProcess::ProcessError)));
-#else
-		connect(mProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(onErrorOccurred(QProcess::ProcessError)));
-#endif
-		qDebug() << "[MqttBridgeRegistrar]" << "registering";
-		mProc->start("mosquitto_bridge_registrator.py");
-
-		return VeQItemAction::setValue(value);
-	}
-
-private slots:
-	void onFinished() {
-		qDebug() << "[MqttBridgeRegistrar]" << "done";
-		mProc->deleteLater();
-		mProc = nullptr;
-	}
-
-	void onErrorOccurred(QProcess::ProcessError error) {
-		qDebug() << "[MqttBridgeRegistrar]" << "error during registration" << error;
-		mProc->deleteLater();
-		mProc = nullptr;
-	}
-
-private:
-	QProcess *mProc = nullptr;
-};
-
 class SecurityApi : public VeQItemAction
 {
 	Q_OBJECT
@@ -111,10 +69,12 @@ private slots:
 	void onMqttAccessChanged(QVariant const &var);
 	void onSecurityProfileChanged(QVariant const &var);
 	void onVrmPortalChange(QVariant const &var);
+	void onVrmRegistrationFinished();
+	void onVrmRegistrationErrorOccurred(QProcess::ProcessError error);
 
 private:
 	void checkMqttOnLan();
-	void enableMqttBridge(bool restart);
+	void enableMqttBridge(bool configChanged = false);
 	void enableMqttOnLan(bool enabled);
 	void enableMqttOnLanInsecure(bool enabled);
 	bool isPasswordProtected();
@@ -134,4 +94,6 @@ private:
 
 	DaemonToolsService *mVncWebsocket = nullptr;
 	VeQItem *mVncEnabled = nullptr;
+
+	QProcess *mVrmRegistrationProc = nullptr;
 };
