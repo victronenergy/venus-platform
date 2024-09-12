@@ -328,8 +328,11 @@ void Application::onDemoSettingChanged(QVariant var)
 void Application::onRunningGuiVersionObtained(const QVariant &var)
 {
 	if (mRunningGui != var) {
-		if (mRunningGui.isValid() && var.isValid())
+		if (mRunningGui.isValid() && var.isValid()) {
 			mGuiSwitcher->restart();
+			// switch the index page of the webserver as well
+			system("/etc/venus/www.d/create-gui-redirect.sh");
+		}
 		mRunningGui = var;
 		emit runningGuiVersionChanged();
 	}
