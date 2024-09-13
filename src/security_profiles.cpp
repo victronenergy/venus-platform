@@ -287,23 +287,11 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 								 VenusServices *venusServices, QObject *parent) :
 	QObject(parent)
 {
-	// If flashmq is down, RegisterOnVrm won't be called either.
-	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", new VeQItemMqttBridgeRegistrar());
+	mMqttBridgeRegistrar = new VeQItemMqttBridgeRegistrar();
+	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", mMqttBridgeRegistrar);
+	connect(mMqttBridgeRegistrar, SIGNAL(bridgeConfigChanged()), this, SLOT(onBridgeConfigChanged()));
 
 	pltService->itemGetOrCreate("Security")->itemAddChild("Api", new SecurityApi(pltService, settings));
-
-	enableMqttOnLan(false); // Disable LAN socket access by default, unless explicitly enabled.
-	mFlashMq = new DaemonToolsService("/service/flashmq", this);
-	mFlashMq->setSveCtlArgs(QStringList() << "-s" << "flashmq");
-
-	// Since gui-v2 ws requires it, always make the wss mqtt socket available.
-	// The webserver will block access / instruct the user to set a Security Profile if not yet done.
-	mFlashMq->install();
-
-	// RPC commands are only needed by full access. Mqtt on LAN perhaps as well, but not gui-v2.
-	mMqttRpc = new DaemonToolsService("/service/mqtt-rpc", this);
-	mMqttRpc->setSveCtlArgs(QStringList() << "-s" << "mqtt-rpc");
-	mMqttRpc->install();
 
 	mTunnelSetup = new VrmTunnelSetup(pltService, settings, venusServices, this);
 
@@ -328,6 +316,19 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 
 	connect(qApp, SIGNAL(runningGuiVersionChanged()), this, SLOT(checkVncWebsocket()));
 	checkVncWebsocket();
+
+	enableMqttOnLan(false); // Disable LAN socket access by default, unless explicitly enabled.
+	mFlashMq = new DaemonToolsService("/service/flashmq", this);
+	mFlashMq->setSveCtlArgs(QStringList() << "-s" << "flashmq");
+
+	// Since gui-v2 ws requires it, always make the wss mqtt socket available.
+	// The webserver will block access / instruct the user to set a Security Profile if not yet done.
+	mFlashMq->install();
+
+	// RPC commands are only needed by full access. Mqtt on LAN perhaps as well, but not gui-v2.
+	mMqttRpc = new DaemonToolsService("/service/mqtt-rpc", this);
+	mMqttRpc->setSveCtlArgs(QStringList() << "-s" << "mqtt-rpc");
+	mMqttRpc->install();
 }
 
 void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
@@ -340,8 +341,8 @@ void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
 
 void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 {
+	bool wasValid = mVrmPortal.isValid();
 	if (var != mVrmPortal) {
-		bool wasValid = mVrmPortal.isValid();
 		mVrmPortal = var;
 
 		// VRM logger also depends on this, since in Off Mode it shouldn't log to VRM,
@@ -352,21 +353,51 @@ void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 		// is handled separately in the VrmTunnelSetup class above.
 
 		// Flashmq depends on the settings as well, since off, read-only and full change
-		// the bridge configuration.
-		enableMqttBridge(wasValid);
+		// the bridge configuration. Trigger the MQTT registration for changes to
+		// read-only and full, so the config gets updated.
+		if (wasValid && mVrmPortal.isValid() && mVrmPortal != VRM_PORTAL_OFF)
+			mMqttBridgeRegistrar->check();
+
+		enableMqttBridge(false);
 	}
 }
 
-void SecurityProfiles::enableMqttBridge(bool restart)
+void SecurityProfiles::enableMqttBridge(bool configChanged)
 {
-	if (!mFlashMq || !mMqttRpc)
+	if (!mVrmPortal.isValid())
 		return;
 
-	// The flashmq start script depends on the VrmPortal setting, so restart
-	// it to update accordingly. NOTE: this should no longer be needed, since
-	// flashmq should be able to reload dynamically nowadays.
-	if (restart)
-		mFlashMq->restart();
+	QFile link("/run/flashmq/vrm_bridge.conf");
+	QFile config("/data/conf/flashmq.d/vrm_bridge.conf");
+
+	if (mVrmPortal == VRM_PORTAL_OFF) {
+		if (link.exists()) {
+			link.remove();
+			configChanged = true;
+		}
+	} else {
+		if (config.exists()) {
+			if (!link.exists()) {
+				QFile::link(config.fileName(), link.fileName());
+				configChanged = true;
+			}
+		} else {
+			if (link.exists()) {
+				link.remove();
+				configChanged = true;
+			}
+		}
+	}
+
+	if (configChanged && mFlashMq) {
+		qDebug() << "flashmq config changed";
+		system("killall -HUP flashmq");
+	}
+}
+
+void SecurityProfiles::onBridgeConfigChanged()
+{
+	enableMqttBridge(true);
 }
 
 void SecurityProfiles::restartUpnp()

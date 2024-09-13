@@ -18,6 +18,13 @@ public:
 	{}
 
 	int setValue(const QVariant &value) override {
+		int ret = check();
+		if (ret < 0)
+			return ret;
+		return VeQItemAction::setValue(value);
+	}
+
+	int check() {
 		if (mProc)
 			return -1;
 
@@ -31,12 +38,17 @@ public:
 		qDebug() << "[MqttBridgeRegistrar]" << "registering";
 		mProc->start("mosquitto_bridge_registrator.py");
 
-		return VeQItemAction::setValue(value);
+		return 0;
 	}
+
+signals:
+	void bridgeConfigChanged();
 
 private slots:
 	void onFinished() {
 		qDebug() << "[MqttBridgeRegistrar]" << "done";
+		if (mProc->exitCode() == 100)
+			emit bridgeConfigChanged();
 		mProc->deleteLater();
 		mProc = nullptr;
 	}
@@ -108,13 +120,14 @@ public:
 
 private slots:
 	void checkVncWebsocket();
+	void onBridgeConfigChanged();
 	void onMqttAccessChanged(QVariant const &var);
 	void onSecurityProfileChanged(QVariant const &var);
 	void onVrmPortalChange(QVariant const &var);
 
 private:
 	void checkMqttOnLan();
-	void enableMqttBridge(bool restart);
+	void enableMqttBridge(bool configChanged = false);
 	void enableMqttOnLan(bool enabled);
 	void enableMqttOnLanInsecure(bool enabled);
 	bool isPasswordProtected();
@@ -134,4 +147,6 @@ private:
 
 	DaemonToolsService *mVncWebsocket = nullptr;
 	VeQItem *mVncEnabled = nullptr;
+
+	VeQItemMqttBridgeRegistrar *mMqttBridgeRegistrar;
 };
