@@ -108,6 +108,8 @@ static bool dataPartionError()
 
 int VeQItemReboot::setValue(const QVariant &value)
 {
+	Q_UNUSED(value);
+
 	qDebug() << "[VeQItemReboot] Queuing a reboot";
 
 	QTimer *timer = new QTimer(this);
@@ -116,7 +118,7 @@ int VeQItemReboot::setValue(const QVariant &value)
 	connect(timer, SIGNAL(timeout()), timer, SLOT(deleteLater())); // a bit silly, rebooting anyway..
 	timer->start(2000);
 
-	return VeQItemAction::setValue(value);
+	return VeQItemQuantity::setValue(1);
 }
 
 void VeQItemReboot::doReboot()
