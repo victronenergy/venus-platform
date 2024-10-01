@@ -3,8 +3,15 @@
 #include <QTextStream>
 #include "led_controller.hpp"
 
-#define SRC_DIR(x)	"/run/leds/"+x+"/"
-#define DEST_DIR(x)	"/sys/class/leds/"+x+"/"
+static QString srcDir(QString const &led, QString const file = "")
+{
+	return QDir("/run/leds").filePath(led) + (file.isEmpty() ? "" : QDir::separator() + file);
+}
+
+static QString destDir(QString const &led, QString const file = "")
+{
+	return QDir("/sys/class/leds").filePath(led) + (file.isEmpty() ? "" : QDir::separator() + file);
+}
 
 QStringList leds = {
 	QString::fromUtf8("bluetooth"),
@@ -15,7 +22,7 @@ QStringList leds = {
 bool LedController::hasLeds()
 {
 	for (auto &l: leds) {
-		if (!QDir(DEST_DIR(l)).exists())
+		if (!QDir(destDir(l)).exists())
 			leds.removeAll(l);
 	}
 	return leds.count() != 0;
@@ -28,14 +35,14 @@ LedController::LedController(VeQItemSettings *settings, QObject *parent) :
 {
 	// Create files if not exist and clear them to prevent synching incorrect LED state initially.
 	for (auto &l: leds) {
-		touchAndClearFile(SRC_DIR(l) + "trigger");
-		touchAndClearFile(SRC_DIR(l) + "brightness");
+		touchAndClearFile(srcDir(l, "trigger"));
+		touchAndClearFile(srcDir(l, "brightness"));
 	}
 
 	// Add paths to watch to the watcher
 	for (auto &l: leds) {
-		mLedWatcher.addPath(SRC_DIR(l) + "trigger");
-		mLedWatcher.addPath(SRC_DIR(l) + "brightness");
+		mLedWatcher.addPath(srcDir(l, "trigger"));
+		mLedWatcher.addPath(srcDir(l, "brightness"));
 	}
 
 	// Monitor the "trigger" files of all the LED directories (/sys/class/leds/*)
@@ -84,12 +91,12 @@ void LedController::syncLeds(bool ledsOn)
 {
 	if (ledsOn) {
 		for(auto &l: leds) {
-			updateLed(SRC_DIR(l) + "trigger");
-			updateLed(SRC_DIR(l) + "brightness");
+			updateLed(srcDir(l, "trigger"));
+			updateLed(srcDir(l, "brightness"));
 		}
 	} else {
 		for (auto &l: leds)
-			disableLed(DEST_DIR(l));
+			disableLed(destDir(l));
 	}
 }
 
@@ -112,8 +119,8 @@ void LedController::updateLed(const QString &src)
 		if (!srcFile.exists()) {
 			// Recreate src file when it doesn't exist.
 			for (auto &l: leds) {
-				touchAndClearFile(SRC_DIR(l) + "trigger");
-				touchAndClearFile(SRC_DIR(l) + "brightness");
+				touchAndClearFile(srcDir(l, "trigger"));
+				touchAndClearFile(srcDir(l, "brightness"));
 			}
 
 			// No point in syncing the files when the src files are just recreated (and empty)
@@ -140,8 +147,8 @@ void LedController::timerExpired()
 
 void LedController::disableLed(const QString &path)
 {
-	QFile trigFile(path + "trigger");
-	QFile brightnessFile(path + "brightness");
+	QFile trigFile(path + QDir::separator() + "trigger");
+	QFile brightnessFile(path + QDir::separator() + "brightness");
 
 	trigFile.open(QIODevice::WriteOnly);
 	brightnessFile.open(QIODevice::WriteOnly);
