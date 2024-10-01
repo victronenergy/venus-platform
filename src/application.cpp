@@ -623,18 +623,9 @@ void Application::start()
 	mDisplayController = new DisplayController(mSettings, this);
 
 	mUpdater = new Updater(mService, this);
-	mLedController = new LedController(this);
 
-	VeQItem *ledEnableSetting = mSettings->root()->itemGetOrCreate("Settings/LEDs/Enable");
-	ledEnableSetting->getValueAndChanges(mLedController, SLOT(ledSettingChanged(QVariant)));
-
-	VeQItem *bluetoothSetting = mSettings->root()->itemGet("Settings/Services/Bluetooth");
-	if (bluetoothSetting)
-		bluetoothSetting->getValueAndChanges(mLedController, SLOT(dbusSettingChanged()));
-
-	VeQItem *accessPointSetting = mSettings->root()->itemGet("Settings/Services/AccessPoint");
-	if (accessPointSetting)
-		accessPointSetting->getValueAndChanges(mLedController, SLOT(dbusSettingChanged()));
+	if (LedController::hasLeds())
+		new LedController(mSettings, this);
 
 	// Network controller
 	mNetworkController = new NetworkController(mService, this);

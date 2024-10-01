@@ -99,7 +99,6 @@ private:
 	QTimer mLocalSettingsTimeout;
 	CanInterfaceMonitor *mCanInterfaceMonitor;
 	Updater *mUpdater;
-	LedController *mLedController;
 	DisplayController *mDisplayController;
 	NetworkController *mNetworkController;
 

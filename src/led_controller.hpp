@@ -13,16 +13,14 @@ class LedController : public QObject
 	Q_OBJECT
 
 public:
-	LedController(QObject *parent);
+	LedController(VeQItemSettings *settings, QObject *parent);
 	static bool hasLeds();
 
-public slots:
+private slots:
 	void dbusSettingChanged();
 	void ledSettingChanged(QVariant var);
-
-private slots:
+	void timerExpired();
 	void updateLed(const QString &path);
-	void timerExpired(void);
 
 private:
 	void touchAndClearFile(QString const &fileName);

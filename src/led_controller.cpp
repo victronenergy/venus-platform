@@ -6,19 +6,25 @@
 #define SRC_DIR(x)	"/run/leds/"+x+"/"
 #define DEST_DIR(x)	"/sys/class/leds/"+x+"/"
 
-static const QString leds[3] = {QString::fromUtf8("bluetooth"), QString::fromUtf8("status-orange"), QString::fromUtf8("status-green")};
+QStringList leds = {
+	QString::fromUtf8("bluetooth"),
+	QString::fromUtf8("status-orange"),
+	QString::fromUtf8("status-green")
+};
 
 bool LedController::hasLeds()
 {
 	for (auto &l: leds) {
-		if (QDir(DEST_DIR(l)).exists())
-			return true;
+		if (!QDir(DEST_DIR(l)).exists())
+			leds.removeAll(l);
 	}
-	return false;
+	return leds.count() != 0;
 }
 
-LedController::LedController(QObject *parent) :
-	QObject(parent), mLedsEnabled(1), mTimerExpired(0)
+LedController::LedController(VeQItemSettings *settings, QObject *parent) :
+	QObject(parent),
+	mLedsEnabled(1),
+	mTimerExpired(0)
 {
 	// Create files if not exist and clear them to prevent synching incorrect LED state initially.
 	for (auto &l: leds) {
@@ -40,6 +46,17 @@ LedController::LedController(QObject *parent) :
 	connect(mTimer, SIGNAL(timeout()), this, SLOT(timerExpired()));
 	mTimer->start(10000);
 	syncLeds(true);
+
+	VeQItem *ledEnableSetting = settings->root()->itemGetOrCreate("Settings/LEDs/Enable");
+	ledEnableSetting->getValueAndChanges(this, SLOT(ledSettingChanged(QVariant)));
+
+	VeQItem *bluetoothSetting = settings->root()->itemGet("Settings/Services/Bluetooth");
+	if (bluetoothSetting)
+		bluetoothSetting->getValueAndChanges(this, SLOT(dbusSettingChanged()));
+
+	VeQItem *accessPointSetting = settings->root()->itemGet("Settings/Services/AccessPoint");
+	if (accessPointSetting)
+		accessPointSetting->getValueAndChanges(this, SLOT(dbusSettingChanged()));
 }
 
 void LedController::ledSettingChanged(QVariant var)
@@ -111,7 +128,7 @@ void LedController::updateLed(const QString &src)
 	}
 }
 
-void LedController::timerExpired(void)
+void LedController::timerExpired()
 {
 	mTimerExpired = 1;
 	// Only sync leds when they should be disabled after timeout.
