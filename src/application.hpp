@@ -77,7 +77,7 @@ protected slots:
 	void onLocalSettingsStateChanged(VeQItem::State state);
 	void onLocalSettingsTimeout();
 	void onMk3UpdateAllowedChanged(QVariant var);
-	void onRunningGuiVersionObtained(QVariant const &var);
+	void onRunningGuiVersionObtained(QVariant var);
 	void onRelaySettingChanged(QVariant var);
 	void onServiceAdded(VeQItem *var);
 	void onGensetStateChanged(VeQItem::State state);
@@ -91,6 +91,7 @@ private:
 	void manageParallelBms();
 	void init();
 	void start();
+	void setRunningGui(QVariant version);
 
 	VeQItemSettings *mSettings;
 	VeQItem *mServices;
@@ -116,6 +117,7 @@ private:
 
 	DaemonToolsService *mGuiSwitcher = nullptr;
 	static QVariant mRunningGui;
+	VeQItem *mRunningGuiItem;
 
 	DaemonToolsService *mGeneratorStarter = nullptr;
 	DaemonToolsService *mParallelBmsStarter = nullptr;

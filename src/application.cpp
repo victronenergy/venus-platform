@@ -327,16 +327,29 @@ void Application::onDemoSettingChanged(QVariant var)
 	}
 }
 
-void Application::onRunningGuiVersionObtained(const QVariant &var)
+void Application::setRunningGui(QVariant version)
+{
+	if (version != mRunningGui) {
+		mRunningGui = version;
+		mRunningGuiItem->produceValue(version);
+		emit runningGuiVersionChanged();
+	}
+}
+
+void Application::onRunningGuiVersionObtained(QVariant var)
 {
 	if (mRunningGui != var) {
-		if (mRunningGui.isValid() && var.isValid()) {
-			mGuiSwitcher->restart();
-			// switch the index page of the webserver as well
+		// switch the index page of the webserver as well
+		if (mRunningGui.isValid() && var.isValid())
 			system("/etc/venus/www.d/create-gui-redirect.sh");
-		}
-		mRunningGui = var;
-		emit runningGuiVersionChanged();
+
+		if (var.isValid() && (!QFile("/opt/victronenergy/gui-v2/venus-gui-v2").exists() || !QFile("/dev/fb0").exists()))
+			var = 1;
+
+		if (mRunningGui.isValid() && var.isValid())
+			mGuiSwitcher->restart();
+
+		setRunningGui(var);
 	}
 }
 
@@ -421,9 +434,11 @@ void Application::initDaemonStartupConditions(VeQItem *service)
 
 void Application::manageDaemontoolsServices()
 {
+	mRunningGuiItem = mService->itemGetOrCreate("Gui/RunningVersion");
+
 	// Is gui-v1 the only option
 	if (QDir("/service/gui").exists()) {
-		mRunningGui = 1;
+		setRunningGui(1);
 
 	// or if configurable, is it running?
 	} else {
