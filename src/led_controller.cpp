@@ -21,9 +21,9 @@ QStringList leds = {
 
 bool LedController::hasLeds()
 {
-	for (auto &l: leds) {
-		if (!QDir(destDir(l)).exists())
-			leds.removeAll(l);
+	for (auto const &led: leds) {
+		if (!QDir(destDir(led)).exists())
+			leds.removeAll(led);
 	}
 	return leds.count() != 0;
 }
@@ -34,15 +34,15 @@ LedController::LedController(VeQItemSettings *settings, QObject *parent) :
 	mTimerExpired(0)
 {
 	// Create files if not exist and clear them to prevent synching incorrect LED state initially.
-	for (auto &l: leds) {
-		touchAndClearFile(srcDir(l, "trigger"));
-		touchAndClearFile(srcDir(l, "brightness"));
+	for (auto const &led: leds) {
+		touchAndClearFile(srcDir(led, "trigger"));
+		touchAndClearFile(srcDir(led, "brightness"));
 	}
 
 	// Add paths to watch to the watcher
-	for (auto &l: leds) {
-		mLedWatcher.addPath(srcDir(l, "trigger"));
-		mLedWatcher.addPath(srcDir(l, "brightness"));
+	for (auto const &led: leds) {
+		mLedWatcher.addPath(srcDir(led, "trigger"));
+		mLedWatcher.addPath(srcDir(led, "brightness"));
 	}
 
 	// Monitor the "trigger" files of all the LED directories (/sys/class/leds/*)
@@ -90,13 +90,13 @@ void LedController::dbusSettingChanged(void)
 void LedController::syncLeds(bool ledsOn)
 {
 	if (ledsOn) {
-		for(auto &l: leds) {
-			updateLed(srcDir(l, "trigger"));
-			updateLed(srcDir(l, "brightness"));
+		for (auto const &led: leds) {
+			updateLed(srcDir(led, "trigger"));
+			updateLed(srcDir(led, "brightness"));
 		}
 	} else {
-		for (auto &l: leds)
-			disableLed(destDir(l));
+		for (auto const &led: leds)
+			disableLed(destDir(led));
 	}
 }
 
@@ -118,9 +118,9 @@ void LedController::updateLed(const QString &src)
 
 		if (!srcFile.exists()) {
 			// Recreate src file when it doesn't exist.
-			for (auto &l: leds) {
-				touchAndClearFile(srcDir(l, "trigger"));
-				touchAndClearFile(srcDir(l, "brightness"));
+			for (auto const &led: leds) {
+				touchAndClearFile(srcDir(led, "trigger"));
+				touchAndClearFile(srcDir(led, "brightness"));
 			}
 
 			// No point in syncing the files when the src files are just recreated (and empty)
