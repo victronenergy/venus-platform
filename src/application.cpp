@@ -580,6 +580,14 @@ void Application::loadTranslation()
 		qCritical() << "Failed to load translation file: " << qmFile;
 }
 
+void Application::createItemsForFlashmq()
+{
+	mService->itemGetOrCreate("/Mqtt/Bridges/GXdbus/Connected");
+	mService->itemGetOrCreate("/Mqtt/Bridges/GXdbus/ConnectionStatus");
+	mService->itemGetOrCreate("/Mqtt/Bridges/GXrpc/Connected");
+	mService->itemGetOrCreate("/Mqtt/Bridges/GXrpc/ConnectionStatus");
+}
+
 void Application::start()
 {
 	// The items exported to the dbus..
@@ -589,6 +597,8 @@ void Application::start()
 	mService->itemGetOrCreateAndProduce("ProductName", "Venus");
 
 	manageDaemontoolsServices();
+
+	createItemsForFlashmq();
 
 	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, mService, this);
 	connect(mCanInterfaceMonitor, SIGNAL(interfacesChanged()), SLOT(onCanInterfacesChanged()));

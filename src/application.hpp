@@ -84,6 +84,7 @@ protected slots:
 	void onBatteryProductIdChanged(QVariant var);
 
 private:
+	void createItemsForFlashmq();
 	void manageDaemontoolsServices();
 	void loadTranslation();
 	void initDaemonStartupConditions(VeQItem *service);
