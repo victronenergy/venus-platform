@@ -338,16 +338,25 @@ void Application::setRunningGui(QVariant version)
 
 void Application::onRunningGuiVersionObtained(QVariant var)
 {
+	// Switch the index page of the webserver as well.
+	// make sure this is also done on device without gui-v2 / screen
+	if (mRunningGuiSetting.isValid() && var.isValid()) {
+		system("/etc/venus/www.d/create-gui-redirect.sh");
+
+		// Since there is no way for gui-v1 to communicate with the browser,
+		// trigger a disconnect of the VNC connection.
+		if (!mGuiSwitcher && var.toInt() == 2)
+			system("killall websockify");
+	}
+	mRunningGuiSetting = var;
+
+	if (var.isValid() && (!QFile("/opt/victronenergy/gui-v2/venus-gui-v2").exists() || !QFile("/dev/fb0").exists()))
+		var = 1;
+
 	if (mRunningGui != var) {
-		// switch the index page of the webserver as well
 		if (mRunningGui.isValid() && var.isValid())
-			system("/etc/venus/www.d/create-gui-redirect.sh");
-
-		if (var.isValid() && (!QFile("/opt/victronenergy/gui-v2/venus-gui-v2").exists() || !QFile("/dev/fb0").exists()))
-			var = 1;
-
-		if (mRunningGui.isValid() && var.isValid())
-			mGuiSwitcher->restart();
+			if (mGuiSwitcher)
+				mGuiSwitcher->restart();
 
 		setRunningGui(var);
 	}
@@ -434,22 +443,19 @@ void Application::initDaemonStartupConditions(VeQItem *service)
 
 void Application::manageDaemontoolsServices()
 {
+	// MIND it: even if there is no on screen gui-v2, the wasm version will switch.
 	mRunningGuiItem = mService->itemGetOrCreate("Gui/RunningVersion");
 
 	// Is gui-v1 the only option
-	if (QDir("/service/gui").exists()) {
-		setRunningGui(1);
-
-	// or if configurable, is it running?
-	} else {
+	if (!QDir("/service/gui").exists())
 		mGuiSwitcher = new DaemonToolsService("/service/start-gui");
-		VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Gui/RunningVersion");
-		item->getValueAndChanges(this, SLOT(onRunningGuiVersionObtained(QVariant)));
-	}
+
+	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Gui/RunningVersion");
+	item->getValueAndChanges(this, SLOT(onRunningGuiVersionObtained(QVariant)));
 
 	mParallelBmsStarter = new DaemonToolsService("/service/dbus-parallel-bms");
 	mGeneratorStarter = new DaemonToolsService("/service/dbus-generator-starter");
-	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Relay/Function");
+	item = mSettings->root()->itemGetOrCreate("Settings/Relay/Function");
 	item->getValueAndChanges(this, SLOT(onRelaySettingChanged(QVariant)));
 
 	VeQItem::Children const children = mServices->itemChildren();
