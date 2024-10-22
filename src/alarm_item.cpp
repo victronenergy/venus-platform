@@ -300,6 +300,7 @@ BatteryAlarms::BatteryAlarms(VenusService *service, Notifications *notications) 
 
 	addTripplet(tr("Low voltage"),						"/Alarms/LowVoltage",							nullptr,		"");
 	addTripplet(tr("High voltage"),						"/Alarms/HighVoltage",							nullptr,		"");
+	addTripplet(tr("High cell voltage"),				"/Alarms/HighCellVoltage",						nullptr,		"");
 	addTripplet(tr("High current"),						"/Alarms/HighCurrent",							nullptr,		"");
 	addTripplet(tr("High charge current"),				"/Alarms/HighChargeCurrent",					nullptr,		"");
 	addTripplet(tr("High discharge current"),			"/Alarms/HighDischargeCurrent",					nullptr,		"");
