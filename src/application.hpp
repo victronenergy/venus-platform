@@ -117,6 +117,7 @@ private:
 	Relay *mRelay;
 
 	DaemonToolsService *mGuiSwitcher = nullptr;
+	bool mOnScreenGuiv2Supported;
 	QVariant mRunningGuiSetting;
 	static QVariant mRunningGui;
 	VeQItem *mRunningGuiItem;

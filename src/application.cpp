@@ -350,7 +350,7 @@ void Application::onRunningGuiVersionObtained(QVariant var)
 	}
 	mRunningGuiSetting = var;
 
-	if (var.isValid() && (!QFile("/opt/victronenergy/gui-v2/venus-gui-v2").exists() || !QFile("/dev/fb0").exists()))
+	if (var.isValid() && !mOnScreenGuiv2Supported)
 		var = 1;
 
 	if (mRunningGui != var) {
@@ -443,6 +443,9 @@ void Application::initDaemonStartupConditions(VeQItem *service)
 
 void Application::manageDaemontoolsServices()
 {
+	mOnScreenGuiv2Supported = QFile("/opt/victronenergy/gui-v2/venus-gui-v2").exists() && QFile("/dev/fb0").exists();
+	mService->itemGetOrCreateAndProduce("Gui/OnScreenGuiv2Supported", mOnScreenGuiv2Supported);
+
 	// MIND it: even if there is no on screen gui-v2, the wasm version will switch.
 	mRunningGuiItem = mService->itemGetOrCreate("Gui/RunningVersion");
 
