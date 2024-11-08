@@ -120,9 +120,17 @@ DeviceAlarms *DeviceAlarms::createMultiRsAlarms(VenusService *service, Notificat
 	alarms->addTripplet(tr("High DC ripple"),		"/Alarms/Ripple",			service->item("/Settings/AlarmLevel/Ripple"),			"");
 	alarms->addTripplet(tr("Low SOC"),				"/Alarms/LowSoc",			service->item("/Settings/AlarmLevel/LowSoc"),			"/Soc");
 	alarms->addTripplet(tr("Short circuit"),		"/Alarms/ShortCircuit",		service->item("/Settings/AlarmLevel/ShortCircuit"),		"");
-	alarms->addTripplet(tr("Grid lost"),			"/Alarms/GridLost",			service->item("/Settings/AlarmLevel/GridLost"),			"");
-	alarms->addTripplet(tr("Phase rotation"),		"/Alarms/PhaseRotation",	service->item("/Settings/AlarmLevel/PhaseRotation"),	"");
 	alarms->addChargerError("/ErrorCode");
+
+	return alarms;
+}
+
+DeviceAlarms *DeviceAlarms::createAcSystemAlarms(VenusService *service, Notifications *notications)
+{
+	DeviceAlarms *alarms = new DeviceAlarms(service, notications);
+
+	alarms->addTripplet(tr("Grid lost"),			"/Alarms/GridLost",			nullptr,			"");
+	alarms->addTripplet(tr("Phase rotation"),		"/Alarms/PhaseRotation",	nullptr,			"");
 
 	return alarms;
 }
@@ -395,6 +403,9 @@ void AlarmBusitems::onVenusServiceFound(VenusService *service)
 		break;
 	case VenusServiceType::MULTI_RS:
 		DeviceAlarms::createMultiRsAlarms(service, mNotifications);
+		break;
+	case VenusServiceType::AC_SYSTEM:
+		DeviceAlarms::createAcSystemAlarms(service, mNotifications);
 		break;
 	case VenusServiceType::SOLAR_CHARGER:
 		DeviceAlarms::createSolarChargerAlarms(service, mNotifications);
