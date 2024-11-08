@@ -36,6 +36,7 @@ public:
 	static DeviceAlarms *createAcChargerAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createInverterAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createMultiRsAlarms(VenusService *service, Notifications *notifications);
+	static DeviceAlarms *createAcSystemAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createSystemCalcAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createGeneratorStartStopAlarms(VenusService *service, Notifications *notifications);
 	static DeviceAlarms *createDigitalInputAlarms(VenusService *service, Notifications *notifications);
