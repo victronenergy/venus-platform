@@ -457,7 +457,7 @@ void Application::manageDaemontoolsServices()
 	item->getValueAndChanges(this, SLOT(onRunningGuiVersionObtained(QVariant)));
 
 	mParallelBmsStarter = new DaemonToolsService("/service/dbus-parallel-bms");
-	mGeneratorStarter = new DaemonToolsService("/service/dbus-generator-starter");
+	mGeneratorStarter = new DaemonToolsService("/service/dbus-generator");
 	item = mSettings->root()->itemGetOrCreate("Settings/Relay/Function");
 	item->getValueAndChanges(this, SLOT(onRelaySettingChanged(QVariant)));
 
