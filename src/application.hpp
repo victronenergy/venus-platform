@@ -13,6 +13,7 @@
 #include "relay.hpp"
 #include "updater.hpp"
 #include "venus_services.hpp"
+#include "vebus_backup.hpp"
 
 bool serviceExists(QString const &svc);
 QStringList getFeatureList(const QString &name, bool lines = false);
@@ -115,6 +116,8 @@ private:
 	VeQItem *mAudibleAlarm;
 	VeQItem *mAlarm;
 	Relay *mRelay;
+
+	VebusBackupServiceRegistrator *mVebusBackup;
 
 	DaemonToolsService *mGuiSwitcher = nullptr;
 	bool mOnScreenGuiv2Supported;
