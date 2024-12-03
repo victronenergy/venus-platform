@@ -664,6 +664,8 @@ void Application::start()
 	mVenusServices = new VenusServices(mServices, this);
 	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
 
+	mVebusBackup = new VebusBackupServiceRegistrator(mService, mVenusServices, this);
+
 	new SecurityProfiles(mService, mSettings, mVenusServices, this);
 
 	// Handle buzer and relay alarms
