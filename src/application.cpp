@@ -117,8 +117,9 @@ int VeQItemReboot::setValue(const QVariant &value)
 	connect(timer, SIGNAL(timeout()), this, SLOT(doReboot()));
 	connect(timer, SIGNAL(timeout()), timer, SLOT(deleteLater())); // a bit silly, rebooting anyway..
 	timer->start(2000);
+	produceValue(1);
 
-	return VeQItemQuantity::setValue(1);
+	return 0;
 }
 
 void VeQItemReboot::doReboot()
