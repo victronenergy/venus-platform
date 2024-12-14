@@ -605,6 +605,7 @@ void Application::start()
 	mService = toDbus->services()->itemGetOrCreate("com.victronenergy.platform", false);
 
 	mService->itemGetOrCreateAndProduce("ProductName", "Venus");
+	mService->itemGetOrCreateAndProduce("DeviceInstance", "0");
 
 	manageDaemontoolsServices();
 
