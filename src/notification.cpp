@@ -19,11 +19,14 @@ Notification::Notification(Type type, const QString &devicename, const QString &
 	mActiveItem = mIndexItem->itemGetOrCreateAndProduce("Active", QVariant::fromValue(true));
 	mAcknowledgedItem = mIndexItem->itemGetOrCreateAndProduce("Acknowledged", QVariant::fromValue(false));
 	mIndexItem->itemGetOrCreateAndProduce("Description", description);
+
+	mAcknowledgedItem->getValueAndChanges(this, SLOT(acknowledgedItemChanged(QVariant)));
 }
 
 void Notification::setAcknowledged(bool acknowledged)
 {
 	if (acknowledged != isAcknowledged()) {
+		mAcknowledged = acknowledged;
 		mAcknowledgedItem->produceValue(QVariant::fromValue(acknowledged));
 		emit acknowledgedChanged(this);
 	}
