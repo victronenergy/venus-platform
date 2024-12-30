@@ -43,7 +43,7 @@ private:
 	QList<Notification *> mNotifications;
 	int const mMaxNotifications = 20;
 
-	VeQItem *mNoficationsItem;
+	VeQItem *mNotificationsItem;
 	VeQItem *mNumberOfNotificationsItem;
 	VeQItem *mNumberOfActiveNotificationsItem;
 	VeQItem *mAlarmItem;

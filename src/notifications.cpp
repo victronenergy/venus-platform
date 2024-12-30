@@ -7,12 +7,12 @@
 Notifications::Notifications(VeQItem *parentItem, QObject *parent) :
 	QObject(parent)
 {
-	mNoficationsItem = parentItem->itemGetOrCreate("Notifications");
-	mNumberOfNotificationsItem = mNoficationsItem->itemGetOrCreate("NumberOfNotifications");
-	mNumberOfActiveNotificationsItem = mNoficationsItem->itemGetOrCreate("NumberOfActiveNotifications");
-	mAlarmItem = mNoficationsItem->itemGetOrCreate("Alarm");
-	mAlertItem = mNoficationsItem->itemGetOrCreate("Alert");
-	mNoficationsItem->itemAddChild("SilenceAll", new VeQItemSilenceAll(this));
+	mNotificationsItem = parentItem->itemGetOrCreate("Notifications");
+	mNumberOfNotificationsItem = mNotificationsItem->itemGetOrCreate("NumberOfNotifications");
+	mNumberOfActiveNotificationsItem = mNotificationsItem->itemGetOrCreate("NumberOfActiveNotifications");
+	mAlarmItem = mNotificationsItem->itemGetOrCreate("Alarm");
+	mAlertItem = mNotificationsItem->itemGetOrCreate("Alert");
+	mNotificationsItem->itemAddChild("SilenceAll", new VeQItemSilenceAll(this));
 
 	//QTimer::singleShot(9000, this, SLOT(test()));
 }
@@ -89,7 +89,7 @@ Notification *Notifications::addNotification(Notification::Type type, const QStr
 		removeNotification(notification);
 	}
 
-	notification = new Notification(type, devicename, description, value, serviceName, alarmTrigger, alarmValue, mNoficationsItem, index, this);
+	notification = new Notification(type, devicename, description, value, serviceName, alarmTrigger, alarmValue, mNotificationsItem, index, this);
 	mNotifications.insert(0, notification);
 	connect(notification, SIGNAL(activeChanged(Notification *)), this, SLOT(activeChanged(Notification *)));
 	mNumberOfNotificationsItem->produceValue(mNotifications.length());
