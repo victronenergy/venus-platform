@@ -22,7 +22,7 @@ public:
 				const QString &alarmTrigger, const QVariant &alarmValue,
 				VeQItem *rootItem, int index, QObject *parent = 0);
 
-	bool isAcknowledged() const { return mAcknowledgedItem->getLocalValue().toBool(); }
+	bool isAcknowledged() const { return mAcknowledged; }
 	void setAcknowledged(bool acknowledged);
 
 	/*
@@ -40,9 +40,13 @@ signals:
 	void acknowledgedChanged(Notification *notification);
 	void activeChanged(Notification *notification);
 
+private slots:
+	void acknowledgedItemChanged(QVariant var) { setAcknowledged(var.toBool()); }
+
 private:
 	VeQItem *mAcknowledgedItem;
 	VeQItem *mActiveItem;
 	VeQItem *mIndexItem;
 	VeQItem *mTypeItem;
+	bool mAcknowledged;
 };

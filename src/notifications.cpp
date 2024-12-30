@@ -7,12 +7,24 @@
 Notifications::Notifications(VeQItem *parentItem, QObject *parent) :
 	QObject(parent)
 {
-	mNoficationsItem = parentItem->itemGetOrCreate("Notifications");
-	mNumberOfNotificationsItem = mNoficationsItem->itemGetOrCreate("NumberOfNotifications");
-	mNumberOfActiveNotificationsItem = mNoficationsItem->itemGetOrCreate("NumberOfActiveNotifications");
-	mAlarmItem = mNoficationsItem->itemGetOrCreate("Alarm");
-	mAlertItem = mNoficationsItem->itemGetOrCreate("Alert");
-	mNoficationsItem->itemAddChild("AcknowledgeAll", new VeQItemAcknowledgeAll(this));
+	mNotificationsItem = parentItem->itemGetOrCreate("Notifications");
+	mNumberOfNotificationsItem = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfNotifications", 0);
+	mNumberOfActiveNotificationsItem = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfActiveNotifications", 0);
+	mNumberOfActiveAlarms = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfActiveAlarms", 0);
+	mNumberOfActiveWarnings = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfActiveWarnings", 0);
+	mNumberOfActiveInformations = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfActiveInformations", 0);
+	mNumberOfUnAcknowledgedAlarms = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfUnAcknowledgedAlarms", 0);
+	mNumberOfUnAcknowledgedWarnings = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfUnAcknowledgedWarnings", 0);
+	mNumberOfUnAcknowledgedInformations = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfUnAcknowledgedInformations", 0);
+	mAlarmItem = mNotificationsItem->itemGetOrCreate("Alarm");
+	mAlertItem = mNotificationsItem->itemGetOrCreate("Alert");
+	mNumberOfNotificationsItem = mNotificationsItem->itemGetOrCreate("NumberOfNotifications");
+	mNumberOfActiveNotificationsItem = mNotificationsItem->itemGetOrCreate("NumberOfActiveNotifications");
+	mAlarmItem = mNotificationsItem->itemGetOrCreate("Alarm");
+	mAlertItem = mNotificationsItem->itemGetOrCreate("Alert");
+	mNotificationsItem->itemAddChild("AcknowledgeAll", new VeQItemAcknowledgeAll(this));
+	mNotificationsItem = parentItem->itemGetOrCreate("Notifications");
+
 
 	//QTimer::singleShot(9000, this, SLOT(test()));
 }
@@ -89,13 +101,26 @@ Notification *Notifications::addNotification(Notification::Type type, const QStr
 		removeNotification(notification);
 	}
 
-	notification = new Notification(type, devicename, description, value, serviceName, alarmTrigger, alarmValue, mNoficationsItem, index, this);
+	notification = new Notification(type, devicename, description, value, serviceName, alarmTrigger, alarmValue, mNotificationsItem, index, this);
 	mNotifications.insert(0, notification);
 	connect(notification, SIGNAL(activeChanged(Notification *)), this, SLOT(activeChanged(Notification *)));
+	connect(notification, SIGNAL(acknowledgedChanged(Notification *)), this, SLOT(acknowledgedChanged(Notification *)));
 	mNumberOfNotificationsItem->produceValue(mNotifications.length());
 
-	if (notification->type() == Notification::ALARM)
+	if (type == Notification::ALARM)
+	{
 		setAlarm(true);
+		mNumberOfActiveAlarms->produceValue(mNumberOfActiveAlarms->getValue().toInt() + 1);
+		mNumberOfUnAcknowledgedAlarms->produceValue(mNumberOfUnAcknowledgedAlarms->getValue().toInt() + 1);
+	} else if (type == Notification::WARNING)
+	{
+		mNumberOfActiveWarnings->produceValue(mNumberOfActiveWarnings->getValue().toInt() + 1);
+		mNumberOfUnAcknowledgedWarnings->produceValue(mNumberOfUnAcknowledgedWarnings->getValue().toInt() + 1);
+	} else
+	{
+		mNumberOfActiveInformations->produceValue(mNumberOfActiveInformations->getValue().toInt() + 1);
+		mNumberOfUnAcknowledgedInformations->produceValue(mNumberOfUnAcknowledgedInformations->getValue().toInt() + 1);
+	}
 
 	if (notification->isActive()) {
 		activeNotifications++;
@@ -109,6 +134,7 @@ Notification *Notifications::addNotification(Notification::Type type, const QStr
 void Notifications::removeNotification(Notification *notification)
 {
 	notification->setActive(false);
+	notification->setAcknowledged(true);
 	mNotifications.removeOne(notification);
 	delete notification;
 	updateAlarm();
@@ -117,9 +143,39 @@ void Notifications::removeNotification(Notification *notification)
 
 void Notifications::activeChanged(Notification *notification)
 {
-	Q_UNUSED(notification);
 	updateAlarm();
 	updateAlert();
+
+	if (notification->type() == Notification::ALARM)
+		mNumberOfActiveAlarms->produceValue(mNumberOfActiveAlarms->getValue().toInt() - 1);
+	else if (notification->type() == Notification::WARNING)
+		mNumberOfActiveWarnings->produceValue(mNumberOfActiveWarnings->getValue().toInt() - 1);
+	else
+		mNumberOfActiveInformations->produceValue(mNumberOfActiveInformations->getValue().toInt() - 1);
+}
+
+void Notifications::acknowledgedChanged(Notification *notification)
+{
+	updateAlarm();
+	updateAlert();
+
+	bool acknowledged = notification->isAcknowledged();
+	int numUnAcknowledged;
+	if (notification->type() == Notification::ALARM)
+	{
+		numUnAcknowledged = mNumberOfUnAcknowledgedAlarms->getValue().toInt();
+		mNumberOfUnAcknowledgedAlarms->produceValue(acknowledged ? numUnAcknowledged - 1: numUnAcknowledged + 1);
+	}
+	else if (notification->type() == Notification::WARNING)
+	{
+		numUnAcknowledged = mNumberOfUnAcknowledgedWarnings->getValue().toInt();
+		mNumberOfUnAcknowledgedWarnings->produceValue(acknowledged ? numUnAcknowledged - 1: numUnAcknowledged + 1);
+	}
+	else
+	{
+		numUnAcknowledged = mNumberOfUnAcknowledgedInformations->getValue().toInt();
+		mNumberOfUnAcknowledgedInformations->produceValue(acknowledged ? numUnAcknowledged - 1: numUnAcknowledged + 1);
+	}
 }
 
 void Notifications::test()

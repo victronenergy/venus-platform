@@ -32,6 +32,7 @@ signals:
 
 private slots:
 	void activeChanged(Notification *notification);
+	void acknowledgedChanged(Notification *notification);
 	void test();
 
 private:
@@ -43,9 +44,15 @@ private:
 	QList<Notification *> mNotifications;
 	int const mMaxNotifications = 20;
 
-	VeQItem *mNoficationsItem;
+	VeQItem *mNotificationsItem;
 	VeQItem *mNumberOfNotificationsItem;
 	VeQItem *mNumberOfActiveNotificationsItem;
+	VeQItem *mNumberOfActiveAlarms;
+	VeQItem *mNumberOfActiveWarnings;
+	VeQItem *mNumberOfActiveInformations;
+	VeQItem *mNumberOfUnAcknowledgedAlarms;
+	VeQItem *mNumberOfUnAcknowledgedWarnings;
+	VeQItem *mNumberOfUnAcknowledgedInformations;
 	VeQItem *mAlarmItem;
 	VeQItem *mAlertItem;
 };
