@@ -17,15 +17,15 @@ Notification::Notification(Type type, const QString &devicename, const QString &
 	mIndexItem->itemGetOrCreateAndProduce("Value", value);
 	mTypeItem = mIndexItem->itemGetOrCreateAndProduce("Type", type);
 	mActiveItem = mIndexItem->itemGetOrCreateAndProduce("Active", 1);
-	mAcknowledgedItem = mIndexItem->itemGetOrCreateAndProduce("Acknowledged", QVariant::fromValue(false));
+	mSilencedItem = mIndexItem->itemGetOrCreateAndProduce("Silenced", QVariant::fromValue(false));
 	mIndexItem->itemGetOrCreateAndProduce("Description", description);
 }
 
-void Notification::setAcknowledged(bool acknowledged)
+void Notification::setSilenced(bool silenced)
 {
-	if (acknowledged != isAcknowledged()) {
-		mAcknowledgedItem->produceValue(QVariant::fromValue(acknowledged));
-		emit acknowledgedChanged(this);
+	if (silenced != isSilenced()) {
+		mSilencedItem->produceValue(QVariant::fromValue(silenced));
+		emit silencedChanged(this);
 	}
 }
 

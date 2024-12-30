@@ -24,7 +24,7 @@ public:
 									const QString &serviceName = "");
 
 	void removeNotification(Notification *notification);
-	void acknowledgedAll();
+	void silenceAll();
 
 signals:
 	void alertChanged();
@@ -51,18 +51,18 @@ private:
 };
 
 
-class VeQItemAcknowledgeAll : public VeQItemAction {
+class VeQItemSilenceAll : public VeQItemAction {
 	Q_OBJECT
 
 public:
-	VeQItemAcknowledgeAll(Notifications *notifications) :
+	VeQItemSilenceAll(Notifications *notifications) :
 		VeQItemAction(),
 		mNotifications(notifications)
 	{}
 
 	int setValue(const QVariant &value) override
 	{
-		mNotifications->acknowledgedAll();
+		mNotifications->silenceAll();
 		return VeQItemAction::setValue(value);
 	}
 

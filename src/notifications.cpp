@@ -12,15 +12,15 @@ Notifications::Notifications(VeQItem *parentItem, QObject *parent) :
 	mNumberOfActiveNotificationsItem = mNoficationsItem->itemGetOrCreate("NumberOfActiveNotifications");
 	mAlarmItem = mNoficationsItem->itemGetOrCreate("Alarm");
 	mAlertItem = mNoficationsItem->itemGetOrCreate("Alert");
-	mNoficationsItem->itemAddChild("AcknowledgeAll", new VeQItemAcknowledgeAll(this));
+	mNoficationsItem->itemAddChild("SilenceAll", new VeQItemSilenceAll(this));
 
 	//QTimer::singleShot(9000, this, SLOT(test()));
 }
 
-void Notifications::acknowledgedAll()
+void Notifications::silenceAll()
 {
 	for (Notification *notification: mNotifications)
-		notification->setAcknowledged(true);
+		notification->setSilenced(true);
 
 	setAlert(false);
 	setAlarm(false);
@@ -29,7 +29,7 @@ void Notifications::acknowledgedAll()
 void Notifications::updateAlert()
 {
 	for (Notification *notification: mNotifications) {
-		if (!notification->isAcknowledged()) {
+		if (!notification->isSilenced()) {
 			setAlert(true);
 			return;
 		}
@@ -46,7 +46,7 @@ void Notifications::updateAlarm()
 	for (Notification *notification: mNotifications) {
 		if (notification->isActive()) {
 			activeNotifications++;
-			if (!alarm && notification->type() == Notification::ALARM && !notification->isAcknowledged()) {
+			if (!alarm && notification->type() == Notification::ALARM && !notification->isSilenced()) {
 				alarm = true;
 			}
 		}

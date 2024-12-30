@@ -22,12 +22,12 @@ public:
 				const QString &alarmTrigger, const QVariant &alarmValue,
 				VeQItem *rootItem, int index, QObject *parent = 0);
 
-	bool isAcknowledged() const { return mAcknowledgedItem->getLocalValue().toBool(); }
-	void setAcknowledged(bool acknowledged);
+	bool isSilenced() const { return mSilencedItem->getLocalValue().toBool(); }
+	void setSilenced(bool silenced);
 
 	/*
 	 * By default notifications are active. Alarms condition can disappear
-	 * however while the alarm has not been acknowledged yet. In that case
+	 * however while the alarm has not been silenced yet. In that case
 	 * active becomes false.
 	 */
 	bool isActive() const { return mActiveItem->getLocalValue().toBool(); }
@@ -37,11 +37,11 @@ public:
 	int getIndex() const { return mIndexItem->id().toInt(); }
 
 signals:
-	void acknowledgedChanged(Notification *notification);
+	void silencedChanged(Notification *notification);
 	void activeChanged(Notification *notification);
 
 private:
-	VeQItem *mAcknowledgedItem;
+	VeQItem *mSilencedItem;
 	VeQItem *mActiveItem;
 	VeQItem *mIndexItem;
 	VeQItem *mTypeItem;
