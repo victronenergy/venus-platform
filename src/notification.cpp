@@ -19,11 +19,18 @@ Notification::Notification(Type type, const QString &devicename, const QString &
 	mActiveItem = mIndexItem->itemGetOrCreateAndProduce("Active", 1);
 	mSilencedItem = mIndexItem->itemGetOrCreateAndProduce("Silenced", QVariant::fromValue(false));
 	mIndexItem->itemGetOrCreateAndProduce("Description", description);
+	mSilencedItem->getValueAndChanges(this, SLOT(silencedItemChanged(QVariant)));
+}
+
+void Notification::silencedItemChanged(QVariant var)
+{
+	setSilenced(var.toBool());
 }
 
 void Notification::setSilenced(bool silenced)
 {
 	if (silenced != isSilenced()) {
+		mSilenced = silenced;
 		mSilencedItem->produceValue(QVariant::fromValue(silenced));
 		emit silencedChanged(this);
 	}

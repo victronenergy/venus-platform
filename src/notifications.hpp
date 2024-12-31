@@ -32,6 +32,7 @@ signals:
 
 private slots:
 	void activeChanged(Notification *notification);
+	void silencedChanged(Notification *notification);
 	void test();
 
 private:
@@ -46,6 +47,12 @@ private:
 	VeQItem *mNotificationsItem;
 	VeQItem *mNumberOfNotificationsItem;
 	VeQItem *mNumberOfActiveNotificationsItem;
+	VeQItem *mNumberOfActiveAlarms;
+	VeQItem *mNumberOfActiveWarnings;
+	VeQItem *mNumberOfActiveInformations;
+	VeQItem *mNumberOfUnsilencedAlarms;
+	VeQItem *mNumberOfUnsilencedWarnings;
+	VeQItem *mNumberOfUnsilencedInformations;
 	VeQItem *mAlarmItem;
 	VeQItem *mAlertItem;
 };

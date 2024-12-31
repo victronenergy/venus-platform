@@ -8,8 +8,14 @@ Notifications::Notifications(VeQItem *parentItem, QObject *parent) :
 	QObject(parent)
 {
 	mNotificationsItem = parentItem->itemGetOrCreate("Notifications");
-	mNumberOfNotificationsItem = mNotificationsItem->itemGetOrCreate("NumberOfNotifications");
-	mNumberOfActiveNotificationsItem = mNotificationsItem->itemGetOrCreate("NumberOfActiveNotifications");
+	mNumberOfNotificationsItem = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfNotifications", 0);
+	mNumberOfActiveNotificationsItem = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfActiveNotifications", 0);
+	mNumberOfActiveAlarms = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfActiveAlarms", 0);
+	mNumberOfActiveWarnings = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfActiveWarnings", 0);
+	mNumberOfActiveInformations = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfActiveInformations", 0);
+	mNumberOfUnsilencedAlarms = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfUnsilencedAlarms", 0);
+	mNumberOfUnsilencedWarnings = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfUnsilencedWarnings", 0);
+	mNumberOfUnsilencedInformations = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfUnsilencedInformations", 0);
 	mAlarmItem = mNotificationsItem->itemGetOrCreate("Alarm");
 	mAlertItem = mNotificationsItem->itemGetOrCreate("Alert");
 	mNotificationsItem->itemAddChild("SilenceAll", new VeQItemSilenceAll(this));
@@ -92,10 +98,23 @@ Notification *Notifications::addNotification(Notification::Type type, const QStr
 	notification = new Notification(type, devicename, description, value, serviceName, alarmTrigger, alarmValue, mNotificationsItem, index, this);
 	mNotifications.insert(0, notification);
 	connect(notification, SIGNAL(activeChanged(Notification *)), this, SLOT(activeChanged(Notification *)));
+	connect(notification, SIGNAL(silencedChanged(Notification *)), this, SLOT(silencedChanged(Notification *)));
 	mNumberOfNotificationsItem->produceValue(mNotifications.length());
 
 	if (notification->type() == Notification::ALARM)
+	{
 		setAlarm(true);
+		mNumberOfActiveAlarms->produceValue(mNumberOfActiveAlarms->getValue().toInt() + 1);
+		mNumberOfUnsilencedAlarms->produceValue(mNumberOfUnsilencedAlarms->getValue().toInt() + 1);
+	} else if (notification->type() == Notification::WARNING)
+	{
+		mNumberOfActiveWarnings->produceValue(mNumberOfActiveWarnings->getValue().toInt() + 1);
+		mNumberOfUnsilencedWarnings->produceValue(mNumberOfUnsilencedWarnings->getValue().toInt() + 1);
+	} else
+	{
+		mNumberOfActiveInformations->produceValue(mNumberOfActiveInformations->getValue().toInt() + 1);
+		mNumberOfUnsilencedInformations->produceValue(mNumberOfUnsilencedInformations->getValue().toInt() + 1);
+	}
 
 	if (notification->isActive()) {
 		activeNotifications++;
@@ -117,9 +136,36 @@ void Notifications::removeNotification(Notification *notification)
 
 void Notifications::activeChanged(Notification *notification)
 {
-	Q_UNUSED(notification);
 	updateAlarm();
 	updateAlert();
+
+	if (notification->type() == Notification::ALARM)
+		mNumberOfActiveAlarms->produceValue(mNumberOfActiveAlarms->getValue().toInt() - 1);
+	else if (notification->type() == Notification::WARNING)
+		mNumberOfActiveWarnings->produceValue(mNumberOfActiveWarnings->getValue().toInt() - 1);
+	else
+		mNumberOfActiveInformations->produceValue(mNumberOfActiveInformations->getValue().toInt() - 1);
+}
+
+void Notifications::silencedChanged(Notification *notification)
+{
+	bool silenced = notification->isSilenced();
+	int numUnsilenced;
+	if (notification->type() == Notification::ALARM)
+	{
+		numUnsilenced = mNumberOfUnsilencedAlarms->getValue().toInt();
+		mNumberOfUnsilencedAlarms->produceValue(silenced ? numUnsilenced - 1: numUnsilenced + 1);
+	}
+	else if (notification->type() == Notification::WARNING)
+	{
+		numUnsilenced = mNumberOfUnsilencedWarnings->getValue().toInt();
+		mNumberOfUnsilencedWarnings->produceValue(silenced ? numUnsilenced - 1: numUnsilenced + 1);
+	}
+	else
+	{
+		numUnsilenced = mNumberOfUnsilencedInformations->getValue().toInt();
+		mNumberOfUnsilencedInformations->produceValue(silenced ? numUnsilenced - 1: numUnsilenced + 1);
+	}
 }
 
 void Notifications::test()

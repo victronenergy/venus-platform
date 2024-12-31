@@ -22,7 +22,7 @@ public:
 				const QString &alarmTrigger, const QVariant &alarmValue,
 				VeQItem *rootItem, int index, QObject *parent = 0);
 
-	bool isSilenced() const { return mSilencedItem->getLocalValue().toBool(); }
+	bool isSilenced() const { return mSilenced; }
 	void setSilenced(bool silenced);
 
 	/*
@@ -40,9 +40,13 @@ signals:
 	void silencedChanged(Notification *notification);
 	void activeChanged(Notification *notification);
 
+private slots:
+	void silencedItemChanged(QVariant);
+
 private:
 	VeQItem *mSilencedItem;
 	VeQItem *mActiveItem;
 	VeQItem *mIndexItem;
 	VeQItem *mTypeItem;
+	bool mSilenced;
 };
