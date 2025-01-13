@@ -72,7 +72,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="53"/>
       <source>Under voltage</source>
-      <translation>Alçak gerilim</translation>
+      <translation>Düşük Voltaj</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="56"/>
@@ -150,7 +150,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="10"/>
       <source>Battery high voltage</source>
-      <translation>Akü yüksek gerilimi</translation>
+      <translation>Akü yüksek voltaj</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="11"/>
@@ -187,7 +187,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="19"/>
       <source>Battery high ripple voltage</source>
-      <translation>Akü yüksek dalgalanma gerilimi</translation>
+      <translation>Akü yüksek ripple voltaj</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="20"/>
@@ -197,7 +197,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="21"/>
       <source>Battery mid-point voltage issue</source>
-      <translation>Akü orta nokta gerilim sorunu</translation>
+      <translation>Akü orta-nokta voltaj sorunu</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="22"/>
@@ -292,7 +292,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="42"/>
       <source>Input voltage absent</source>
-      <translation>Giriş gerilimi yok</translation>
+      <translation>Giriş voltaj yok</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="43"/>
@@ -307,7 +307,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="45"/>
       <source>Input internal failure</source>
-      <translation>Giriş dahili arızası</translation>
+      <translation>Giriş intern arızası</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="47"/>
@@ -607,12 +607,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="249"/>
       <source>Low starter voltage</source>
-      <translation>Düşük starter gerilimi</translation>
+      <translation>Düşük starter voltaj</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="250"/>
       <source>High starter voltage</source>
-      <translation>Yüksek starter gerilimi</translation>
+      <translation>Yüksek starter voltaj</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="251"/>
@@ -637,12 +637,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="254"/>
       <source>Low-fused voltage</source>
-      <translation>Düşük sigortalı gerilim</translation>
+      <translation>Düşük sigortalı voltaj</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="255"/>
       <source>High-fused voltage</source>
-      <translation>Yüksek sigortalı gerilim</translation>
+      <translation>Yüksek sigortalı voltaj</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="256"/>
@@ -657,7 +657,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="258"/>
       <source>Internal failure</source>
-      <translation>Dahili arıza</translation>
+      <translation>Intern arıza</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="259"/>
@@ -667,12 +667,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="260"/>
       <source>Cell imbalance</source>
-      <translation>Hücre dengesizliği</translation>
+      <translation>Hücre dengesiz</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="261"/>
       <source>Low cell voltage</source>
-      <translation>Düşük hücre gerilimi</translation>
+      <translation>Düşük hücre voltaj</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="262"/>
@@ -692,7 +692,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="267"/>
       <source>Distributor %1 connection lost</source>
-      <translation>Distributor %1 connection lost</translation>
+      <translation>Distribütör %1 bağlantısı kesildi</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="275"/>
@@ -721,14 +721,14 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="335"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="342"/>
       <source>Low battery voltage</source>
-      <translation>Düşük akü gerilimi</translation>
+      <translation>Düşük akü voltaj</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="295"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="329"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="355"/>
       <source>High DC ripple</source>
-      <translation>Yüksek DC dalgalanması</translation>
+      <translation>Yüksek DC ripple</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="296"/>
@@ -783,7 +783,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="318"/>
       <source>BMS pre-alarm</source>
-      <translation>BMS ön alarmı</translation>
+      <translation>BMS ön-alarmı</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="319"/>
@@ -794,7 +794,7 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="323"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="348"/>
       <source>Low batttery voltage</source>
-      <translation>Düşük batarya voltajı</translation>
+      <translation>Düşük akü voltajı</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="324"/>
@@ -802,19 +802,19 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="343"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="349"/>
       <source>High battery voltage</source>
-      <translation>Yüksek akü gerilimi</translation>
+      <translation>Yüksek akü voltajı</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="325"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="350"/>
       <source>Low AC voltage</source>
-      <translation>Düşük AC gerilimi</translation>
+      <translation>Düşük AC voltajı</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="326"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="351"/>
       <source>High AC voltage</source>
-      <translation>Yüksek AC gerilimi</translation>
+      <translation>Yüksek AC voltajı</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="327"/>
@@ -851,7 +851,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="378"/>
       <source>Grid meter not found #49</source>
-      <translation>Şebeke ölçer bulunamadı #49</translation>
+      <translation>Şebeke Meter bulunamadı #49</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="383"/>
@@ -927,17 +927,17 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="222"/>
       <source>Voltage sense error</source>
-      <translation>Gerilim algılama hatası</translation>
+      <translation>Voltaj algılama hatası</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="223"/>
       <source>Low battery voltage</source>
-      <translation>Düşük akü gerilimi</translation>
+      <translation>Düşük akü voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="224"/>
       <source>High DC ripple</source>
-      <translation>Yüksek DC dalgalanması</translation>
+      <translation>Yüksek DC ripple</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="225"/>
@@ -982,7 +982,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="245"/>
       <source>BMS pre-alarm</source>
-      <translation>BMS ön alarmı</translation>
+      <translation>BMS ön-alarmı</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="246"/>
@@ -1015,7 +1015,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="22"/>
       <source>Overvoltage on AC-out</source>
-      <translation>AC-çıkışında aşırı gerilim</translation>
+      <translation>AC-çıkışında aşırı voltajı</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="25"/>
@@ -1025,7 +1025,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="28"/>
       <source>VE.Bus BMS without assistant</source>
-      <translation>Yardımsız VE veri yolu  BMS</translation>
+      <translation>Assistantsız VE.Bus BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="31"/>
@@ -1065,7 +1065,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="52"/>
       <source>Overvoltage has occurred</source>
-      <translation>Aşırı gerilim oluştu</translation>
+      <translation>Aşırı voltajı oluştu</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="55"/>
@@ -1090,7 +1090,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="67"/>
       <source>Internal error</source>
-      <translation>Dahili hata</translation>
+      <translation>Intern hata</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="70"/>
@@ -1100,7 +1100,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="73"/>
       <source>VE.Bus error</source>
-      <translation>VE.Veri yolu hatası</translation>
+      <translation>VE.Bus hatası</translation>
     </message>
   </context>
   <context>
@@ -1108,7 +1108,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="116"/>
       <source>Internal error</source>
-      <translation>Dahili hata</translation>
+      <translation>Intern hata</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="121"/>
@@ -1123,7 +1123,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="127"/>
       <source>Battery high voltage</source>
-      <translation>Akü yüksek gerilimi</translation>
+      <translation>Akü yüksek voltajı</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="130"/>
@@ -1158,7 +1158,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="149"/>
       <source>Alternator low voltage</source>
-      <translation>Alternatör düsük gerilim</translation>
+      <translation>Alternatör düsük voltajı</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="152"/>
@@ -1183,7 +1183,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="164"/>
       <source>Battery instance ouf of range</source>
-      <translation>Menzil dışında akü örneği</translation>
+      <translation>Battery instance ouf of range</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="167"/>
@@ -1208,17 +1208,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="179"/>
       <source>Battery high current disconnect</source>
-      <translation>Akü yüksek akım bağlantısı</translation>
+      <translation>Akü yüksek akım bağlantı kesme</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="182"/>
       <source>Battery high temperature disconnect</source>
-      <translation>Akü yüksek sıcaklık bağlantısı</translation>
+      <translation>Akü yüksek sıcaklık bağlantı kesme</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="185"/>
       <source>Battery low temperature disconnect</source>
-      <translation>Akü düşük sıcaklık bağlantısı</translation>
+      <translation>Akü düşük sıcaklık bağlantı kesme</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="188"/>
@@ -1316,12 +1316,12 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="298"/>
       <source>Low starter voltage</source>
-      <translation>Düşük starter gerilimi</translation>
+      <translation>Düşük starter voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="299"/>
       <source>High starter voltage</source>
-      <translation>Yüksek starter gerilimi</translation>
+      <translation>Yüksek starter voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="300"/>
@@ -1336,17 +1336,17 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="302"/>
       <source>Mid-point voltage</source>
-      <translation>Orta nokta gerilimi</translation>
+      <translation>Orta nokta voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="303"/>
       <source>Low-fused voltage</source>
-      <translation>Düşük sigortalı gerilim</translation>
+      <translation>Düşük sigortalı voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="304"/>
       <source>High-fused voltage</source>
-      <translation>Yüksek sigortalı gerilim</translation>
+      <translation>Yüksek sigortalı voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="305"/>
@@ -1377,7 +1377,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="310"/>
       <source>Low cell voltage</source>
-      <translation>Düşük hücre gerilimi</translation>
+      <translation>Düşük hücre voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="311"/>
@@ -1418,7 +1418,7 @@
       <location filename="../src/alarm_item.cpp" line="86"/>
       <location filename="../src/alarm_item.cpp" line="103"/>
       <source>Low battery voltage</source>
-      <translation>Düşük akü gerilimi</translation>
+      <translation>Düşük akü voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="63"/>
@@ -1426,7 +1426,7 @@
       <location filename="../src/alarm_item.cpp" line="87"/>
       <location filename="../src/alarm_item.cpp" line="104"/>
       <source>High battery voltage</source>
-      <translation>Yüksek akü gerilimi</translation>
+      <translation>Yüksek akü voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="64"/>
@@ -1444,13 +1444,13 @@
       <location filename="../src/alarm_item.cpp" line="88"/>
       <location filename="../src/alarm_item.cpp" line="105"/>
       <source>Low AC voltage</source>
-      <translation>Düşük AC gerilimi</translation>
+      <translation>Düşük AC voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="89"/>
       <location filename="../src/alarm_item.cpp" line="106"/>
       <source>High AC voltage</source>
-      <translation>Yüksek AC gerilimi</translation>
+      <translation>Yüksek AC voltaj</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="90"/>
@@ -1468,7 +1468,7 @@
       <location filename="../src/alarm_item.cpp" line="93"/>
       <location filename="../src/alarm_item.cpp" line="109"/>
       <source>High DC ripple</source>
-      <translation>Yüksek DC dalgalanması</translation>
+      <translation>Yüksek DC ripple</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="94"/>
