@@ -75,6 +75,7 @@ protected slots:
 	void onCanInterfacesChanged();
 	void onDemoSettingChanged(QVariant var);
 	void onEvccSettingChanged(QVariant var);
+	void onTailscaleSettingChanged(QVariant var);
 	void onLanguageChanged(QVariant var);
 	void onLocalSettingsStateChanged(VeQItem::State state);
 	void onLocalSettingsTimeout();
@@ -128,6 +129,8 @@ private:
 
 	DaemonToolsService *mGeneratorStarter = nullptr;
 	DaemonToolsService *mParallelBmsStarter = nullptr;
+	DaemonToolsService *mTailscaleBackend = nullptr;
+	DaemonToolsService *mTailscaleControl = nullptr;
 	QList<QString> mGeneratorStarterConditions;
 	QList<QString> mParallelBmsConditions;
 
