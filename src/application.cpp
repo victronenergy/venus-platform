@@ -641,6 +641,10 @@ void Application::start()
 	proc->waitForFinished();
 	mService->itemGetOrCreateAndProduce("Device/UniqueId", QString(proc->readAllStandardOutput().trimmed()));
 
+	proc = Application::spawn("/usr/bin/product-id");
+	proc->waitForFinished();
+	mService->itemGetOrCreateAndProduce("Device/ProductId", QString(proc->readAllStandardOutput().trimmed()));
+
 	int error = dataPartionError() ? 1 : 0;
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionError", error);
 
