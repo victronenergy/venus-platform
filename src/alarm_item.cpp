@@ -331,6 +331,7 @@ BatteryAlarms::BatteryAlarms(VenusService *service, Notifications *notications) 
 	addTripplet(tr("Low cell voltage"),					"/Alarms/LowCellVoltage",						nullptr,		"/System/MinCellVoltage");
 	addTripplet(tr("Bad contactor"),					"/Alarms/Contactor",							nullptr,		"");
 	addTripplet(tr("BMS cable fault"),					"/Alarms/BmsCable",								nullptr,		"");
+	addTripplet(tr("To update battery: https://ve3.nl/ngut"), "/Alarms/FirmwareUpdateFailure",			nullptr,		"");
 	addErrorFlag(tr("Communication error"),				"/Errors/SmartLithium/Communication",			nullptr);
 	addErrorFlag(tr("Invalid battery configuration"),	"/Errors/SmartLithium/InvalidConfiguration",	nullptr);
 	addErrorFlag(tr("Incorrect number of batteries"),	"/Errors/SmartLithium/NrOfBatteries",			nullptr);
