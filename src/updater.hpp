@@ -85,7 +85,7 @@ private slots:
 	void checkFile(const QString &fileName);
 
 private:
-	void getUpdateInfoFromFile(QString const &fileName);
+	void getUpdateInfoFromFile(QString const &fileName, QString const &feed);
 	void getRootfsInfoFromFile(QString const &fileName);
 	void touchFile(QString const &fileName);
 	void getVersionInfoFromLine(QString const &line, QVariant &build, QVariant &version);
