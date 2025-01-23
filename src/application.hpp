@@ -33,6 +33,15 @@ private slots:
 	void doReboot();
 };
 
+class VeQItemForceFirmwareReinstall : public VeQItemAction {
+	Q_OBJECT
+
+public:
+	VeQItemForceFirmwareReinstall() : VeQItemAction() {}
+	int setValue(const QVariant &value) override;
+
+};
+
 class VeQItemNodeRedReset : public VeQItemAction {
 	Q_OBJECT
 
