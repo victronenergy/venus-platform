@@ -33,6 +33,17 @@ private slots:
 	void doReboot();
 };
 
+class VeQItemModificationChecksStartCheck : public VeQItemAction {
+	Q_OBJECT
+
+public:
+	VeQItemModificationChecksStartCheck(VeQItem *service) : VeQItemAction(), mService(service) {}
+	int setValue(const QVariant &value) override;
+
+private:
+	VeQItem *mService;
+};
+
 class VeQItemForceReleaseFirmwareReinstall : public VeQItemAction {
 	Q_OBJECT
 
@@ -82,6 +93,7 @@ protected slots:
 	void onCanInterfacesChanged();
 	void onDemoSettingChanged(QVariant var);
 	void onEvccSettingChanged(QVariant var);
+	void onAllModificationsEnabledChanged(QVariant var);
 	void onLanguageChanged(QVariant var);
 	void onLocalSettingsStateChanged(VeQItem::State state);
 	void onLocalSettingsTimeout();
@@ -123,6 +135,7 @@ private:
 	AlarmBusitems *mAlarmBusitems;
 	VeQItem *mAudibleAlarm;
 	VeQItem *mAlarm;
+	VeQItem *mModificationChecksStartCheck;
 	Relay *mRelay;
 
 	DaemonToolsService *mGuiSwitcher = nullptr;

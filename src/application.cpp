@@ -136,6 +136,67 @@ void VeQItemReboot::doReboot()
 	kill(1, SIGINT);
 }
 
+int VeQItemModificationChecksStartCheck::setValue(const QVariant &value)
+{
+	Q_UNUSED(value);
+
+	// check data partition free space
+	QProcess processFreeSpace;
+	processFreeSpace.start("sh", QStringList() << "-c" << "df -B1 /data | awk 'NR==2 {print $4}'");
+	processFreeSpace.waitForFinished();
+	QString freeSpace = processFreeSpace.readAllStandardOutput().trimmed();
+	qDebug() << "[Modification checks] data partition free space:" << freeSpace;
+	mService->itemGet("ModificationChecks/DataPartitionFreeSpace")->setValue(freeSpace);
+
+	// run "/usr/sbin/fsmodified /" and save the result
+	QProcess process;
+	process.start("/usr/sbin/fsmodified", QStringList() << "/");
+	process.waitForFinished();
+	QString result = process.readAllStandardOutput().trimmed();
+	qDebug() << "[Modification checks] fsmodified result:" << result;
+
+	if (result == "clean") {
+		mService->itemGet("ModificationChecks/FsModifiedState")->setValue(0);
+	} else {
+		mService->itemGet("ModificationChecks/FsModifiedState")->setValue(1);
+	}
+
+	// create variable to check if multiple files are present
+	int systemHooksState = 0;
+	if (QFile::exists("/data/rc.local.disabled")) {
+		qDebug() << "[Modification checks] /data/rc.local.disabled present";
+		systemHooksState += 1;
+	}
+	if (QFile::exists("/data/rcS.local.disabled")) {
+		qDebug() << "[Modification checks] /data/rcS.local.disabled present";
+		systemHooksState += 2;
+	}
+	if (QFile::exists("/data/rc.local")) {
+		qDebug() << "[Modification checks] /data/rc.local present";
+		systemHooksState += 4;
+	}
+	if (QFile::exists("/data/rcS.local")) {
+		qDebug() << "[Modification checks] /data/rcS.local present";
+		systemHooksState += 8;
+	}
+	if (QFile::exists("/run/venus/custom-rc")) {
+		qDebug() << "[Modification checks] /run/venus/custom-rc present";
+		systemHooksState += 16;
+	}
+	mService->itemGet("ModificationChecks/SystemHooksState")->setValue(systemHooksState);
+
+	// Check if ssh key for root is present
+	if (QFile::exists("/data/home/root/.ssh/authorized_keys")) {
+		qDebug() << "[Modification checks] ssh key for root is present";
+		mService->itemGet("ModificationChecks/SshKeyForRootPresent")->setValue(1);
+	} else {
+		qDebug() << "[Modification checks] ssh key for root is not present";
+		mService->itemGet("ModificationChecks/SshKeyForRootPresent")->setValue(0);
+	}
+
+	return VeQItemAction::setValue(value);
+}
+
 int VeQItemForceReleaseFirmwareReinstall::setValue(const QVariant &value)
 {
 	Q_UNUSED(value);
@@ -245,6 +306,9 @@ public:
 		add("System/LogLevel", 2, 0, 0);
 		add("System/ReleaseType", 0, 0, 3);
 		add("System/TimeZone", "/UTC");
+		add("System/ModificationChecks/AllModificationsEnabled", 1, 0, 1);
+		add("System/ModificationChecks/PreviousState/NodeRed", 0, 0, 2);
+		add("System/ModificationChecks/PreviousState/SignalK", 0, 0, 1);
 		add("System/Units/Temperature", "");
 		add("System/VolumeUnit", 0, 0, 0);
 		add("SystemSetup/SystemName", "");
@@ -538,6 +602,10 @@ void Application::manageDaemontoolsServices()
 		VeQItem *item =	mSettings->root()->itemGetOrCreate("Settings/Services/Evcc");
 		item->getValueAndChanges(this, SLOT(onEvccSettingChanged(QVariant)));
 	}
+
+	// Modification checks
+	item = mSettings->root()->itemGetOrCreate("Settings/System/ModificationChecks/AllModificationsEnabled");
+	item->getValueAndChanges(this, SLOT(onAllModificationsEnabledChanged(QVariant)));
 }
 
 void Application::init()
@@ -656,6 +724,20 @@ void Application::start()
 	proc->waitForFinished();
 	mService->itemGetOrCreateAndProduce("Device/ProductId", QString(proc->readAllStandardOutput().trimmed()));
 
+	QString model, serial;
+	QFile file("/sys/firmware/devicetree/base/model");
+	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		model = file.readLine().trimmed();
+	}
+
+	file.setFileName("/data/venus/serial-number");
+	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		serial = file.readLine().trimmed();
+	}
+
+	mService->itemGetOrCreateAndProduce("Device/Model", model);
+	mService->itemGetOrCreateAndProduce("Device/HQSerialNumber", serial);
+
 	int error = dataPartionError() ? 1 : 0;
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionError", error);
 
@@ -681,6 +763,14 @@ void Application::start()
 	mAudibleAlarm->getValueAndChanges(this, SLOT(onAlarmChanged(QVariant)));
 
 	mRelay = new Relay("dbus/com.victronenergy.system/Relay/0/State", mNotifications, this);
+
+	mService->itemGetOrCreateAndProduce("ModificationChecks/DataPartitionFreeSpace", QVariant());
+	mService->itemGetOrCreateAndProduce("ModificationChecks/FsModifiedState", QVariant());
+	mService->itemGetOrCreateAndProduce("ModificationChecks/SystemHooksState", QVariant());
+	mService->itemGetOrCreateAndProduce("ModificationChecks/SshKeyForRootPresent", QVariant());
+	mModificationChecksStartCheck = mService->itemGetOrCreate("ModificationChecks")->itemAddChild("StartCheck", new VeQItemModificationChecksStartCheck(mService));
+	// execute the check once to populate the values
+	mModificationChecksStartCheck->setValue(1);
 
 	// Force Reinstall
 	mService->itemGetOrCreate("ModificationChecks")->itemAddChild("ForceReleaseFirmwareReinstall", new VeQItemForceReleaseFirmwareReinstall());
@@ -749,6 +839,94 @@ void Application::onEvccSettingChanged(QVariant var)
 			system("svc -d /service/evcc");
 			QFile::remove("/service/evcc");
 		}
+	}
+}
+
+void Application::onAllModificationsEnabledChanged(QVariant var)
+{
+	if (!var.isValid())
+		return;
+
+	if (var.toBool()) {
+
+		// enable all third party integrations
+		// recover previous service states
+		if (serviceExists("node-red-venus")) {
+			int nodeRed = mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/NodeRed")->getValue().toInt();
+			if ( nodeRed > 0) {
+				qDebug() << "[Modification checks] Node-RED was enabled, restore state: " << nodeRed;
+				mSettings->root()->itemGet("Settings/Services/NodeRed")->setValue(nodeRed);
+				mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/NodeRed")->setValue(0);
+			}
+		}
+
+		// recover previous service states
+		if (serviceExists("signalk-server") && mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/SignalK")->getValue().toInt() == 1) {
+			qDebug() << "[Modification checks] SignalK was enabled, restore state";
+			mSettings->root()->itemGet("Settings/Services/SignalK")->setValue(1);
+			mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/SignalK")->setValue(0);
+		}
+
+		// enable /data/rc.local if it exists
+		if (QFile::exists("/data/rc.local.disabled")) {
+			if (!QFile::exists("/data/rc.local")) {
+				qDebug() << "[Modification checks] enabled /data/rc.local";
+				QFile::rename("/data/rc.local.disabled", "/data/rc.local");
+			} else {
+				qDebug() << "[Modification checks] /data/rc.local already exists, not enabling";
+			}
+		}
+
+		// enalbe /data/rcS.local if it exists
+		if (QFile::exists("/data/rcS.local.disabled")) {
+			if (!QFile::exists("/data/rcS.local")) {
+				qDebug() << "[Modification checks] enabled /data/rcS.local";
+				QFile::rename("/data/rcS.local.disabled", "/data/rcS.local");
+			} else {
+				qDebug() << "[Modification checks] /data/rcS.local already exists, not enabling";
+			}
+		}
+
+	} else {
+
+		// disable all third party integrations
+		// set Settings/Services/NodeRed to 0 and save previous state
+		if (serviceExists("node-red-venus")) {
+			int nodeRed = mSettings->root()->itemGet("Settings/Services/NodeRed")->getValue().toInt();
+			if (nodeRed > 0) {
+				qDebug() << "[Modification checks] Node-RED is enabled, save state and disable it";
+				mSettings->root()->itemGet("Settings/Services/NodeRed")->setValue(0);
+				mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/NodeRed")->setValue(nodeRed);
+			}
+		}
+
+		// set Settings/Services/SignalK to 0 and save previous state
+		if (serviceExists("signalk-server") && mSettings->root()->itemGet("Settings/Services/SignalK")->getValue().toInt() == 1) {
+			qDebug() << "[Modification checks] SignalK was enabled, save state and disable it";
+			mSettings->root()->itemGet("Settings/Services/SignalK")->setValue(0);
+			mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/SignalK")->setValue(1);
+		}
+
+		// disable /data/rc.local if it exists
+		if (QFile::exists("/data/rc.local")) {
+			qDebug() << "[Modification checks] disabled /data/rc.local";
+			// remove an existing file else rename will fail
+			if (QFile::exists("/data/rc.local.disabled")) {
+				QFile::remove("/data/rc.local.disabled");
+			}
+			QFile::rename("/data/rc.local", "/data/rc.local.disabled");
+		}
+
+		// disable /data/rcS.local if it exists
+		if (QFile::exists("/data/rcS.local")) {
+			qDebug() << "[Modification checks] disabled /data/rcS.local";
+			// remove an existing file else rename will fail
+			if (QFile::exists("/data/rcS.local.disabled")) {
+				QFile::remove("/data/rcS.local.disabled");
+			}
+			QFile::rename("/data/rcS.local", "/data/rcS.local.disabled");
+		}
+
 	}
 }
 
