@@ -136,6 +136,17 @@ void VeQItemReboot::doReboot()
 	kill(1, SIGINT);
 }
 
+int VeQItemForceReleaseFirmwareReinstall::setValue(const QVariant &value)
+{
+	Q_UNUSED(value);
+	qDebug() << "[Modification checks] force release firmware install";
+	QProcess *process = new QProcess(this);
+	process->start("/opt/victronenergy/swupdate-scripts/check-updates.sh", QStringList() << "-update" << "-force" << "-feed" << "0");
+	process->setProcessChannelMode(QProcess::ForwardedChannels);
+	produceValue(1);
+	return VeQItemAction::setValue(value);
+}
+
 static void cleanDir(const QString &dirName)
 {
 	QDir dir(dirName);
@@ -670,6 +681,9 @@ void Application::start()
 	mAudibleAlarm->getValueAndChanges(this, SLOT(onAlarmChanged(QVariant)));
 
 	mRelay = new Relay("dbus/com.victronenergy.system/Relay/0/State", mNotifications, this);
+
+	// Force Reinstall
+	mService->itemGetOrCreate("ModificationChecks")->itemAddChild("ForceReleaseFirmwareReinstall", new VeQItemForceReleaseFirmwareReinstall());
 
 	// Scan for dbus services
 	mVenusServices->initialScan();
