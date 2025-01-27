@@ -234,7 +234,8 @@ public:
 		add("System/LogLevel", 2, 0, 0);
 		add("System/ReleaseType", 0, 0, 3);
 		add("System/TimeZone", "/UTC");
-		add("System/Units/Temperature", "");
+		add("System/Units/Altitude", "meter");
+		add("System/Units/Temperature", "celsius");
 		add("System/VolumeUnit", 0, 0, 0);
 		add("SystemSetup/SystemName", "");
 		add("Vebus/AllowMk3Fw212Update", mk3update, 0, 2);
