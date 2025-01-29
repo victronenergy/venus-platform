@@ -9,6 +9,7 @@
 #include <veutil/qt/firmware_updater_data.hpp>
 
 QString updateFile = QString::fromUtf8("/var/run/swupdate-status");
+QString updateFileRelease = QString::fromUtf8("/var/run/swupdate-status-release");
 QString updateScript = QString::fromUtf8("/opt/victronenergy/swupdate-scripts/check-updates.sh");
 QString versionFile = QString::fromUtf8("/var/run/versions");
 QString setVersionScript = QString::fromUtf8("/opt/victronenergy/swupdate-scripts/set-version.sh");
@@ -80,14 +81,19 @@ void SwuUpdateMonitor::openSocket()
 int VeQItemCheckUpdate::setValue(const QVariant &value)
 {
 	qDebug() << "[Updater] checkUpdate";
+	QStringList arguments;
 
 	// NOTE: make sure the state is changed to checking, especially when checking
 	// for offline updates, the state file can change so rapidly that there is no
 	// time to read the state from it.
 	mState->produceValue(FirmwareUpdaterData::Checking);
-	QStringList arguments = QStringList() << "-check";
-	if (mOffline)
-		arguments << "-offline" << "-force";
+	if (value.toInt() == 2){
+		arguments = QStringList() << "-check" << "-feed" << "0";
+	} else {
+		arguments = QStringList() << "-check";
+		if (mOffline)
+			arguments << "-offline" << "-force";
+	}
 	Application::spawn(updateScript, arguments);
 
 	return VeQItemAction::setValue(value);
@@ -117,9 +123,11 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 	QObject(parent)
 {
 	touchFile(updateFile);
+	touchFile(updateFileRelease);
 	touchFile(versionFile);
 
 	mUpdateWatcher.addPath(updateFile);
+	mUpdateWatcher.addPath(updateFileRelease);
 	mUpdateWatcher.addPath(versionFile);
 
 	mItem = parentItem->itemGetOrCreate("Firmware");
@@ -154,9 +162,13 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 	offline->itemAddChild("AvailableBuild", new VeQItemQuantity());
 	offline->itemAddChild("Check", new VeQItemCheckUpdate(true, state));
 	offline->itemAddChild("Install", new VeQItemDoUpdate(true, progress, state));
+
+	VeQItem *release = mItem->itemGetOrCreate("Release");
+	release->itemAddChild("AvailableVersion", new VeQItemQuantity());
+	release->itemAddChild("AvailableBuild", new VeQItemQuantity());
 }
 
-void Updater::getUpdateInfoFromFile(QString const &fileName)
+void Updater::getUpdateInfoFromFile(QString const &fileName, QString const &feed)
 {
 	QFile file(fileName);
 
@@ -172,13 +184,19 @@ void Updater::getUpdateInfoFromFile(QString const &fileName)
 	int status = lines[0].trimmed().toInt() + FirmwareUpdaterData::Idle;
 
 	QVariant build, version;
-	getVersionInfoFromLine(lines[1], build, version);
-	mItem->itemGetOrCreateAndProduce("Online/AvailableVersion", version);
-	mItem->itemGetOrCreateAndProduce("Online/AvailableBuild", build);
+	if (feed == "release") {
+		getVersionInfoFromLine(lines[1], build, version);
+		mItem->itemGetOrCreateAndProduce("Release/AvailableVersion", version);
+		mItem->itemGetOrCreateAndProduce("Release/AvailableBuild", build);
+	} else {
+		getVersionInfoFromLine(lines[1], build, version);
+		mItem->itemGetOrCreateAndProduce("Online/AvailableVersion", version);
+		mItem->itemGetOrCreateAndProduce("Online/AvailableBuild", build);
 
-	getVersionInfoFromLine(lines[2], build, version);
-	mItem->itemGetOrCreateAndProduce("Offline/AvailableVersion", version);
-	mItem->itemGetOrCreateAndProduce("Offline/AvailableBuild", build);
+		getVersionInfoFromLine(lines[2], build, version);
+		mItem->itemGetOrCreateAndProduce("Offline/AvailableVersion", version);
+		mItem->itemGetOrCreateAndProduce("Offline/AvailableBuild", build);
+	}
 
 	// Installing starts with checking for an update first, ignore that state.
 	VeQItem *state = mItem->itemGet("State");
@@ -208,7 +226,9 @@ void Updater::getRootfsInfoFromFile(const QString &fileName)
 void Updater::checkFile(const QString &fileName)
 {
 	if (fileName == updateFile)
-		getUpdateInfoFromFile(fileName);
+		getUpdateInfoFromFile(fileName, "auto");
+	if (fileName == updateFileRelease)
+		getUpdateInfoFromFile(fileName, "release");
 	if (fileName == versionFile)
 		getRootfsInfoFromFile(fileName);
 }
