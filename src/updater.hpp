@@ -9,20 +9,26 @@
 
 class Updater;
 
+enum class FirmwareFeed {
+	Online,
+	Offline,
+	ForcedRelease,
+};
+
 class VeQItemCheckUpdate : public VeQItemAction {
 	Q_OBJECT
 
 public:
-	VeQItemCheckUpdate(bool offline, VeQItem *state) :
+	VeQItemCheckUpdate(enum FirmwareFeed feed, VeQItem *state) :
 		VeQItemAction(),
-		mOffline(offline),
+		mFeed(feed),
 		mState(state)
 	{}
 
 	int setValue(const QVariant &value) override;
 
 private:
-	bool mOffline;
+	enum FirmwareFeed mFeed;
 	VeQItem *mState;
 };
 

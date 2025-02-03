@@ -81,19 +81,25 @@ void SwuUpdateMonitor::openSocket()
 int VeQItemCheckUpdate::setValue(const QVariant &value)
 {
 	qDebug() << "[Updater] checkUpdate";
-	QStringList arguments;
 
 	// NOTE: make sure the state is changed to checking, especially when checking
 	// for offline updates, the state file can change so rapidly that there is no
 	// time to read the state from it.
 	mState->produceValue(FirmwareUpdaterData::Checking);
-	if (value.toInt() == 2){
-		arguments = QStringList() << "-check" << "-feed" << "0";
-	} else {
-		arguments = QStringList() << "-check";
-		if (mOffline)
-			arguments << "-offline" << "-force";
+
+	QStringList arguments = QStringList() << "-check";
+	switch (mFeed)
+	{
+	case FirmwareFeed::Offline:
+		arguments << "-offline" << "-force";
+		break;
+	case FirmwareFeed::ForcedRelease:
+		arguments << "-force" << "-feed" << "release" << "-status-file" << updateFileRelease;
+		break;
+	default:
+		;
 	}
+
 	Application::spawn(updateScript, arguments);
 
 	return VeQItemAction::setValue(value);
@@ -154,18 +160,19 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 	VeQItem *online = mItem->itemGetOrCreate("Online");
 	online->itemAddChild("AvailableVersion", new VeQItemQuantity());
 	online->itemAddChild("AvailableBuild", new VeQItemQuantity());
-	online->itemAddChild("Check", new VeQItemCheckUpdate(false, state));
+	online->itemAddChild("Check", new VeQItemCheckUpdate(FirmwareFeed::Online, state));
 	online->itemAddChild("Install", new VeQItemDoUpdate(false, progress, state));
 
 	VeQItem *offline = mItem->itemGetOrCreate("Offline");
 	offline->itemAddChild("AvailableVersion", new VeQItemQuantity());
 	offline->itemAddChild("AvailableBuild", new VeQItemQuantity());
-	offline->itemAddChild("Check", new VeQItemCheckUpdate(true, state));
+	offline->itemAddChild("Check", new VeQItemCheckUpdate(FirmwareFeed::Offline, state));
 	offline->itemAddChild("Install", new VeQItemDoUpdate(true, progress, state));
 
 	VeQItem *release = mItem->itemGetOrCreate("Release");
 	release->itemAddChild("AvailableVersion", new VeQItemQuantity());
 	release->itemAddChild("AvailableBuild", new VeQItemQuantity());
+	release->itemAddChild("Check", new VeQItemCheckUpdate(FirmwareFeed::ForcedRelease, state));
 }
 
 void Updater::getUpdateInfoFromFile(QString const &fileName, QString const &feed)
