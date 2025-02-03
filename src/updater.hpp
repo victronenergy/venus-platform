@@ -46,9 +46,9 @@ class VeQItemDoUpdate : public VeQItemAction
 	Q_OBJECT
 
 public:
-	VeQItemDoUpdate(bool offline, VeQItem *progress, VeQItem *state) :
+	VeQItemDoUpdate(enum FirmwareFeed feed, VeQItem *progress, VeQItem *state) :
 		VeQItemAction(),
-		mOffline(offline),
+		mFeed(feed),
 		mProgress(progress),
 		mState(state)
 	{}
@@ -56,7 +56,7 @@ public:
 	int setValue(const QVariant &value) override;
 
 private:
-	bool mOffline;
+	enum FirmwareFeed mFeed;
 	VeQItem *mProgress;
 	VeQItem *mState;
 };

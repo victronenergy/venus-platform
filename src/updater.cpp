@@ -116,10 +116,19 @@ int VeQItemDoUpdate::setValue(const QVariant &value)
 {
 	QStringList arguments = QStringList() << "-update";
 
-	if (mOffline)
+	switch (mFeed)
+	{
+	case FirmwareFeed::Offline:
 		arguments << "-offline" << "-force";
+		break;
+	case FirmwareFeed::ForcedRelease:
+		arguments << "-feed" << "release" << "-force";
+		break;
+	default:
+		;
+	}
 
-	qDebug() << "[Updater] Installing firmware";
+	qDebug() << "[Updater] Installing firmware" << arguments;
 	new SwuUpdateMonitor(updateScript, arguments, mProgress, mState);
 
 	return VeQItemAction::setValue(value);
@@ -161,18 +170,19 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 	online->itemAddChild("AvailableVersion", new VeQItemQuantity());
 	online->itemAddChild("AvailableBuild", new VeQItemQuantity());
 	online->itemAddChild("Check", new VeQItemCheckUpdate(FirmwareFeed::Online, state));
-	online->itemAddChild("Install", new VeQItemDoUpdate(false, progress, state));
+	online->itemAddChild("Install", new VeQItemDoUpdate(FirmwareFeed::Online, progress, state));
 
 	VeQItem *offline = mItem->itemGetOrCreate("Offline");
 	offline->itemAddChild("AvailableVersion", new VeQItemQuantity());
 	offline->itemAddChild("AvailableBuild", new VeQItemQuantity());
 	offline->itemAddChild("Check", new VeQItemCheckUpdate(FirmwareFeed::Offline, state));
-	offline->itemAddChild("Install", new VeQItemDoUpdate(true, progress, state));
+	offline->itemAddChild("Install", new VeQItemDoUpdate(FirmwareFeed::Offline, progress, state));
 
 	VeQItem *release = mItem->itemGetOrCreate("Release");
 	release->itemAddChild("AvailableVersion", new VeQItemQuantity());
 	release->itemAddChild("AvailableBuild", new VeQItemQuantity());
 	release->itemAddChild("Check", new VeQItemCheckUpdate(FirmwareFeed::ForcedRelease, state));
+	release->itemAddChild("Install", new VeQItemDoUpdate(FirmwareFeed::ForcedRelease, progress, state));
 }
 
 void Updater::getUpdateInfoFromFile(QString const &fileName, QString const &feed)
