@@ -753,11 +753,12 @@ void Application::start()
 
 	mRelay = new Relay("dbus/com.victronenergy.system/Relay/0/State", mNotifications, this);
 
-	mService->itemGetOrCreateAndProduce("ModificationChecks/DataPartitionFreeSpace", QVariant());
-	mService->itemGetOrCreateAndProduce("ModificationChecks/FsModifiedState", QVariant());
-	mService->itemGetOrCreateAndProduce("ModificationChecks/SystemHooksState", QVariant());
-	mService->itemGetOrCreateAndProduce("ModificationChecks/SshKeyForRootPresent", QVariant());
-	mModificationChecksStartCheck = mService->itemGetOrCreate("ModificationChecks")->itemAddChild("StartCheck", new VeQItemModificationChecksStartCheck(mService));
+	VeQItem *modChecks = mService->itemGetOrCreate("ModificationChecks");
+	modChecks->itemGetOrCreate("DataPartitionFreeSpace");
+	modChecks->itemGetOrCreate("FsModifiedState");
+	modChecks->itemGetOrCreate("SystemHooksState");
+	modChecks->itemGetOrCreate("SshKeyForRootPresent");
+	mModificationChecksStartCheck = modChecks->itemAddChild("StartCheck", new VeQItemModificationChecksStartCheck(mService));
 	// execute the check once to populate the values
 	mModificationChecksStartCheck->setValue(1);
 
