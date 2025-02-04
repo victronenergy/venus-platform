@@ -351,14 +351,8 @@ void Application::onRunningGuiVersionObtained(QVariant var)
 {
 	// Switch the index page of the webserver as well.
 	// make sure this is also done on device without gui-v2 / screen
-	if (mRunningGuiSetting.isValid() && var.isValid()) {
+	if (mRunningGuiSetting.isValid() && var.isValid())
 		system("/etc/venus/www.d/create-gui-redirect.sh");
-
-		// Since there is no way for gui-v1 to communicate with the browser,
-		// trigger a disconnect of the VNC connection.
-		if (!mGuiSwitcher && var.toInt() == 2)
-			system("killall websockify");
-	}
 	mRunningGuiSetting = var;
 
 	if (var.isValid() && !mOnScreenGuiv2Supported)

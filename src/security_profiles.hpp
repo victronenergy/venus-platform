@@ -119,7 +119,6 @@ public:
 	static void restartUpnp();
 
 private slots:
-	void checkVncWebsocket();
 	void onBridgeConfigChanged();
 	void onMqttAccessChanged(QVariant const &var);
 	void onSecurityProfileChanged(QVariant const &var);
@@ -130,7 +129,6 @@ private:
 	void enableMqttBridge(bool configChanged = false);
 	void enableMqttOnLan(bool enabled);
 	void enableMqttOnLanInsecure(bool enabled);
-	bool isPasswordProtected();
 
 	QVariant mMqttAccess;
 	QVariant mSecurityProfile;
@@ -144,9 +142,6 @@ private:
 	DaemonToolsService *mMqttRpc = nullptr;
 
 	VrmTunnelSetup *mTunnelSetup;
-
-	DaemonToolsService *mVncWebsocket = nullptr;
-	VeQItem *mVncEnabled = nullptr;
 
 	VeQItemMqttBridgeRegistrar *mMqttBridgeRegistrar;
 };

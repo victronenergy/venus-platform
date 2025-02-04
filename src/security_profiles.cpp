@@ -295,11 +295,6 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 
 	mTunnelSetup = new VrmTunnelSetup(pltService, settings, venusServices, this);
 
-	// handle the VNC websocket for gui-v1 remote console on LAN.
-	mVncWebsocket = new DaemonToolsService("/service/websockify-c");
-	mVncWebsocket->setSveCtlArgs(QStringList() << "-s" << "websockify-c");
-	mVncWebsocket->setRestart(false);
-
 	// NOTE: the setting is added system-wide in /etc/venus/settings, since several
 	// programs / scripts depend on it.
 	VeQItem *item = settings->root()->itemGetOrCreate("Settings/System/SecurityProfile");
@@ -310,12 +305,6 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 
 	item = settings->root()->itemGetOrCreate("Settings/Network/VrmPortal");
 	item->getValueAndChanges(this, SLOT(onVrmPortalChange(QVariant)));
-
-	mVncEnabled = settings->root()->itemGetOrCreate("Settings/System/VncLocal");
-	mVncEnabled->getValueAndChanges(this, SLOT(checkVncWebsocket()));
-
-	connect(qApp, SIGNAL(runningGuiVersionChanged()), this, SLOT(checkVncWebsocket()));
-	checkVncWebsocket();
 
 	enableMqttOnLan(false); // Disable LAN socket access by default, unless explicitly enabled.
 	mFlashMq = new DaemonToolsService("/service/flashmq", this);
@@ -336,7 +325,6 @@ void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
 	// Note: changing the Security Profile should be done though the SecurityApi
 	mSecurityProfile = var;
 	checkMqttOnLan();
-	checkVncWebsocket();
 }
 
 void SecurityProfiles::onVrmPortalChange(QVariant const &var)
@@ -485,33 +473,4 @@ void SecurityProfiles::enableMqttOnLanInsecure(bool enabled)
 bool SecurityProfiles::hasPasswordFile()
 {
 	return QFile("/data/conf/vncpassword.txt").exists();
-}
-
-bool SecurityProfiles::isPasswordProtected()
-{
-	QFile passwd("/data/conf/vncpassword.txt");
-	if (!passwd.open(QIODevice::ReadOnly))
-		return false;
-
-	return !QString::fromUtf8(passwd.readLine()).trimmed().isEmpty();
-}
-
-void SecurityProfiles::checkVncWebsocket()
-{
-	if (!mVncEnabled || !mVncWebsocket)
-		return;
-
-	// VNC over the websocket is needed for gui-v1 with VNC enabled. Futhermore it
-	// must be allowed; If no password file exists, it is disabled otherwise enabled.
-	// It exists for compatibility reasons. VncLocal = 0, VnvInternet = 1 and no password
-	// used to be a valid setup. New devices should always have a password or explicitly
-	// make create an empty password file.
-
-	bool vncEnabled = mVncEnabled->getLocalValue().toBool();
-	bool hasPassword = hasPasswordFile();
-	bool vncWsEnabled = vncEnabled && hasPassword && Application::runningGuiVersion() == 1;
-
-	qDebug() << "VNC enabled: " << vncEnabled << "vncOnLanAllowed: " << hasPassword <<
-				"vncWsEnabled: " << vncWsEnabled << "gui-version" << Application::runningGuiVersion();
-	mVncWebsocket->installOrRemove(vncWsEnabled);
 }
