@@ -293,11 +293,11 @@ public:
 		add("System/AutoUpdate", 2, 0, 3);
 		add("System/ImageType", 0, 0, 1);
 		add("System/LogLevel", 2, 0, 0);
-		add("System/ReleaseType", 0, 0, 3);
-		add("System/TimeZone", "/UTC");
 		add("System/ModificationChecks/AllModificationsEnabled", 1, 0, 1);
 		add("System/ModificationChecks/PreviousState/NodeRed", 0, 0, 2);
 		add("System/ModificationChecks/PreviousState/SignalK", 0, 0, 1);
+		add("System/ReleaseType", 0, 0, 3);
+		add("System/TimeZone", "/UTC");
 		add("System/Units/Temperature", "");
 		add("System/VolumeUnit", 0, 0, 0);
 		add("SystemSetup/SystemName", "");
