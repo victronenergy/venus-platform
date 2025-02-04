@@ -16,7 +16,7 @@ Notification::Notification(Type type, const QString &devicename, const QString &
 	mIndexItem->itemGetOrCreateAndProduce("DeviceName", devicename);
 	mIndexItem->itemGetOrCreateAndProduce("Value", value);
 	mTypeItem = mIndexItem->itemGetOrCreateAndProduce("Type", type);
-	mActiveItem = mIndexItem->itemGetOrCreateAndProduce("Active", 1);
+	mActiveItem = mIndexItem->itemGetOrCreateAndProduce("Active", QVariant::fromValue(true));
 	mAcknowledgedItem = mIndexItem->itemGetOrCreateAndProduce("Acknowledged", QVariant::fromValue(false));
 	mIndexItem->itemGetOrCreateAndProduce("Description", description);
 }
