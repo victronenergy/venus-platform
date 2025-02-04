@@ -138,15 +138,13 @@ void VeQItemReboot::doReboot()
 
 int VeQItemModificationChecksStartCheck::setValue(const QVariant &value)
 {
-	Q_UNUSED(value);
-
 	// check data partition free space
 	QProcess processFreeSpace;
 	processFreeSpace.start("sh", QStringList() << "-c" << "df -B1 /data | awk 'NR==2 {print $4}'");
 	processFreeSpace.waitForFinished();
 	QString freeSpace = processFreeSpace.readAllStandardOutput().trimmed();
 	qDebug() << "[Modification checks] data partition free space:" << freeSpace;
-	mService->itemGet("ModificationChecks/DataPartitionFreeSpace")->setValue(freeSpace);
+	mService->itemGet("ModificationChecks/DataPartitionFreeSpace")->produceValue(freeSpace);
 
 	// run "/usr/sbin/fsmodified /" and save the result
 	QProcess process;
@@ -156,9 +154,9 @@ int VeQItemModificationChecksStartCheck::setValue(const QVariant &value)
 	qDebug() << "[Modification checks] fsmodified result:" << result;
 
 	if (result == "clean") {
-		mService->itemGet("ModificationChecks/FsModifiedState")->setValue(0);
+		mService->itemGet("ModificationChecks/FsModifiedState")->produceValue(0);
 	} else {
-		mService->itemGet("ModificationChecks/FsModifiedState")->setValue(1);
+		mService->itemGet("ModificationChecks/FsModifiedState")->produceValue(1);
 	}
 
 	// create variable to check if multiple files are present
@@ -183,15 +181,15 @@ int VeQItemModificationChecksStartCheck::setValue(const QVariant &value)
 		qDebug() << "[Modification checks] /run/venus/custom-rc present";
 		systemHooksState += 16;
 	}
-	mService->itemGet("ModificationChecks/SystemHooksState")->setValue(systemHooksState);
+	mService->itemGet("ModificationChecks/SystemHooksState")->produceValue(systemHooksState);
 
 	// Check if ssh key for root is present
 	if (QFile::exists("/data/home/root/.ssh/authorized_keys")) {
 		qDebug() << "[Modification checks] ssh key for root is present";
-		mService->itemGet("ModificationChecks/SshKeyForRootPresent")->setValue(1);
+		mService->itemGet("ModificationChecks/SshKeyForRootPresent")->produceValue(1);
 	} else {
 		qDebug() << "[Modification checks] ssh key for root is not present";
-		mService->itemGet("ModificationChecks/SshKeyForRootPresent")->setValue(0);
+		mService->itemGet("ModificationChecks/SshKeyForRootPresent")->produceValue(0);
 	}
 
 	return VeQItemAction::setValue(value);
