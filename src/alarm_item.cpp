@@ -54,6 +54,7 @@ DeviceAlarms *DeviceAlarms::createGeneratorStartStopAlarms(VenusService *service
 	alarms->addTripplet(tr("Service interval exceeded"), "/Alarms/ServiceIntervalExceeded", nullptr);
 	alarms->addTripplet(tr("GX Auto start/stop is disabled"), "/Alarms/AutoStartDisabled", nullptr);
 	alarms->addTripplet(tr("Remote start is disabled on the genset"), "/Alarms/RemoteStartModeDisabled", nullptr);
+	alarms->addTripplet(tr("Generator stopped due to low tank level"), "/Alarms/StoppedByTankLevelCondition", nullptr);
 
 	return alarms;
 }
