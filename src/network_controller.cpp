@@ -1,4 +1,4 @@
-#include "network_controller.h"
+#include "network_controller.hpp"
 #include "json.h"
 
 int VeQItemJson::setValue(const QVariant &value)

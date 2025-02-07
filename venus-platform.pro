@@ -23,7 +23,7 @@ HEADERS = \
 	src/buzzer.hpp \
 	src/display_controller.hpp \
 	src/led_controller.hpp \
-	src/network_controller.h \
+	src/network_controller.hpp \
 	src/notification.hpp \
 	src/notifications.hpp \
 	src/relay.hpp \

@@ -8,9 +8,9 @@
 #include "buzzer.hpp"
 #include "display_controller.hpp"
 #include "led_controller.hpp"
+#include "network_controller.hpp"
 #include "notifications.hpp"
 #include "relay.hpp"
-#include "network_controller.h"
 #include "updater.hpp"
 #include "venus_services.hpp"
 
