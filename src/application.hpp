@@ -18,6 +18,7 @@ bool serviceExists(QString const &svc);
 QStringList getFeatureList(const QString &name, bool lines = false);
 QString getFeature(QString const &name, bool optional = true);
 int readIntFromFile(QString const &name, int def);
+QString readFirstLineFromFile(QString const &name, QString def = QString());
 bool writeIntToFile(QString filename, int value);
 
 // Since this class needs to be in a header file for moc, just place it

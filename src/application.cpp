@@ -82,6 +82,14 @@ int readIntFromFile(QString const &name, int def)
 	return val;
 }
 
+QString readFirstLineFromFile(QString const &name, QString def)
+{
+	QFile file(name);
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text) || !file.canReadLine())
+		return def;
+	return file.readLine().trimmed();
+}
+
 bool writeIntToFile(QString filename, int value)
 {
 	QFile file(filename);
@@ -635,18 +643,9 @@ void Application::start()
 	proc->waitForFinished();
 	mService->itemGetOrCreateAndProduce("Device/ProductId", QString(proc->readAllStandardOutput().trimmed()));
 
-	QString model, serial;
-	QFile file("/sys/firmware/devicetree/base/model");
-	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		model = file.readLine().trimmed();
-	}
-
-	file.setFileName("/data/venus/serial-number");
-	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		serial = file.readLine().trimmed();
-	}
-
+	QString model = readFirstLineFromFile("/sys/firmware/devicetree/base/model");
 	mService->itemGetOrCreateAndProduce("Device/Model", model);
+	QString serial = readFirstLineFromFile("/data/venus/serial-number");
 	mService->itemGetOrCreateAndProduce("Device/HQSerialNumber", serial);
 
 	int error = dataPartionError() ? 1 : 0;
