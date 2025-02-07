@@ -23,6 +23,7 @@ HEADERS = \
 	src/buzzer.hpp \
 	src/display_controller.hpp \
 	src/led_controller.hpp \
+	src/modifications_check.hpp \
 	src/network_controller.hpp \
 	src/notification.hpp \
 	src/notifications.hpp \
@@ -41,6 +42,7 @@ SOURCES = \
 	src/display_controller.cpp \
 	src/led_controller.cpp \
 	src/main.cpp \
+	src/modifications_check.cpp \
 	src/network_controller.cpp \
 	src/notification.cpp \
 	src/notifications.cpp \
