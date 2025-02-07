@@ -249,6 +249,7 @@ public:
 		// When shipped with a newer version it should be fine. Since the mk3 version is unknown
 		// without the service being started (which will update it), check the installer date instead.
 		enum Mk3Update mk3update = !installerVersion.isEmpty() && installerVersion >= "202210050000" ? NOT_APPLICABLE : DISALLOWED;
+		int defaultGui = !installerVersion.isEmpty() && installerVersion >= "202502010000" ? 2 : 1;
 
 		QString mBacklightDevice = getFeature("backlight_device");
 
@@ -273,7 +274,7 @@ public:
 		add("Gui/DemoMode", 0, 0, 3);
 		add("Gui/DisplayOff", 600, 0, 0);
 		add("Gui/Language", "en");
-		add("Gui/RunningVersion", 1, 1, 2);
+		add("Gui/RunningVersion", defaultGui, 1, 2);
 		add("Gui/TouchEnabled", 1, 0, 1);
 		if (LedController::hasLeds())
 			add("LEDs/Enable", 1, 0, 1);
