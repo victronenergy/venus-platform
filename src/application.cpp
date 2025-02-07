@@ -243,8 +243,13 @@ enum Mk3Update {
 class SettingsInfo : public VeQItemSettingsInfo
 {
 public:
-	SettingsInfo(enum Mk3Update mk3update)
+	SettingsInfo(QString const &installerVersion)
 	{
+		// mk3 firmware 212 should not automatically be updated after a Venus update.
+		// When shipped with a newer version it should be fine. Since the mk3 version is unknown
+		// without the service being started (which will update it), check the installer date instead.
+		enum Mk3Update mk3update = !installerVersion.isEmpty() && installerVersion >= "202210050000" ? NOT_APPLICABLE : DISALLOWED;
+
 		QString mBacklightDevice = getFeature("backlight_device");
 
 		add("Gps/Format", 0, 0, 0);
@@ -605,13 +610,8 @@ void Application::init()
 		installerVersion = file.readLine();
 	}
 
-	// mk3 firmware 212 should not automatically be updated after a Venus update.
-	// When shipped with a newer version it should be fine. Since the mk3 version is unknown
-	// without the service being started (which will update it), check the installer date instead.
-	enum Mk3Update mk3update = !installerVersion.isEmpty() && installerVersion >= "202210050000" ? NOT_APPLICABLE : DISALLOWED;
-
 	qDebug() << "Creating settings";
-	if (!mSettings->addSettings(SettingsInfo(mk3update))) {
+	if (!mSettings->addSettings(SettingsInfo(installerVersion))) {
 		qCritical() << "Creating settings failed";
 		::exit(EXIT_FAILURE);
 	}
