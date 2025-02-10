@@ -21,9 +21,10 @@ QStringList leds = {
 
 bool LedController::hasLeds()
 {
-	for (auto const &led: leds) {
-		if (!QDir(destDir(led)).exists())
-			leds.removeAll(led);
+	QMutableStringListIterator i(leds);
+	while (i.hasNext()) {
+		if (!QDir(destDir(i.next())).exists())
+			i.remove();
 	}
 	return leds.count() != 0;
 }
