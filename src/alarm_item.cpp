@@ -50,7 +50,7 @@ DeviceAlarms *DeviceAlarms::createGeneratorStartStopAlarms(VenusService *service
 	DeviceAlarms *alarms = new DeviceAlarms(service, notications);
 
 	alarms->addTripplet(tr("Generator not detected at AC input"), "/Alarms/NoGeneratorAtAcIn", nullptr, "");
-	alarms->addTripplet(tr("Generator not detected at DC"), "/Alarms/NoGeneratorAtDcIn", nullptr, "");
+	alarms->addTripplet(tr("DC generator is not providing power"), "/Alarms/NoGeneratorAtDcIn", nullptr, "");
 	alarms->addTripplet(tr("Service interval exceeded"), "/Alarms/ServiceIntervalExceeded", nullptr);
 	alarms->addTripplet(tr("GX Auto start/stop is disabled"), "/Alarms/AutoStartDisabled", nullptr);
 	alarms->addTripplet(tr("Remote start is disabled on the genset"), "/Alarms/RemoteStartModeDisabled", nullptr);
