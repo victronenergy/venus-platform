@@ -31,8 +31,10 @@ Notifications::Notifications(VeQItem *parentItem, QObject *parent) :
 
 void Notifications::acknowledgedAll()
 {
-	for (Notification *notification: mNotifications)
+	for (Notification *notification: mNotifications) {
 		notification->setAcknowledged(true);
+		notification->setSilenced(true);
+	}
 
 	setAlert(false);
 	setAlarm(false);

@@ -25,6 +25,9 @@ public:
 	bool isAcknowledged() const { return mAcknowledged; }
 	void setAcknowledged(bool acknowledged);
 
+	bool isSilenced() const { return mSilencedItem->getLocalValue().toBool(); }
+	void setSilenced(bool silenced);
+
 	/*
 	 * By default notifications are active. Alarms condition can disappear
 	 * however while the alarm has not been acknowledged yet. In that case
@@ -38,6 +41,7 @@ public:
 
 signals:
 	void acknowledgedChanged(Notification *notification);
+	void silencedChanged(Notification *notification);
 	void activeChanged(Notification *notification);
 
 private slots:
@@ -45,6 +49,7 @@ private slots:
 
 private:
 	VeQItem *mAcknowledgedItem;
+	VeQItem *mSilencedItem;
 	VeQItem *mActiveItem;
 	VeQItem *mIndexItem;
 	VeQItem *mTypeItem;

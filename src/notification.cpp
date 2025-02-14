@@ -18,6 +18,7 @@ Notification::Notification(Type type, const QString &devicename, const QString &
 	mTypeItem = mIndexItem->itemGetOrCreateAndProduce("Type", type);
 	mActiveItem = mIndexItem->itemGetOrCreateAndProduce("Active", QVariant::fromValue(true));
 	mAcknowledgedItem = mIndexItem->itemGetOrCreateAndProduce("Acknowledged", QVariant::fromValue(false));
+	mSilencedItem = mIndexItem->itemGetOrCreateAndProduce("Silenced", QVariant::fromValue(false));
 	mIndexItem->itemGetOrCreateAndProduce("Description", description);
 
 	mAcknowledgedItem->getValueAndChanges(this, SLOT(acknowledgedItemChanged(QVariant)));
@@ -29,6 +30,14 @@ void Notification::setAcknowledged(bool acknowledged)
 		mAcknowledged = acknowledged;
 		mAcknowledgedItem->produceValue(QVariant::fromValue(acknowledged));
 		emit acknowledgedChanged(this);
+	}
+}
+
+void Notification::setSilenced(bool silenced)
+{
+	if (silenced != isSilenced()) {
+		mSilencedItem->produceValue(QVariant::fromValue(silenced));
+		emit silencedChanged(this);
 	}
 }
 
