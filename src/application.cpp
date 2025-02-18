@@ -253,6 +253,8 @@ public:
 		add("System/ModificationChecks/PreviousState/SignalK", 0, 0, 1);
 		add("System/ReleaseType", 0, 0, 3);
 		add("System/TimeZone", "/UTC");
+		add("System/Units/Altitude", "");
+		add("System/Units/Distance", "");
 		add("System/Units/Temperature", "");
 		add("System/VolumeUnit", 0, 0, 0);
 		add("SystemSetup/SystemName", "");
