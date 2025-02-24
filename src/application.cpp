@@ -85,9 +85,10 @@ int readIntFromFile(QString const &name, int def)
 QString readFirstLineFromFile(QString const &name, QString def)
 {
 	QFile file(name);
-	if (!file.open(QIODevice::ReadOnly | QIODevice::Text) || !file.canReadLine())
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 		return def;
-	return file.readLine().trimmed();
+	QString line = file.readLine().trimmed();
+	return (line.isEmpty() ? def : line);
 }
 
 bool writeIntToFile(QString filename, int value)
