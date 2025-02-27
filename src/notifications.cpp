@@ -128,6 +128,7 @@ Notification *Notifications::addNotification(Notification::Type type, const QStr
 void Notifications::removeNotification(Notification *notification)
 {
 	notification->setActive(false);
+	notification->setSilenced(true);
 	mNotifications.removeOne(notification);
 	delete notification;
 	updateAlarm();
