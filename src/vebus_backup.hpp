@@ -77,9 +77,12 @@ private:
 	bool getProductIdAndVersions();
 	bool checkFirmwareVersionCompatibility(const QString& prodIdAndVersion, const QString& subVersion);
 
+	VenusService *vebusInterfaceService;
+
 	bool working;
 	bool availableBackupsListValid;
 	bool offline;
+	bool initialized;
 	const QString backupDir = QStringLiteral("/data/conf/");
 	const QString mk2vscProg = QStringLiteral("/opt/victronenergy/mk2vsc/mk2vsc");
 	const QString mk2vscCacheDir = QStringLiteral("/tmp");
@@ -89,6 +92,7 @@ private:
 	QString vebusFirmwareVersionNumber;
 	QString vebusFirmwareSubVersionNumber;
 	QString vebusProductId;
+	VeQItem *venusPlatformParentItem;
 	VeQItem *mVebusRootItem;
 	VeQItem *mActionItem;
 	VeQItem *mInfoItem;
@@ -108,6 +112,7 @@ private:
 private slots:
 	//void onVenusServiceFound(VenusService *service); 	// We need this to monitor mk2vsc
 
+	void onMk2ConnectionItemChanged(QVariant var);
 	void onActionChanged(QVariant var);
 	void onFileNameChanged(QVariant var);
 	void onMk2VscStateChanged(QVariant var);
