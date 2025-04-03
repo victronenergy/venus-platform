@@ -287,9 +287,9 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 								 VenusServices *venusServices, QObject *parent) :
 	QObject(parent)
 {
-	mMqttBridgeRegistrar = new VeQItemMqttBridgeRegistrar();
-	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", mMqttBridgeRegistrar);
-	connect(mMqttBridgeRegistrar, SIGNAL(bridgeConfigChanged()), this, SLOT(onBridgeConfigChanged()));
+	mMqttBridgeRegistrator = new VeQItemMqttBridgeRegistrator(pltService);
+	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", mMqttBridgeRegistrator);
+	connect(mMqttBridgeRegistrator, SIGNAL(bridgeConfigChanged()), this, SLOT(onBridgeConfigChanged()));
 
 	pltService->itemGetOrCreate("Security")->itemAddChild("Api", new SecurityApi(pltService, settings));
 
@@ -344,7 +344,7 @@ void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 		// the bridge configuration. Trigger the MQTT registration for changes to
 		// read-only and full, so the config gets updated.
 		if (wasValid && mVrmPortal.isValid() && mVrmPortal != VRM_PORTAL_OFF)
-			mMqttBridgeRegistrar->check();
+			mMqttBridgeRegistrator->check();
 
 		enableMqttBridge(false);
 	}
