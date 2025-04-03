@@ -15,9 +15,14 @@ VebusBackupServiceRegistrator::VebusBackupServiceRegistrator(VeQItem *parentItem
 	connect(services, SIGNAL(found(VenusService*)), SLOT(onVenusServiceFound(VenusService*)));
 }
 
-VebusBackupService::VebusBackupService(VeQItem *parentItem, VenusService *service, QObject *parent) :
-	QObject(parent)
+
+void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 {
+	if (initialized || !var.isValid())
+		return;
+
+	qDebug() <<  "[Vebus_backup] Vebus connection found" << var.toString();
+
 	QString con;
 
 	working = false;
@@ -28,16 +33,14 @@ VebusBackupService::VebusBackupService(VeQItem *parentItem, VenusService *servic
 	vebusFirmwareSubVersionNumber.clear();
 	vebusProductId.clear();
 
-	mMk2DbusMk2ConnectionItem = service->item("Interfaces/Mk2/Connection");
-
-	con = mMk2DbusMk2ConnectionItem->getText();
+	con = var.toString();
 
 	connection = con.section('/', -1);
 	if (connection.isEmpty()) {
 		qDebug() << "[Vebus_backup] Device name not found. Skip registration of " << connection;
 		return;
 	}
-	mVebusRootItem = parentItem->itemGetOrCreate("Vebus/Interface/" + connection);
+	mVebusRootItem = venusPlatformParentItem->itemGetOrCreate("Vebus/Interface/" + connection);
 	mAvailableBackupsItem = mVebusRootItem->itemGetOrCreate("AvailableBackups");
 	mIncompatibleBackupsItem = mVebusRootItem->itemGetOrCreate("FirmwareIncompatibleBackups");
 
@@ -53,19 +56,31 @@ VebusBackupService::VebusBackupService(VeQItem *parentItem, VenusService *servic
 	mFileItem->getValueAndChanges(this, SLOT(onFileNameChanged(QVariant)));
 
 	// Connect to the mk2vsc service
-	mMk2VscRootItem = service->item()->itemParent()->itemGetOrCreate("com.victronenergy.mk2vsc");
+	mMk2VscRootItem = vebusInterfaceService->item()->itemParent()->itemGetOrCreate("com.victronenergy.mk2vsc");
 	mMk2VscStateItem = mMk2VscRootItem->itemGetOrCreate("State");
 
-	mMk2DbusProductIdItem = service->item("ProductId");
-	mMk2DbusConnectedItem = service->item("Connected");
-	mMk2DbusFirmwareVersionItem = service->item("FirmwareVersion");
-	mMk2DbusSubVersionItem = service->item("FirmwareSubVersion");
+	mMk2DbusProductIdItem = vebusInterfaceService->item("ProductId");
+	mMk2DbusConnectedItem = vebusInterfaceService->item("Connected");
+	mMk2DbusFirmwareVersionItem = vebusInterfaceService->item("FirmwareVersion");
+	mMk2DbusSubVersionItem = vebusInterfaceService->item("FirmwareSubVersion");
 
 	mMk2VscStateItem->getValueAndChanges(this, SLOT(onMk2VscStateChanged(QVariant)));
 	mMk2DbusProductIdItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
 	mMk2DbusFirmwareVersionItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
 	mMk2DbusSubVersionItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
 	mMk2DbusConnectedItem->getValueAndChanges(this, SLOT(onVebusConnectedChanged(QVariant)));
+	initialized = true;
+}
+
+VebusBackupService::VebusBackupService(VeQItem *parentItem, VenusService *service, QObject *parent) :
+	QObject(parent)
+{
+	initialized = false;
+	vebusInterfaceService = service;
+	venusPlatformParentItem = parentItem;
+	mMk2DbusMk2ConnectionItem = service->item("/Interfaces/Mk2/Connection");
+	mMk2DbusMk2ConnectionItem->getValueAndChanges(this, SLOT(onMk2ConnectionItemChanged(QVariant)));
+	// Wait until the connection item is valid
 }
 
 void VebusBackupService::onActionChanged(QVariant var)
@@ -183,11 +198,7 @@ void VebusBackupService::getAvailableBackups()
 					QRegularExpressionMatch match = matchIterator.next();
 					QString firmwareVersion = match.captured(1);
 					QString firmwareSubversion = match.captured(2).isEmpty() ? "0" : match.captured(2); // Handle missing subversion
-#if 0
-					qDebug() << "[vebus_backup] Info section" << sectionNumber << ":";
-					qDebug() << "[vebus_backup]  Firmware version:" << firmwareVersion;
-					qDebug() << "[vebus_backup]  Firmware subversion number:" << firmwareSubversion;
-#endif
+
 					sectionNumber++;
 
 					if(checkFirmwareVersionCompatibility(firmwareVersion, firmwareSubversion)) {
