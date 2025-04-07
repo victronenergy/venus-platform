@@ -226,6 +226,33 @@ DeviceAlarms *DeviceAlarms::createTemperatureSensorAlarms(VenusService *service,
 	return alarms;
 }
 
+DeviceAlarms *DeviceAlarms::createEvChargerAlarms(VenusService *service, Notifications *notificationCenter)
+{
+	DeviceAlarms *alarms = new DeviceAlarms(service, notificationCenter);
+
+	alarms->addTripplet(tr("GND not present"),															"/Alarms/GNDNotPresent",			nullptr, nullptr);
+	alarms->addTripplet(tr("Welded contacts"),															"/Alarms/WeldedContacts",			nullptr, nullptr);
+	alarms->addTripplet(tr("CP input short-circuit"),													"/Alarms/CPInputShortCircuit",		nullptr, nullptr);
+	alarms->addTripplet(tr("Residual current"),															"/Alarms/ResidualCurrent",			nullptr, nullptr);
+	alarms->addTripplet(tr("Over temperature"),															"/Alarms/OverTemperature",			nullptr, nullptr);
+	alarms->addTripplet(tr("Light sensor IC fault"),													"/Alarms/LightSensorICFault",		nullptr, nullptr);
+	alarms->addTripplet(tr("Tamper detected"),															"/Alarms/TamperDetected",			nullptr, nullptr);
+	alarms->addTripplet(tr("Initial setup not completed"),												"/Alarms/SetupNeeded",				nullptr, nullptr);
+	alarms->addTripplet(tr("EVCS externally blocked by grid operator"),									"/Alarms/BlockedWarning",			nullptr, nullptr);
+	alarms->addTripplet(tr("EVCS high temperature detected"),											"/Alarms/HighTempWarning",			nullptr, nullptr);
+	alarms->addTripplet(tr("GX communication warning"),													"/Alarms/GxCommWarning",			nullptr, nullptr);
+	alarms->addTripplet(tr("Overload detected"),														"/Alarms/OverloadDetected",			nullptr, nullptr);
+	alarms->addTripplet(tr("Overload active"),															"/Alarms/OverloadActive",			nullptr, nullptr);
+	alarms->addTripplet(tr("Scheduled mode failed - time sync issue"),									"/Alarms/TimeSyncIssue",			nullptr, nullptr);
+	alarms->addTripplet(tr("The charging current is limited by an external switch"),					"/Alarms/ExternalCurrentLimit",		nullptr, nullptr);
+	alarms->addTripplet(tr("The charging current is limited due to inverter overtemperature"),			"/Alarms/SystemCausedCurrentLimit",	nullptr, nullptr);
+	alarms->addTripplet(tr("Can't update display FW due to broken file. Please perform update again"),	"/Alarms/DisplayFWUpdateFailure1",	nullptr, nullptr);
+	alarms->addTripplet(tr("Can't update display FW due to communication issues"),						"/Alarms/DisplayFWUpdateFailure2",	nullptr, nullptr);
+	alarms->addTripplet(tr("Updating display FW. EV charging will be available after a while"),			"/Alarms/DisplayFWUpdateInProgress",nullptr, nullptr);
+
+	return alarms;
+}
+
 VebusAlarms::VebusAlarms(VenusService *service, Notifications *notications) :
 	DeviceAlarms(service, notications)
 {
@@ -449,6 +476,9 @@ void AlarmBusitems::onVenusServiceFound(VenusService *service)
 		break;
 	case VenusServiceType::TEMPERATURE_SENSOR:
 		DeviceAlarms::createTemperatureSensorAlarms(service, mNotifications);
+		break;
+	case VenusServiceType::EV_CHARGER:
+		DeviceAlarms::createEvChargerAlarms(service, mNotifications);
 		break;
 	default:
 		;
