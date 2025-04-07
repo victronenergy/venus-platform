@@ -23,6 +23,7 @@ Notifications::Notifications(VeQItem *parentItem, QObject *parent) :
 	mAlarmItem = mNotificationsItem->itemGetOrCreate("Alarm");
 	mAlertItem = mNotificationsItem->itemGetOrCreate("Alert");
 	mNotificationsItem->itemAddChild("AcknowledgeAll", new VeQItemAcknowledgeAll(this));
+	mNotificationsItem->itemAddChild("Inject", new VeQItemInjectNotification(this));
 	mNotificationsItem = parentItem->itemGetOrCreate("Notifications");
 
 
