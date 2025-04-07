@@ -76,3 +76,30 @@ public:
 private:
 	Notifications *mNotifications;
 };
+
+class VeQItemInjectNotification : public VeQItemAction {
+	Q_OBJECT
+public:
+	VeQItemInjectNotification(Notifications *notifications) :
+		VeQItemAction(),
+		mNotifications(notifications)
+	{}
+
+	int setValue(const QVariant &value) override
+	{
+		QString val = value.toString();
+		val.replace("\\t", "\t");
+		QStringList list = val.split('\t');
+		if (list.size() == 3)
+		{
+			bool ok = true;
+			int type = list[0].toInt(&ok);
+			if (ok)
+				mNotifications->addNotification((Notification::Type)type, list[1], "", list[2], "")->setActive(false);
+		}
+		return VeQItemAction::setValue(value);
+	}
+
+private:
+	Notifications *mNotifications;
+};
