@@ -72,8 +72,6 @@ DeviceAlarms *DeviceAlarms::createSolarChargerAlarms(VenusService *service, Noti
 {
 	DeviceAlarms *alarms = new DeviceAlarms(service, notications);
 
-	alarms->addTripplet(tr("Low battery voltage"),		"/Alarms/LowVoltage",	nullptr,	"");
-	alarms->addTripplet(tr("High battery voltage"),		"/Alarms/HighVoltage",	nullptr,	"");
 	alarms->addTripplet(tr("High temperature"),			"/Alarms/HighTemperature",	nullptr,	"");
 	alarms->addTripplet(tr("Short circuit"),			"/Alarms/ShortCircuit",		nullptr,	"");
 	alarms->addChargerError("/ErrorCode");
