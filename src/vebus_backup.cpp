@@ -12,18 +12,16 @@ VebusBackupServiceRegistrator::VebusBackupServiceRegistrator(VeQItem *parentItem
 {
 	parentItemRef = parentItem;
 
-	connect(services, SIGNAL(found(VenusService*)), SLOT(onVenusServiceFound(VenusService*)));
+   connect(services, SIGNAL(found(VenusService*)), SLOT(onVenusServiceFound(VenusService*)));
 }
-
 
 void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 {
 	if (initialized || !var.isValid())
 		return;
 
-	qDebug() <<  "[Vebus_backup] Vebus connection found" << var.toString();
 
-	QString con;
+	qDebug() <<  "[Vebus_backup] Vebus connection found" << var.toString();
 
 	working = false;
 	availableBackupsListValid = false;
@@ -33,7 +31,7 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	vebusFirmwareSubVersionNumber.clear();
 	vebusProductId.clear();
 
-	con = var.toString();
+	QString con = var.toString();
 
 	connection = con.section('/', -1);
 	if (connection.isEmpty()) {
@@ -44,15 +42,14 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	mAvailableBackupsItem = mVebusRootItem->itemGetOrCreate("AvailableBackups");
 	mIncompatibleBackupsItem = mVebusRootItem->itemGetOrCreate("FirmwareIncompatibleBackups");
 
-	mActionItem = mVebusRootItem->itemGetOrCreate("Action");
-	mActionItem->produceValue(0);
-	mActionItem->getValueAndChanges(this, SLOT(onActionChanged(QVariant)));
-
 	mInfoItem = mVebusRootItem->itemGetOrCreate("Info");
 	mErrorItem = mVebusRootItem->itemGetOrCreate("Error");
 	mNotifyItem = mVebusRootItem->itemGetOrCreate("Notify");
-
 	mFileItem = mVebusRootItem->itemGetOrCreate("File");
+	mActionItem = mVebusRootItem->itemGetOrCreate("Action");
+
+	mActionItem->produceValue(0);
+	mActionItem->getValueAndChanges(this, SLOT(onActionChanged(QVariant)));
 	mFileItem->getValueAndChanges(this, SLOT(onFileNameChanged(QVariant)));
 
 	// Connect to the mk2vsc service
@@ -121,24 +118,7 @@ void VebusBackupService::onMk2VscStateChanged(QVariant var)
 {
 	if (var.isValid()) {
 		// Forward the state
-#if 1 // Produce state as value
 		mInfoItem->produceValue(var.toInt());
-#else // Produce state as text (Note GUI requires values)
-		int key = var.toInt();
-		bool validKey = false;
-
-		for (const auto &pair : mk2VscStateLookup) {
-			if (pair.first == key) {
-				validKey = true;
-				mInfoItem->produceValue(pair.second);
-				break;
-			}
-		}
-
-		if (!validKey) {
-			mInfoItem->produceValue("mk2vsc state " + var.toString());
-		}
-#endif
 	}
 }
 
@@ -244,11 +224,9 @@ void VebusBackupService::getAvailableBackups()
 	availableBackupsListValid = true;
 }
 
+
 void VebusBackupService::onBackupFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-	Q_UNUSED(exitCode);
-	Q_UNUSED(exitStatus);
-
 	qDebug() << "Ve.Bus backup finished";
 
 	working = false;
@@ -300,10 +278,9 @@ void VebusBackupService::runBackupAction()
 	backupProcess->start(mk2vscProg, arguments);
 }
 
+
 void VebusBackupService::onRestoreFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-	Q_UNUSED(exitCode);
-	Q_UNUSED(exitStatus);
 
 	qDebug() << "Ve.Bus restore finished";
 	working = false;
@@ -420,13 +397,8 @@ bool VebusBackupService::checkFirmwareVersionCompatibility(const QString& prodId
 
 	vebusPIdAndVersion = vebusProductId + vebusFirmwareVersionNumber;
 
-	if ((vebusPIdAndVersion == prodIdAndVersion) && (vebusFirmwareSubVersionNumber == subVersion)) {
-		return true;
-	}
-
-	return false;
+	return ((vebusPIdAndVersion == prodIdAndVersion) && (vebusFirmwareSubVersionNumber == subVersion));
 }
-
 
 void VebusBackupService::onVebusProductIdOrVersionChanged(QVariant var)
 {
