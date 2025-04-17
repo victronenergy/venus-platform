@@ -18,8 +18,6 @@ class VebusBackupServiceRegistrator : public QObject
 public:
 	explicit VebusBackupServiceRegistrator(VeQItem *parentItem, VenusServices *services, QObject *parent = 0);
 
-	VebusBackupServiceRegistrator(VenusService *service);
-
 private:
 	VeQItem *parentItemRef;
 

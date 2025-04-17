@@ -12,7 +12,7 @@ VebusBackupServiceRegistrator::VebusBackupServiceRegistrator(VeQItem *parentItem
 {
 	parentItemRef = parentItem;
 
-   connect(services, SIGNAL(found(VenusService*)), SLOT(onVenusServiceFound(VenusService*)));
+	connect(services, SIGNAL(found(VenusService*)), SLOT(onVenusServiceFound(VenusService*)));
 }
 
 void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
