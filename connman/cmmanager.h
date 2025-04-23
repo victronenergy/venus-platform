@@ -60,6 +60,7 @@ private:
 	bool getProperties();
 	bool getTechnologies();
 	bool getServices();
+	const QVariantMap getServiceProperties(const QString &path);
 
 	static const QString State;
 	static const QString OfflineMode;
@@ -73,5 +74,6 @@ private:
 	QVariantMap mProperties;
 	QMap<QString, CmTechnology *> mTechnologies;
 	QMap<QString, CmService *> mServices;
+	CmService *mEthernetService;
 	QStringList mServicesOrderList;
 };

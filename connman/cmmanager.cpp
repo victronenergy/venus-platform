@@ -18,7 +18,8 @@ CmManager::CmManager(QObject *parent) :
 	mManager("net.connman", "/", VeDbusConnection::getConnection()),
 	mWatcher("net.connman", VeDbusConnection::getConnection(),
 			 QDBusServiceWatcher::WatchForRegistration | QDBusServiceWatcher::WatchForUnregistration),
-	mAgent(parent)
+	mAgent(parent),
+	mEthernetService(nullptr)
 {
 	registerConnmanDataTypes();
 
@@ -151,11 +152,37 @@ void CmManager::addTechnology(const QString &path, const QVariantMap &properties
 	}
 }
 
+const QVariantMap CmManager::getServiceProperties(const QString &path)
+{
+	QDBusPendingReply<ConnmanObjectList> reply = mManager.GetServices();
+	reply.waitForFinished();
+	if (reply.isValid()) {
+		const ConnmanObjectList list = reply.value();
+		foreach (const ConnmanObject &object, list) {
+			if (object.path.path() == path) {
+				return object.properties;
+			}
+		}
+	}
+	return QVariantMap();
+}
+
 void CmManager::addService(const QString &path, const QVariantMap &properties)
 {
 	if (!mServices.contains(path)) {
-		CmService *service = new CmService(path, properties, this);
-		mServices.insert(path, service);
+		if (properties["Type"].toString() == "ethernet") {
+			// Only create the ethernet service once and keep it, and its connection to the 'PropertyChanged' signal, in place
+			if (!mEthernetService) {
+				// Create the service to connect to the 'PropertyChanged' signal, and explicitly fetch and set the properties
+				mEthernetService = new CmService(path, properties, this);
+				mEthernetService->serviceChanged(getServiceProperties(path));
+			}
+			mServices.insert(path, mEthernetService);
+		}
+		else {
+			CmService *service = new CmService(path, properties, this);
+			mServices.insert(path, service);
+		}
 	}
 	mServicesOrderList.append(path);
 }
@@ -272,7 +299,8 @@ void CmManager::servicesChanged(const ConnmanObjectList &changed, const QList<QD
 		if (!mServices.contains(path)) {
 			qCritical() << "service " << path << " was removed but was not found in the services list";
 		} else {
-			delete (mServices.value(path));
+			if (mServices.value(path) != mEthernetService)
+				delete (mServices.value(path));
 			mServices.remove(path);
 		}
 		emit serviceRemoved(path);
