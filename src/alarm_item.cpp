@@ -211,6 +211,7 @@ DeviceAlarms *DeviceAlarms::createPlatformAlarms(VenusService *service, Notifica
 	DeviceAlarms *alarms = new DeviceAlarms(service, notications);
 
 	alarms->addTripplet(tr("#42 Storage is corrupt on this device"), "/Device/DataPartitionError",  nullptr, "");
+	alarms->addTripplet(tr("#46 Data partition full"), "/Device/DataPartitionFullError",  nullptr, "");
 
 	return alarms;
 }

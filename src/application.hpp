@@ -84,6 +84,7 @@ protected slots:
 	void onServiceAdded(VeQItem *var);
 	void onGensetStateChanged(VeQItem::State state);
 	void onBatteryProductIdChanged(QVariant var);
+	void checkDataPartitionUsedSpace();
 
 private:
 	void createItemsForFlashmq();

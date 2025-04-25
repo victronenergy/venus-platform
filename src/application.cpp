@@ -651,6 +651,12 @@ void Application::start()
 
 	int error = dataPartionError() ? 1 : 0;
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionError", error);
+	mService->itemGetOrCreateAndProduce("Device/DataPartitionFullError", 0);
+
+	QTimer *timer = new QTimer(this);
+	connect(timer, &QTimer::timeout, this, &Application::checkDataPartitionUsedSpace);
+	timer->start(10000); // Check every 10 seconds
+	checkDataPartitionUsedSpace();
 
 	bool evccInstalled = QDir("/data/evcc/service/").exists();
 	mService->itemGetOrCreateAndProduce("Services/Evcc/Installed", evccInstalled);
@@ -687,6 +693,16 @@ void Application::start()
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
 	mService->produceValue(QString());
 	publisher->open(VeDbusConnection::getDBusAddress());
+}
+
+void Application::checkDataPartitionUsedSpace()
+{
+	QProcess processFreeSpace;
+	processFreeSpace.start("sh", QStringList() << "-c" << "df -B1 /data | awk 'NR==2 {print $5+0}'");
+	processFreeSpace.waitForFinished();
+	bool ok;
+	int usedSpace = processFreeSpace.readAllStandardOutput().trimmed().toInt(&ok);
+	mService->itemGetOrCreateAndProduce("Device/DataPartitionFullError", (ok && usedSpace > 90) ? 1 : 0);
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)
