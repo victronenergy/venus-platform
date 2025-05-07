@@ -246,6 +246,7 @@ public:
 		add("Services/Socketcand", 0, 0, 1);
 		add("System/AccessLevel", 1, 0, 3);
 		add("System/AutoUpdate", 2, 0, 3);
+		add("System/BackupRestore/Tank/AutoRestore", 1, 0, 1);
 		add("System/ImageType", 0, 0, 1);
 		add("System/LogLevel", 2, 0, 0);
 		add("System/ModificationChecks/AllModificationsEnabled", 1, 0, 1);
@@ -671,6 +672,8 @@ void Application::start()
 	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
 
 	mVebusBackup = new VebusBackupServiceRegistrator(mService, mVenusServices, this);
+
+	mTankBackup = new TankBackupService(mService, this);
 
 	new SecurityProfiles(mService, mSettings, mVenusServices, this);
 

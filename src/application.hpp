@@ -11,6 +11,7 @@
 #include "network_controller.hpp"
 #include "notifications.hpp"
 #include "relay.hpp"
+#include "tank_backup.hpp"
 #include "updater.hpp"
 #include "venus_services.hpp"
 #include "vebus_backup.hpp"
@@ -119,6 +120,7 @@ private:
 	Relay *mRelay;
 
 	VebusBackupServiceRegistrator *mVebusBackup;
+	TankBackupService *mTankBackup;
 
 	DaemonToolsService *mGuiSwitcher = nullptr;
 	bool mOnScreenGuiv2Supported;
