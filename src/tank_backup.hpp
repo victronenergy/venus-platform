@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QThread>
 #include <QProcess>
 #include <QVector>
 #include <QPair>
@@ -10,6 +11,19 @@
 
 #include "tank_backup.hpp"
 #include "venus_services.hpp"
+
+class Worker : public QObject {
+    Q_OBJECT
+
+public:
+    explicit Worker(QObject *parent = nullptr) : QObject(parent) {}
+
+public slots:
+    void performTask();
+
+signals:
+    void taskFinished();
+};
 
 class TankBackupService : public QObject
 {
@@ -24,19 +38,25 @@ public:
 		actionBackup,
 		actionRestore,
 		actionDelete,
-		actionCreateUsbSuccessful,
-		actionBackupSuccessful,
-		actionRestoreSuccessful,
-		actionDeleteSuccessful
 	};
 
 	enum Notification {
-		backupSuccessful = 1,
-		restoreSuccessful = 2,
-		deleteSuccessful = 3,
-		backupException = 101,
-		restoreException = 102,
-		deleteFailed = 103,
+		createUsbSuccessful = 1,
+		backupSuccessful = 2,
+		restoreSuccessful = 3,
+		deleteSuccessful = 4,
+		createUsbException = 101,
+		backupException = 102,
+		restoreException = 103,
+		deleteException = 104,
+	};
+
+	enum Error {
+		errorNone = 0,
+		errorUsbDriveNotMounted,
+		errorArchiveFileDeleteFailed,
+		errorBackupFileDeleteFailed,
+		errorBackupFileMissing,
 	};
 
 private:
@@ -46,8 +66,9 @@ private:
 	void runBackupAction();
 	void onRestoreFinished(int exitCode, QProcess::ExitStatus exitStatus);
 	void runRestoreAction();
-	void onDeleteFinished(int exitCode, QProcess::ExitStatus exitStatus);
 	void runDeleteAction();
+
+	bool working = false;
 
 	VeQItem *mTankBackupItem;
 	VeQItem *mActionItem;
