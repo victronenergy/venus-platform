@@ -51,7 +51,7 @@ SecurityApi::SecurityApi(VeQItem *pltService, VeQItemSettings *settings) :
 	mSecurityProfile->getValue();
 
 	mPendingServiceRestart = pltService->itemGetOrCreateAndProduce("Network/ConfigChanged", NETWORK_CONFIG_NO_EVENT);
-};
+}
 
 int SecurityApi::setValue(const QVariant &value)
 {
