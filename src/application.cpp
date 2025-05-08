@@ -1,4 +1,7 @@
 #include <signal.h>
+#include <algorithm>
+
+#include <QRandomGenerator>
 
 #include <veutil/qt/daemontools_service.hpp>
 #include <veutil/qt/ve_dbus_connection.hpp>
@@ -162,6 +165,18 @@ static void cleanDir(const QString &dirName)
 	}
 }
 
+static QString generateRandomPassword() {
+	static char const alphanum[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	QRandomGenerator *randGen = QRandomGenerator::global();
+	QString password;
+	password.resize(8);
+	std::generate(password.begin(), password.end(), [randGen]() -> QChar {
+		int index = randGen->bounded(sizeof(alphanum) - 1); // Generate an index from 0 (inclusive) to strlen(alphanum) - 1
+		return alphanum[index];
+	});
+	return password;
+}
+
 VeQItemNodeRedReset::VeQItemNodeRedReset(DaemonToolsService *nodeRed, VeQItem *nodeRedMode) :
 	mNodeRed(nodeRed),
 	mNodeRedMode(nodeRedMode)
@@ -233,8 +248,14 @@ public:
 		add("Relay/Polarity", 0, 0, 0);
 		add("Relay/1/Function", 2, 0, 0);
 		add("Relay/1/Polarity", 0, 0, 0);
-		if (templateExists("hostapd"))
+		if (templateExists("hostapd")) {
 			add("Services/AccessPoint", 1, 0, 1);
+			// Check for a valid ap password
+			// If available, use that as default
+			// Otherwise, use some 8 byte random string
+			QString defaultApPassword = readFirstLineFromFile("/data/venus/wpa-psk", generateRandomPassword());
+			add("Services/AccessPointPassword", defaultApPassword);
+		}
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/Bluetooth", 1, 0, 1);
 		add("Services/Evcc", 1, 0, 1);
@@ -321,6 +342,24 @@ void Application::onMk3UpdateAllowedChanged(QVariant var)
 	if (lastValue.toInt(&ok) == 0 && ok && var.toInt(&ok) == 1 && ok) {
 		qDebug() << "restarting all Vebus services";
 		spawn("sh", QStringList() << "-c" << "svc -t /service/mk2-dbus.*");
+	}
+
+	lastValue = var;
+}
+
+void Application::onAccessPointPasswordChanged(QVariant var)
+{
+	static QVariant lastValue;
+	qDebug() << "Accesspoint password changed" << var.toString();
+
+	// The first change is from the fetch of the value, so ignore that value
+	if (lastValue.isValid()
+			&& var.isValid()
+			&& var.canConvert<QString>()
+			&& var != lastValue) {
+		// TODO: restart the hostapd service
+		qDebug() << "Restarting hostapd service";
+		spawn("sh", QStringList() << "-c" << "svc -t /service/hostapd");
 	}
 
 	lastValue = var;
@@ -520,6 +559,10 @@ void Application::manageDaemontoolsServices()
 							   mSettings->root()->itemGetOrCreate("Settings/Services/AccessPoint"));
 		new DaemonToolsService(mSettings, "/service/hostapd", "Settings/Services/AccessPoint",
 							   this, QStringList() << "-s" << "hostapd");
+
+		item = mSettings->root()->itemGetOrCreate("Settings/Services/AccessPointPassword");
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/AccessPoint"), "Password", item);
+		item->getValueAndChanges(this, SLOT(onAccessPointPasswordChanged(QVariant)));
 	}
 
 	/*
