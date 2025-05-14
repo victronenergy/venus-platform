@@ -45,8 +45,8 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	mInfoItem = mVebusRootItem->itemGetOrCreate("Info");
 	mErrorItem = mVebusRootItem->itemGetOrCreate("Error");
 	mNotifyItem = mVebusRootItem->itemGetOrCreate("Notify");
-	mFileItem = mVebusRootItem->itemGetOrCreate("File");
-	mActionItem = mVebusRootItem->itemGetOrCreate("Action");
+	mFileItem = mVebusRootItem->itemGetOrCreateAndProduce("File", "");
+	mActionItem = mVebusRootItem->itemGetOrCreateAndProduce("Action", 0);
 
 	mActionItem->produceValue(0);
 	mActionItem->getValueAndChanges(this, SLOT(onActionChanged(QVariant)));
