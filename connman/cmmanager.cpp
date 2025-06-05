@@ -85,6 +85,8 @@ void CmManager::disconnect()
 	foreach (CmService *service, mServices) {
 		mServices.remove(service->path());
 		emit serviceRemoved(service->path());
+		if (service == mEthernetService)
+			mEthernetService = nullptr;
 		delete (service);
 	}
 	emit serviceListChanged();
