@@ -214,6 +214,8 @@ QStringList CmManager::getServiceList(const QString& type) const
 	for (int i = 0; i < size; i++) {
 		const QString &path = mServicesOrderList.at(i);
 		const CmService *service = mServices.value(path);
+		if (!service)
+			continue;
 		if (service->type() == type)
 			serviceList << path;
 	}
