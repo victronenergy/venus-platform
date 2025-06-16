@@ -638,7 +638,7 @@ void Application::start()
 	mService->itemGetOrCreate("Device")->itemAddChild("Reboot", new VeQItemReboot());
 	mService->itemGetOrCreate("Device")->itemAddChild("Time", new VeQItemTime());
 
-	QProcess *proc = Application::spawn("get-unique-id");
+	QProcess *proc = Application::spawn("/sbin/get-unique-id");
 	proc->waitForFinished();
 	mService->itemGetOrCreateAndProduce("Device/UniqueId", QString(proc->readAllStandardOutput().trimmed()));
 
