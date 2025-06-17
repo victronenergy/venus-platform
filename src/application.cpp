@@ -614,7 +614,7 @@ void Application::start()
 	VeQItemProducer *toDbus = new VeQItemProducer(VeQItems::getRoot(), "to-dbus", this);
 	mService = toDbus->services()->itemGetOrCreate("com.victronenergy.platform", false);
 
-	mService->itemGetOrCreateAndProduce("ProductName", "Venus");
+	mService->itemGetOrCreateAndProduce("ProductName", "GX Device");
 	mService->itemGetOrCreateAndProduce("DeviceInstance", 0);
 
 	manageDaemontoolsServices();
