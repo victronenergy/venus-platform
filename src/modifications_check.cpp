@@ -4,7 +4,49 @@
 #include "application.hpp"
 #include "modifications_check.hpp"
 
-int VeQItemModificationChecksStartCheck::setValue(const QVariant &value)
+ModificationChecks::ModificationChecks(VeQItem *modChecks, QObject *parent) :
+	QObject(parent),
+	mModChecks(modChecks)
+{
+	modChecks->itemGetOrCreate("DataPartitionFreeSpace");
+	modChecks->itemGetOrCreate("FsModifiedState");
+	modChecks->itemGetOrCreate("SystemHooksState");
+	modChecks->itemGetOrCreate("SshKeyForRootPresent");
+
+	mActionItem = modChecks->itemAddChild("Action", new VeQItemModificationAction(this));
+	// execute the check once to populate the values
+	mActionItem->setValue(ModificationChecks::actionStartCheck);
+}
+
+int VeQItemModificationAction::setValue(const QVariant &var)
+{
+	ModificationChecks::Action action;
+
+	if (var.isValid()) {
+		action = static_cast<ModificationChecks::Action>(var.toInt());
+
+		switch (action) {
+			case ModificationChecks::actionStartCheck:
+				mModChecks->startCheck();
+				break;
+			case ModificationChecks::actionSystemHooksEnable:
+				mModChecks->enableSystemHooks();
+				break;
+			case ModificationChecks::actionSystemHooksDisable:
+				mModChecks->disableSystemHooks();
+				break;
+			default:
+				qDebug() << "unknown modification action" << action;
+				return -1;
+		}
+
+		produceValue(ModificationChecks::actionIdle);
+	}
+
+	return 0;
+}
+
+void ModificationChecks::startCheck()
 {
 	// check data partition free space
 	QProcess processFreeSpace;
@@ -22,9 +64,11 @@ int VeQItemModificationChecksStartCheck::setValue(const QVariant &value)
 	qDebug() << "[Modification checks] fsmodified result:" << result;
 
 	if (result == "clean") {
-		mModChecks->itemGet("FsModifiedState")->produceValue(0);
+		mModChecks->itemGet("FsModifiedState")->produceValue(ModificationChecks::fsModifiedStateClean);
+	} else if (result == "modified") {
+		mModChecks->itemGet("FsModifiedState")->produceValue(ModificationChecks::fsModifiedStateModified);
 	} else {
-		mModChecks->itemGet("FsModifiedState")->produceValue(1);
+		mModChecks->itemGet("FsModifiedState")->produceValue(ModificationChecks::fsModifiedStateUnknown);
 	}
 
 	// create variable to check if multiple files are present
@@ -59,59 +103,11 @@ int VeQItemModificationChecksStartCheck::setValue(const QVariant &value)
 		qDebug() << "[Modification checks] ssh key for root is not present";
 		mModChecks->itemGet("SshKeyForRootPresent")->produceValue(0);
 	}
-
-	return VeQItemAction::setValue(value);
-}
-
-ModificationChecks::ModificationChecks(VeQItem *modChecks, VeQItemSettings *settings, QObject *parent) :
-	QObject(parent),
-	mModChecks(modChecks),
-	mSettings(settings)
-{
-	modChecks->itemGetOrCreate("DataPartitionFreeSpace");
-	modChecks->itemGetOrCreate("FsModifiedState");
-	modChecks->itemGetOrCreate("SystemHooksState");
-	modChecks->itemGetOrCreate("SshKeyForRootPresent");
-
-	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/System/ModificationChecks/AllModificationsEnabled");
-	item->getValueAndChanges(this, SLOT(onAllModificationsEnabledChanged(QVariant)));
-
-	item = modChecks->itemAddChild("StartCheck", new VeQItemModificationChecksStartCheck(modChecks));
-	// execute the check once to populate the values
-	item->setValue(1);
-}
-
-void ModificationChecks::onAllModificationsEnabledChanged(QVariant var)
-{
-	if (!var.isValid())
-		return;
-
-	if (var.toBool())
-		restoreModifications();
-	else
-		disableModifications();
 }
 
 // enable all third party integrations
-void ModificationChecks::restoreModifications()
+void ModificationChecks::enableSystemHooks()
 {
-	// recover previous service states
-	if (serviceExists("node-red-venus")) {
-		int nodeRed = mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/NodeRed")->getValue().toInt();
-		if (nodeRed > 0) {
-			qDebug() << "[Modification checks] Node-RED was enabled, restore state: " << nodeRed;
-			mSettings->root()->itemGet("Settings/Services/NodeRed")->setValue(nodeRed);
-			mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/NodeRed")->setValue(0);
-		}
-	}
-
-	// recover previous service states
-	if (serviceExists("signalk-server") && mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/SignalK")->getValue().toInt() == 1) {
-		qDebug() << "[Modification checks] SignalK was enabled, restore state";
-		mSettings->root()->itemGet("Settings/Services/SignalK")->setValue(1);
-		mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/SignalK")->setValue(0);
-	}
-
 	// enable /data/rc.local if it exists
 	if (QFile::exists("/data/rc.local.disabled")) {
 		if (!QFile::exists("/data/rc.local")) {
@@ -133,26 +129,8 @@ void ModificationChecks::restoreModifications()
 	}
 }
 
-void ModificationChecks::disableModifications()
+void ModificationChecks::disableSystemHooks()
 {
-	// disable all third party integrations
-	// set Settings/Services/NodeRed to 0 and save previous state
-	if (serviceExists("node-red-venus")) {
-		int nodeRed = mSettings->root()->itemGet("Settings/Services/NodeRed")->getValue().toInt();
-		if (nodeRed > 0) {
-			qDebug() << "[Modification checks] Node-RED is enabled, save state and disable it";
-			mSettings->root()->itemGet("Settings/Services/NodeRed")->setValue(0);
-			mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/NodeRed")->setValue(nodeRed);
-		}
-	}
-
-	// set Settings/Services/SignalK to 0 and save previous state
-	if (serviceExists("signalk-server") && mSettings->root()->itemGet("Settings/Services/SignalK")->getValue().toInt() == 1) {
-		qDebug() << "[Modification checks] SignalK was enabled, save state and disable it";
-		mSettings->root()->itemGet("Settings/Services/SignalK")->setValue(0);
-		mSettings->root()->itemGet("Settings/System/ModificationChecks/PreviousState/SignalK")->setValue(1);
-	}
-
 	// disable /data/rc.local if it exists
 	if (QFile::exists("/data/rc.local")) {
 		qDebug() << "[Modification checks] disabled /data/rc.local";

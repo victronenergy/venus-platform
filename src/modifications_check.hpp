@@ -4,30 +4,44 @@
 
 #include <veutil/qt/ve_qitem_utils.hpp>
 
-class VeQItemModificationChecksStartCheck : public VeQItemAction {
-	Q_OBJECT
-
-public:
-	VeQItemModificationChecksStartCheck(VeQItem *modChecks) : VeQItemAction(), mModChecks(modChecks) {}
-	int setValue(const QVariant &value) override;
-
-private:
-	VeQItem *mModChecks;
-};
-
 class ModificationChecks : public QObject {
 	Q_OBJECT
 
 public:
-	explicit ModificationChecks(VeQItem *modChecks, VeQItemSettings *settings, QObject *parent = 0);
+	explicit ModificationChecks(VeQItem *modChecks, QObject *parent = 0);
 
-private slots:
-	void onAllModificationsEnabledChanged(QVariant var);
+	enum FsModifiedState {
+		fsModifiedStateUnknown  = -1,
+		fsModifiedStateClean    = 0,
+		fsModifiedStateModified = 1,
+	};
+
+	enum Action {
+		actionIdle,
+		actionStartCheck,
+		actionSystemHooksEnable,
+		actionSystemHooksDisable,
+	};
+
+protected:
+	void startCheck();
+	void disableSystemHooks();
+	void enableSystemHooks();
 
 private:
-	void disableModifications();
-	void restoreModifications();
-
+	VeQItem *mActionItem;
 	VeQItem *mModChecks;
-	VeQItemSettings *mSettings;
+
+	friend class VeQItemModificationAction;
+};
+
+class VeQItemModificationAction : public VeQItemAction {
+	Q_OBJECT
+
+public:
+	VeQItemModificationAction(ModificationChecks *modChecks) : VeQItemAction(), mModChecks(modChecks) {}
+	int setValue(const QVariant &var) override;
+
+private:
+	ModificationChecks *mModChecks;
 };
