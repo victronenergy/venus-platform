@@ -1,3 +1,5 @@
+#pragma once
+
 #include <QCoreApplication>
 #include <QTranslator>
 
@@ -21,6 +23,8 @@ QString getFeature(QString const &name, bool optional = true);
 int readIntFromFile(QString const &name, int def);
 QString readFirstLineFromFile(QString const &name, QString def = QString());
 bool writeIntToFile(QString filename, int value);
+QString getSecureRandomString(int length);
+bool writeFileAtomically(const QString &path, const QString &contents);
 
 // Since this class needs to be in a header file for moc, just place it
 // here for now...

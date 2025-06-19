@@ -24,6 +24,7 @@ HEADERS = \
 	src/display_controller.hpp \
 	src/led_controller.hpp \
 	src/modifications_check.hpp \
+	src/mqtt_bridge_registrator.hpp \
 	src/network_controller.hpp \
 	src/notification.hpp \
 	src/notifications.hpp \
@@ -44,6 +45,7 @@ SOURCES = \
 	src/led_controller.cpp \
 	src/main.cpp \
 	src/modifications_check.cpp \
+	src/mqtt_bridge_registrator.cpp \
 	src/network_controller.cpp \
 	src/notification.cpp \
 	src/notifications.cpp \
