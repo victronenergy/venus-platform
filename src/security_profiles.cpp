@@ -4,43 +4,6 @@
 #include "json.h"
 #include "security_profiles.hpp"
 
-// The security level can be lowered to allow convenien, but less
-// secure features.
-enum SecurityProfile {
-	SECURITY_PROFILE_SECURED, // (default)
-	SECURITY_PROFILE_WEAK,
-	SECURITY_PROFILE_UNSECURED,
-	SECURITY_PROFILE_LAST = SECURITY_PROFILE_UNSECURED
-};
-
-// Setting to determine if MQTT is available on normal network sockets as
-// well as the websockets used by Venus itself. The security level
-// determines if unencrypted connected are allowed as well.
-enum MqttAccess : int {
-	MQTT_ACCESS_OFF, // (default)
-	MQTT_ACCESS_ON
-};
-
-enum VrmPortal {
-	VRM_PORTAL_OFF,
-	VRM_PORTAL_READ_ONLY,
-	VRM_PORTAL_FULL // (default)
-};
-
-// These are events, not states like above. Changing the Security Profile will
-// reconfigure the webserver and reset the served websockets. Waiting 3 seconds
-// or so should be roughly enough before attempting to reconnect. A password
-// change should force existing users to login again with the new password.
-enum NetworkConfigEvent {
-	NETWORK_CONFIG_NO_EVENT,
-	/// this should trigger a re-authentication, there isn't a delay here
-	NETWORK_CONFIG_PASSWORD_CHANGED,
-	/// Changing https/http config is a webserver reload. That also disconnect
-	/// wss e.g. so the actual action is delayed, so it is communicated that it
-	/// is going to happen. It is actually done 2 seconds after announcing it.
-	NETWORK_CONFIG_SECURITY_PROFILE_CHANGED,
-};
-
 SecurityApi::SecurityApi(VeQItem *pltService, VeQItemSettings *settings) :
 	VeQItemAction()
 {
@@ -287,9 +250,9 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 								 VenusServices *venusServices, QObject *parent) :
 	QObject(parent)
 {
-	mMqttBridgeRegistrar = new VeQItemMqttBridgeRegistrar();
-	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", mMqttBridgeRegistrar);
-	connect(mMqttBridgeRegistrar, SIGNAL(bridgeConfigChanged()), this, SLOT(onBridgeConfigChanged()));
+	mMqttBridgeRegistrator = new VeQItemMqttBridgeRegistrator(pltService);
+	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", mMqttBridgeRegistrator);
+	connect(mMqttBridgeRegistrator, SIGNAL(bridgeConfigChanged()), this, SLOT(onBridgeConfigChanged()));
 
 	pltService->itemGetOrCreate("Security")->itemAddChild("Api", new SecurityApi(pltService, settings));
 
@@ -340,11 +303,13 @@ void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 		// The Remote tunnel also depends on this setting, but also many more.. So it
 		// is handled separately in the VrmTunnelSetup class above.
 
+		mMqttBridgeRegistrator->setVrmPortalMode(var);
+
 		// Flashmq depends on the settings as well, since off, read-only and full change
 		// the bridge configuration. Trigger the MQTT registration for changes to
 		// read-only and full, so the config gets updated.
 		if (wasValid && mVrmPortal.isValid() && mVrmPortal != VRM_PORTAL_OFF)
-			mMqttBridgeRegistrar->check();
+			mMqttBridgeRegistrator->check();
 
 		enableMqttBridge(false);
 	}

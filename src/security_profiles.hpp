@@ -7,60 +7,44 @@
 #include <veutil/qt/ve_qitem_utils.hpp>
 #include <veutil/qt/ve_qitems_dbus.hpp>
 
+#include "mqtt_bridge_registrator.hpp"
 #include "venus_services.hpp"
 
-class VeQItemMqttBridgeRegistrar: public VeQItemAction {
-	Q_OBJECT
+// The security level can be lowered to allow convenien, but less
+// secure features.
+enum SecurityProfile {
+	SECURITY_PROFILE_SECURED, // (default)
+	SECURITY_PROFILE_WEAK,
+	SECURITY_PROFILE_UNSECURED,
+	SECURITY_PROFILE_LAST = SECURITY_PROFILE_UNSECURED
+};
 
-public:
-	VeQItemMqttBridgeRegistrar() :
-		VeQItemAction()
-	{}
+// Setting to determine if MQTT is available on normal network sockets as
+// well as the websockets used by Venus itself. The security level
+// determines if unencrypted connected are allowed as well.
+enum MqttAccess : int {
+	MQTT_ACCESS_OFF, // (default)
+	MQTT_ACCESS_ON
+};
 
-	int setValue(const QVariant &value) override {
-		int ret = check();
-		if (ret < 0)
-			return ret;
-		return VeQItemAction::setValue(value);
-	}
+enum VrmPortal {
+	VRM_PORTAL_OFF,
+	VRM_PORTAL_READ_ONLY,
+	VRM_PORTAL_FULL // (default)
+};
 
-	int check() {
-		if (mProc)
-			return -1;
-
-		mProc = new QProcess();
-		connect(mProc, SIGNAL(finished(int)), this, SLOT(onFinished()));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
-		connect(mProc, SIGNAL(errorOccurred(QProcess::ProcessError)), this, SLOT(onErrorOccurred(QProcess::ProcessError)));
-#else
-		connect(mProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(onErrorOccurred(QProcess::ProcessError)));
-#endif
-		qDebug() << "[MqttBridgeRegistrar]" << "registering";
-		mProc->start("mosquitto_bridge_registrator.py");
-
-		return 0;
-	}
-
-signals:
-	void bridgeConfigChanged();
-
-private slots:
-	void onFinished() {
-		qDebug() << "[MqttBridgeRegistrar]" << "done";
-		if (mProc->exitCode() == 100)
-			emit bridgeConfigChanged();
-		mProc->deleteLater();
-		mProc = nullptr;
-	}
-
-	void onErrorOccurred(QProcess::ProcessError error) {
-		qDebug() << "[MqttBridgeRegistrar]" << "error during registration" << error;
-		mProc->deleteLater();
-		mProc = nullptr;
-	}
-
-private:
-	QProcess *mProc = nullptr;
+// These are events, not states like above. Changing the Security Profile will
+// reconfigure the webserver and reset the served websockets. Waiting 3 seconds
+// or so should be roughly enough before attempting to reconnect. A password
+// change should force existing users to login again with the new password.
+enum NetworkConfigEvent {
+	NETWORK_CONFIG_NO_EVENT,
+	/// this should trigger a re-authentication, there isn't a delay here
+	NETWORK_CONFIG_PASSWORD_CHANGED,
+	/// Changing https/http config is a webserver reload. That also disconnect
+	/// wss e.g. so the actual action is delayed, so it is communicated that it
+	/// is going to happen. It is actually done 2 seconds after announcing it.
+	NETWORK_CONFIG_SECURITY_PROFILE_CHANGED,
 };
 
 class SecurityApi : public VeQItemAction
@@ -143,5 +127,5 @@ private:
 
 	VrmTunnelSetup *mTunnelSetup;
 
-	VeQItemMqttBridgeRegistrar *mMqttBridgeRegistrar;
+	VeQItemMqttBridgeRegistrator *mMqttBridgeRegistrator = nullptr;
 };

@@ -1,4 +1,6 @@
+#include <fcntl.h>
 #include <signal.h>
+#include <sys/random.h>
 
 #include <veutil/qt/daemontools_service.hpp>
 #include <veutil/qt/ve_dbus_connection.hpp>
@@ -114,6 +116,86 @@ static bool dataPartionError()
 	QString line = in.readLine();
 
 	return line == "failed" || line == "failed-to-mount";
+}
+
+QString getSecureRandomString(int length)
+{
+	QVector<uint64_t> buf(length);
+	const ssize_t random_len = length * sizeof(uint64_t);
+	ssize_t actual_len = -1;
+
+	// Using linux syscall directly, to avoid any wrong invocation of portable ones. We know this works well.
+	while ((actual_len = getrandom(buf.data(), random_len, 0)) < 0)	{
+		if (errno == EINTR)
+			continue;
+		break;
+	}
+
+	// SIGABRT is fine. This normally can't/won't happen, and if it does, something is really broken.
+	if (actual_len < 0 || actual_len != random_len)
+		raise(SIGABRT);
+
+	static constexpr std::string_view possibleCharacters{"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrtsuvwxyz1234567890"};
+	static constexpr size_t possibleCharactersCount = possibleCharacters.size();
+
+	QString randomString(buf.size(), '\0');
+
+	for (ssize_t i = 0; i < randomString.size(); i++) {
+		randomString[i] = possibleCharacters.at(buf.at(i) % possibleCharactersCount);
+	}
+
+	return randomString;
+}
+
+bool writeFileAtomically(const QString &path, const QString &contents)
+{
+	QFileInfo finalPathInfo(path);
+	QFileInfo tmpPathInfo(finalPathInfo.absoluteFilePath() + "." + getSecureRandomString(5) + ".tmp");
+
+	{
+		QDir dir;
+		if (!dir.mkpath(finalPathInfo.absolutePath())) {
+			qCritical() << "Failed to make path:" << finalPathInfo.absolutePath();
+			return false;
+		}
+	}
+
+	QFile passwordFileTmp(tmpPathInfo.absoluteFilePath());
+
+	if (!passwordFileTmp.open(QIODevice::WriteOnly | QIODevice::Text)) {
+		qCritical() << "Can't open" << passwordFileTmp.fileName() << "for writing.";
+		return false;
+	}
+
+	{
+		QTextStream s(&passwordFileTmp);
+		s << contents;
+	}
+
+	if (passwordFileTmp.error() != QFileDevice::NoError) {
+		qCritical() << "Writing to" << passwordFileTmp.fileName() << "failed:" << passwordFileTmp.errorString();
+		return false;
+	}
+
+	passwordFileTmp.close();
+
+	// Qt doesn't fsync.
+	int fd = open(tmpPathInfo.absoluteFilePath().toLocal8Bit().data(), O_RDONLY);
+	fsync(fd);
+	close(fd);
+
+	// Using glibc, because Qt's version is not atomic.
+	if (rename(passwordFileTmp.fileName().toLocal8Bit(), finalPathInfo.absoluteFilePath().toLocal8Bit()) < 0) {
+		qCritical() << "Renaming" << passwordFileTmp.fileName() << "to" << finalPathInfo.absoluteFilePath() << "failed.";
+		return false;
+	}
+
+	// Make sure the rename is on disk.
+	int fddir = open(finalPathInfo.absolutePath().toLocal8Bit().data(), O_RDONLY);
+	fsync(fddir);
+	close(fddir);
+
+	return true;
 }
 
 int VeQItemReboot::setValue(const QVariant &value)
