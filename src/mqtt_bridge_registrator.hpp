@@ -63,7 +63,7 @@ signals:
 	void bridgeConfigChanged();
 
 private:
-
+	bool mRegistrationIsPending = false;
 	QString mVrmId;
 	QVariant mVrmPortalMode;
 	QScopedPointer<VrmTokenRegistrator, QScopedPointerDeleteLater> registrator;

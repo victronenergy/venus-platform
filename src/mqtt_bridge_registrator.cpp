@@ -278,12 +278,23 @@ VeQItemMqttBridgeRegistrator::VeQItemMqttBridgeRegistrator(VeQItem *pltService) 
 int VeQItemMqttBridgeRegistrator::setValue(const QVariant &value)
 {
 	(void) value;
+
+	if (!mVrmPortalMode.isValid()) {
+		mRegistrationIsPending = true;
+		return 0;
+	}
+
 	return check();
 }
 
 void VeQItemMqttBridgeRegistrator::setVrmPortalMode(const QVariant &mode)
 {
 	this->mVrmPortalMode = mode;
+
+	if (mRegistrationIsPending) {
+		mRegistrationIsPending = false;
+		check();
+	}
 }
 
 int VeQItemMqttBridgeRegistrator::check()
