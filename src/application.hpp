@@ -83,6 +83,7 @@ protected slots:
 	void onLocalSettingsStateChanged(VeQItem::State state);
 	void onLocalSettingsTimeout();
 	void onMk3UpdateAllowedChanged(QVariant var);
+	void onAccessPointPasswordChanged(QVariant var);
 	void onRunningGuiVersionObtained(QVariant var);
 	void onRelaySettingChanged(QVariant var);
 	void onServiceAdded(VeQItem *var);
