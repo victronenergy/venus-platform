@@ -407,6 +407,23 @@ void Application::onMk3UpdateAllowedChanged(QVariant var)
 	lastValue = var;
 }
 
+void Application::onAccessPointPasswordChanged(QVariant var)
+{
+	static QVariant lastValue;
+	qDebug() << "Accesspoint password changed" << var.toString();
+
+	// The first change is from the fetch of the value, so ignore that value
+	if (lastValue.isValid()
+			&& var.isValid()
+			&& var.canConvert<QString>()
+			&& var != lastValue) {
+		qDebug() << "Restarting hostapd service";
+		spawn("svc", QStringList() << "-t" << "/service/hostapd");
+	}
+
+	lastValue = var;
+}
+
 void Application::onDemoSettingChanged(QVariant var)
 {
 	static bool isStarted = false;
@@ -601,6 +618,9 @@ void Application::manageDaemontoolsServices()
 							   mSettings->root()->itemGetOrCreate("Settings/Services/AccessPoint"));
 		new DaemonToolsService(mSettings, "/service/hostapd", "Settings/Services/AccessPoint",
 							   this, QStringList() << "-s" << "hostapd");
+
+		item = mSettings->root()->itemGetOrCreate("Settings/Services/AccessPointPassword");
+		item->getValueAndChanges(this, SLOT(onAccessPointPasswordChanged(QVariant)));
 	}
 
 	/*
