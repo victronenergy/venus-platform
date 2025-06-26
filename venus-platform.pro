@@ -30,6 +30,7 @@ HEADERS = \
 	src/notifications.hpp \
 	src/relay.hpp \
 	src/security_profiles.hpp \
+	src/token_users.hpp \
 	src/time.hpp \
 	src/updater.hpp \
 	src/venus_service.hpp \
@@ -52,6 +53,7 @@ SOURCES = \
 	src/relay.cpp \
 	src/security_profiles.cpp \
 	src/time.cpp \
+	src/token_users.cpp \
 	src/updater.cpp \
 	src/venus_service.cpp \
 	src/venus_services.cpp \

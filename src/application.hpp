@@ -13,6 +13,7 @@
 #include "network_controller.hpp"
 #include "notifications.hpp"
 #include "relay.hpp"
+#include "token_users.hpp"
 #include "updater.hpp"
 #include "venus_services.hpp"
 #include "vebus_backup.hpp"
@@ -137,4 +138,5 @@ private:
 	QList<QString> mParallelBmsConditions;
 
 	DaemonToolsService *mNodeRed = nullptr;
+	TokenUserWatcher *mTokenWatcher;
 };

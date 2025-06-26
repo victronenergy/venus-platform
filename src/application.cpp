@@ -641,6 +641,8 @@ void Application::manageDaemontoolsServices()
 		VeQItem *item =	mSettings->root()->itemGetOrCreate("Settings/Services/Evcc");
 		item->getValueAndChanges(this, SLOT(onEvccSettingChanged(QVariant)));
 	}
+
+	mTokenWatcher = new TokenUserWatcher(mService);
 }
 
 void Application::init()
