@@ -87,6 +87,7 @@ private:
 
 	QString connection;
 	QString fileName;
+	QString vebusFirmwareVersionString;
 	QString vebusFirmwareVersionNumber;
 	QString vebusFirmwareSubVersionNumber;
 	QString vebusProductId;

@@ -29,6 +29,7 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	fileName.clear();
 	vebusFirmwareVersionNumber.clear();
 	vebusFirmwareSubVersionNumber.clear();
+	vebusFirmwareVersionString.clear();
 	vebusProductId.clear();
 
 	QString con = var.toString();
@@ -254,6 +255,7 @@ void VebusBackupService::runBackupAction()
 	}
 
 	working = true;
+	fileName = vebusFirmwareVersionString + "-" + fileName;
 
 	qDebug() << "Start Ve.Bus backup to file name" << fileName;
 
@@ -375,6 +377,12 @@ bool VebusBackupService::getProductIdAndVersions()
 		return false;
 	}
 	vebusFirmwareVersionNumber = QString::number(versionVar.toUInt(), 16);
+	// GetText will return firmware version with subversion, e.g. 556.S99.
+	// If GetText is not available, we use the version number.
+	vebusFirmwareVersionString = mMk2DbusFirmwareVersionItem->getText();
+	if (vebusFirmwareVersionString.isEmpty()) {
+		vebusFirmwareVersionString = vebusFirmwareVersionNumber;
+	}
 
 	QVariant subVersionVar = mMk2DbusSubVersionItem->getValue();
 	if (!subVersionVar.isValid()) {
