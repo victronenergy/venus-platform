@@ -1,7 +1,6 @@
 #include <QDir>
 
 #include "application.hpp"
-#include "json.h"
 #include "security_profiles.hpp"
 
 SecurityApi::SecurityApi(VeQItem *pltService, VeQItemSettings *settings) :
@@ -21,7 +20,7 @@ int SecurityApi::setValue(const QVariant &value)
 	bool ok;
 	QVariantMap map;
 	QVariant password;
-	QVariant data;
+	QJsonDocument doc;
 	QVariant securityProfile;
 	NetworkConfigEvent configEvent = NETWORK_CONFIG_NO_EVENT;
 
@@ -31,13 +30,13 @@ int SecurityApi::setValue(const QVariant &value)
 		goto out;
 	}
 
-	data = QtJson::parse(value.toString(), ok);
-	if (!ok) {
+	doc = QJsonDocument::fromJson(value.toByteArray());
+	if (doc.isNull()) {
 		qWarning() << uniqueId() << "[Api] unable to parse the json";
 		goto out;
 	}
 
-	map = data.toMap();
+	map = doc.toVariant().toMap();
 
 	// It can't hurt to double check that the user actually has permissions to call this.
 

@@ -1,24 +1,17 @@
+#include <QJsonDocument>
+
 #include "network_controller.hpp"
-#include "json.h"
 
 int VeQItemJson::setValue(const QVariant &value)
 {
 	if (!value.isValid())
 		return VeQItemAction::setValue(value);
 
-	QVariantMap data = parseJson(value.toString());
-
-	if (!data.empty())
-		emit jsonParsed(data);
+	QJsonDocument doc = QJsonDocument::fromJson(value.toByteArray());
+	if (!doc.isNull())
+		emit jsonParsed(doc);
 
 	return VeQItemAction::setValue(value);
-}
-
-QVariantMap VeQItemJson::parseJson(const QString &json)
-{
-	bool ok;
-	QVariant data = QtJson::parse(json, ok);
-	return ok ? data.toMap() : QVariantMap();
 }
 
 int VeQItemScan::setValue(const QVariant &value)
@@ -76,7 +69,7 @@ NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
 	connect(mConnman, SIGNAL(serviceChanged(QString,QVariantMap)), this, SLOT(buildServicesList()));
 	connect(mConnman, SIGNAL(serviceAdded(QString)), this, SLOT(onServiceAdded(QString)));
 	connect(mConnman, SIGNAL(serviceRemoved(QString)), this, SLOT(onServiceRemoved(QString)));
-	connect(parser, SIGNAL(jsonParsed(QVariantMap)), this, SLOT(handleCommand(QVariantMap)));
+	connect(parser, SIGNAL(jsonParsed(QJsonDocument)), this, SLOT(handleCommand(QJsonDocument)));
 
 	buildServicesList();
 }
@@ -152,39 +145,41 @@ void NetworkController::buildServicesList()
 		}
 		obj.insert(t, list);
 	}
-	QByteArray data = QtJson::serialize(obj);
-	mItem->itemGetOrCreateAndProduce("Services", QString(data));
+	QJsonDocument doc = QJsonDocument::fromVariant(obj);
+	QString json = doc.toJson(QJsonDocument::Compact);
+	mItem->itemGetOrCreateAndProduce("Services", json);
 }
 
-void NetworkController::handleCommand(const QVariantMap &data)
+void NetworkController::handleCommand(const QJsonDocument &doc)
 {
 	CmService *service = nullptr;
+	QVariantMap map = doc.toVariant().toMap();
 
-	if (data.contains("Service")) {
-		service = mConnman->getService(data["Service"].toString());
-	}
-	if (data.contains("Agent")) {
-		if (data["Agent"] == "on")
+	if (map.contains("Service"))
+		service = mConnman->getService(doc["Service"].toString());
+
+	if (map.contains("Agent")) {
+		if (doc["Agent"] == "on")
 			mAgent = mConnman->registerAgent("/com/victronenergy/ccgx");
-		else if (data["Agent"] == "off")
+		else if (map["Agent"] == "off")
 			mConnman->unRegisterAgent("/com/victronenergy/ccgx");
-	} else if (data.contains("Action")) {
-		if (data["Action"] == "connect") {
+	} else if (map.contains("Action")) {
+		if (map["Action"] == "connect") {
 			if (mWifiService && mWifiService != service)
 				mWifiService->disconnect();
-			mAgent->passphrase(data["Passphrase"].toString());
+			mAgent->passphrase(doc["Passphrase"].toString());
 			mWifiService = service;
 
 			if (mWifiService) {
 				mWifiService->connect();
 				connectServiceSignals(mWifiService);
 			}
-		} else if (data["Action"] == "disconnect") {
+		} else if (map["Action"] == "disconnect") {
 			if (mWifiService) {
 				mWifiService->disconnect();
 				mWifiService = nullptr;
 			}
-		} else if (data["Action"] == "remove") {
+		} else if (map["Action"] == "remove") {
 			if (service) {
 				service->remove();
 				if (mWifiService == service)
@@ -193,7 +188,7 @@ void NetworkController::handleCommand(const QVariantMap &data)
 		}
 	} else if (service) {
 		// Check for manual configuration parameters
-		setServiceProperties(service, data);
+		setServiceProperties(service, map);
 	}
 }
 

@@ -29,10 +29,7 @@ public:
 	int setValue(const QVariant &value) override;
 
 signals:
-	void jsonParsed(const QVariantMap &data);
-
-private:
-	QVariantMap parseJson(const QString &json);
+	void jsonParsed(const QJsonDocument &doc);
 };
 
 class NetworkController : public QObject
@@ -42,7 +39,7 @@ public:
 	explicit NetworkController(VeQItem *parentItem, QObject *parent = 0);
 
 private slots:
-	void handleCommand(const QVariantMap &data);
+	void handleCommand(const QJsonDocument &doc);
 	void buildServicesList();
 	void updateLinkLocal();
 	void updateWifiState();
