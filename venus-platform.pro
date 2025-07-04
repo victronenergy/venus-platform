@@ -14,7 +14,7 @@ translations.path = $${target.path}/translations
 translations.files = translations/*.qm
 INSTALLS += translations
 
-equals(QT_MAJOR_VERSION, 6): QMAKE_CXXFLAGS += -std=c++17
+QMAKE_CXXFLAGS += -std=c++17
 
 HEADERS = \
 	src/alarm_item.hpp \
@@ -82,11 +82,9 @@ include("connman/connman.pri")
 QMAKE_CXXFLAGS *= -ffunction-sections
 QMAKE_LFLAGS *= -Wl,--gc-sections
 
-!lessThan(QT_VERSION, 5) {
-	QMAKE_CXXFLAGS += "-Wsuggest-override"
-	CONFIG(debug, debug|release) {
-		QMAKE_CXXFLAGS += "-Werror=suggest-override"
-	}
+QMAKE_CXXFLAGS += "-Wsuggest-override"
+CONFIG(debug, debug|release) {
+	QMAKE_CXXFLAGS += "-Werror=suggest-override"
 }
 
 gcc {
