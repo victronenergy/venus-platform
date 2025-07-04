@@ -88,3 +88,7 @@ QMAKE_LFLAGS *= -Wl,--gc-sections
 		QMAKE_CXXFLAGS += "-Werror=suggest-override"
 	}
 }
+
+gcc {
+	QMAKE_CXXFLAGS += -Wno-psabi
+}
