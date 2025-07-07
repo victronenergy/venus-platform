@@ -236,7 +236,7 @@ QString NetworkController::getLinkLocalAddr()
 {
 	QProcess proc;
 
-	proc.start("ip -o -4 addr sh dev ll-eth0 scope link");
+	proc.start("ip", QStringList{"-o", "-4", "addr", "sh", "dev", "ll-eth0", "scope", "link"});
 	proc.waitForFinished();
 
 	QString out(proc.readAllStandardOutput());
