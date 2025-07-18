@@ -27,7 +27,7 @@ class VrmTokenRegistrator : public QObject
 	bool stopping = false;
 	bool quiet = false;
 
-	static bool generateAndOrGetPassword(QString &output);
+	bool generateAndOrGetPassword(QString &output);
 	void setupSsl();
 	bool registerWithVrm();
 	void writeFlashMQConfig();

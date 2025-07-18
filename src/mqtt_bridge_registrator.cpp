@@ -22,7 +22,8 @@ bool VrmTokenRegistrator::generateAndOrGetPassword(QString &output)
 	 * If the file is there, we use it at all costs, regardless of its contents. We should not overwrite it.
 	 */
 	if (QFile::exists(mqttPasswordFilePath)) {
-		qDebug() << "Using existing" << mqttPasswordFilePath;
+		if (!quiet)
+			qDebug() << "Using existing" << mqttPasswordFilePath;
 		password = readFirstLineFromFile(mqttPasswordFilePath);
 
 		if (password.isNull()) {
