@@ -17,6 +17,7 @@
 #include "updater.hpp"
 #include "venus_services.hpp"
 #include "vebus_backup.hpp"
+#include "buttonhandler.hpp"
 
 bool serviceExists(QString const &svc);
 QStringList getFeatureList(const QString &name, bool lines = false);
@@ -110,6 +111,7 @@ private:
 	Updater *mUpdater;
 	DisplayController *mDisplayController;
 	NetworkController *mNetworkController;
+	ButtonHandler *mButtonHandler = nullptr;
 
 	QString mLanguage;
 	QTranslator mTranslator;

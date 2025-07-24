@@ -368,6 +368,8 @@ Application::Application::Application(int &argc, char **argv) :
 		connect(&mLocalSettingsTimeout, SIGNAL(timeout()), SLOT(onLocalSettingsTimeout()));
 		mLocalSettingsTimeout.start();
 	}
+
+	mButtonHandler = new ButtonHandler(this);
 }
 
 void Application::onLocalSettingsStateChanged(VeQItem::State state)
