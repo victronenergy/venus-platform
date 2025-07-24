@@ -20,6 +20,7 @@ HEADERS = \
 	src/alarm_item.hpp \
 	src/alarm_monitor.hpp \
 	src/application.hpp \
+	src/buttonhandler.hpp \
 	src/buzzer.hpp \
 	src/display_controller.hpp \
 	src/led_controller.hpp \
@@ -41,6 +42,7 @@ SOURCES = \
 	src/alarm_item.cpp \
 	src/alarm_monitor.cpp \
 	src/application.cpp \
+	src/buttonhandler.cpp \
 	src/buzzer.cpp \
 	src/display_controller.cpp \
 	src/led_controller.cpp \
@@ -74,6 +76,12 @@ TRANSLATIONS = \
 	translations/venus_sv.ts \
 	translations/venus_tr.ts \
 	translations/venus_zh-CN.ts \
+
+unix {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += libevdev
+}
+
 
 VE_CONFIG += udev
 include("ext/veutil/veutil.pri")
