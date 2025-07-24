@@ -1,0 +1,62 @@
+#pragma once
+
+#include <QObject>
+#include <QSocketNotifier>
+#include <QTimer>
+
+#include <libevdev/libevdev.h>
+
+class LibevdevDevice
+{
+	Q_DISABLE_COPY(LibevdevDevice)
+
+	int mFd = -1;
+	struct libevdev *mDev = nullptr;
+
+	void free() noexcept;
+public:
+	enum class KeyEvent {
+		Up,
+		Down
+	};
+
+	LibevdevDevice() = default;
+	LibevdevDevice(const QString &devpath);
+	LibevdevDevice(LibevdevDevice &&other) noexcept;
+	~LibevdevDevice() noexcept;
+
+	LibevdevDevice &operator=(LibevdevDevice &&other) noexcept;
+
+	static std::vector<LibevdevDevice> getDevices();
+	QString getName() const;
+	bool isButton() const;
+	int getFd() const;
+	QList<KeyEvent> getEvents();
+};
+
+class ButtonHandler : public QObject
+{
+	Q_OBJECT
+
+	std::unordered_map<int, LibevdevDevice> mButtons;
+
+	QTimer mShortPresses;
+	QTimer mLongPress;
+	LibevdevDevice::KeyEvent mCurState = LibevdevDevice::KeyEvent::Up;
+	int mPressCounter = 0;
+
+	void resetPressState();
+
+private slots:
+	void onShortPressesTimeout();
+	void onLongPressTimeout();
+	void onButtonActivity(QSocketDescriptor socket);
+
+public:
+	ButtonHandler(QObject *parent);
+
+signals:
+	void shortPress();
+	void doublePress();
+	void longPress();
+};

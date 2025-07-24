@@ -8,6 +8,7 @@
 
 #include "alarm_item.hpp"
 #include "buzzer.hpp"
+#include "button_handler.hpp"
 #include "display_controller.hpp"
 #include "led_controller.hpp"
 #include "netlink_monitor.hpp"
@@ -126,6 +127,8 @@ private:
 	NetlinkMonitor mNetlinkMonitor;
 	VeQItem *mLinkLocalItem;
 	NetworkController *mNetworkController;
+	ButtonHandler *mButtonHandler = nullptr;
+
 	QString mLanguage;
 	QTranslator mTranslator;
 
