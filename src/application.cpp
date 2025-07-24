@@ -690,6 +690,8 @@ void Application::init()
 	// already obtained the selected language, hence this directly continues in the slot.
 	VeQItem *lang = mSettings->root()->itemGetOrCreate("Settings/Gui/Language");
 	lang->getValueAndChanges(this, SLOT(onLanguageChanged(QVariant)));
+
+	mButtonHandler = new ButtonHandler(this);
 }
 
 void Application::onLanguageChanged(QVariant var)
