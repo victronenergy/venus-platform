@@ -100,6 +100,9 @@ protected slots:
 	void onGensetStateChanged(VeQItem::State state);
 	void onBatteryProductIdChanged(QVariant var);
 	void checkDataPartitionUsedSpace();
+	void onButtonShortPress();
+	void onButtonDoublePress();
+	void onButtonLongPress();
 
 private:
 	void createItemsForFlashmq();
