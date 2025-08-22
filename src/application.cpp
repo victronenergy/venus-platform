@@ -866,7 +866,8 @@ void Application::onButtonDoublePress()
 
 void Application::onButtonLongPress()
 {
-
+	QProcess *p = new QProcess;
+	p->startDetached("/opt/victronenergy/venus-platform/network-resetter");
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)
