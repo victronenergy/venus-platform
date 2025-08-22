@@ -106,6 +106,9 @@ protected slots:
 	void checkDataPartitionUsedSpace();
 	void onNetlinkAddressAdded(const QString &iface, const QString &address);
 	void onNetlinkAddressRemoved(const QString &iface, const QString &address);
+	void onButtonShortPress();
+	void onButtonDoublePress();
+	void onButtonLongPress();
 
 private:
 	void createItemsForFlashmq();
