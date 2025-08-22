@@ -27,6 +27,7 @@ struct FreeSpace
 };
 
 FreeSpace getFreeSpace(const std::string &path);
+bool serviceRunning(QString const &svc, bool *ok);
 bool serviceExists(QString const &svc);
 QStringList getFeatureList(const QString &name, bool lines = false);
 QString getFeature(QString const &name, bool optional = true);
