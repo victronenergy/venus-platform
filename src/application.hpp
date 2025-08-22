@@ -27,6 +27,7 @@ QString readFirstLineFromFile(QString const &name, QString def = QString());
 bool writeIntToFile(QString filename, int value);
 QString getSecureRandomString(int length);
 bool writeFileAtomically(const QString &path, const QString &contents);
+void setWifiHotspotAndBluetooth(VeQItemSettings *settings, const int val);
 
 // Since this class needs to be in a header file for moc, just place it
 // here for now...
@@ -92,6 +93,9 @@ protected slots:
 	void onGensetStateChanged(VeQItem::State state);
 	void onBatteryProductIdChanged(QVariant var);
 	void checkDataPartitionUsedSpace();
+	void onButtonShortPress();
+	void onButtonDoublePress();
+	void onButtonLongPress();
 
 private:
 	void createItemsForFlashmq();

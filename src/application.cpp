@@ -198,6 +198,25 @@ bool writeFileAtomically(const QString &path, const QString &contents)
 	return true;
 }
 
+void setWifiHotspotAndBluetooth(VeQItemSettings *settings, const int val)
+{
+	if (!settings)
+		return;
+
+	VeQItem *accessPoint = settings->root()->itemGetOrCreate("Settings/Services/AccessPoint");
+	VeQItem *bluetooth = settings->root()->itemGetOrCreate("/Settings/Services/Bluetooth");
+
+	if (accessPoint) {
+		qDebug() << "Setting WiFi access point to:" << val;
+		accessPoint->setValue(val);
+	}
+
+	if (bluetooth) {
+		qDebug() << "Setting Bluetooth to:" << val;
+		bluetooth->setValue(val);
+	}
+}
+
 int VeQItemReboot::setValue(const QVariant &value)
 {
 	Q_UNUSED(value);
@@ -667,6 +686,10 @@ void Application::init()
 	lang->getValueAndChanges(this, SLOT(onLanguageChanged(QVariant)));
 
 	mButtonHandler = new ButtonHandler(this);
+	connect(mButtonHandler, &ButtonHandler::shortPress, this, &Application::onButtonShortPress);
+	connect(mButtonHandler, &ButtonHandler::doublePress, this, &Application::onButtonDoublePress);
+	connect(mButtonHandler, &ButtonHandler::longPress, this, &Application::onButtonLongPress);
+
 }
 
 void Application::onLanguageChanged(QVariant var)
@@ -808,6 +831,32 @@ void Application::checkDataPartitionUsedSpace()
 	bool ok;
 	int usedSpace = processFreeSpace.readAllStandardOutput().trimmed().toInt(&ok);
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionFullError", (ok && usedSpace > 90) ? 1 : 0);
+}
+
+void Application::onButtonShortPress()
+{
+	VeQItem *accessPoint = mSettings->root()->itemGetOrCreate("Settings/Services/AccessPoint");
+
+	int cur = 0;
+
+	// Like Python version, the access point var is leading when it comes to current state, and we drag the bluetooth with us.
+	if (accessPoint) {
+		QVariant curvar = accessPoint->getValue();
+		cur = curvar.isValid() ? curvar.toInt() : 0;
+		cur = !cur;
+	}
+
+	setWifiHotspotAndBluetooth(mSettings, cur);
+}
+
+void Application::onButtonDoublePress()
+{
+
+}
+
+void Application::onButtonLongPress()
+{
+
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)
