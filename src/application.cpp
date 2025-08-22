@@ -12,6 +12,7 @@
 #include "modifications_check.hpp"
 #include "security_profiles.hpp"
 #include "time.hpp"
+#include "utils.hpp"
 
 #define LYNX_BMS_500 0xA3E5
 #define LYNX_BMS_500_NG 0xA3E4
@@ -692,6 +693,10 @@ void Application::init()
 	lang->getValueAndChanges(this, SLOT(onLanguageChanged(QVariant)));
 
 	mButtonHandler = new ButtonHandler(this);
+	connect(mButtonHandler, &ButtonHandler::shortPress, this, &Application::onButtonShortPress);
+	connect(mButtonHandler, &ButtonHandler::doublePress, this, &Application::onButtonDoublePress);
+	connect(mButtonHandler, &ButtonHandler::longPress, this, &Application::onButtonLongPress);
+
 }
 
 void Application::onLanguageChanged(QVariant var)
@@ -836,6 +841,32 @@ void Application::checkDataPartitionUsedSpace()
 	}
 
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionFullError", percent_used > 90 ? 1 : 0);
+}
+
+void Application::onButtonShortPress()
+{
+	VeQItem *accessPoint = mSettings->root()->itemGetOrCreate("Settings/Services/AccessPoint");
+
+	int cur = 0;
+
+	// Like Python version, the access point var is leading when it comes to current state, and we drag the bluetooth with us.
+	if (accessPoint) {
+		QVariant curvar = accessPoint->getValue();
+		cur = curvar.isValid() ? curvar.toInt() : 0;
+		cur = !cur;
+	}
+
+	setWifiHotspotAndBluetooth(mSettings, cur);
+}
+
+void Application::onButtonDoublePress()
+{
+
+}
+
+void Application::onButtonLongPress()
+{
+
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)

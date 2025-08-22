@@ -37,6 +37,7 @@ HEADERS = \
 	src/venus_service.hpp \
 	src/venus_services.hpp \
 	src/vebus_backup.hpp \
+	src/utils.hpp \
 
 SOURCES = \
 	src/alarm_item.cpp \
@@ -60,6 +61,7 @@ SOURCES = \
 	src/venus_service.cpp \
 	src/venus_services.cpp \
 	src/vebus_backup.cpp \
+	src/utils.cpp \
 
 TRANSLATIONS = \
 	translations/venus_ar.ts \
