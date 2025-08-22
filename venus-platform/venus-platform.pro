@@ -36,6 +36,7 @@ HEADERS = \
 	../src/token_users.hpp \
 	../src/time.hpp \
 	../src/updater.hpp \
+	../src/utils.hpp \
 	../src/venus_service.hpp \
 	../src/venus_services.hpp \
 	../src/vebus_backup.hpp \
@@ -60,6 +61,7 @@ SOURCES = \
 	../src/time.cpp \
 	../src/token_users.cpp \
 	../src/updater.cpp \
+	../src/utils.cpp \
 	../src/venus_service.cpp \
 	../src/venus_services.cpp \
 	../src/vebus_backup.cpp \
