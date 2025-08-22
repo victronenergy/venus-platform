@@ -11,6 +11,7 @@
 #include "modifications_check.hpp"
 #include "security_profiles.hpp"
 #include "time.hpp"
+#include "networkresetter.h"
 
 #define LYNX_BMS_500 0xA3E5
 #define LYNX_BMS_500_NG 0xA3E4
@@ -843,7 +844,8 @@ void Application::onButtonDoublePress()
 
 void Application::onButtonLongPress()
 {
-
+	NetworkResetter *resetter = new NetworkResetter(mSettings, this);
+	resetter->resetNetwork();
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)

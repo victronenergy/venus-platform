@@ -27,6 +27,7 @@ HEADERS = \
 	src/modifications_check.hpp \
 	src/mqtt_bridge_registrator.hpp \
 	src/network_controller.hpp \
+	src/networkresetter.h \
 	src/notification.hpp \
 	src/notifications.hpp \
 	src/relay.hpp \
@@ -50,6 +51,7 @@ SOURCES = \
 	src/modifications_check.cpp \
 	src/mqtt_bridge_registrator.cpp \
 	src/network_controller.cpp \
+	src/networkresetter.cpp \
 	src/notification.cpp \
 	src/notifications.cpp \
 	src/relay.cpp \
