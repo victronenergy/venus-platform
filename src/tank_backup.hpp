@@ -41,6 +41,9 @@ public:
 	enum Error {
 		errorNone = 0,
 		errorUsbDriveNotMounted,
+		errorCreateUsbException,
+		errorBackupException,
+		errorRestoreException,
 		errorArchiveFileDeleteFailed,
 		errorBackupFileDeleteFailed,
 		errorBackupFileMissing,
@@ -62,6 +65,9 @@ private:
 	VeQItem *mInfoItem;
 	VeQItem *mErrorItem;
 	VeQItem *mNotifyItem;
+
+	QString usbDrivePath = "/media/sda1";
+	QString backupName = "tank-backup.xml";
 
 private slots:
 	void onActionChanged(QVariant var);

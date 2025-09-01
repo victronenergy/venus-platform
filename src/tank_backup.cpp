@@ -78,14 +78,12 @@ void TankBackupService::onCreateUsbFinished(int exitCode, QProcess::ExitStatus e
 	working = false;
 	mActionItem->produceValue(Action::actionIdle);
 
-	if (exitStatus == QProcess::NormalExit) {
-		if (exitCode == 0) {
-			mNotifyItem->produceValue(Notification::createUsbSuccessful);
-		}
+	if (exitStatus == QProcess::NormalExit && exitCode == 0) {
+		mNotifyItem->produceValue(Notification::createUsbSuccessful);
 	} else {
 		mNotifyItem->produceValue(Notification::createUsbException);
+		mErrorItem->produceValue(Error::errorCreateUsbException);
 	}
-	mErrorItem->produceValue(exitCode);
 }
 
 void TankBackupService::runCreateUsbAction()
@@ -140,14 +138,14 @@ void TankBackupService::onBackupFinished(int exitCode, QProcess::ExitStatus exit
 	working = false;
 	mActionItem->produceValue(Action::actionIdle);
 
-	if (exitStatus == QProcess::NormalExit) {
-		if (exitCode == 0) {
-			mNotifyItem->produceValue(Notification::backupSuccessful);
-		}
+	if (exitStatus == QProcess::NormalExit && exitCode == 0) {
+		mNotifyItem->produceValue(Notification::backupSuccessful);
+		runCreateUsbAction();
 	} else {
 		mNotifyItem->produceValue(Notification::backupException);
+		mErrorItem->produceValue(Error::errorBackupException);
 	}
-	mErrorItem->produceValue(exitCode);
+
 }
 
 void TankBackupService::runBackupAction()
@@ -200,14 +198,12 @@ void TankBackupService::onRestoreFinished(int exitCode, QProcess::ExitStatus exi
 	working = false;
 	mActionItem->produceValue(Action::actionIdle);
 
-	if (exitStatus == QProcess::NormalExit) {
-		if (exitCode == 0) {
-			mNotifyItem->produceValue(Notification::restoreSuccessful);
-		}
+	if (exitStatus == QProcess::NormalExit && exitCode == 0) {
+		mNotifyItem->produceValue(Notification::restoreSuccessful);
 	} else {
 		mNotifyItem->produceValue(Notification::restoreException);
+		mErrorItem->produceValue(Error::errorRestoreException);
 	}
-	mErrorItem->produceValue(exitCode);
 }
 
 void TankBackupService::runRestoreAction()
