@@ -300,21 +300,19 @@ void CmManager::servicesChanged(const ConnmanObjectList &changed, const QList<QD
 	// Removed services
 	foreach (const QDBusObjectPath &oPath, removed) {
 		const QString &path = oPath.path();
-		bool delService = false;
 
-		if (!mServices.contains(path)) {
+		auto pos = mServices.find(path);
+
+		if (pos == mServices.end()) {
 			qCritical() << "service " << path << " was removed but was not found in the services list";
 		} else {
-			if (mServices.value(path) != mEthernetService)
-				delService = true;
-			mServices.remove(path);
+			if (pos.value() != mEthernetService) {
+				pos.value()->deleteLater();
+				mServices.erase(pos);
+			}
 		}
 
 		emit serviceRemoved(path);
-
-		// note: make sure the service is delete after above signal
-		if (delService)
-			delete mServices.value(path);
 	}
 
 	// Changed services
