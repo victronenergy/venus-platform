@@ -88,15 +88,21 @@ public:
 	int setValue(const QVariant &value) override
 	{
 		QString val = value.toString();
-		val.replace("\\t", "\t");
 		QStringList list = val.split('\t');
-		if (list.size() == 3)
-		{
-			bool ok = true;
-			int type = list[0].toInt(&ok);
-			if (ok)
-				mNotifications->addNotification((Notification::Type)type, list[1], "", list[2], "")->setActive(false);
-		}
+		if (list.size() != 3)
+			return -1;
+
+		bool ok = true;
+		int n = list[0].toInt(&ok);
+		if (!ok)
+			return -2;
+
+		if (n < 0 || n > Notification::LAST)
+			return -3;
+
+		Notification::Type type = static_cast<Notification::Type>(n);
+		mNotifications->addNotification(type, list[1], "", list[2], "")->setActive(false);
+
 		return VeQItemAction::setValue(value);
 	}
 

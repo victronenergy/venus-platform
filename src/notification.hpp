@@ -14,7 +14,8 @@ public:
 	enum Type {
 		WARNING,
 		ALARM,
-		NOTIFICATION
+		NOTIFICATION,
+		LAST = NOTIFICATION,
 	};
 
 	explicit Notification(Type type, const QString &devicename, const QString &description,
