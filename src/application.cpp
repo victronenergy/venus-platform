@@ -410,7 +410,7 @@ void Application::onMk3UpdateAllowedChanged(QVariant var)
 void Application::onAccessPointPasswordChanged(QVariant var)
 {
 	static QVariant lastValue;
-	qDebug() << "Accesspoint password changed" << var.toString();
+	qDebug() << "Accesspoint password changed"; // << var.toString();
 
 	// The first change is from the fetch of the value, so ignore that value
 	if (lastValue.isValid()
