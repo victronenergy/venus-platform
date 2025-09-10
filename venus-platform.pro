@@ -30,6 +30,7 @@ HEADERS = \
 	src/notifications.hpp \
 	src/relay.hpp \
 	src/security_profiles.hpp \
+	src/tank_backup.hpp \
 	src/token_users.hpp \
 	src/time.hpp \
 	src/updater.hpp \
@@ -52,6 +53,7 @@ SOURCES = \
 	src/notifications.cpp \
 	src/relay.cpp \
 	src/security_profiles.cpp \
+	src/tank_backup.cpp \
 	src/time.cpp \
 	src/token_users.cpp \
 	src/updater.cpp \
@@ -89,4 +91,11 @@ CONFIG(debug, debug|release) {
 
 gcc {
 	QMAKE_CXXFLAGS += -Wno-psabi
+}
+
+
+# Strip debug symbold in release mode
+CONFIG(release, debug|release) {
+	QMAKE_CXXFLAGX_RELEASE += -s
+	QMAKE_LFLAGS_RELEASE += -s
 }

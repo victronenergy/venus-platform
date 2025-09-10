@@ -92,8 +92,8 @@ void TankBackupService::runCreateUsbAction()
 
 	working = true;
 
-	QString usbDrivePath = "/media/sda1";
-	QString archiveName = "venus-runtime-tank-settings-auto-restore.tgz";
+	// QString usbDrivePath = "/media/sda1";
+	// QString archiveName = "venus-runtime-tank-settings-auto-restore.tgz";
 
 	// Check if the USB drive is mounted
 	QFileInfo usbDrive(usbDrivePath);
@@ -154,8 +154,8 @@ void TankBackupService::runBackupAction()
 
 	working = true;
 
-	QString usbDrivePath = "/media/sda1";
-	QString backupName = "tank-backup.xml";
+	// QString usbDrivePath = "/media/sda1";
+	// QString backupName = "tank-backup.xml";
 
 	// Check if the USB drive is mounted
 	QFileInfo usbDrive(usbDrivePath);
@@ -271,6 +271,18 @@ void TankBackupService::runDeleteAction()
 		if (!QFile::remove(usbDrivePath + "/" + backupName)) {
 			qDebug() << "[Tank backup] Failed to delete existing backup file";
 			mErrorItem->produceValue(Error::errorBackupFileDeleteFailed);
+			mActionItem->produceValue(Action::actionIdle);
+			return;
+		}
+	}
+
+	// Check if the archive file already exists and if yes, delete it
+	QFileInfo archiveFile(usbDrivePath + "/" + archiveName);
+	if (archiveFile.exists()) {
+		qDebug() << "[Tank backup] Archive file already exists, deleting it";
+		if (!QFile::remove(usbDrivePath + "/" + archiveName)) {
+			qDebug() << "[Tank backup] Failed to delete existing archive file";
+			mErrorItem->produceValue(Error::errorArchiveFileDeleteFailed);
 			mActionItem->produceValue(Action::actionIdle);
 			return;
 		}

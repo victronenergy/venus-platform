@@ -67,6 +67,7 @@ private:
 	VeQItem *mNotifyItem;
 
 	QString usbDrivePath = "/media/sda1";
+	QString archiveName = "venus-runtime-tank-settings-auto-restore.tgz";
 	QString backupName = "tank-backup.xml";
 
 private slots:
