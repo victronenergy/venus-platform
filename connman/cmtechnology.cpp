@@ -8,6 +8,7 @@ const QString CmTechnology::Connected("Connected");
 const QString CmTechnology::Name("Name");
 const QString CmTechnology::Type("Type");
 const QString CmTechnology::Tethering("Tethering");
+const QString CmTechnology::GatewayEnabled("GatewayEnabled");
 
 CmTechnology::CmTechnology(QObject *parent) :
 	QObject(parent),
@@ -52,6 +53,8 @@ void CmTechnology::propertyChanged(const QString& name, const QDBusVariant& valu
 			emit typeChanged();
 		else if (name == Tethering)
 			emit tetheringChanged();
+		else if (name == GatewayEnabled)
+			emit gatewayEnabledChanged();
 	}
 }
 
