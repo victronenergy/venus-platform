@@ -13,6 +13,7 @@ class CmTechnology : public QObject
 	Q_PROPERTY(bool connected READ connected NOTIFY connectedChanged)
 	Q_PROPERTY(bool powered READ powered WRITE powered NOTIFY poweredChanged)
 	Q_PROPERTY(bool tethering READ tethering NOTIFY tetheringChanged)
+	Q_PROPERTY(bool gatewayEnabled READ gatewayEnabled WRITE gatewayEnabled NOTIFY gatewayEnabledChanged)
 
 public:
 	CmTechnology(QObject* parent=0);
@@ -27,6 +28,8 @@ public:
 	bool powered() const { return mProperties[Powered].toBool(); }
 	void powered(const bool powered) { mTechnology.SetProperty(Powered,QDBusVariant(QVariant(powered))); }
 	bool tethering() const { return mProperties[Tethering].toBool(); }
+	bool gatewayEnabled() const { return mProperties[GatewayEnabled].toBool(); }
+	void gatewayEnabled(const bool enabled) { mTechnology.SetProperty(GatewayEnabled,QDBusVariant(QVariant(enabled))); }
 	const QString path() const { return mPath; }
 
 signals:
@@ -35,6 +38,7 @@ signals:
 	void nameChanged();
 	void typeChanged();
 	void tetheringChanged();
+	void gatewayEnabledChanged();
 
 private slots:
 	void propertyChanged(const QString& name, const QDBusVariant &value);
@@ -47,6 +51,7 @@ private:
 	static const QString Name;
 	static const QString Type;
 	static const QString Tethering;
+	static const QString GatewayEnabled;
 
 	QString mPath;
 	QVariantMap mProperties;

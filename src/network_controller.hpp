@@ -32,6 +32,20 @@ signals:
 	void jsonParsed(const QJsonDocument &doc);
 };
 
+class VeQItemGatewayEnabled : public VeQItemQuantity {
+	Q_OBJECT
+
+public:
+	VeQItemGatewayEnabled(CmTechnology *tech);
+	int setValue(const QVariant &value) override;
+
+private slots:
+	void updateGatewayEnabled();
+
+private:
+	CmTechnology *mTech;
+};
+
 class NetworkController : public QObject
 {
 	Q_OBJECT

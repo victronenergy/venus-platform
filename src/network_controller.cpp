@@ -23,6 +23,25 @@ int VeQItemScan::setValue(const QVariant &value)
 	return VeQItemAction::setValue(value);
 }
 
+VeQItemGatewayEnabled::VeQItemGatewayEnabled(CmTechnology *tech) :
+	mTech(tech)
+{
+	produceValue(QVariant(tech->gatewayEnabled()));
+	connect(mTech, SIGNAL(gatewayEnabledChanged()), this, SLOT(updateGatewayEnabled()));
+}
+
+int VeQItemGatewayEnabled::setValue(const QVariant &value)
+{
+	mTech->gatewayEnabled(value.toBool());
+
+	return VeQItemQuantity::setValue(value);
+}
+
+void VeQItemGatewayEnabled::updateGatewayEnabled()
+{
+	produceValue(mTech->gatewayEnabled());
+}
+
 NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
 	: QObject{parent}, mWifiService(nullptr), mEthernetService(nullptr)
 {
@@ -43,6 +62,7 @@ NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
 		wifi->itemAddChild("Scan", new VeQItemScan(mConnman));
 		wifi->itemAddChild("State", new VeQItemQuantity(-1, "", "Disconnected"));
 		wifi->itemAddChild("SignalStrength", new VeQItemQuantity());
+		wifi->itemAddChild("GatewayEnabled", new VeQItemGatewayEnabled(tech));
 
 		services = mConnman->getServiceList("wifi");
 		for (auto &s: services) {
@@ -55,6 +75,10 @@ NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
 			}
 		}
 	}
+
+	tech = mConnman->getTechnology("ethernet");
+	if (tech)
+		ethernet->itemAddChild("GatewayEnabled", new VeQItemGatewayEnabled(tech));
 
 	services = mConnman->getServiceList("ethernet");
 	if (!services.empty()) {
