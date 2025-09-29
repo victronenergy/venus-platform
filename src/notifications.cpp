@@ -110,17 +110,14 @@ Notification *Notifications::addNotification(Notification::Type type, const QStr
 	connect(notification, SIGNAL(acknowledgedChanged(Notification *)), this, SLOT(acknowledgedChanged(Notification *)));
 	mNumberOfNotificationsItem->produceValue(mNotifications.length());
 
-	if (type == Notification::ALARM)
-	{
+	if (type == Notification::ALARM) {
 		setAlarm(true);
 		mNumberOfActiveAlarms->produceValue(mNumberOfActiveAlarms->getValue().toInt() + 1);
 		mNumberOfUnAcknowledgedAlarms->produceValue(mNumberOfUnAcknowledgedAlarms->getValue().toInt() + 1);
-	} else if (type == Notification::WARNING)
-	{
+	} else if (type == Notification::WARNING) {
 		mNumberOfActiveWarnings->produceValue(mNumberOfActiveWarnings->getValue().toInt() + 1);
 		mNumberOfUnAcknowledgedWarnings->produceValue(mNumberOfUnAcknowledgedWarnings->getValue().toInt() + 1);
-	} else
-	{
+	} else {
 		mNumberOfActiveInformations->produceValue(mNumberOfActiveInformations->getValue().toInt() + 1);
 		mNumberOfUnAcknowledgedInformations->produceValue(mNumberOfUnAcknowledgedInformations->getValue().toInt() + 1);
 	}
@@ -164,18 +161,13 @@ void Notifications::acknowledgedChanged(Notification *notification)
 
 	bool acknowledged = notification->isAcknowledged();
 	int numUnAcknowledged;
-	if (notification->type() == Notification::ALARM)
-	{
+	if (notification->type() == Notification::ALARM) {
 		numUnAcknowledged = mNumberOfUnAcknowledgedAlarms->getValue().toInt();
 		mNumberOfUnAcknowledgedAlarms->produceValue(acknowledged ? numUnAcknowledged - 1: numUnAcknowledged + 1);
-	}
-	else if (notification->type() == Notification::WARNING)
-	{
+	} else if (notification->type() == Notification::WARNING) {
 		numUnAcknowledged = mNumberOfUnAcknowledgedWarnings->getValue().toInt();
 		mNumberOfUnAcknowledgedWarnings->produceValue(acknowledged ? numUnAcknowledged - 1: numUnAcknowledged + 1);
-	}
-	else
-	{
+	} else {
 		numUnAcknowledged = mNumberOfUnAcknowledgedInformations->getValue().toInt();
 		mNumberOfUnAcknowledgedInformations->produceValue(acknowledged ? numUnAcknowledged - 1: numUnAcknowledged + 1);
 	}
