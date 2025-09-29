@@ -54,5 +54,5 @@ private:
 	VeQItem *mActiveItem;
 	VeQItem *mIndexItem;
 	VeQItem *mTypeItem;
-	bool mAcknowledged;
+	bool mAcknowledged = false;
 };
