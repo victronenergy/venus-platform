@@ -199,6 +199,25 @@ bool writeFileAtomically(const QString &path, const QString &contents)
 	return true;
 }
 
+void setWifiHotspotAndBluetooth(VeQItemSettings *settings, const int val)
+{
+	if (!settings)
+		return;
+
+	VeQItem *accessPoint = settings->root()->itemGetOrCreate("Settings/Services/AccessPoint");
+	VeQItem *bluetooth = settings->root()->itemGetOrCreate("/Settings/Services/Bluetooth");
+
+	if (accessPoint) {
+		qDebug() << "Setting WiFi access point to:" << val;
+		accessPoint->setValue(val);
+	}
+
+	if (bluetooth) {
+		qDebug() << "Setting Bluetooth to:" << val;
+		bluetooth->setValue(val);
+	}
+}
+
 int VeQItemReboot::setValue(const QVariant &value)
 {
 	Q_UNUSED(value);
@@ -818,7 +837,6 @@ void Application::checkDataPartitionUsedSpace()
 void Application::onButtonShortPress()
 {
 	VeQItem *accessPoint = mSettings->root()->itemGetOrCreate("Settings/Services/AccessPoint");
-	VeQItem *bluetooth = mSettings->root()->itemGetOrCreate("/Settings/Services/Bluetooth");
 
 	int cur = 0;
 
@@ -827,14 +845,9 @@ void Application::onButtonShortPress()
 		QVariant curvar = accessPoint->getValue();
 		cur = curvar.isValid() ? curvar.toInt() : 0;
 		cur = !cur;
-		qDebug() << "Setting WiFi access point to:" << cur;
-		accessPoint->setValue(cur);
 	}
 
-	if (bluetooth) {
-		qDebug() << "Setting Bluetooth to:" << cur;
-		bluetooth->setValue(cur);
-	}
+	setWifiHotspotAndBluetooth(mSettings, cur);
 }
 
 void Application::onButtonDoublePress()

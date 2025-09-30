@@ -14,6 +14,7 @@ class NetworkResetter : public QObject
 
 	std::list<QProcess> mStopProcesses;
 
+	void initiate();
 	void stopAllServices();
 	void makeLEDsIndicateReset();
 	void setSettingsToDefault();
@@ -21,7 +22,7 @@ class NetworkResetter : public QObject
 
 private slots:
 	void onStopperFinished(int exitCode, QProcess::ExitStatus exitStatus);
-	void onConnmanStarted(int exitCode, QProcess::ExitStatus exitStatus);
+	void onConnmanStarting(int exitCode, QProcess::ExitStatus exitStatus);
 public:
 	explicit NetworkResetter(VeQItemSettings *settings, QObject *parent = nullptr);
 

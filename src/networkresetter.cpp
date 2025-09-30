@@ -4,11 +4,19 @@
 #include <QDebug>
 #include <QFile>
 #include <QDir>
+#include "application.hpp"
+
+void NetworkResetter::initiate()
+{
+	setWifiHotspotAndBluetooth(mSettings, 0);
+	stopAllServices();
+}
 
 void NetworkResetter::stopAllServices()
 {
 	// TODO: the python version stopped venus platform, but that's ourselves. What to do?
 
+	/* These are already stopped by writing 0 the the veitem
 	qDebug() << "Stopping /service/hostapd";
 	mStopProcesses.emplace_back(this);
 	connect(&mStopProcesses.back(), &QProcess::finished, this, &NetworkResetter::onStopperFinished);
@@ -18,6 +26,7 @@ void NetworkResetter::stopAllServices()
 	mStopProcesses.emplace_back(this);
 	connect(&mStopProcesses.back(), &QProcess::finished, this, &NetworkResetter::onStopperFinished);
 	mStopProcesses.back().start("/usr/bin/svc", {"-d", "/service/vesmart-server"});
+	*/
 
 	qDebug() << "Stopping connman";
 	mStopProcesses.emplace_back(this);
@@ -66,7 +75,7 @@ void NetworkResetter::setSettingsToDefault()
 			continue;
 
 		auto defaultVal = item->itemProperty("defaultValue");
-		qDebug() << "Setting " << path << "to default value:" << defaultVal;
+		qDebug() << "Setting " << path << "to default value."; // Not logging value, which could be sensitive.
 		item->setValue(defaultVal);
 	}
 }
@@ -110,21 +119,23 @@ void NetworkResetter::onStopperFinished(int exitCode, QProcess::ExitStatus exitS
 	if (!allDone)
 		return;
 
-	makeLEDsIndicateReset();
-	setSettingsToDefault();
 	deletePaths();
+	setSettingsToDefault();
 
 	qDebug() << "Starting connman";
 	QProcess *connmanStarter = new QProcess(this);
-	connect(connmanStarter, &QProcess::finished, this, &NetworkResetter::onConnmanStarted);
+	connect(connmanStarter, &QProcess::finished, this, &NetworkResetter::onConnmanStarting);
 	connmanStarter->start("/etc/init.d/connman", {"start"});
 }
 
-void NetworkResetter::onConnmanStarted(int exitCode, QProcess::ExitStatus exitStatus)
+void NetworkResetter::onConnmanStarting(int exitCode, QProcess::ExitStatus exitStatus)
 {
 	(void) exitCode; (void)exitStatus;
 
-	// TODO: exit venus platform?
+	QObject *p = sender();
+	p->deleteLater();
+
+	// TODO: really exit venus platform?
 	qApp->exit();
 }
 
@@ -136,5 +147,8 @@ NetworkResetter::NetworkResetter(VeQItemSettings *settings, QObject *parent) : Q
 
 void NetworkResetter::resetNetwork()
 {
-	stopAllServices();
+	// Blink leds fast for a while so that the user sees a response. The re-enabling of the hotspot and bluetooth is fast, which would
+	// otherwise stop the fast blinking again, so hence the delay.
+	makeLEDsIndicateReset();
+	QTimer::singleShot(1500, this, &NetworkResetter::initiate);
 }
