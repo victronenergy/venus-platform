@@ -1,6 +1,7 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <sys/random.h>
+#include <sys/statvfs.h>
 
 #include <veutil/qt/daemontools_service.hpp>
 #include <veutil/qt/ve_dbus_connection.hpp>
@@ -20,6 +21,21 @@
 static QDir machineRuntimeDir = QDir("/etc/venus");
 static QDir venusDir = QDir("/opt/victronenergy");
 QVariant Application::mRunningGui;
+
+FreeSpace getFreeSpace(const std::string &path)
+{
+	FreeSpace result;
+	struct statvfs statbuf{};
+
+	if (statvfs(path.c_str(), &statbuf) < 0)
+		return result;
+
+	result.total_bytes = statbuf.f_blocks * statbuf.f_bsize;
+	result.bytes_free = statbuf.f_bfree * statbuf.f_bsize;
+	result.bytes_avail_unpriv_users = statbuf.f_bavail * statbuf.f_bsize;
+
+	return result;
+}
 
 bool serviceExists(QString const &svc) {
 	return QDir("/service/" + svc).exists();
@@ -800,12 +816,15 @@ void Application::start()
 
 void Application::checkDataPartitionUsedSpace()
 {
-	QProcess processFreeSpace;
-	processFreeSpace.start("sh", QStringList() << "-c" << "df -B1 /data | awk 'NR==2 {print $5+0}'");
-	processFreeSpace.waitForFinished();
-	bool ok;
-	int usedSpace = processFreeSpace.readAllStandardOutput().trimmed().toInt(&ok);
-	mService->itemGetOrCreateAndProduce("Device/DataPartitionFullError", (ok && usedSpace > 90) ? 1 : 0);
+	int64_t percent_used = -1;
+	FreeSpace result = getFreeSpace("/data");
+
+	if (result.total_bytes >= 0) {
+		const int64_t bytes_used = result.total_bytes - result.bytes_free;
+		percent_used = (bytes_used * 100) / result.total_bytes;
+	}
+
+	mService->itemGetOrCreateAndProduce("Device/DataPartitionFullError", percent_used > 90 ? 1 : 0);
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)

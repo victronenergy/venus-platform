@@ -18,6 +18,14 @@
 #include "venus_services.hpp"
 #include "vebus_backup.hpp"
 
+struct FreeSpace
+{
+	int64_t total_bytes = -1;
+	int64_t bytes_free = -1;
+	int64_t bytes_avail_unpriv_users = -1;
+};
+
+FreeSpace getFreeSpace(const std::string &path);
 bool serviceExists(QString const &svc);
 QStringList getFeatureList(const QString &name, bool lines = false);
 QString getFeature(QString const &name, bool optional = true);

@@ -48,11 +48,7 @@ int VeQItemModificationAction::setValue(const QVariant &var)
 
 void ModificationChecks::startCheck()
 {
-	// check data partition free space
-	QProcess processFreeSpace;
-	processFreeSpace.start("sh", QStringList() << "-c" << "df -B1 /data | awk 'NR==2 {print $4}'");
-	processFreeSpace.waitForFinished();
-	QString freeSpace = processFreeSpace.readAllStandardOutput().trimmed();
+	auto freeSpace = getFreeSpace("/data").bytes_avail_unpriv_users;
 	qDebug() << "[Modification checks] data partition free space:" << freeSpace;
 	mModChecks->itemGet("DataPartitionFreeSpace")->produceValue(freeSpace);
 
