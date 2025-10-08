@@ -101,6 +101,10 @@ int SecurityApi::setValue(const QVariant &value)
 				passwd.resize(0);
 				break;
 			}
+
+		case SECURITY_PROFILE_INDETERMINATE:
+			qDebug() << "The security profile cannot be set to undertermined";
+			return -1;
 		}
 
 		mSecurityProfile->setValue(value);
