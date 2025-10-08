@@ -20,6 +20,14 @@ enum SecurityProfile {
 	SECURITY_PROFILE_LAST = SECURITY_PROFILE_UNSECURED
 };
 
+enum SecurityState {
+	SECURITY_STATE_OK,
+	SECURITY_STATE_NO_PASSWORD_FILE,
+	SECURITY_STATE_EMPTY_PASSWORD,
+	SECURITY_STATE_UNEXPECTED_PASSWORD,
+	SECURITY_STATE_UNEXPECTED_PASSWORD_FILE,
+};
+
 // Setting to determine if MQTT is available on normal network sockets as
 // well as the websockets used by Venus itself. The security level
 // determines if unencrypted connected are allowed as well.
@@ -101,9 +109,11 @@ public:
 	QVariant getProfile() { return mSecurityProfile; }
 
 	static bool hasPasswordFile();
+	static bool emptyPasswordFile();
 	static void restartUpnp();
 
 private slots:
+	void checkPassword();
 	void onBridgeConfigChanged();
 	void onMqttAccessChanged(QVariant const &var);
 	void onSecurityProfileChanged(QVariant const &var);
@@ -127,6 +137,8 @@ private:
 	DaemonToolsService *mMqttRpc = nullptr;
 
 	VrmTunnelSetup *mTunnelSetup;
+	QFileSystemWatcher passwordWatcher;
+	VeQItem *mSecurityState;
 
 	VeQItemMqttBridgeRegistrator *mMqttBridgeRegistrator = nullptr;
 };
