@@ -3,6 +3,8 @@
 #include "application.hpp"
 #include "security_profiles.hpp"
 
+QString const passwordFileName = QStringLiteral("/data/conf/vncpassword.txt");
+
 SecurityApi::SecurityApi(VeQItem *pltService, VeQItemSettings *settings) :
 	VeQItemAction()
 {
@@ -96,7 +98,7 @@ int SecurityApi::setValue(const QVariant &value)
 		case SECURITY_PROFILE_UNSECURED:
 			{
 				qDebug() << "Removing password protection since access level is set to insecure!";
-				QFile passwd("/data/conf/vncpassword.txt");
+				QFile passwd(passwordFileName);
 				passwd.open(QIODevice::WriteOnly);
 				passwd.resize(0);
 				break;
@@ -253,6 +255,12 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 								 VenusServices *venusServices, QObject *parent) :
 	QObject(parent)
 {
+	mSecurityState = pltService->itemGetOrCreateAndProduce("Security/Status", SECURITY_STATE_OK);
+	passwordWatcher.addPath(passwordFileName);
+	passwordWatcher.addPath(QFileInfo(passwordFileName).absolutePath());
+	connect(&passwordWatcher, &QFileSystemWatcher::fileChanged, this, &SecurityProfiles::checkPassword);
+	connect(&passwordWatcher, &QFileSystemWatcher::directoryChanged, this, &SecurityProfiles::checkPassword);
+
 	mMqttBridgeRegistrator = new VeQItemMqttBridgeRegistrator(pltService);
 	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", mMqttBridgeRegistrator);
 	connect(mMqttBridgeRegistrator, SIGNAL(bridgeConfigChanged()), this, SLOT(onBridgeConfigChanged()));
@@ -291,6 +299,7 @@ void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
 	// Note: changing the Security Profile should be done though the SecurityApi
 	mSecurityProfile = var;
 	checkMqttOnLan();
+	checkPassword();
 }
 
 void SecurityProfiles::onVrmPortalChange(QVariant const &var)
@@ -316,6 +325,36 @@ void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 
 		enableMqttBridge(false);
 	}
+}
+
+// Sanity check of the security profile api. See above, you can't switch
+// security level without providing a password or it actually being removed
+// if you go for insecure. This reports any inconsistency.
+void SecurityProfiles::checkPassword()
+{
+	// make sure to add it the file didn't exist. it is void if already being monitored.
+	passwordWatcher.addPath(passwordFileName);
+
+	if (!mSecurityProfile.isValid())
+		return;
+
+	SecurityState state = SECURITY_STATE_OK;
+	if (mSecurityProfile.toInt() == SECURITY_PROFILE_INDETERMINATE) {
+		if (hasPasswordFile())
+			state = SECURITY_STATE_UNEXPECTED_PASSWORD_FILE;
+	} else if (mSecurityProfile.toInt() == SECURITY_PROFILE_UNSECURED) {
+		if (!hasPasswordFile())
+			state = SECURITY_STATE_NO_PASSWORD_FILE;
+		else if (!emptyPasswordFile())
+			state = SECURITY_STATE_UNEXPECTED_PASSWORD;
+	} else {
+		if (!hasPasswordFile())
+			state = SECURITY_STATE_NO_PASSWORD_FILE;
+		else if (emptyPasswordFile())
+			state = SECURITY_STATE_EMPTY_PASSWORD;
+	}
+
+	mSecurityState->produceValue(state);
 }
 
 void SecurityProfiles::enableMqttBridge(bool configChanged)
@@ -440,5 +479,20 @@ void SecurityProfiles::enableMqttOnLanInsecure(bool enabled)
 
 bool SecurityProfiles::hasPasswordFile()
 {
-	return QFile("/data/conf/vncpassword.txt").exists();
+	return QFile(passwordFileName).exists();
+}
+
+bool SecurityProfiles::emptyPasswordFile()
+{
+	QFile passwdFile(passwordFileName);
+	if (!passwdFile.exists())
+		return false;
+
+	if (!passwdFile.open(QFile::ReadOnly)) {
+		qCritical() << "can't open" << passwordFileName;
+		return false;
+	}
+
+	QString contents = QString(passwdFile.readAll());
+	return contents.trimmed().isEmpty();
 }
