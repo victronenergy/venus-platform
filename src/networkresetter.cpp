@@ -4,35 +4,27 @@
 #include <QDebug>
 #include <QFile>
 #include <QDir>
+#include <unistd.h>
+#include <fcntl.h>
 #include "application.hpp"
 
 void NetworkResetter::initiate()
 {
 	setWifiHotspotAndBluetooth(mSettings, 0);
-	stopAllServices();
+	stopRelevantServices();
 }
 
-void NetworkResetter::stopAllServices()
+void NetworkResetter::stopRelevantServices()
 {
-	// TODO: the python version stopped venus platform, but that's ourselves. What to do?
-
-	/* These are already stopped by writing 0 the the veitem
-	qDebug() << "Stopping /service/hostapd";
-	mStopProcesses.emplace_back(this);
-	connect(&mStopProcesses.back(), &QProcess::finished, this, &NetworkResetter::onStopperFinished);
-	mStopProcesses.back().start("/usr/bin/svc", {"-d", "/service/hostapd"});
-
-	qDebug() << "Stopping /service/vesmart-server";
-	mStopProcesses.emplace_back(this);
-	connect(&mStopProcesses.back(), &QProcess::finished, this, &NetworkResetter::onStopperFinished);
-	mStopProcesses.back().start("/usr/bin/svc", {"-d", "/service/vesmart-server"});
-	*/
-
 	qDebug() << "Stopping connman";
 	mStopProcesses.emplace_back(this);
 	connect(&mStopProcesses.back(), &QProcess::finished, this, &NetworkResetter::onStopperFinished);
-	mStopProcesses.back().start("/etc/init.d/connman", {"stop"});
+	mStopProcesses.back().start("/etc/init.d/connman", {"stop"}); // TODO: check if this commands wait until it's stopped.
 
+	/*
+	 * NOTE: If there are ever services that are stopped with svc, check them with serviceRunning, like we do
+	 * elsewhere, because it's asynchronous.
+	 */
 }
 
 void NetworkResetter::makeLEDsIndicateReset()
@@ -106,6 +98,26 @@ void NetworkResetter::deletePaths()
 			}
 		}
 	}
+
+	const QStringList syncDirs({"/data/conf/", "/data/var/lib/"});
+	for (const QString &dir : syncDirs)
+	{
+		int fddir = open(dir.toLatin1().data(), O_RDONLY);
+		if (fddir < 0)
+			continue;
+		fsync(fddir);
+		close(fddir);
+	}
+}
+
+void NetworkResetter::initiateSettingsShutdownAndReboot()
+{
+	qDebug() << "Stopping localsettings";
+	QProcess *settingsStopper = new QProcess(this);
+	settingsStopper->start("svc", {"-d", "/service/localsettings/"});
+
+	mWaitForLocalSettingsEndPoint = std::chrono::steady_clock::now() + std::chrono::seconds(5);
+	mLocalSettingsChecker.start();
 }
 
 void NetworkResetter::onStopperFinished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -121,28 +133,36 @@ void NetworkResetter::onStopperFinished(int exitCode, QProcess::ExitStatus exitS
 
 	deletePaths();
 	setSettingsToDefault();
-
-	qDebug() << "Starting connman";
-	QProcess *connmanStarter = new QProcess(this);
-	connect(connmanStarter, &QProcess::finished, this, &NetworkResetter::onConnmanStarting);
-	connmanStarter->start("/etc/init.d/connman", {"start"});
+	initiateSettingsShutdownAndReboot(); // TODO: this needs to be done after the setting to default was responded to.
 }
 
-void NetworkResetter::onConnmanStarting(int exitCode, QProcess::ExitStatus exitStatus)
+void NetworkResetter::onlocalSettingsCheckerTimeout()
 {
-	(void) exitCode; (void)exitStatus;
+	bool ok = false;
+	const bool running = serviceRunning("localsettings", &ok);
 
-	QObject *p = sender();
-	p->deleteLater();
+	if (!ok) {
+		qWarning() << "Failure to check running status of localSettings. Falling back to timeout before rebooting.";
+	}
 
-	// TODO: really exit venus platform?
-	qApp->exit();
+	if (running) {
+		qDebug() << "LocalSettings still running";
+	}
+
+	if ((ok && !running) || std::chrono::steady_clock::now() > mWaitForLocalSettingsEndPoint) {
+		mLocalSettingsChecker.stop();
+
+		qDebug() << "LocalSettings stopped. Rebooting";
+		QProcess *settingsStopper = new QProcess(this);
+		settingsStopper->start("/sbin/reboot");
+	}
 }
 
 NetworkResetter::NetworkResetter(VeQItemSettings *settings, QObject *parent) : QObject{parent},
 	mSettings(settings)
 {
-
+	mLocalSettingsChecker.setInterval(200);
+	connect(&mLocalSettingsChecker, &QTimer::timeout, this, &NetworkResetter::onlocalSettingsCheckerTimeout);
 }
 
 void NetworkResetter::resetNetwork()
@@ -151,4 +171,6 @@ void NetworkResetter::resetNetwork()
 	// otherwise stop the fast blinking again, so hence the delay.
 	makeLEDsIndicateReset();
 	QTimer::singleShot(1500, this, &NetworkResetter::initiate);
+
+	// TODO: do we need a long-ish fallback reboot?
 }

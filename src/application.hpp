@@ -18,7 +18,9 @@
 #include "venus_services.hpp"
 #include "vebus_backup.hpp"
 #include "buttonhandler.hpp"
+#include "networkresetter.h"
 
+bool serviceRunning(QString const &svc, bool *ok);
 bool serviceExists(QString const &svc);
 QStringList getFeatureList(const QString &name, bool lines = false);
 QString getFeature(QString const &name, bool optional = true);
@@ -145,4 +147,5 @@ private:
 
 	DaemonToolsService *mNodeRed = nullptr;
 	TokenUserWatcher *mTokenWatcher;
+	NetworkResetter *mNetworkResetter = nullptr;
 };

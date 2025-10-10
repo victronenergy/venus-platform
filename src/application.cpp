@@ -22,6 +22,36 @@ static QDir machineRuntimeDir = QDir("/etc/venus");
 static QDir venusDir = QDir("/opt/victronenergy");
 QVariant Application::mRunningGui;
 
+bool serviceRunning(QString const &svc, bool *ok) {
+	*ok = false;
+	QString statusFile = QString("/service/%1/status").arg(svc);
+
+	QFile file(statusFile);
+
+	if (!file.exists())
+		return false;
+
+	if (!file.open(QIODevice::ReadOnly))
+		return false;
+
+	const QByteArray statusData = file.readAll();
+	file.close();
+
+	if (statusData.size() < 16)
+		return false;
+
+	quint32 pid = 0;
+
+	// https://github.com/daemontools/daemontools/blob/master/src/svstat.c
+	pid = static_cast<unsigned char>(statusData[15]);
+	pid <<= 8; pid += static_cast<unsigned char>(statusData[14]);
+	pid <<= 8; pid += static_cast<unsigned char>(statusData[13]);
+	pid <<= 8; pid += static_cast<unsigned char>(statusData[12]);
+
+	*ok = true;
+	return pid != 0;
+}
+
 bool serviceExists(QString const &svc) {
 	return QDir("/service/" + svc).exists();
 }
@@ -393,6 +423,9 @@ Application::Application::Application(int &argc, char **argv) :
 void Application::onLocalSettingsStateChanged(VeQItem::State state)
 {
 	mLocalSettingsTimeout.stop();
+
+	if (mNetworkResetter)
+		return;
 
 	if (state != VeQItem::Synchronized) {
 		qCritical() << "Localsettings not available" << state;
@@ -857,8 +890,8 @@ void Application::onButtonDoublePress()
 
 void Application::onButtonLongPress()
 {
-	NetworkResetter *resetter = new NetworkResetter(mSettings, this);
-	resetter->resetNetwork();
+	mNetworkResetter = new NetworkResetter(mSettings, this);
+	mNetworkResetter->resetNetwork();
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)
