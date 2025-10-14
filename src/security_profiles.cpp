@@ -41,12 +41,22 @@ int SecurityApi::setValue(const QVariant &value)
 	map = doc.toVariant().toMap();
 
 	// It can't hurt to double check that the user actually has permissions to call this.
+	{
+		QFileInfo pwd(passwordFileName);
+		if (pwd.exists())
+			qDebug() << "[Api] begin: password size is" << pwd.size() << pwd.lastModified();
+		else
+			qDebug() << "[Api] begin: no pwd file";
+
+		qDebug() << "[Api] begin: SecurityProfile:" << mSecurityProfile->getLocalValue().toInt();
+	}
 
 	password = map.value("SetPassword");
 	if (password.isValid()) {
 
 		bool hadPasswordFile = SecurityProfiles::hasPasswordFile();
 		QProcess cmd;
+		qDebug() << "[Api] Changing password to" << (password == "" ? "nothing" : "'***NOT GOING TO LOG A PASSWORD***'");
 		// qDebug() << "[Api] Changing password to " << password.toString();
 		cmd.start("/sbin/ve-set-passwd", QStringList() << password.toString());
 		if (!cmd.waitForFinished() || cmd.exitCode() != 0) {
@@ -66,17 +76,22 @@ int SecurityApi::setValue(const QVariant &value)
 
 	password = map.value("SetRootPassword");
 	if (password.isValid()) {
+		qCritical() << "[Api] Changing root password";
 		ok = Application::setRootPassword(password.toString());
 	}
 
 	securityProfile = map.value("SetSecurityProfile");
 	if (securityProfile.isValid()) {
+
 		uint value = securityProfile.toUInt(&ok);
 		if (!ok || value > SECURITY_PROFILE_LAST) {
 			ok = false;
 			qCritical() << "[Api] Invalid security profile" << securityProfile.toString();
 			goto out;
 		}
+
+		if (value != SECURITY_PROFILE_UNSECURED && !map.value("SetPassword").isValid())
+			qCritical() << "[Api] SetSecurityProfile without a password";
 
 		qCritical() << "[Api] Changing security profile to" << value;
 		switch (value)
@@ -97,7 +112,7 @@ int SecurityApi::setValue(const QVariant &value)
 
 		case SECURITY_PROFILE_UNSECURED:
 			{
-				qDebug() << "Removing password protection since access level is set to insecure!";
+				qDebug() << "[Api] Removing password protection since access level is set to insecure!";
 				QFile passwd(passwordFileName);
 				passwd.open(QIODevice::WriteOnly);
 				passwd.resize(0);
@@ -105,7 +120,7 @@ int SecurityApi::setValue(const QVariant &value)
 			}
 
 		case SECURITY_PROFILE_INDETERMINATE:
-			qDebug() << "The security profile cannot be set to undertermined";
+			qDebug() << "[Api] The security profile cannot be set to indeterminate";
 			return -1;
 		}
 
