@@ -6,7 +6,7 @@
 QString const passwordFileName = QStringLiteral("/data/conf/vncpassword.txt");
 
 SecurityApi::SecurityApi(VeQItem *pltService, VeQItemSettings *settings) :
-	VeQItemAction()
+	VeQItemQuantity("")
 {
 	mVrmLoggerHttpsEnabled = settings->root()->itemGetOrCreate("Settings/Vrmlogger/HttpsEnabled");
 	mVrmLoggerHttpsEnabled->getValue();
@@ -168,7 +168,7 @@ int SecurityApi::setValue(const QVariant &value)
 	}
 
 out:
-	produceValue(QString(), State::Synchronized, true);
+	produceValue("", State::Synchronized, true);
 	return ok ? 0 : -1;
 }
 

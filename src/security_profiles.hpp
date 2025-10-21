@@ -56,7 +56,7 @@ enum NetworkConfigEvent {
 	NETWORK_CONFIG_SECURITY_PROFILE_CHANGED,
 };
 
-class SecurityApi : public VeQItemAction
+class SecurityApi : public VeQItemQuantity
 {
 	Q_OBJECT
 
