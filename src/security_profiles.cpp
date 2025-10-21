@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <QDir>
 
 #include "application.hpp"
@@ -116,6 +117,7 @@ int SecurityApi::setValue(const QVariant &value)
 				QFile passwd(passwordFileName);
 				passwd.open(QIODevice::WriteOnly);
 				passwd.resize(0);
+				::fsync(passwd.handle());
 				break;
 			}
 
