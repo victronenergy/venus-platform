@@ -27,6 +27,9 @@ int SecurityApi::setValue(const QVariant &value)
 	QVariant securityProfile;
 	NetworkConfigEvent configEvent = NETWORK_CONFIG_NO_EVENT;
 
+	bool hadPasswordFile = SecurityProfiles::hasPasswordFile();
+	bool passwordFileCreated = false;
+
 	ok = value.isValid();
 	if (!ok) {
 		qWarning() << "[Api]" << uniqueId() << "invalid value";
@@ -54,25 +57,37 @@ int SecurityApi::setValue(const QVariant &value)
 
 	password = map.value("SetPassword");
 	if (password.isValid()) {
+		// venus-platform relies on the UIs to check password strength
+		// against whatever is considered best practice for the moment,
+		// but surely not having a password is a not allowed (unless you
+		// purposely choose to be an insecure device).
+		if (password.toString().isEmpty()) {
+			bool ok;
+			if (map.value("SetSecurityProfile").toInt(&ok) != SECURITY_PROFILE_UNSECURED || !ok) {
+				qCritical() << "[Api] ignoring empty password field, set the" <<
+								"device to insecure to remove the password" <<
+								map.value("SetSecurityProfile").toInt();
+				return -2;
+			}
+		} else {
+			QProcess cmd;
+			qDebug() << "[Api] Changing password to" << (password == "" ? "nothing" : "'***NOT GOING TO LOG A PASSWORD***'");
+			// qDebug() << "[Api] Changing password to " << password.toString();
+			cmd.start("/sbin/ve-set-passwd", QStringList() << password.toString());
+			if (!cmd.waitForFinished() || cmd.exitCode() != 0) {
+				qCritical() << "[Api] Changing the password failed";
+				ok = false;
+				goto out;
+			}
 
-		bool hadPasswordFile = SecurityProfiles::hasPasswordFile();
-		QProcess cmd;
-		qDebug() << "[Api] Changing password to" << (password == "" ? "nothing" : "'***NOT GOING TO LOG A PASSWORD***'");
-		// qDebug() << "[Api] Changing password to " << password.toString();
-		cmd.start("/sbin/ve-set-passwd", QStringList() << password.toString());
-		if (!cmd.waitForFinished() || cmd.exitCode() != 0) {
-			qCritical() << "[Api] Changing the password failed";
-			ok = false;
-			goto out;
+			// Since the password changed, make sure users need to enter credentials again.
+			Application::invalidateAuthenticatedSessions();
+			configEvent = NETWORK_CONFIG_PASSWORD_CHANGED; // Trigger users to login again
+
+			// Announce on the network as well that wss:// mqtt logins now work.
+			if (!hadPasswordFile)
+				passwordFileCreated = true;
 		}
-
-		// Since the password changed, make sure users need to enter credentials again.
-		Application::invalidateAuthenticatedSessions();
-		configEvent = NETWORK_CONFIG_PASSWORD_CHANGED; // Trigger users to login again
-
-		// Announce on the network as well that wss:// mqtt logins now work.
-		if (!hadPasswordFile)
-			SecurityProfiles::restartUpnp();
 	}
 
 	password = map.value("SetRootPassword");
@@ -90,18 +105,20 @@ int SecurityApi::setValue(const QVariant &value)
 			qCritical() << "[Api] Invalid security profile" << securityProfile.toString();
 			goto out;
 		}
-
-		if (value != SECURITY_PROFILE_UNSECURED && !map.value("SetPassword").isValid())
+		
+		if (value != SECURITY_PROFILE_UNSECURED && !map.value("SetPassword").isValid()) {
 			qCritical() << "[Api] SetSecurityProfile without a password";
+			return -3;
+		}
 
 		qCritical() << "[Api] Changing security profile to" << value;
 		switch (value)
 		{
 		case SECURITY_PROFILE_SECURED:
-			// - A password is required in secured mode. It is up to the UI to make sure that is
-			//   actually done, since for example checking password strength is easier there.
-			//   If that should be double checked, it should be part of the API, since this is
-			//   invoked after the profile has already been changed.
+			// A password is required in secured mode. It is up to the UI to make sure that is
+			// actually done, since for example checking password strength is easier there.
+			// If that should be double checked, it should be part of the API, since this is
+			// invoked after the profile has already been changed.
 
 			// https for VRM logger is required in secure mode.
 			mVrmLoggerHttpsEnabled->setValue(1);
@@ -118,6 +135,8 @@ int SecurityApi::setValue(const QVariant &value)
 				passwd.open(QIODevice::WriteOnly);
 				passwd.resize(0);
 				::fsync(passwd.handle());
+				if (!hadPasswordFile)
+					passwordFileCreated = true;
 				break;
 			}
 
@@ -127,6 +146,10 @@ int SecurityApi::setValue(const QVariant &value)
 		}
 
 		mSecurityProfile->setValue(value);
+
+		// Announce on the network as well that wss:// mqtt logins now work.
+		if (passwordFileCreated)
+			SecurityProfiles::restartUpnp();
 
 		/*
 		 * Force reauthentication / or reload nginx, since it changes config depending on
