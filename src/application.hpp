@@ -15,6 +15,7 @@
 #include "relay.hpp"
 #include "token_users.hpp"
 #include "updater.hpp"
+#include "usb_transfer.hpp"
 #include "venus_services.hpp"
 #include "vebus_backup.hpp"
 
@@ -125,6 +126,7 @@ private:
 	Relay *mRelay;
 
 	VebusBackupServiceRegistrator *mVebusBackup;
+	UsbTransferService *mUsbTransfer;
 
 	DaemonToolsService *mGuiSwitcher = nullptr;
 	bool mOnScreenGuiv2Supported;
