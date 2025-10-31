@@ -296,6 +296,8 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 	QObject(parent)
 {
 	mSecurityState = pltService->itemGetOrCreateAndProduce("Security/Status", SECURITY_STATE_OK);
+	mPasswordFileSize = pltService->itemGetOrCreate("Security/PasswordFileSize");
+	mPasswordAge = pltService->itemGetOrCreate("Security/PasswordFileAge");
 	passwordWatcher.addPath(passwordFileName);
 	passwordWatcher.addPath(QFileInfo(passwordFileName).absolutePath());
 	connect(&passwordWatcher, &QFileSystemWatcher::fileChanged, this, &SecurityProfiles::checkPassword);
@@ -395,6 +397,15 @@ void SecurityProfiles::checkPassword()
 	}
 
 	mSecurityState->produceValue(state);
+
+	QFileInfo pwd(passwordFileName);
+	if (!pwd.exists()) {
+		mPasswordFileSize->produceValue(QVariant());
+		mPasswordAge->produceValue(QVariant());
+		return;
+	}
+	mPasswordFileSize->produceValue(pwd.size());
+	mPasswordAge->produceValue(pwd.lastModified().toSecsSinceEpoch() / (60 * 60 * 24));
 }
 
 void SecurityProfiles::enableMqttBridge(bool configChanged)

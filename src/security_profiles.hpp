@@ -139,6 +139,8 @@ private:
 	VrmTunnelSetup *mTunnelSetup;
 	QFileSystemWatcher passwordWatcher;
 	VeQItem *mSecurityState;
+	VeQItem *mPasswordFileSize;
+	VeQItem *mPasswordAge;
 
 	VeQItemMqttBridgeRegistrator *mMqttBridgeRegistrator = nullptr;
 };
