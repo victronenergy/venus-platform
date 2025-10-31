@@ -2,37 +2,28 @@ QT = core dbus
 
 unix {
 	bindir = $$(bindir)
-	DESTDIR = $$(DESTDIR)
 	isEmpty(bindir) {
-		bindir = /opt/victronenergy/venus-platform
+		bindir = /opt/victronenergy/network-reset
 	}
-	target.path = $${DESTDIR}$${bindir}
+	target.path = $${bindir}
 }
 !isEmpty(target.path): INSTALLS += target
-
 
 QMAKE_CXXFLAGS += -std=c++17
 
 HEADERS = \
-	src/networkresetter.h \
-	src/network-resetter-app.h \
-	src/utils.hpp \
+	../src/utils.hpp \
+	network_reset.hpp \
+	main.hpp \
 
 SOURCES = \
-        src/network-resetter-main.cpp \
-	src/networkresetter.cpp \
-	src/network-resetter-app.cpp \
-	src/utils.cpp \
+	../src/utils.cpp \
+	network_reset.cpp \
+	main.cpp \
 
+INCLUDEPATH += $$PWD .. ../src
 
-
-unix {
-    CONFIG += link_pkgconfig
-}
-
-
-VE_CONFIG += udev
-include("ext/veutil/veutil.pri")
+include("../ext/veutil/veutil.pri")
 
 QMAKE_CXXFLAGS *= -ffunction-sections
 QMAKE_LFLAGS *= -Wl,--gc-sections

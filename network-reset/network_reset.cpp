@@ -1,15 +1,13 @@
-#include "networkresetter.h"
-
-#include <QCoreApplication>
-#include <QDebug>
-#include <QFile>
-#include <QDir>
-#include <unistd.h>
 #include <fcntl.h>
-#include <chrono>
+#include <unistd.h>
+
+#include <QDebug>
+#include <QDir>
+
+#include "network_reset.hpp"
 #include "utils.hpp"
 
-void NetworkResetter::initiate()
+void NetworkReset::initiate()
 {
 	stopRelevantServices();
 	setWifiHotspotAndBluetooth(mSettings, 0);
@@ -17,7 +15,7 @@ void NetworkResetter::initiate()
 	setSettingsToDefault();
 }
 
-void NetworkResetter::stopRelevantServices()
+void NetworkReset::stopRelevantServices()
 {
 	{
 		qDebug() << "Stopping connman";
@@ -33,10 +31,9 @@ void NetworkResetter::stopRelevantServices()
 		p.waitForFinished();
 	}
 
-	const bool platform_stopped = stopServiceAndWaitForExit("venus-platform");
+	const bool platformStopped = stopServiceAndWaitForExit("venus-platform");
 
-	if (!platform_stopped)
-	{
+	if (!platformStopped) {
 		qDebug() << "Timeout waiting for Venus-platform, force-killing";
 		QProcess p;
 		p.start("killall", {"-9", "venus-platform"});
@@ -44,7 +41,7 @@ void NetworkResetter::stopRelevantServices()
 	}
 }
 
-void NetworkResetter::makeLEDsIndicateReset()
+void NetworkReset::makeLedsIndicateReset()
 {
 	qDebug() << "Starting LED feedback";
 
@@ -58,8 +55,7 @@ void NetworkResetter::makeLEDsIndicateReset()
 	// Venus GX / Octo GX
 	ledValues["vecape:green:ve0"] = "default-on";
 
-	for (auto &pair : ledValues)
-	{
+	for (auto &pair : ledValues) {
 		qDebug() << "Setting led" << pair.first << "to" << pair.second;
 
 		const QString path = QString("/sys/class/leds/%1/trigger").arg(pair.first);
@@ -74,18 +70,17 @@ void NetworkResetter::makeLEDsIndicateReset()
 	}
 }
 
-void NetworkResetter::setSettingsToDefault()
+void NetworkReset::setSettingsToDefault()
 {
 	const QStringList settingPaths({"Settings/Ble/Service/Pincode", "Settings/Services/AccessPoint", "Settings/Services/Bluetooth"});
 
-	for (const QString &path : settingPaths)
-	{
+	for (const QString &path : settingPaths) {
 		VeQItem *item = mSettings->root()->itemGet(path);
 
 		if (!item)
 			continue;
 
-		connect(item, &VeQItem::stateChanged, this, &NetworkResetter::defaultValueSetStateChanged);
+		connect(item, &VeQItem::stateChanged, this, &NetworkReset::defaultValueSetStateChanged);
 
 		auto defaultVal = item->itemProperty("defaultValue");
 		qDebug() << "Setting " << path << "to default value."; // Not logging value, which could be sensitive.
@@ -102,7 +97,7 @@ void NetworkResetter::setSettingsToDefault()
 	qDebug() << "Waiting for acknowldegement of setting default values, or timeout of" << mSetDefaultTimeoutTimer.interval() << "ms";
 }
 
-void NetworkResetter::deletePaths()
+void NetworkReset::deletePaths()
 {
 	const QStringList deletePaths({"/data/conf/vncpassword.txt", "/data/var/lib/bluetooth", "/data/var/lib/connman" });
 
@@ -130,8 +125,7 @@ void NetworkResetter::deletePaths()
 	}
 
 	const QStringList syncDirs({"/data/conf/", "/data/var/lib/"});
-	for (const QString &dir : syncDirs)
-	{
+	for (const QString &dir : syncDirs) {
 		int fddir = open(dir.toLatin1().data(), O_RDONLY);
 		if (fddir < 0)
 			continue;
@@ -140,7 +134,7 @@ void NetworkResetter::deletePaths()
 	}
 }
 
-void NetworkResetter::initiateSettingsShutdownAndReboot()
+void NetworkReset::initiateSettingsShutdownAndReboot()
 {
 	// The localsettings has an exit handler that properly saves and fsyncs settings.
 	{
@@ -151,11 +145,11 @@ void NetworkResetter::initiateSettingsShutdownAndReboot()
 
 	const bool localsettings_stopped = stopServiceAndWaitForExit("localsettings");
 
-	if (!localsettings_stopped) {
+	if (!localsettings_stopped)
 		qWarning() << "localsettings did not exit? Rebooting anyway.";
-	}
 
-	// Reboot is required, to make localsettings correct things. Refactoring things to avoid that makes things complicated.
+	// Reboot is required, to make localsettings correct things.
+	// Refactoring things to avoid that makes things complicated.
 	{
 		qDebug() << "Rebooting";
 		QProcess p;
@@ -166,11 +160,11 @@ void NetworkResetter::initiateSettingsShutdownAndReboot()
 	QTimer::singleShot(0, &QCoreApplication::quit);
 }
 
-void NetworkResetter::defaultValueSetStateChanged(VeQItem::State state)
+void NetworkReset::defaultValueSetStateChanged(VeQItem::State state)
 {
 	/*
-	 * Note that this mechanism doesn't detect setValue commands to the same value. That's
-	 * why we also use a timeout.
+	 * Note that this mechanism doesn't detect setValue commands to the same value.
+	 * That's why a timeout is used.
 	 */
 
 	if (state != VeQItem::Synchronized)
@@ -178,28 +172,27 @@ void NetworkResetter::defaultValueSetStateChanged(VeQItem::State state)
 
 	mDefaultValueSetCounter--;
 
-	if (mDefaultValueSetCounter <= 0)
-	{
+	if (mDefaultValueSetCounter <= 0) {
 		mSetDefaultTimeoutTimer.stop();
 		initiateSettingsShutdownAndReboot();
 	}
 }
 
-
-NetworkResetter::NetworkResetter(VeQItemSettings *settings, QObject *parent) : QObject{parent},
+NetworkReset::NetworkReset(VeQItemSettings *settings, QObject *parent) : QObject{parent},
 	mSettings(settings)
 {
 	mSetDefaultTimeoutTimer.setInterval(7000);
 	mSetDefaultTimeoutTimer.setSingleShot(true);
-	connect(&mSetDefaultTimeoutTimer, &QTimer::timeout, this, &NetworkResetter::initiateSettingsShutdownAndReboot);
+	connect(&mSetDefaultTimeoutTimer, &QTimer::timeout, this, &NetworkReset::initiateSettingsShutdownAndReboot);
 }
 
-void NetworkResetter::resetNetwork()
+void NetworkReset::reset()
 {
-	// Blink leds fast for a while so that the user sees a response. The re-enabling of the hotspot and bluetooth is fast, which would
+	// Blink leds fast for a while so that the user sees a response. The
+	// re-enabling of the hotspot and bluetooth is fast, which would
 	// otherwise stop the fast blinking again, so hence the delay.
-	makeLEDsIndicateReset();
-	QTimer::singleShot(1500, this, &NetworkResetter::initiate);
+	makeLedsIndicateReset();
+	QTimer::singleShot(1500, this, &NetworkReset::initiate);
 
 	// TODO: do we need a long-ish fallback reboot?
 }

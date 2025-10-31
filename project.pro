@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS += venus-platform
+SUBDIRS += venus-platform network-reset
