@@ -21,7 +21,7 @@ public:
 	bool isValid() const { return !mTokenName.isEmpty(); }
 
 	static TokenUser fromJson(const QJsonObject &json);
-	QJsonObject toJson() const;
+	QJsonObject toJson(bool withHash = true) const;
 
 private:
 	QString mTokenName;
@@ -35,7 +35,7 @@ public:
 	TokenUsers() {}
 
 	bool fromJson(const QJsonArray &users);
-	QJsonArray toJson() const;
+	QJsonArray toJson(bool withHash = true) const;
 	bool load(QString const &filename);
 	bool save(QString const &filename);
 

@@ -28,11 +28,12 @@ TokenUser TokenUser::fromJson(const QJsonObject &json)
 	return ret;
 }
 
-QJsonObject TokenUser::toJson() const
+QJsonObject TokenUser::toJson(bool withHash) const
 {
 	QJsonObject json;
 	json["token_name"] = mTokenName;
-	json["password_hash"] = mPasswordHash;
+	if (withHash)
+		json["password_hash"] = mPasswordHash;
 	return json;
 }
 
@@ -52,11 +53,11 @@ bool TokenUsers::fromJson(const QJsonArray &users)
 	return true;
 }
 
-QJsonArray TokenUsers::toJson() const
+QJsonArray TokenUsers::toJson(bool withHash) const
 {
 	QJsonArray array;
 	for (TokenUser const &user: mTokenUsers)
-		array.append(user.toJson());
+		array.append(user.toJson(withHash));
 
 	return array;
 }
@@ -181,7 +182,7 @@ void TokenUserWatcher::updateTokens()
 {
 	TokenUsers users;
 	users.load(tokenfile);
-	QJsonArray array = users.toJson();
+	QJsonArray array = users.toJson(false);
 	QJsonDocument doc(array);
 	QString json = doc.toJson(QJsonDocument::Compact);
 	mTokensItem->produceValue(json);
