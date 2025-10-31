@@ -39,7 +39,7 @@ public:
 	bool load(QString const &filename);
 	bool save(QString const &filename);
 
-	void removeTokenUser(const QString &username);
+	int removeTokenUser(const QString &username);
 	bool addTokenUser(const TokenUser &user);
 
 private:

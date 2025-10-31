@@ -2,6 +2,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#include <QDBusMessage>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -10,6 +11,8 @@
 #include <QSaveFile>
 #include <QString>
 #include <QTextStream>
+
+#include <veutil/qt/ve_dbus_connection.hpp>
 
 #include "token_users.hpp"
 
@@ -94,15 +97,20 @@ bool TokenUsers::save(QString const &filename)
 	return true;
 }
 
-void TokenUsers::removeTokenUser(const QString &username)
+int TokenUsers::removeTokenUser(const QString &username)
 {
 	QMutableListIterator<TokenUser> i(mTokenUsers);
+	int n = 0;
 
 	while (i.hasNext()) {
 		TokenUser user = i.next();
-		if (user.tokenname() == username)
+		if (user.tokenname() == username) {
 			i.remove();
+			n++;
+		}
 	}
+
+	return n;
 }
 
 bool TokenUsers::addTokenUser(const TokenUser &user)
@@ -199,7 +207,11 @@ int TokenRemoveItem::setValue(const QVariant &value)
 		return -1;
 	}
 
-	users.removeTokenUser(token);
+	int count = users.removeTokenUser(token);
+	if (count == 0) {
+		qDebug() << "user" << token << "doesn't exist";
+		return -3;
+	}
 
 	if (!users.save(tokenfile)) {
 		qCritical() << "failed to save token users";
@@ -207,6 +219,11 @@ int TokenRemoveItem::setValue(const QVariant &value)
 	}
 
 	mWatcher->updateTokens();
+
+	QDBusMessage signal = QDBusMessage::createSignal("/Tokens/Users", "com.victronenergy.TokenUsers", "UserRemoved");
+	signal << token;
+	if (!VeDbusConnection::getConnection().send(signal))
+		qCritical() << "failed to send token remove signal";
 
 	return 0;
 }
