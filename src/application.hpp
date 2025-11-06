@@ -15,6 +15,7 @@
 #include "relay.hpp"
 #include "token_users.hpp"
 #include "updater.hpp"
+#include "usb_transfer.hpp"
 #include "venus_services.hpp"
 #include "vebus_backup.hpp"
 
@@ -132,6 +133,7 @@ private:
 	VeQItem *mAlarm;
 	Relay *mRelay;
 
+	UsbTransferService *mUsbTransfer;
 	VebusBackupServiceRegistrator *mVebusBackup;
 
 	DaemonToolsService *mGuiSwitcher = nullptr;

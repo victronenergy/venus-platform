@@ -351,6 +351,7 @@ public:
 		add("System/Units/Altitude", "");
 		add("System/Units/Distance", "");
 		add("System/Units/Temperature", "");
+		add("System/UsbTransfer/Tank/DisableAutoImport", 0, 0, 1);
 		add("System/VolumeUnit", 0, 0, 0);
 		add("SystemSetup/SystemName", "");
 		add("Vebus/AllowMk3Fw212Update", mk3update, 0, 2);
@@ -789,6 +790,7 @@ void Application::start()
 	mVenusServices = new VenusServices(mServices, this);
 	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
 
+	mUsbTransfer = new UsbTransferService(mService, this);
 	mVebusBackup = new VebusBackupServiceRegistrator(mService, mVenusServices, this);
 
 	new SecurityProfiles(mService, mSettings, mVenusServices, this);
