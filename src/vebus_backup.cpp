@@ -39,7 +39,16 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 		qDebug() << "[Vebus_backup] Device name not found. Skip registration of " << connection;
 		return;
 	}
-	mVebusRootItem = venusPlatformParentItem->itemGetOrCreate("Vebus/Interface/" + connection);
+
+	// We support two VE.Bus backup services, one for the onboard device (0)
+	// and one for a MK3-USB device. If more than one, log it and stop here.
+	QString path = connection.startsWith("ttyUSB") ? "Vebus/Interface/1" : "Vebus/Interface/0";
+	if (venusPlatformParentItem->itemGet(path) != nullptr) {
+		qDebug() << "[Vebus_backup] Too many devices. Skip registration of " << connection;
+		return;
+	}
+
+	mVebusRootItem = venusPlatformParentItem->itemGetOrCreate(path);
 	mAvailableBackupsItem = mVebusRootItem->itemGetOrCreate("AvailableBackups");
 	mIncompatibleBackupsItem = mVebusRootItem->itemGetOrCreate("FirmwareIncompatibleBackups");
 
