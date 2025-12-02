@@ -122,7 +122,6 @@ private slots:
 private:
 	void checkMqttOnLan();
 	void enableMqttBridge(bool configChanged = false);
-	void enableMqttOnLan(bool enabled);
 	void enableMqttOnLanInsecure(bool enabled);
 
 	QVariant mMqttAccess;
@@ -130,7 +129,6 @@ private:
 	QVariant mVrmPortal;
 
 	// These are QVariant, just to unequal fo false for startup/init
-	QVariant mMqttOnLan;
 	QVariant mMqttOnLanInsecure;
 
 	DaemonToolsService *mFlashMq = nullptr;

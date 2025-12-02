@@ -322,7 +322,7 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 	item = settings->root()->itemGetOrCreate("Settings/Network/VrmPortal");
 	item->getValueAndChanges(this, SLOT(onVrmPortalChange(QVariant)));
 
-	enableMqttOnLan(false); // Disable LAN socket access by default, unless explicitly enabled.
+	enableMqttOnLanInsecure(false); // Disable LAN socket access by default, unless explicitly enabled.
 	mFlashMq = new DaemonToolsService("/service/flashmq", this);
 	mFlashMq->setSveCtlArgs(QStringList() << "-s" << "flashmq");
 
@@ -471,41 +471,18 @@ void SecurityProfiles::checkMqttOnLan()
 {
 	// Wait till all required settings are valid...
 	if (!mMqttAccess.isValid() || !mSecurityProfile.isValid()) {
-		enableMqttOnLan(false);
+		enableMqttOnLanInsecure(false);
 		return;
 	}
 
 	// LAN support for MQTT (manage firewall rules)
 	if (mMqttAccess.toInt() == MQTT_ACCESS_ON) {
-		enableMqttOnLan(true);
-
 		// If the security level permits it, also enable the unsecure version.
 		int securityLevel = mSecurityProfile.toInt();
 		bool allowInsecure = (securityLevel == SECURITY_PROFILE_WEAK || securityLevel == SECURITY_PROFILE_UNSECURED);
 		enableMqttOnLanInsecure(allowInsecure);
-
 	} else {
-		enableMqttOnLan(false);
-	}
-}
-
-void SecurityProfiles::enableMqttOnLan(bool enabled)
-{
-	if (mMqttOnLan == enabled)
-		return;
-	mMqttOnLan = enabled;
-
-	// If secure MQTT on LAN isn't even enabled, make sure the insecure version for sure isn't.
-	if (!enabled)
 		enableMqttOnLanInsecure(false);
-
-	// 1883: encrypted normal socket
-	if (enabled) {
-		qWarning() << "[Firewall] Allow local MQTT over SSL, port 8883";
-		Application::run("firewall", QStringList() << "allow" << "tcp" << "8883");
-	} else {
-		qWarning() << "[Firewall] Disallow local MQTT over SSL, port 8883";
-		Application::run("firewall", QStringList() << "deny" << "tcp" << "8883");
 	}
 }
 
