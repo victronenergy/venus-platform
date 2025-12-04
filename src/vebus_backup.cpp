@@ -147,7 +147,7 @@ void VebusBackupService::updateAvailableBackups()
 
 	QString conFilter = "*-" + connection;
 	QDir directory(backupDir);
-	QStringList backupFiles  = directory.entryList(QStringList() << conFilter + ".rvsc" << conFilter + ".rvms",
+	mBackupFiles  = directory.entryList(QStringList() << conFilter + ".rvsc" << conFilter + ".rvms",
 		QDir::Files, QDir::Name);
 
 	QJsonArray backupFilesArray;
@@ -156,7 +156,7 @@ void VebusBackupService::updateAvailableBackups()
 	// Regular expression for extracting both firmware version and subversion number
 	static QRegularExpression regex(R"(Firmware version\s*=\s*(\d+)(?:\s*\nFirmware subversion number\s*=\s*(\d+))?)");
 
-	foreach(QString fileName, backupFiles) {
+	foreach(QString fileName, mBackupFiles) {
 		// Check if files are valid by listing the contents
 		QStringList arguments({"-L","-f",backupDir + fileName});
 		proc.start(mk2vscProg, arguments);
