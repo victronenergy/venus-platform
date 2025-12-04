@@ -115,6 +115,7 @@ private slots:
 	void onMk2ConnectionItemChanged(QVariant var);
 	void onActionChanged(QVariant var);
 	void onFileNameChanged(QVariant var);
+	void onFileIndexChanged(QVariant var);
 	void onMk2VscStateChanged(QVariant var);
 	void onVebusProductIdOrVersionChanged(QVariant var);
 	void onVebusConnectedChanged(QVariant var);
