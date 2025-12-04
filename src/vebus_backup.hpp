@@ -66,7 +66,7 @@ public:
 	};
 
 private:
-	void getAvailableBackups();
+	void updateAvailableBackups();
 	void deleteBackupFile();
 	void onBackupFinished(int exitCode, QProcess::ExitStatus exitStatus);
 	void runBackupAction();
