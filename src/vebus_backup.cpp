@@ -147,7 +147,8 @@ void VebusBackupService::getAvailableBackups()
 
 	QString conFilter = "*-" + connection;
 	QDir directory(backupDir);
-	QStringList backupFiles  = directory.entryList(QStringList() << conFilter + ".rvsc" << conFilter + ".rvms",QDir::Files);
+	QStringList backupFiles  = directory.entryList(QStringList() << conFilter + ".rvsc" << conFilter + ".rvms",
+		QDir::Files, QDir::Name);
 	QString backupFilesString = "[";
 	QString incompBackupFilesString = "[";
 
