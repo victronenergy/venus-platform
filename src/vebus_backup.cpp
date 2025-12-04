@@ -132,7 +132,7 @@ void VebusBackupService::onFileNameChanged(QVariant var)
 	}
 }
 
-void VebusBackupService::getAvailableBackups()
+void VebusBackupService::updateAvailableBackups()
 {
 	bool firmwareMatch;
 	QProcess proc;
@@ -238,7 +238,7 @@ void VebusBackupService::onBackupFinished(int exitCode, QProcess::ExitStatus exi
 		mNotifyItem->produceValue(Notification::backupException);
 	}
 
-	//getAvailableBackups(); // This is done by the mk2dbus connected slot
+	//updateAvailableBackups(); // This is done by the mk2dbus connected slot
 }
 
 void VebusBackupService::runBackupAction()
@@ -349,7 +349,7 @@ void VebusBackupService::deleteBackupFile()
 	}
 
 	mActionItem->produceValue(Action::idle);
-	getAvailableBackups();
+	updateAvailableBackups();
 }
 
 void VebusBackupServiceRegistrator::onVenusServiceFound(VenusService *service)
@@ -405,7 +405,7 @@ bool VebusBackupService::checkFirmwareVersionCompatibility(const QString& prodId
 void VebusBackupService::onVebusProductIdOrVersionChanged(QVariant var)
 {
 	if (var.isValid()) {
-		getAvailableBackups();
+		updateAvailableBackups();
 	} else {
 		availableBackupsListValid = false;
 		vebusProductId.clear();
@@ -421,7 +421,7 @@ void VebusBackupService::onVebusConnectedChanged(QVariant var)
 	if(var.isValid()) {
 		offline = false;
 		if(var.toInt() != 0) {
-			getAvailableBackups();
+			updateAvailableBackups();
 		}
 	} else {
 		offline = true;
