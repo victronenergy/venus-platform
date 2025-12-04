@@ -2,6 +2,8 @@
 #include <QDebug>
 #include <QProcess>
 #include <QRegularExpression>
+#include <QJsonArray>
+#include <QJsonDocument>
 
 #include "application.hpp"
 #include "venus_services.hpp"
@@ -132,8 +134,6 @@ void VebusBackupService::onFileNameChanged(QVariant var)
 
 void VebusBackupService::getAvailableBackups()
 {
-	int i = 0;
-	int j = 0;
 	bool firmwareMatch;
 	QProcess proc;
 
@@ -149,8 +149,9 @@ void VebusBackupService::getAvailableBackups()
 	QDir directory(backupDir);
 	QStringList backupFiles  = directory.entryList(QStringList() << conFilter + ".rvsc" << conFilter + ".rvms",
 		QDir::Files, QDir::Name);
-	QString backupFilesString = "[";
-	QString incompBackupFilesString = "[";
+
+	QJsonArray backupFilesArray;
+	QJsonArray incompBackupFilesArray;
 
 	// Regular expression for extracting both firmware version and subversion number
 	static QRegularExpression regex(R"(Firmware version\s*=\s*(\d+)(?:\s*\nFirmware subversion number\s*=\s*(\d+))?)");
@@ -184,22 +185,14 @@ void VebusBackupService::getAvailableBackups()
 					sectionNumber++;
 
 					if(checkFirmwareVersionCompatibility(firmwareVersion, firmwareSubversion)) {
-						if (i > 0) {
-							backupFilesString.append(", ");
-						}
-						backupFilesString.append("\"" + fileName + "\"");
-						i++;
+						backupFilesArray.append(fileName);
 						firmwareMatch = true;
 						break;
 					}
 				}
 
 				if (!firmwareMatch) {
-					if (j > 0) {
-						incompBackupFilesString.append(", ");
-					}
-					incompBackupFilesString.append("\"" + fileName + "\"");
-					j++;
+					incompBackupFilesArray.append(fileName);
 				}
 			}
 			else {
@@ -209,16 +202,16 @@ void VebusBackupService::getAvailableBackups()
 		proc.close();
 	}
 
-	backupFilesString.append("]");
-	if (i > 0) {
-		mAvailableBackupsItem->produceValue(backupFilesString);
+	if (backupFilesArray.size() > 0) {
+		mAvailableBackupsItem->produceValue(
+			QString::fromUtf8(QJsonDocument(backupFilesArray).toJson(QJsonDocument::Compact)));
 	} else {
 		mAvailableBackupsItem->produceValue("");
 	}
 
-	incompBackupFilesString.append("]");
-	if (j > 0) {
-		mIncompatibleBackupsItem->produceValue(incompBackupFilesString);
+	if (incompBackupFilesArray.size() > 0) {
+		mIncompatibleBackupsItem->produceValue(
+			QString::fromUtf8(QJsonDocument(incompBackupFilesArray).toJson(QJsonDocument::Compact)));
 	} else {
 		mIncompatibleBackupsItem->produceValue("");
 	}
