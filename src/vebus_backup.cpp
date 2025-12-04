@@ -49,11 +49,13 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	mErrorItem = mVebusRootItem->itemGetOrCreate("Error");
 	mNotifyItem = mVebusRootItem->itemGetOrCreate("Notify");
 	mFileItem = mVebusRootItem->itemGetOrCreateAndProduce("File", "");
+	mFileIndexItem = mVebusRootItem->itemGetOrCreate("FileIndex");
 	mActionItem = mVebusRootItem->itemGetOrCreateAndProduce("Action", 0);
 
 	mActionItem->produceValue(0);
 	mActionItem->getValueAndChanges(this, SLOT(onActionChanged(QVariant)));
 	mFileItem->getValueAndChanges(this, SLOT(onFileNameChanged(QVariant)));
+	mFileIndexItem->getValueAndChanges(this, SLOT(onFileIndexChanged(QVariant)));
 
 	// Connect to the mk2vsc service
 	mMk2VscRootItem = vebusInterfaceService->item()->itemParent()->itemGetOrCreate("com.victronenergy.mk2vsc");
@@ -129,6 +131,14 @@ void VebusBackupService::onFileNameChanged(QVariant var)
 {
 	if (var.isValid()) {
 		fileName = var.toString();
+	}
+}
+
+void VebusBackupService::onFileIndexChanged(QVariant var)
+{
+	int idx = var.toInt();
+	if (idx < mBackupFiles.size()) {
+		mFileItem->produceValue(mBackupFiles[idx]); // This also fires onFileNameChanged
 	}
 }
 
