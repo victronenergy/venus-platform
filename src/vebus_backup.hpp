@@ -86,7 +86,7 @@ private:
 	const QString mk2vscCacheDir = QStringLiteral("/tmp");
 
 	QString connection;
-	QString fileName;
+	QString mFileName;
 	QString vebusFirmwareVersionString;
 	QString vebusFirmwareVersionNumber;
 	QString vebusFirmwareSubVersionNumber;

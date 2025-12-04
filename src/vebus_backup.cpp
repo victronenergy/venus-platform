@@ -28,7 +28,7 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	working = false;
 	availableBackupsListValid = false;
 
-	fileName.clear();
+	mFileName.clear();
 	vebusFirmwareVersionNumber.clear();
 	vebusFirmwareSubVersionNumber.clear();
 	vebusFirmwareVersionString.clear();
@@ -130,7 +130,7 @@ void VebusBackupService::onMk2VscStateChanged(QVariant var)
 void VebusBackupService::onFileNameChanged(QVariant var)
 {
 	if (var.isValid()) {
-		fileName = var.toString();
+		mFileName = var.toString();
 	}
 }
 
@@ -253,13 +253,13 @@ void VebusBackupService::onBackupFinished(int exitCode, QProcess::ExitStatus exi
 
 void VebusBackupService::runBackupAction()
 {
-	if (fileName.isEmpty()) {
+	if (mFileName.isEmpty()) {
 		mActionItem->produceValue(Action::idle);
 		return;
 	}
 
 	working = true;
-	fileName = vebusFirmwareVersionString + "-" + fileName;
+	QString fileName = vebusFirmwareVersionString + "-" + mFileName;
 
 	qDebug() << "Start Ve.Bus backup to file name" << fileName;
 
@@ -304,14 +304,14 @@ void VebusBackupService::onRestoreFinished(int exitCode, QProcess::ExitStatus ex
 
 void VebusBackupService::runRestoreAction()
 {
-	if (fileName.isEmpty()) {
+	if (mFileName.isEmpty()) {
 		mActionItem->produceValue(Action::idle);
 		return;
 	}
 
 	working = true;
 
-	qDebug() << "Start Ve.Bus restore using file name" << fileName;
+	qDebug() << "Start Ve.Bus restore using file name" << mFileName;
 	working = true;
 	QProcess *restoreProcess = new QProcess();
 	QObject::connect(restoreProcess, &QProcess::finished, this, &VebusBackupService::onRestoreFinished);
@@ -321,7 +321,7 @@ void VebusBackupService::runRestoreAction()
 						   mk2vscCacheDir,
 						   "-S", // Allow single unit replace
 						   "-f",
-						   backupDir + fileName + "-" + connection,
+						   backupDir + mFileName + "-" + connection,
 						   "-s"});
 
 	if (offline) {
@@ -337,11 +337,11 @@ void VebusBackupService::runRestoreAction()
 
 void VebusBackupService::deleteBackupFile()
 {
-	if (fileName.isEmpty()) {
+	if (mFileName.isEmpty()) {
 		return;
 	}
 
-	QString baseName = backupDir + fileName + "-" + connection;
+	QString baseName = backupDir + mFileName + "-" + connection;
 	QStringList extensions = {"rvsc", "rvms"};
 
 	for (const QString &ext : extensions) {
