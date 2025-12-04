@@ -131,6 +131,8 @@ void VebusBackupService::onFileNameChanged(QVariant var)
 {
 	if (var.isValid()) {
 		mFileName = var.toString();
+	} else {
+		mFileName = "";
 	}
 }
 
@@ -139,6 +141,8 @@ void VebusBackupService::onFileIndexChanged(QVariant var)
 	int idx = var.toInt();
 	if (idx < mBackupFiles.size()) {
 		mFileItem->produceValue(mBackupFiles[idx]); // This also fires onFileNameChanged
+	} else {
+		mFileItem->produceValue("");
 	}
 }
 
