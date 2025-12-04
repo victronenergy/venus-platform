@@ -55,6 +55,14 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	mActionItem->getValueAndChanges(this, SLOT(onActionChanged(QVariant)));
 	mFileItem->getValueAndChanges(this, SLOT(onFileNameChanged(QVariant)));
 
+	// File index feature
+	QString devicesPath = connection.startsWith("ttyUSB") ? "Vebus/Devices/1" : "Vebus/Devices/0";
+	if (venusPlatformParentItem->itemGet(devicesPath) == nullptr) {
+		VeQItem *deviceRootItem = venusPlatformParentItem->itemGetOrCreate(devicesPath);
+		VeQItem *fileIndexItem = deviceRootItem->itemGetOrCreate("Restore/FileIndex");
+		fileIndexItem->getValueAndChanges(this, SLOT(onFileIndexChanged(QVariant)));
+	}
+
 	// Connect to the mk2vsc service
 	mMk2VscRootItem = vebusInterfaceService->item()->itemParent()->itemGetOrCreate("com.victronenergy.mk2vsc");
 	mMk2VscStateItem = mMk2VscRootItem->itemGetOrCreate("State");
@@ -129,6 +137,15 @@ void VebusBackupService::onFileNameChanged(QVariant var)
 {
 	if (var.isValid()) {
 		fileName = var.toString();
+	}
+}
+
+void VebusBackupService::onFileIndexChanged(QVariant var)
+{
+	int idx = var.toInt();
+	if (idx < mBackupFiles.size()) {
+		// This also fires onFileNameChanged
+		mFileItem->produceValue(mBackupFiles[idx].remove(QRegularExpression("-[^.-]*?\\.rv(sc|ms)$")));
 	}
 }
 
