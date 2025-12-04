@@ -91,6 +91,7 @@ private:
 	QString vebusFirmwareVersionNumber;
 	QString vebusFirmwareSubVersionNumber;
 	QString vebusProductId;
+	QStringList mBackupFiles;
 	VeQItem *venusPlatformParentItem;
 	VeQItem *mVebusRootItem;
 	VeQItem *mActionItem;
