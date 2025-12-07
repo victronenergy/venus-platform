@@ -93,7 +93,6 @@ private:
 	QString vebusProductId;
 	QStringList mBackupFiles;
 	VeQItem *venusPlatformParentItem;
-	VeQItem *mVebusRootItem;
 	VeQItem *mActionItem;
 	VeQItem *mInfoItem;
 	VeQItem *mErrorItem;
@@ -101,13 +100,10 @@ private:
 	VeQItem *mFileItem;
 	VeQItem *mAvailableBackupsItem;
 	VeQItem *mIncompatibleBackupsItem; // Backups from other/older firmware versions
-	VeQItem *mMk2VscRootItem;
-	VeQItem *mMk2VscStateItem;
 	VeQItem *mMk2DbusMk2ConnectionItem;
 	VeQItem *mMk2DbusFirmwareVersionItem;
 	VeQItem *mMk2DbusSubVersionItem;
 	VeQItem *mMk2DbusProductIdItem;
-	VeQItem *mMk2DbusConnectedItem; // When connected the firmware version numbers are known
 
 private slots:
 	//void onVenusServiceFound(VenusService *service); 	// We need this to monitor mk2vsc
