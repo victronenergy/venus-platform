@@ -41,15 +41,15 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 		qDebug() << "[Vebus_backup] Device name not found. Skip registration of " << connection;
 		return;
 	}
-	mVebusRootItem = venusPlatformParentItem->itemGetOrCreate("Vebus/Interface/" + connection);
-	mAvailableBackupsItem = mVebusRootItem->itemGetOrCreate("AvailableBackups");
-	mIncompatibleBackupsItem = mVebusRootItem->itemGetOrCreate("FirmwareIncompatibleBackups");
+	VeQItem *vebusRootItem = venusPlatformParentItem->itemGetOrCreate("Vebus/Interface/" + connection);
+	mAvailableBackupsItem = vebusRootItem->itemGetOrCreate("AvailableBackups");
+	mIncompatibleBackupsItem = vebusRootItem->itemGetOrCreate("FirmwareIncompatibleBackups");
 
-	mInfoItem = mVebusRootItem->itemGetOrCreate("Info");
-	mErrorItem = mVebusRootItem->itemGetOrCreate("Error");
-	mNotifyItem = mVebusRootItem->itemGetOrCreate("Notify");
-	mFileItem = mVebusRootItem->itemGetOrCreateAndProduce("File", "");
-	mActionItem = mVebusRootItem->itemGetOrCreateAndProduce("Action", 0);
+	mInfoItem = vebusRootItem->itemGetOrCreate("Info");
+	mErrorItem = vebusRootItem->itemGetOrCreate("Error");
+	mNotifyItem = vebusRootItem->itemGetOrCreate("Notify");
+	mFileItem = vebusRootItem->itemGetOrCreateAndProduce("File", "");
+	mActionItem = vebusRootItem->itemGetOrCreateAndProduce("Action", 0);
 
 	mActionItem->produceValue(0);
 	mActionItem->getValueAndChanges(this, SLOT(onActionChanged(QVariant)));
@@ -64,19 +64,19 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	}
 
 	// Connect to the mk2vsc service
-	mMk2VscRootItem = vebusInterfaceService->item()->itemParent()->itemGetOrCreate("com.victronenergy.mk2vsc");
-	mMk2VscStateItem = mMk2VscRootItem->itemGetOrCreate("State");
+	VeQItem *mk2VscRootItem = vebusInterfaceService->item()->itemParent()->itemGetOrCreate("com.victronenergy.mk2vsc");
+	VeQItem *mk2VscStateItem = mk2VscRootItem->itemGetOrCreate("State");
 
+	VeQItem *mk2DbusConnectedItem = vebusInterfaceService->item("Connected");
 	mMk2DbusProductIdItem = vebusInterfaceService->item("ProductId");
-	mMk2DbusConnectedItem = vebusInterfaceService->item("Connected");
 	mMk2DbusFirmwareVersionItem = vebusInterfaceService->item("FirmwareVersion");
 	mMk2DbusSubVersionItem = vebusInterfaceService->item("FirmwareSubVersion");
 
-	mMk2VscStateItem->getValueAndChanges(this, SLOT(onMk2VscStateChanged(QVariant)));
+	mk2VscStateItem->getValueAndChanges(this, SLOT(onMk2VscStateChanged(QVariant)));
 	mMk2DbusProductIdItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
 	mMk2DbusFirmwareVersionItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
 	mMk2DbusSubVersionItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
-	mMk2DbusConnectedItem->getValueAndChanges(this, SLOT(onVebusConnectedChanged(QVariant)));
+	mk2DbusConnectedItem->getValueAndChanges(this, SLOT(onVebusConnectedChanged(QVariant)));
 	initialized = true;
 }
 
