@@ -861,7 +861,12 @@ void Application::onButtonShortPress()
 
 void Application::onButtonDoublePress()
 {
+	auto *item = mService->itemGet("Tokens/Pairing/Enable");
 
+	if (!item)
+		return;
+
+	item->setValue(1);
 }
 
 void Application::onButtonLongPress()
