@@ -17,6 +17,7 @@
 #include "updater.hpp"
 #include "venus_services.hpp"
 #include "vebus_backup.hpp"
+#include "mdns_browser.h"
 
 struct FreeSpace
 {
@@ -118,6 +119,7 @@ private:
 	Updater *mUpdater;
 	DisplayController *mDisplayController;
 	NetworkController *mNetworkController;
+	MdnsBrowser *mMdnsBrowser;
 
 	QString mLanguage;
 	QTranslator mTranslator;

@@ -814,6 +814,8 @@ void Application::start()
 	VeQItem *modChecks = mService->itemGetOrCreate("ModificationChecks");
 	new ModificationChecks(modChecks, this);
 
+	mMdnsBrowser = new MdnsBrowser(mService, this);
+
 	// Scan for dbus services
 	mVenusServices->initialScan();
 
