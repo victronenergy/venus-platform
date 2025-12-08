@@ -17,12 +17,14 @@ INSTALLS += translations
 QMAKE_CXXFLAGS += -std=c++17
 
 HEADERS = \
+	avahi-qt/qt-watch.h \
 	src/alarm_item.hpp \
 	src/alarm_monitor.hpp \
 	src/application.hpp \
 	src/buzzer.hpp \
 	src/display_controller.hpp \
 	src/led_controller.hpp \
+	src/mdns_browser.h \
 	src/modifications_check.hpp \
 	src/mqtt_bridge_registrator.hpp \
 	src/network_controller.hpp \
@@ -38,6 +40,7 @@ HEADERS = \
 	src/vebus_backup.hpp \
 
 SOURCES = \
+	avahi-qt/qt-watch.cpp \
 	src/alarm_item.cpp \
 	src/alarm_monitor.cpp \
 	src/application.cpp \
@@ -45,6 +48,7 @@ SOURCES = \
 	src/display_controller.cpp \
 	src/led_controller.cpp \
 	src/main.cpp \
+	src/mdns_browser.cpp \
 	src/modifications_check.cpp \
 	src/mqtt_bridge_registrator.cpp \
 	src/network_controller.cpp \
@@ -90,3 +94,5 @@ CONFIG(debug, debug|release) {
 gcc {
 	QMAKE_CXXFLAGS += -Wno-psabi
 }
+
+LIBS += -lavahi-common -lavahi-client
