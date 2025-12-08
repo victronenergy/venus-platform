@@ -4,6 +4,7 @@
 #include <QJsonObject>
 #include <QList>
 #include <QString>
+#include <QTimer>
 
 #include <veutil/qt/ve_qitem.hpp>
 #include <veutil/qt/ve_qitem_utils.hpp>
@@ -60,6 +61,8 @@ private slots:
 private:
 	QFileSystemWatcher mWatcher;
 	VeQItem *mTokensItem;
+	VeQItem *mPairingCountDown = nullptr;
+
 };
 
 class TokenRemoveItem : public VeQItemAction
@@ -77,4 +80,22 @@ public:
 
 private:
 	TokenUserWatcher *mWatcher;
+};
+
+class TokenPairingEnableItem : public VeQItemAction
+{
+	Q_OBJECT
+
+	VeQItem *mCountDownItem = nullptr;
+	int mPairingCountDownValue = 0;
+	QTimer mPairingCountDownTimer;
+
+	void startCountDown();
+
+private slots:
+	void onCountDownTimeout();
+
+public:
+	explicit TokenPairingEnableItem(VeQItem *countDownItem);
+	int setValue(const QVariant &value) override;
 };

@@ -126,21 +126,26 @@ bool TokenUsers::addTokenUser(const TokenUser &user)
 	return true;
 }
 
-char const *tokendir = "/var/volatile/tokens";
+QString const tokendir = "/var/volatile/tokens";
 char const *tokenfile = "/data/conf/tokens.json";
+QString const pairingSignalFile = tokendir + "/pairing.json";
+constexpr std::chrono::seconds pairingDuration(30);
 
 TokenUserWatcher::TokenUserWatcher(VeQItem *platform) : QObject()
 {
 	mTokensItem = platform->itemGetOrCreate("Tokens/Users");
 	platform->itemGet("Tokens")->itemAddChild("Remove", new TokenRemoveItem(this));
 
+	auto *pairing = platform->itemGetOrCreate("Tokens/Pairing");
+	pairing->itemAddChild("Enable", new TokenPairingEnableItem(pairing->itemGetOrCreate("CountDown")));
+
 	QDir dir(tokendir);
 	if (!dir.exists()) {
 		dir.mkpath(".");
-		chmod(tokendir, S_IRUSR | S_IWUSR | S_IXUSR);
+		chmod(tokendir.toUtf8(), S_IRUSR | S_IWUSR | S_IXUSR);
 		struct passwd * pw = getpwnam("php-fpm");
 		if (pw)
-			chown(tokendir, pw->pw_uid, pw->pw_gid);
+			chown(tokendir.toUtf8(), pw->pw_uid, pw->pw_gid);
 		else
 			qCritical() << "user php-fpm not found";
 	}
@@ -160,6 +165,10 @@ void TokenUserWatcher::scanDirectory()
 	QDir directory(tokendir);
 	for (QString const &filename: directory.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
 		QFile json(directory.filePath(filename));
+
+		if (json.fileName() == pairingSignalFile)
+			continue;
+
 		if (json.open(QFile::ReadOnly)) {
 			QByteArray data = json.readAll();
 			QJsonDocument doc(QJsonDocument::fromJson(data));
@@ -199,7 +208,7 @@ void TokenUserWatcher::updateTokens()
 int TokenRemoveItem::setValue(const QVariant &value)
 {
 	QString token = value.toString();
-	qDebug() << "removing" << token;
+	qDebug() << "[tokens] removing" << token;
 
 	TokenUsers users;
 	if (!users.load(tokenfile)) {
@@ -226,4 +235,58 @@ int TokenRemoveItem::setValue(const QVariant &value)
 		qCritical() << "failed to send token remove signal";
 
 	return 0;
+}
+
+void TokenPairingEnableItem::startCountDown()
+{
+	mPairingCountDownValue = pairingDuration.count();
+	mPairingCountDownTimer.start();
+}
+
+void TokenPairingEnableItem::onCountDownTimeout()
+{
+	if (mPairingCountDownValue <= 0) {
+		mPairingCountDownTimer.stop();
+
+		QFile f(pairingSignalFile);
+		f.remove();
+
+		return;
+	}
+
+	mPairingCountDownValue--;
+
+	if (mCountDownItem)
+		mCountDownItem->setValue(mPairingCountDownValue);
+}
+
+TokenPairingEnableItem::TokenPairingEnableItem(VeQItem *countDownItem) :
+	VeQItemAction(),
+	mCountDownItem(countDownItem)
+{
+	mPairingCountDownTimer.setInterval(1000);
+	connect(&mPairingCountDownTimer, &QTimer::timeout, this, &TokenPairingEnableItem::onCountDownTimeout);
+}
+
+int TokenPairingEnableItem::setValue(const QVariant &value)
+{
+	QJsonObject obj;
+	obj["expires_at"] = QDateTime::currentSecsSinceEpoch() + pairingDuration.count();
+	QJsonDocument doc(obj);
+	QString json = doc.toJson(QJsonDocument::Compact);
+
+	qDebug() << "[tokens] Enable pairing";
+	QFile f(pairingSignalFile);
+
+	if (!f.open(QFile::WriteOnly)) {
+		qCritical() << "Can't open" << pairingSignalFile;
+		return -1;
+	}
+
+	f.write(json.toLatin1());
+	f.close();
+
+	startCountDown();
+
+	return VeQItemAction::setValue(value);
 }
