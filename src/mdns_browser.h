@@ -40,11 +40,13 @@ public:
 signals:
 	void serviceFound(const AvahiAddress *addr, const uint16_t port, AvahiStringList *txt);
 	void serviceRemoved();
+	void clientFailure();
 
 private slots:
 	void handleNewService(const AvahiAddress *addr, const uint16_t port, AvahiStringList *txt);
 	void onServiceRemoved();
 	void parseEmpirBusJson(const QUrl &url, const QByteArray &data);
+	void restart();
 
 private:
 
@@ -82,6 +84,11 @@ private:
 
 	static void clientCallback(AvahiClient *c, AvahiClientState state, AVAHI_GCC_UNUSED void * userdata);
 
+	void startClient();
+	void startBrowser(AvahiClient *);
+
+	AvahiClient *mClient;
+	AvahiServiceBrowser *mServiceBrowser;
 	struct user_data mUserData;
 	VeQItem *mEmpirBusSettingsUrlItem;
 };
