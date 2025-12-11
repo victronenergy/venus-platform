@@ -8,6 +8,7 @@
 #include "mdns_browser.h"
 
 const QSet<QString> EMPIRBUS_IDS = {"49c956d6-ed5e-4451-beb9-0f55e3ef22cb", "de4a5f92-56af-4d27-bab8-15c64728fa21"};
+
 FileDownloader::FileDownloader(const QUrl &url, QObject *parent) :
  QObject(parent), mUrl(url)
 {
@@ -97,7 +98,7 @@ void MdnsBrowser::clientCallback(AvahiClient *c, AvahiClientState state, AVAHI_G
 
 	MdnsBrowser *b = ((user_data *)userdata)->mdnsBrowser;
 
-	/* Called whenever the client or server state changes */
+	// Called whenever the client or server state changes
 	switch (state) {
 	    case AVAHI_CLIENT_FAILURE:
 		qWarning() << "[mDNS browser] Server connection failure: " << avahi_strerror(avahi_client_errno(c)) << ", retrying";
@@ -127,35 +128,32 @@ void MdnsBrowser::browseCallback(
         AVAHI_GCC_UNUSED AvahiLookupResultFlags flags,
         void *userdata)
 {
-	if (!b || !userdata)
+	if (!b)
 		return;
 
-	AvahiClient *c = ((user_data *)userdata)->client;
+	AvahiClient *c = avahi_service_browser_get_client(b);
 
-	/* Called whenever new services becomes available on the LAN or is removed from the LAN */
-
+	// Called whenever new services becomes available on the LAN or is removed from the LAN
 	switch (event) {
 	    case AVAHI_BROWSER_FAILURE:
 
-		    qCritical() << "[mDNS browser] " << avahi_strerror(avahi_client_errno(avahi_service_browser_get_client(b)));
+		    qCritical() << "[mDNS browser] " << avahi_strerror(avahi_client_errno(c));
 			// TODO Cleanup
 		    return;
 
 	    case AVAHI_BROWSER_NEW:
-		    qDebug() << "[mDNS browser] " << "New service: " << name;
 
 			/* We ignore the returned resolver object. In the callback
-			   function we free it. If the server is terminated before
-			   the callback function is called the server will free
-			   the resolver for us. */
-
+			 * function we free it. If the server is terminated before
+			 * the callback function is called the server will free
+			 * the resolver for us.
+			 */
 			if (!(avahi_service_resolver_new(c, interface, protocol, name, type, domain, AVAHI_PROTO_UNSPEC, (AvahiLookupFlags) 0, MdnsBrowser::resolveCallback, userdata)))
 				qCritical() << "[mDNS browser] Failed to resolve service " << name << " : " << avahi_strerror(avahi_client_errno(c));
 
 		    break;
 
 	    case AVAHI_BROWSER_REMOVE: {
-		    qDebug() << "[mDNS browser] " << "Removed service: " << name;
 			MdnsBrowser *i = ((user_data *)userdata)->mdnsBrowser;
 			emit i->serviceRemoved();
 		    break;
@@ -185,8 +183,7 @@ void MdnsBrowser::resolveCallback(
 	if (!r || !userdata)
 		return;
 
-	/* Called whenever a service has been resolved successfully or timed out */
-
+	// Called whenever a service has been resolved successfully or timed out
 	switch (event) {
 	    case AVAHI_RESOLVER_FAILURE:
 		    qCritical() << "[mDNS browser] Failed to resolve service " << name << " : " << avahi_strerror(avahi_client_errno(avahi_service_resolver_get_client(r)));
@@ -218,7 +215,7 @@ void MdnsBrowser::handleNewService(const AvahiAddress *address, const uint16_t p
 	 * Check whether the ID matches one of the predefined empirbus ID's which indicate <path> is a settings page.
 	 * If so, set the /EmpirBus/SettingsUrl dbus path equal to "<ip>:<port>/<path>".
 	 * Next, VRM will use it to create a proxy to the settings page.
-	*/
+	 */
 	AvahiStringList *proto_vers_item = avahi_string_list_find(txt, "protovers");
 	AvahiStringList *path_item = avahi_string_list_find(txt, "path");
 	if (proto_vers_item && avahi_string_list_get_size(proto_vers_item) > 1 && path_item) {
@@ -267,10 +264,9 @@ void MdnsBrowser::parseEmpirBusJson(const QUrl &_url, const QByteArray &data)
 					/* pathStr is something like /settings-web/#
 					 * QUrl::setPath does not accept this pathStr because # is an empty fragment, and not a path.
 					 * So instead of replacing the path, clear it and just suffix the url with whatever is in pathStr
-					*/
+					 */
 					url.setPath("");
 					QString urlStr = url.toString() + '/' + pathStr;
-					qDebug() << "[mDNS browser] Setting empirbus settings page path to: " << urlStr;
 					mEmpirBusSettingsUrlItem->setValue(urlStr);
 					return;
 				}
