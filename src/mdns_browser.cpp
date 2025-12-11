@@ -25,58 +25,94 @@ void FileDownloader::fileDownloaded(QNetworkReply *pReply) {
 MdnsBrowser::MdnsBrowser(VeQItem *rootItem, QObject *parent) :
     QObject(parent)
 {
-	AvahiClient *client = NULL;
-	AvahiServiceBrowser *sb = NULL;
-	int error;
-
-	const AvahiPoll *qtPoll;
-
-	if (!(qtPoll = avahi_qt_poll_get())) {
-		qCritical() << "Failed to create avahi qt poll object.";
-		goto fail;
-	}
-
-	// Allocate a new client
-	client = avahi_client_new(qtPoll, (AvahiClientFlags) 0, MdnsBrowser::clientCallback, NULL, &error);
-
-	if (!client) {
-		qCritical() << "Failed to create client: " << avahi_strerror(error);
-		goto fail;
-	}
-	mUserData.mdnsBrowser = this;
-	mUserData.client = client;
-
-	// Check for "_garmin-empirbus._tcp" services specifically
-	// Checking for advertisements on IPv4 only is sufficient
-	if (!(sb = avahi_service_browser_new(client, AVAHI_IF_UNSPEC, AVAHI_PROTO_INET, "_garmin-empirbus._tcp", NULL, (AvahiLookupFlags) 0, browseCallback, &mUserData))) {
-		qCritical() << "Failed to create service browser: " << avahi_strerror(avahi_client_errno(client));
-		goto fail;
-	}
-
 	mEmpirBusSettingsUrlItem = rootItem->itemGetOrCreateAndProduce("EmpirBus/SettingsUrl", "");
+	mUserData.mdnsBrowser = this;
+	mServiceBrowser = nullptr;
+	mClient = nullptr;
+	connect(this, SIGNAL(clientFailure()), this, SLOT(restart()));
 	connect(this, SIGNAL(serviceFound(const AvahiAddress *, const uint16_t, AvahiStringList *)), this, SLOT(handleNewService(const AvahiAddress *, const uint16_t, AvahiStringList *)));
 	connect(this, SIGNAL(serviceRemoved()), this, SLOT(onServiceRemoved()));
+	startClient();
+}
 
-	return;
+void MdnsBrowser::restart()
+{
+	if(mServiceBrowser) {
+		avahi_service_browser_free(mServiceBrowser);
+		mServiceBrowser = nullptr;
+	}
 
-fail:
+	if(mClient) {
+		avahi_client_free(mClient);
+		mClient = nullptr;
+	}
 
-	if (sb)
-		avahi_service_browser_free(sb);
+	startClient();
+}
 
-	if (client)
-		avahi_client_free(client);
+void MdnsBrowser::startClient()
+{
+	const AvahiPoll *qtPoll;
+	int error;
+
+	if (!(qtPoll = avahi_qt_poll_get())) {
+		qCritical() << "[mDNS browser] Failed to create avahi qt poll object.";
+		return;
+	}
+
+	/* Allocate a new client with AVAHI_CLIENT_NO_FAIL so the client will be created even if the avahi daemon isn't available.
+	 * The client callback will be called when the state changes so the servicebrowser is created from there when the daemon becomes available.
+	 * The client callback will also initiate a restart of the client on failure.
+	 * The avahi daemon will be restarted on certain network changes (e.g. connecting to a network restarts the daemon).
+	 */
+	mClient = avahi_client_new(qtPoll, AVAHI_CLIENT_NO_FAIL, MdnsBrowser::clientCallback, &mUserData, &error);
+
+	if (!mClient) {
+		std::chrono::milliseconds retry(60000);
+		qCritical() << "[mDNS browser] Failed to create client: " << avahi_strerror(error) << ", retrying after " << retry.count() << " milliseconds";
+		QTimer::singleShot(retry, this, &MdnsBrowser::restart);
+		return;
+	}
+
+	mUserData.client = mClient;
+}
+
+void MdnsBrowser::startBrowser(AvahiClient *c)
+{
+	if (mServiceBrowser)
+		return;
+	// Check for "_garmin-empirbus._tcp" services specifically
+	// Checking for advertisements on IPv4 only is sufficient
+	if (!(mServiceBrowser = avahi_service_browser_new(c, AVAHI_IF_UNSPEC, AVAHI_PROTO_INET, "_garmin-empirbus._tcp", NULL, (AvahiLookupFlags) 0, browseCallback, &mUserData))) {
+		std::chrono::milliseconds retry(60000);
+		qCritical() << "[mDNS browser] Failed to create service browser: " << avahi_strerror(avahi_client_errno(mClient)) << ", retrying after " << retry.count() << " milliseconds";
+		QTimer::singleShot(retry, this, &MdnsBrowser::restart);
+	}
+	qDebug() << "[mDNS browser] service browser started";
 }
 
 void MdnsBrowser::clientCallback(AvahiClient *c, AvahiClientState state, AVAHI_GCC_UNUSED void *userdata) {
-	if (!c)
+	if (!c || !userdata)
 		return;
 
-	/* Called whenever the client or server state changes */
+	MdnsBrowser *b = ((user_data *)userdata)->mdnsBrowser;
 
-	if (state == AVAHI_CLIENT_FAILURE) {
-		qCritical() << "[mDNS browser] Server connection failure: " << avahi_strerror(avahi_client_errno(c));
-		// TODO Cleanup
+	/* Called whenever the client or server state changes */
+	switch (state) {
+	    case AVAHI_CLIENT_FAILURE:
+		qWarning() << "[mDNS browser] Server connection failure: " << avahi_strerror(avahi_client_errno(c)) << ", retrying";
+		emit b->clientFailure();
+		    break;
+
+	    case AVAHI_CLIENT_S_REGISTERING:
+	    case AVAHI_CLIENT_S_RUNNING:
+	    case AVAHI_CLIENT_S_COLLISION:
+		    b->startBrowser(c);
+		    break;
+
+		// Do nothing while the client connects to the daemon
+	    case AVAHI_CLIENT_CONNECTING:
+		    break;
 	}
 }
 
