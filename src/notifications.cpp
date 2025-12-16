@@ -4,8 +4,9 @@
 #include "application.hpp"
 #include "notifications.hpp"
 
-Notifications::Notifications(VeQItem *parentItem, QObject *parent) :
-	QObject(parent)
+Notifications::Notifications(VeQItem *parentItem, VenusServices *venusServices, QObject *parent) :
+	QObject(parent),
+	mVenusServices(venusServices)
 {
 	mNotificationsItem = parentItem->itemGetOrCreate("Notifications");
 	mNumberOfNotificationsItem = mNotificationsItem->itemGetOrCreateAndProduce("NumberOfNotifications", 0);
@@ -88,6 +89,27 @@ void Notifications::setAlarm(bool alarm)
 	}
 }
 
+int Notifications::addTrackedNotification(Notification::Type type, const QString &devicename,
+													const QString description, const QString &service,
+													const QString &alarmTrigger)
+{
+	VenusService *venusService = mVenusServices->getService(service);
+	if (!venusService || !venusService->getConnected())
+		return -4;	// Indicate that the service was not found
+
+	Notification *notification = addNotification(type, devicename, "", description, alarmTrigger, "", service);
+
+	// Connect signal to track the notification, so it can be removed when the service disappears
+	connect(venusService, &VenusService::connectedChanged, this, [this, notification]() {
+		VenusService *service = static_cast<VenusService *>(sender());
+		if (!service->getConnected()) {
+			removeNotification(notification);
+		}
+	});
+
+	return notification->getIndex();
+}
+
 Notification *Notifications::addNotification(Notification::Type type, const QString &devicename,
 											 const QString &value, const QString description, const QString &alarmTrigger,
 											 const QVariant &alarmValue, const QString &serviceName)
@@ -133,9 +155,10 @@ Notification *Notifications::addNotification(Notification::Type type, const QStr
 
 void Notifications::removeNotification(Notification *notification)
 {
+	if (!mNotifications.removeOne(notification))
+		return;	// Notification already removed
 	notification->setActive(false);
 	notification->setAcknowledged(true);
-	mNotifications.removeOne(notification);
 	delete notification;
 	updateAlarm();
 	updateAlert();
