@@ -15,9 +15,9 @@ void DeviceAlarms::addErrorFlag(const QString &description, const QString &busit
 	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::ERROR_FLAG, busitemPathAlarm, description, busitemSetting, "", this));
 }
 
-void DeviceAlarms::addVebusError(const QString &busitemPathAlarm)
+void DeviceAlarms::addVebusError(const QString &busitemPathAlarm, VeQItem *busItemSetting)
 {
-	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::VEBUS_ERROR, busitemPathAlarm, "", nullptr, "", this));
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::VEBUS_ERROR, busitemPathAlarm, "", busItemSetting, "", this));
 }
 
 void DeviceAlarms::addBmsError(const QString &busitemPathAlarm)
@@ -251,8 +251,8 @@ DeviceAlarms *DeviceAlarms::createEvChargerAlarms(VenusService *service, Notific
 	return alarms;
 }
 
-VebusAlarms::VebusAlarms(VenusService *service, Notifications *notications) :
-	DeviceAlarms(service, notications)
+VebusAlarms::VebusAlarms(VeQItemSettings *settings, VenusService *service, Notifications *notications) :
+    DeviceAlarms(service, notications), mSettings(settings)
 {
 	mNumberOfPhases = service->item("/Ac/NumberOfPhases");
 	mNumberOfPhases->getValueAndChanges(this, SLOT(numberOfPhasesChanged(QVariant)));
@@ -262,31 +262,31 @@ VebusAlarms::VebusAlarms(VenusService *service, Notifications *notications) :
 
 void VebusAlarms::init(bool single)
 {
-	VeQItem *settings = VeQItems::getRoot()->itemGetOrCreate("dbus/com.victronenergy.settings/Settings/Alarm");
-
-	addVebusError("/VebusError");
-	addTripplet(tr("Temperature sense error"),	"/Alarms/TemperatureSensor",	settings->itemGetOrCreate("/Vebus/TemperatureSenseError"));
-	addTripplet(tr("Voltage sense error"),		"/Alarms/VoltageSensor",		settings->itemGetOrCreate("/Vebus/VoltageSenseError"));
-	addTripplet(tr("Low battery voltage"),		"/Alarms/LowBattery",			settings->itemGetOrCreate("/Vebus/LowBattery"));
-	addTripplet(tr("High DC ripple"),			"/Alarms/Ripple",				settings->itemGetOrCreate("/Vebus/HighDcRipple"));
-	addTripplet(tr("Wrong phase rotation detected"), "/Alarms/PhaseRotation");
+	addVebusError("/VebusError", mSettings->add("Alarm/Vebus/VeBusError", 2, 0, 2));
+	addTripplet(tr("Temperature sense error"),	"/Alarms/TemperatureSensor",	mSettings->add("Alarm/Vebus/TemperatureSenseError", 1, 0, 2));
+	addTripplet(tr("Voltage sense error"),		"/Alarms/VoltageSensor",		mSettings->add("Alarm/Vebus/VoltageSenseError", 1, 0, 2));
+	addTripplet(tr("Low battery voltage"),		"/Alarms/LowBattery",			mSettings->add("Alarm/Vebus/LowBattery", 1, 0, 2));
+	addTripplet(tr("High DC ripple"),			"/Alarms/Ripple",				mSettings->add("Alarm/Vebus/HighDcRipple", 1, 0, 2));
+	addTripplet(tr("Wrong phase rotation detected"), "/Alarms/PhaseRotation",	mSettings->add("Alarm/Vebus/PhaseRotation", 1, 0, 2));
 
 	// Phase 1 (note the description depends on the number of phases!)
-	highTempTextL1Alarm = addTripplet(highTempTextL1(single),					"/Alarms/L1/HighTemperature",	settings->itemGetOrCreate("/Vebus/HighTemperature"));
-	inverterOverloadTextL1Alarm = addTripplet(inverterOverloadTextL1(single),	"/Alarms/L1/Overload",			settings->itemGetOrCreate("/Vebus/InverterOverload"));
+	highTempTextL1Alarm = addTripplet(highTempTextL1(single),					"/Alarms/L1/HighTemperature",	mSettings->add("Alarm/Vebus/HighTemperature", 1, 0, 2));
+	inverterOverloadTextL1Alarm = addTripplet(inverterOverloadTextL1(single),	"/Alarms/L1/Overload",			mSettings->add("Alarm/Vebus/InverterOverload", 1, 0, 2));
 	// Phase 2
-	addTripplet(tr("High Temperature on L2"),	"/Alarms/L2/HighTemperature",	settings->itemGetOrCreate("/Vebus/HighTemperature"));
-	addTripplet(tr("Inverter overload on L2"),	"/Alarms/L2/Overload",			settings->itemGetOrCreate("/Vebus/InverterOverload"));
+	addTripplet(tr("High Temperature on L2"),	"/Alarms/L2/HighTemperature",	mSettings->add("Alarm/Vebus/HighTemperature", 1, 0, 2));
+	addTripplet(tr("Inverter overload on L2"),	"/Alarms/L2/Overload",			mSettings->add("Alarm/Vebus/InverterOverload", 1, 0, 2));
 	// Phase 3
-	addTripplet(tr("High Temperature on L3"),	"/Alarms/L3/HighTemperature",	settings->itemGetOrCreate("/Vebus/HighTemperature"));
-	addTripplet(tr("Inverter overload on L3"),	"/Alarms/L3/Overload",			settings->itemGetOrCreate("/Vebus/InverterOverload"));
+	addTripplet(tr("High Temperature on L3"),	"/Alarms/L3/HighTemperature",	mSettings->add("Alarm/Vebus/HighTemperature", 1, 0, 2));
+	addTripplet(tr("Inverter overload on L3"),	"/Alarms/L3/Overload",			mSettings->add("Alarm/Vebus/InverterOverload", 1, 0, 2));
 
 	// Grid alarm
+	// This alarm is not enabled/disabled here by a setting.
+	// There is a setting, and mk2-dbus uses that to enable/disable the grid lost detection in the vebus system directly.
 	addTripplet(tr("Grid lost"),				"/Alarms/GridLost");
 
 	// DC voltage and current alarms
-	addTripplet(tr("High DC voltage"),			"/Alarms/HighDcVoltage",		settings->itemGetOrCreate("/Vebus/HighDcVoltage"));
-	addTripplet(tr("High DC current"),			"/Alarms/HighDcCurrent",		settings->itemGetOrCreate("/Vebus/HighDcCurrent"));
+	addTripplet(tr("High DC voltage"),			"/Alarms/HighDcVoltage",		mSettings->add("Alarm/Vebus/HighDcVoltage", 1, 0, 2));
+	addTripplet(tr("High DC current"),			"/Alarms/HighDcCurrent",		mSettings->add("Alarm/Vebus/HighDcCurrent", 1, 0, 2));
 
 	// VE.Bus BMS related alarms
 	addTripplet(tr("BMS pre-alarm"),			"/Alarms/BmsPreAlarm");
@@ -304,12 +304,10 @@ void VebusAlarms::update(bool single)
 
 void VebusAlarms::connectionTypeChanged(QVariant var)
 {
-	VeQItem *settings = VeQItems::getRoot()->itemGetOrCreate("dbus/com.victronenergy.settings/Settings/Alarm");
-
 	if (var.isValid() && var.value<QString>() == "VE.Can") {
 		// backwards compatible, the CAN-bus sends these e.g.
-		addTripplet(tr("High Temperature"),			"/Alarms/HighTemperature",		settings->itemGetOrCreate("/Vebus/HighTemperature"));
-		addTripplet(tr("Inverter overload"),		"/Alarms/Overload",				settings->itemGetOrCreate("/Vebus/InverterOverload"));
+		addTripplet(tr("High Temperature"),			"/Alarms/HighTemperature",		mSettings->add("Alarm/Vebus/HighTemperature", 1, 0, 2));
+		addTripplet(tr("Inverter overload"),		"/Alarms/Overload",				mSettings->add("Alarm/Vebus/InverterOverload", 1, 0, 2));
 		mConnectionType->disconnect(this, SLOT(connectionTypeChanged(QVariant)));
 	}
 }
@@ -403,8 +401,9 @@ void GensetAlarms::numberOfPhasesChanged(QVariant var)
 	mNumberOfPhases = var.toInt();
 }
 
-AlarmBusitems::AlarmBusitems(VenusServices *services, Notifications *notifications) :
+AlarmBusitems::AlarmBusitems(VeQItemSettings *settings, VenusServices *services, Notifications *notifications) :
 	QObject(services),
+    mSettings(settings),
 	mNotifications(notifications)
 {
 	connect(services, SIGNAL(found(VenusService*)), SLOT(onVenusServiceFound(VenusService*)));
@@ -427,7 +426,7 @@ void AlarmBusitems::onVenusServiceFound(VenusService *service)
 		DeviceAlarms::createAlternatorAlarms(service, mNotifications);
 		break;
 	case VenusServiceType::MULTI:
-		new VebusAlarms(service, mNotifications);
+		new VebusAlarms(mSettings, service, mNotifications);
 		break;
 	case VenusServiceType::MULTI_RS:
 		DeviceAlarms::createMultiRsAlarms(service, mNotifications);

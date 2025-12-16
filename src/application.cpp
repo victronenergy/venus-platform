@@ -787,7 +787,7 @@ void Application::start()
 	// Notifications
 	mNotifications = new Notifications(mService, this);
 	mVenusServices = new VenusServices(mServices, this);
-	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
+	mAlarmBusitems = new AlarmBusitems(mSettings, mVenusServices, mNotifications);
 
 	mVebusBackup = new VebusBackupServiceRegistrator(mService, mVenusServices, this);
 

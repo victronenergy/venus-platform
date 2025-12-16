@@ -25,7 +25,7 @@ public:
 	WarningAlarmMonitor *addTripplet(const QString &description, const QString &busitemPathAlarm,
 							VeQItem *busitemSetting = nullptr, const QString &busitemPathValue = "");
 	void addErrorFlag(const QString &description, const QString &busitemPathAlarm, VeQItem *busitemSetting);
-	void addVebusError(const QString &busitemPathAlarm);
+	void addVebusError(const QString &busitemPathAlarm, VeQItem *busItemSetting);
 	void addBmsError(const QString &busitemPathAlarm);
 	void addChargerError(const QString &busitemPathAlarm);
 	void addAlternatorError(const QString &busitemPathAlarm);
@@ -64,7 +64,7 @@ class VebusAlarms : public DeviceAlarms {
 	Q_OBJECT
 
 public:
-	VebusAlarms(VenusService *service, Notifications *notifications);
+	VebusAlarms(VeQItemSettings *settings, VenusService *service, Notifications *notifications);
 
 	QString highTempTextL1(bool single) { return single ? tr("High Temperature") : tr("High Temperature on L1"); }
 	QString inverterOverloadTextL1(bool single) { return single ? tr("Inverter overload") : tr("Inverter overload on L1"); }
@@ -78,6 +78,7 @@ private slots:
 	void connectionTypeChanged(QVariant var);
 
 private:
+	VeQItemSettings *mSettings;
 	VeQItem *mNumberOfPhases;
 	VeQItem *mConnectionType;
 	WarningAlarmMonitor *highTempTextL1Alarm;
@@ -155,12 +156,13 @@ class AlarmBusitems : public QObject
 	Q_OBJECT
 
 public:
-	explicit AlarmBusitems(VenusServices *services, Notifications *notifications);
+	explicit AlarmBusitems(VeQItemSettings *settings, VenusServices *services, Notifications *notifications);
 
 private slots:
 	void onVenusServiceFound(VenusService *service);
 
 private:
+	VeQItemSettings *mSettings;
 	Notifications *mNotifications;
 };
 
