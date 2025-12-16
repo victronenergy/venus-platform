@@ -98,6 +98,8 @@ protected slots:
 	void onAccessPointPasswordChanged(QVariant var);
 	void onRunningGuiVersionObtained(QVariant var);
 	void onRelaySettingChanged(QVariant var);
+	void manageOpportunityLoads(QVariant olMode);
+	void onDessModeChanged(QVariant var);
 	void onServiceAdded(VeQItem *var);
 	void onGensetStateChanged(VeQItem::State state);
 	void onBatteryProductIdChanged(QVariant var);
@@ -148,6 +150,7 @@ private:
 
 	DaemonToolsService *mGeneratorStarter = nullptr;
 	DaemonToolsService *mParallelBmsStarter = nullptr;
+	DaemonToolsService *mOpportunityLoadsStarter = nullptr;
 	QList<QString> mGeneratorStarterConditions;
 	QList<QString> mParallelBmsConditions;
 
