@@ -843,9 +843,8 @@ void Application::start()
 	VeQItem *demoModeSetting = mSettings->root()->itemGetOrCreate("Settings/Gui/DemoMode");
 	demoModeSetting->getValueAndChanges(this, &Application::onDemoSettingChanged);
 
-	// Notifications
-	mNotifications = new Notifications(mService, this);
 	mVenusServices = new VenusServices(mServices, this);
+	mNotifications = new Notifications(mService, mVenusServices, this);
 	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
 
 	mVebusBackup = new VebusBackupServiceRegistrator(mService, mVenusServices, this);

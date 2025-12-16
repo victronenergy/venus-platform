@@ -18,6 +18,8 @@ public:
 
 	void initialScan();
 
+	VenusService *getService(QString const &name) const { return mServices.value(name, nullptr); }
+
 signals:
 	void connected(VenusService *service);
 	void disconnected(VenusService *service);
