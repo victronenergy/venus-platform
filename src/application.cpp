@@ -345,6 +345,7 @@ public:
 		add("Services/Modbus", 0, 0, 1);
 		add("Services/MqttLocal", 0, 0, 1);
 		add("Services/NodeRed", 0, 0, 2);
+		add("Services/OpportunityLoads", 0, 0, 1);
 		add("Services/SignalK", 0, 0, 1);
 		// Note: only for debugging over tcp/ip, _not_ socketcan itself...
 		add("Services/Socketcand", 0, 0, 1);
@@ -562,6 +563,25 @@ void Application::manageParallelBms()
 		mParallelBmsStarter->stop();
 }
 
+// Start opportunity loads service when the setting is enabled, but only when DESS is not running.
+// If opportunity loads is enabled, but DESS starts as well, disable it.
+void Application::manageOpportunityLoads()
+{
+	VeQItem *dessItem = mSettings->root()->itemGetOrCreate("Settings/DynamicEss/Mode");
+	VeQItem *opportunityLoadsItem = mSettings->root()->itemGetOrCreate("Settings/Services/OpportunityLoads");
+
+	bool olEnabled = opportunityLoadsItem->getLocalValue().toInt() == 1;
+	bool dessEnabled = dessItem->getLocalValue().toInt() > 0;
+
+	if (dessEnabled && olEnabled) {
+		qWarning() << "[Service] Can't enable opportunity loads, since DESS is enabled, disabling the oportunity loads";
+		opportunityLoadsItem->setValue(0); // Note: will call this function again to disable it after the change.
+		return;
+	}
+
+	mOpportunityLoadsStarter->installOrRemove(olEnabled);
+}
+
 void Application::initDaemonStartupConditions(VeQItem *service)
 {
 	if (service->getState() == VeQItem::State::Synchronized) {
@@ -618,6 +638,16 @@ void Application::manageDaemontoolsServices()
 	// Temperature relay
 	QList<QString> tempSensorRelayList = QList<QString>() << "Settings/Relay/Function" << "Settings/Relay/1/Function";
 	new DaemonToolsService(mSettings, "/service/dbus-tempsensor-relay", tempSensorRelayList, 4, this, false);
+
+	// Opportunity loads
+	mOpportunityLoadsStarter = new DaemonToolsService("/service/venus-opportunity-loads");
+	mOpportunityLoadsStarter->setSveCtlArgs({"-s", "venus-opportunity-loads"});
+
+	item = mSettings->root()->itemGetOrCreate("Settings/DynamicEss/Mode");
+	item->getValueAndChanges(this, &Application::manageOpportunityLoads);
+
+	item = mSettings->root()->itemGetOrCreate("Settings/Services/OpportunityLoads");
+	item->getValueAndChanges(this, &Application::manageOpportunityLoads);
 
 	// Large image services
 	if (serviceExists("node-red-venus")) {
