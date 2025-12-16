@@ -349,6 +349,7 @@ public:
 		add("Services/MqttLocal", 0, 0, 1);
 		add("Services/NodeRed", 0, 0, 2);
 		add("Services/SignalK", 0, 0, 1);
+		add("OpportunityLoads/Mode", 0, 0, 1);
 		// Note: only for debugging over tcp/ip, _not_ socketcan itself...
 		add("Services/Socketcand", 0, 0, 1);
 		add("System/AccessLevel", 1, 0, 3);
@@ -565,6 +566,33 @@ void Application::manageParallelBms()
 		mParallelBmsStarter->stop();
 }
 
+void Application::onDessModeChanged(QVariant var)
+{
+	if (var.isValid() && var.toInt() > 0)
+		manageOpportunityLoads(QVariant()); // Disable OL
+}
+
+// Start opportunity loads service when the setting is enabled, but only when DESS is not running.
+// If OL is enabled, but DESS starts, stop OL and clear the setting.
+void Application::manageOpportunityLoads(QVariant olMode)
+{
+	if (!mOpportunityLoadsStarter)
+		return;
+
+	VeQItem *dessItem = mSettings->root()->itemGetOrCreate("Settings/DynamicEss/Mode");
+	if (dessItem->getValue().toInt() == 0) {
+		if (olMode.isValid() && olMode.toInt() == 1) {
+			if (!mOpportunityLoadsStarter->isUp())
+				mOpportunityLoadsStarter->start();
+			return;
+		}
+	}
+
+	mService->itemGetOrCreate("OpportunityLoads/Mode")->setValue(0);
+	if (mOpportunityLoadsStarter->isUp())
+		mOpportunityLoadsStarter->stop();
+}
+
 void Application::initDaemonStartupConditions(VeQItem *service)
 {
 	if (service->getState() == VeQItem::State::Synchronized) {
@@ -615,6 +643,19 @@ void Application::manageDaemontoolsServices()
 	// Temperature relay
 	QList<QString> tempSensorRelayList = QList<QString>() << "Settings/Relay/Function" << "Settings/Relay/1/Function";
 	new DaemonToolsService(mSettings, "/service/dbus-tempsensor-relay", tempSensorRelayList, 4, this, false);
+
+	// Opportunity loads
+	if (serviceExists("venus-opportunity-loads")) {
+		mOpportunityLoadsStarter = new DaemonToolsService("/service/venus-opportunity-loads");
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("OpportunityLoads"), "Mode",
+							mSettings->root()->itemGetOrCreate("Settings/OpportunityLoads/Mode"));
+
+		item = mSettings->root()->itemGetOrCreate("Settings/DynamicEss/Mode");
+		item->getValueAndChanges(this, SLOT(onDessModeChanged(QVariant)));
+
+		item = mService->itemGetOrCreate("OpportunityLoads/Mode");
+		item->getValueAndChanges(this, SLOT(manageOpportunityLoads(QVariant)));
+	}
 
 	// Large image services
 	if (serviceExists("node-red-venus")) {
