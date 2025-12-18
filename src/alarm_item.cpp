@@ -282,6 +282,8 @@ void VebusAlarms::init(bool single)
 	addTripplet(tr("Inverter overload on L3"),	"/Alarms/L3/Overload",			settings->itemGetOrCreate("/Vebus/InverterOverload"));
 
 	// Grid alarm
+	// This alarm is not enabled/disabled here by a setting.
+	// There is a setting, and mk2-dbus uses that to enable/disable the grid lost detection in the vebus system directly.
 	addTripplet(tr("Grid lost"),				"/Alarms/GridLost");
 
 	// DC voltage and current alarms

@@ -320,6 +320,15 @@ public:
 				add("Gui/AutoBrightness", 0, 0, 0);
 		}
 
+		add("Alarm/Vebus/HighDcCurrent", 1, 0, 2);
+		add("Alarm/Vebus/HighDcRipple", 1, 0, 2);
+		add("Alarm/Vebus/HighDcVoltage", 1, 0, 2);
+		add("Alarm/Vebus/HighTemperature", 1, 0, 2);
+		add("Alarm/Vebus/InverterOverload", 1, 0, 2);
+		add("Alarm/Vebus/LowBattery", 1, 0, 2);
+		add("Alarm/Vebus/TemperatureSenseError", 1, 0, 2);
+		add("Alarm/Vebus/VeBusError", 2, 0, 2);
+		add("Alarm/Vebus/VoltageSenseError", 1, 0, 2);
 		add("Gui/DemoMode", 0, 0, 3);
 		add("Gui/DisplayOff", 600, 0, 0);
 		add("Gui/Language", "en");
