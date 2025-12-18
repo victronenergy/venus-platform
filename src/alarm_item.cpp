@@ -15,9 +15,9 @@ void DeviceAlarms::addErrorFlag(const QString &description, const QString &busit
 	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::ERROR_FLAG, busitemPathAlarm, description, busitemSetting, "", this));
 }
 
-void DeviceAlarms::addVebusError(const QString &busitemPathAlarm)
+void DeviceAlarms::addVebusError(const QString &busitemPathAlarm, VeQItem *busItemSetting)
 {
-	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::VEBUS_ERROR, busitemPathAlarm, "", nullptr, "", this));
+	mAlarms.push_back(new AlarmMonitor(mService, AlarmMonitor::VEBUS_ERROR, busitemPathAlarm, "", busItemSetting, "", this));
 }
 
 void DeviceAlarms::addBmsError(const QString &busitemPathAlarm)
@@ -264,7 +264,7 @@ void VebusAlarms::init(bool single)
 {
 	VeQItem *settings = VeQItems::getRoot()->itemGetOrCreate("dbus/com.victronenergy.settings/Settings/Alarm");
 
-	addVebusError("/VebusError");
+	addVebusError("/VebusError", settings->itemGetOrCreate("Alarm/Vebus/VeBusError"));
 	addTripplet(tr("Temperature sense error"),	"/Alarms/TemperatureSensor",	settings->itemGetOrCreate("/Vebus/TemperatureSenseError"));
 	addTripplet(tr("Voltage sense error"),		"/Alarms/VoltageSensor",		settings->itemGetOrCreate("/Vebus/VoltageSenseError"));
 	addTripplet(tr("Low battery voltage"),		"/Alarms/LowBattery",			settings->itemGetOrCreate("/Vebus/LowBattery"));

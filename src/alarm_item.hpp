@@ -25,7 +25,7 @@ public:
 	WarningAlarmMonitor *addTripplet(const QString &description, const QString &busitemPathAlarm,
 							VeQItem *busitemSetting = nullptr, const QString &busitemPathValue = "");
 	void addErrorFlag(const QString &description, const QString &busitemPathAlarm, VeQItem *busitemSetting);
-	void addVebusError(const QString &busitemPathAlarm);
+	void addVebusError(const QString &busitemPathAlarm, VeQItem *busItemSetting);
 	void addBmsError(const QString &busitemPathAlarm);
 	void addChargerError(const QString &busitemPathAlarm);
 	void addAlternatorError(const QString &busitemPathAlarm);
