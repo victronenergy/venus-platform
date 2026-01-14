@@ -69,7 +69,9 @@ void NetworkReset::makeLedsIndicateReset()
 
 void NetworkReset::setSettingsToDefault()
 {
-	const QStringList settingPaths({"Settings/Ble/Service/Pincode", "Settings/Services/AccessPoint", "Settings/Services/Bluetooth"});
+	const QStringList settingPaths({"Settings/Ble/Service/Pincode", "Settings/Services/AccessPoint",
+									"Settings/Services/Bluetooth", "/Settings/System/SecurityProfile",
+									"/Settings/Services/AccessPointPassword"});
 
 	for (const QString &path : settingPaths) {
 		VeQItem *item = mSettings->root()->itemGet(path);
