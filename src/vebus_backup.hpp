@@ -104,6 +104,8 @@ private:
 	VeQItem *mMk2DbusFirmwareVersionItem;
 	VeQItem *mMk2DbusSubVersionItem;
 	VeQItem *mMk2DbusProductIdItem;
+	VeQItem *mRestoreNotifyItem;
+	VeQItem *mRestoreActionItem;
 
 private slots:
 	//void onVenusServiceFound(VenusService *service); 	// We need this to monitor mk2vsc
@@ -112,6 +114,7 @@ private slots:
 	void onActionChanged(QVariant var);
 	void onFileNameChanged(QVariant var);
 	void onFileIndexChanged(QVariant var);
+	void onRestoreActionItemChanged(QVariant var);
 	void onMk2VscStateChanged(QVariant var);
 	void onVebusProductIdOrVersionChanged(QVariant var);
 	void onVebusConnectedChanged(QVariant var);
