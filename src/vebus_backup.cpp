@@ -61,6 +61,9 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 		VeQItem *deviceRootItem = venusPlatformParentItem->itemGetOrCreate(devicesPath);
 		VeQItem *fileIndexItem = deviceRootItem->itemGetOrCreate("Restore/FileIndex");
 		fileIndexItem->getValueAndChanges(this, SLOT(onFileIndexChanged(QVariant)));
+		mRestoreActionItem = deviceRootItem->itemGetOrCreate("Restore/Action");
+		mRestoreActionItem->getValueAndChanges(this, SLOT(onRestoreActionItemChanged(QVariant)));
+		mRestoreNotifyItem = deviceRootItem->itemGetOrCreate("Restore/Notify");
 	}
 
 	// Connect to the mk2vsc service
@@ -84,6 +87,8 @@ VebusBackupService::VebusBackupService(VeQItem *parentItem, VenusService *servic
 	QObject(parent)
 {
 	initialized = false;
+	mRestoreNotifyItem = nullptr;
+	mRestoreActionItem = nullptr;
 	vebusInterfaceService = service;
 	venusPlatformParentItem = parentItem;
 	mMk2DbusMk2ConnectionItem = service->item("/Interfaces/Mk2/Connection");
@@ -150,6 +155,13 @@ void VebusBackupService::onFileIndexChanged(QVariant var)
 		mFileItem->produceValue(mBackupFiles[idx].remove(QRegularExpression("-[^.-]*?\\.rv(sc|ms)$")));
 	} else {
 		mFileItem->produceValue("");
+	}
+}
+
+void VebusBackupService::onRestoreActionItemChanged(QVariant var)
+{
+	if (var.isValid() && var.toInt() != 0) {
+		mActionItem->produceValue(Action::restore);
 	}
 }
 
@@ -302,14 +314,23 @@ void VebusBackupService::onRestoreFinished(int exitCode, QProcess::ExitStatus ex
 	qDebug() << "Ve.Bus restore finished";
 	working = false;
 	mActionItem->produceValue(Action::idle);
+	if (mRestoreActionItem)
+		mRestoreActionItem->produceValue(Action::idle);
 
 	if (exitStatus == QProcess::NormalExit) {
 		if (exitCode == 0) {
 			mNotifyItem->produceValue(Notification::restoreSuccessful);
+			if (mRestoreNotifyItem)
+				mRestoreNotifyItem->produceValue(Notification::restoreSuccessful);
+		} else {
+			if (mRestoreNotifyItem)
+				mRestoreNotifyItem->produceValue(Notification::restoreException);
 		}
 		mErrorItem->produceValue(exitCode);
 	} else {
 		mNotifyItem->produceValue(Notification::restoreException);
+		if (mRestoreNotifyItem)
+			mRestoreNotifyItem->produceValue(Notification::restoreException);
 	}
 }
 
@@ -321,6 +342,8 @@ void VebusBackupService::runRestoreAction()
 	}
 
 	working = true;
+	if (mRestoreNotifyItem)
+		mRestoreNotifyItem->produceValue(QVariant());
 
 	qDebug() << "Start Ve.Bus restore using file name" << mFileName;
 	working = true;
