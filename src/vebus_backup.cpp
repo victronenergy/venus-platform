@@ -98,11 +98,10 @@ VebusBackupService::VebusBackupService(VeQItem *parentItem, VenusService *servic
 
 void VebusBackupService::onActionChanged(QVariant var)
 {
-	int action;
-
 	if (working) {
 		return;
 	}
+
 	/*
 	0 - idle
 	1 - backup
@@ -110,7 +109,16 @@ void VebusBackupService::onActionChanged(QVariant var)
 	3 - delete */
 
 	if (var.isValid()) {
-		action = var.toInt();
+		int action = var.toInt();
+
+		// Info indicates what we are doing, and should be invalid when we are idle.
+		// Conversely, notify pops up at the end and should stay put until we transition
+		// out of Idle.
+		if (action == Action::idle) {
+			mInfoItem->produceValue(QVariant());
+		} else {
+			mNotifyItem->produceValue(QVariant());
+		}
 
 		switch (action) {
 		case Action::idle:
