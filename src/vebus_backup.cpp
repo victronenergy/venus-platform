@@ -354,7 +354,6 @@ void VebusBackupService::runRestoreAction()
 		mRestoreNotifyItem->produceValue(QVariant());
 
 	qDebug() << "Start Ve.Bus restore using file name" << mFileName;
-	working = true;
 	QProcess *restoreProcess = new QProcess();
 	QObject::connect(restoreProcess, &QProcess::finished, this, &VebusBackupService::onRestoreFinished);
 
