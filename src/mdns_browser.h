@@ -18,11 +18,13 @@ class FileDownloader : public QObject
 	Q_OBJECT
 
 public:
-	FileDownloader(const QUrl &url, QObject *parent = 0);
+	FileDownloader(const QString &hostname, const QUrl &url, QObject *parent = 0);
+	const QString mName;
 	const QUrl mUrl;
 
+
 signals:
-	void downloaded(const QUrl &, const QByteArray &);
+	void downloaded(const QString &, const QUrl &, const QByteArray &);
 
 private slots:
 	void fileDownloaded(QNetworkReply* pReply);
@@ -38,14 +40,14 @@ public:
 	MdnsBrowser(VeQItem *rootItem, QObject *parent);
 
 signals:
-	void serviceFound(const AvahiAddress *addr, const uint16_t port, AvahiStringList *txt);
-	void serviceRemoved();
+	void serviceFound(const QString &, const AvahiAddress *addr, const uint16_t port, AvahiStringList *txt);
+	void serviceRemoved(const QString &);
 	void clientFailure();
 
 private slots:
-	void handleNewService(const AvahiAddress *addr, const uint16_t port, AvahiStringList *txt);
-	void onServiceRemoved();
-	void parseEmpirBusJson(const QUrl &url, const QByteArray &data);
+	void handleNewService(const QString &, const AvahiAddress *addr, const uint16_t port, AvahiStringList *txt);
+	void onServiceRemoved(const QString &);
+	void parseEmpirBusJson(const QString &, const QUrl &url, const QByteArray &data);
 	void restart();
 
 private:
@@ -86,9 +88,11 @@ private:
 
 	void startClient();
 	void startBrowser(AvahiClient *);
+	void setEmpirBusUrlsItem();
 
 	AvahiClient *mClient;
 	AvahiServiceBrowser *mServiceBrowser;
+	QMap<QString, QJsonObject> mEmpirBusUrls;
 	struct user_data mUserData;
 	VeQItem *mEmpirBusSettingsUrlItem;
 };

@@ -2,6 +2,8 @@
 #include <QUrl>
 #include <QJsonDocument>
 #include <QJsonValue>
+#include <QJsonObject>
+#include <QJsonArray>
 #include <QSet>
 
 #include "avahi-qt/qt-watch.h"
@@ -9,8 +11,8 @@
 
 const QSet<QString> EMPIRBUS_IDS = {"49c956d6-ed5e-4451-beb9-0f55e3ef22cb", "de4a5f92-56af-4d27-bab8-15c64728fa21"};
 
-FileDownloader::FileDownloader(const QUrl &url, QObject *parent) :
- QObject(parent), mUrl(url)
+FileDownloader::FileDownloader(const QString &name, const QUrl &url, QObject *parent) :
+ QObject(parent), mName(name), mUrl(url)
 {
 	connect(&mWebCtrl, SIGNAL(finished(QNetworkReply *)), this, SLOT(fileDownloaded(QNetworkReply *)));
 	QNetworkRequest request(url);
@@ -19,7 +21,7 @@ FileDownloader::FileDownloader(const QUrl &url, QObject *parent) :
 
 void FileDownloader::fileDownloaded(QNetworkReply *pReply) {
 	pReply->deleteLater();
-	emit downloaded(mUrl, pReply->readAll());
+	emit downloaded(mName, mUrl, pReply->readAll());
 }
 
 
@@ -31,8 +33,8 @@ MdnsBrowser::MdnsBrowser(VeQItem *rootItem, QObject *parent) :
 	mServiceBrowser = nullptr;
 	mClient = nullptr;
 	connect(this, SIGNAL(clientFailure()), this, SLOT(restart()));
-	connect(this, SIGNAL(serviceFound(const AvahiAddress *, const uint16_t, AvahiStringList *)), this, SLOT(handleNewService(const AvahiAddress *, const uint16_t, AvahiStringList *)));
-	connect(this, SIGNAL(serviceRemoved()), this, SLOT(onServiceRemoved()));
+	connect(this, SIGNAL(serviceFound(const QString &, const AvahiAddress *, const uint16_t, AvahiStringList *)), this, SLOT(handleNewService(const QString &, const AvahiAddress *, const uint16_t, AvahiStringList *)));
+	connect(this, SIGNAL(serviceRemoved(const QString &)), this, SLOT(onServiceRemoved(const QString &)));
 	startClient();
 }
 
@@ -96,19 +98,19 @@ void MdnsBrowser::clientCallback(AvahiClient *c, AvahiClientState state, AVAHI_G
 	if (!c || !userdata)
 		return;
 
-	MdnsBrowser *b = ((user_data *)userdata)->mdnsBrowser;
+	MdnsBrowser *mdnsBrowser = ((user_data *)userdata)->mdnsBrowser;
 
 	// Called whenever the client or server state changes
 	switch (state) {
 	    case AVAHI_CLIENT_FAILURE:
 		qWarning() << "[mDNS browser] Server connection failure: " << avahi_strerror(avahi_client_errno(c)) << ", retrying";
-		emit b->clientFailure();
+		emit mdnsBrowser->clientFailure();
 		    break;
 
 	    case AVAHI_CLIENT_S_REGISTERING:
 	    case AVAHI_CLIENT_S_RUNNING:
 	    case AVAHI_CLIENT_S_COLLISION:
-		    b->startBrowser(c);
+		    mdnsBrowser->startBrowser(c);
 		    break;
 
 		// Do nothing while the client connects to the daemon
@@ -128,9 +130,10 @@ void MdnsBrowser::browseCallback(
         AVAHI_GCC_UNUSED AvahiLookupResultFlags flags,
         void *userdata)
 {
-	if (!b)
+	if (!b || !userdata)
 		return;
 
+	MdnsBrowser *mdnsBrowser = ((user_data *)userdata)->mdnsBrowser;
 	AvahiClient *c = avahi_service_browser_get_client(b);
 
 	// Called whenever new services becomes available on the LAN or is removed from the LAN
@@ -138,24 +141,28 @@ void MdnsBrowser::browseCallback(
 	    case AVAHI_BROWSER_FAILURE:
 
 		    qCritical() << "[mDNS browser] " << avahi_strerror(avahi_client_errno(c));
-			// TODO Cleanup
 		    return;
 
 	    case AVAHI_BROWSER_NEW:
-
+		    qDebug() << "[mDNS browser] Service added: " << name;
 			/* We ignore the returned resolver object. In the callback
 			 * function we free it. If the server is terminated before
 			 * the callback function is called the server will free
 			 * the resolver for us.
 			 */
+
+			// No need to resolve if we already have this name
+			// Should not happen as service names in mDNS are unique
+			if (mdnsBrowser->mEmpirBusUrls.contains(name))
+				break;
+
 			if (!(avahi_service_resolver_new(c, interface, protocol, name, type, domain, AVAHI_PROTO_UNSPEC, (AvahiLookupFlags) 0, MdnsBrowser::resolveCallback, userdata)))
 				qCritical() << "[mDNS browser] Failed to resolve service " << name << " : " << avahi_strerror(avahi_client_errno(c));
 
 		    break;
-
 	    case AVAHI_BROWSER_REMOVE: {
-			MdnsBrowser *i = ((user_data *)userdata)->mdnsBrowser;
-			emit i->serviceRemoved();
+		    qDebug() << "[mDNS browser] Service removed: " << name;
+			emit mdnsBrowser->serviceRemoved(name);
 		    break;
 	    }
 
@@ -191,22 +198,22 @@ void MdnsBrowser::resolveCallback(
 
 	    case AVAHI_RESOLVER_FOUND: {
 		    MdnsBrowser *i = ((user_data *)userdata)->mdnsBrowser;
-			emit i->serviceFound(address, port, txt);
+			emit i->serviceFound(name, address, port, txt);
+			break;
 	    }
 	}
 
 	avahi_service_resolver_free(r);
 }
 
-void MdnsBrowser::onServiceRemoved()
+void MdnsBrowser::onServiceRemoved(const QString &name)
 {
-	/* Since we only support one empirbus device in the network,
-	 * it is fine to just clear the path when the service disappears.
-	 */
-	mEmpirBusSettingsUrlItem->setValue("");
+	// Repopulate the dbus path when a known service was removed
+	if (mEmpirBusUrls.remove(name))
+		setEmpirBusUrlsItem();
 }
 
-void MdnsBrowser::handleNewService(const AvahiAddress *address, const uint16_t port, AvahiStringList *txt)
+void MdnsBrowser::handleNewService(const QString &name, const AvahiAddress *address, const uint16_t port, AvahiStringList *txt)
 {
 	/* Empirbus service discovery
 	 * Check the mDNS txt record for "protovers" == 1 and the presence of "path".
@@ -239,38 +246,40 @@ void MdnsBrowser::handleNewService(const AvahiAddress *address, const uint16_t p
 			url.setPort(port);
 			url.setPath(path);
 
-			auto *fileDownloader = new FileDownloader(url, this);
+			auto *fileDownloader = new FileDownloader(name, url, this);
 
-			connect(fileDownloader, SIGNAL(downloaded(const QUrl &, const QByteArray &)), this, SLOT(parseEmpirBusJson(const QUrl &, const QByteArray &)));
-			connect(fileDownloader, SIGNAL(downloaded(const QUrl &, const QByteArray &)), fileDownloader, SLOT(deleteLater()));
+			connect(fileDownloader, SIGNAL(downloaded(const QString &, const QUrl &, const QByteArray &)), this, SLOT(parseEmpirBusJson(const QString &, const QUrl &, const QByteArray &)));
+			connect(fileDownloader, SIGNAL(downloaded(const QString &, const QUrl &, const QByteArray &)), fileDownloader, SLOT(deleteLater()));
 		}
 	}
 }
 
-void MdnsBrowser::parseEmpirBusJson(const QUrl &_url, const QByteArray &data)
+void MdnsBrowser::parseEmpirBusJson(const QString &name, const QUrl &url, const QByteArray &data)
 {
 	QJsonDocument doc(QJsonDocument::fromJson(data));
 	if (!doc.isEmpty() && doc.isObject()) {
 		QJsonValue id = doc["id"];
-		if (id != QJsonValue::Undefined && id.isString()) {
-
-			// Check if id is equal to either one of the Empirbus IDs.
-			QString idStr = id.toString();
-			if (EMPIRBUS_IDS.contains(idStr)) {
-				QJsonValue path = doc["path"];
-				if (path != QJsonValue::Undefined && path.isString()) {
-					QString pathStr = path.toString();
-					QUrl url(_url);
-					/* pathStr is something like /settings-web/#
-					 * QUrl::setPath does not accept this pathStr because # is an empty fragment, and not a path.
-					 * So instead of replacing the path, clear it and just suffix the url with whatever is in pathStr
-					 */
-					url.setPath("");
-					QString urlStr = url.toString() + '/' + pathStr;
-					mEmpirBusSettingsUrlItem->setValue(urlStr);
-					return;
-				}
+		// Check if id is equal to either one of the Empirbus IDs.
+		if (id != QJsonValue::Undefined && id.isString() && EMPIRBUS_IDS.contains(id.toString())) {
+			QJsonValue path = doc["path"];
+			if (path != QJsonValue::Undefined && path.isString()) {
+				QJsonObject obj = QJsonObject({{"host", url.host()}, {"port", url.port()}, {"path", path.toString()}});
+				mEmpirBusUrls.insert(name, obj);
+				setEmpirBusUrlsItem();
 			}
 		}
 	}
+}
+
+void MdnsBrowser::setEmpirBusUrlsItem()
+{
+	QString value = "";
+	if (!mEmpirBusUrls.empty()) {
+		QJsonArray array;
+		for (const QJsonObject &obj : mEmpirBusUrls.values())
+			array.append(obj);
+		QJsonDocument doc = QJsonDocument(array);
+		value = doc.toJson(QJsonDocument::Compact);
+	}
+	mEmpirBusSettingsUrlItem->setValue(value);
 }
