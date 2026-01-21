@@ -26,7 +26,7 @@ void FileDownloader::fileDownloaded(QNetworkReply *pReply) {
 
 
 MdnsBrowser::MdnsBrowser(VeQItem *rootItem, QObject *parent) :
-    QObject(parent)
+	QObject(parent)
 {
 	mEmpirBusSettingsUrlItem = rootItem->itemGetOrCreateAndProduce("EmpirBus/SettingsUrl", "");
 	mUserData.mdnsBrowser = this;
@@ -102,33 +102,33 @@ void MdnsBrowser::clientCallback(AvahiClient *c, AvahiClientState state, AVAHI_G
 
 	// Called whenever the client or server state changes
 	switch (state) {
-	    case AVAHI_CLIENT_FAILURE:
+		case AVAHI_CLIENT_FAILURE:
 		qWarning() << "[mDNS browser] Server connection failure: " << avahi_strerror(avahi_client_errno(c)) << ", retrying";
 		emit mdnsBrowser->clientFailure();
-		    break;
+	break;
 
-	    case AVAHI_CLIENT_S_REGISTERING:
-	    case AVAHI_CLIENT_S_RUNNING:
-	    case AVAHI_CLIENT_S_COLLISION:
-		    mdnsBrowser->startBrowser(c);
-		    break;
+		case AVAHI_CLIENT_S_REGISTERING:
+		case AVAHI_CLIENT_S_RUNNING:
+		case AVAHI_CLIENT_S_COLLISION:
+	mdnsBrowser->startBrowser(c);
+	break;
 
 		// Do nothing while the client connects to the daemon
-	    case AVAHI_CLIENT_CONNECTING:
-		    break;
+		case AVAHI_CLIENT_CONNECTING:
+	break;
 	}
 }
 
 void MdnsBrowser::browseCallback(
-        AvahiServiceBrowser *b,
-        AvahiIfIndex interface,
-        AvahiProtocol protocol,
-        AvahiBrowserEvent event,
-        const char *name,
-        const char *type,
-        const char *domain,
-        AVAHI_GCC_UNUSED AvahiLookupResultFlags flags,
-        void *userdata)
+		AvahiServiceBrowser *b,
+		AvahiIfIndex interface,
+		AvahiProtocol protocol,
+		AvahiBrowserEvent event,
+		const char *name,
+		const char *type,
+		const char *domain,
+		AVAHI_GCC_UNUSED AvahiLookupResultFlags flags,
+		void *userdata)
 {
 	if (!b || !userdata)
 		return;
@@ -138,13 +138,13 @@ void MdnsBrowser::browseCallback(
 
 	// Called whenever new services becomes available on the LAN or is removed from the LAN
 	switch (event) {
-	    case AVAHI_BROWSER_FAILURE:
+		case AVAHI_BROWSER_FAILURE:
 
-		    qCritical() << "[mDNS browser] " << avahi_strerror(avahi_client_errno(c));
-		    return;
+	qCritical() << "[mDNS browser] " << avahi_strerror(avahi_client_errno(c));
+	return;
 
-	    case AVAHI_BROWSER_NEW:
-		    qDebug() << "[mDNS browser] Service added: " << name;
+		case AVAHI_BROWSER_NEW:
+	qDebug() << "[mDNS browser] Service added: " << name;
 			/* We ignore the returned resolver object. In the callback
 			 * function we free it. If the server is terminated before
 			 * the callback function is called the server will free
@@ -159,48 +159,48 @@ void MdnsBrowser::browseCallback(
 			if (!(avahi_service_resolver_new(c, interface, protocol, name, type, domain, AVAHI_PROTO_UNSPEC, (AvahiLookupFlags) 0, MdnsBrowser::resolveCallback, userdata)))
 				qCritical() << "[mDNS browser] Failed to resolve service " << name << " : " << avahi_strerror(avahi_client_errno(c));
 
-		    break;
-	    case AVAHI_BROWSER_REMOVE: {
-		    qDebug() << "[mDNS browser] Service removed: " << name;
+	break;
+		case AVAHI_BROWSER_REMOVE: {
+	qDebug() << "[mDNS browser] Service removed: " << name;
 			emit mdnsBrowser->serviceRemoved(name);
-		    break;
-	    }
+	break;
+		}
 
-	    case AVAHI_BROWSER_ALL_FOR_NOW:
-	    case AVAHI_BROWSER_CACHE_EXHAUSTED:
-		    break;
+		case AVAHI_BROWSER_ALL_FOR_NOW:
+		case AVAHI_BROWSER_CACHE_EXHAUSTED:
+	break;
 	}
 }
 
 void MdnsBrowser::resolveCallback(
-    AvahiServiceResolver *r,
-    AVAHI_GCC_UNUSED AvahiIfIndex interface,
-    AVAHI_GCC_UNUSED AvahiProtocol protocol,
-    AvahiResolverEvent event,
-    const char *name,
-    AVAHI_GCC_UNUSED const char *type,
-    AVAHI_GCC_UNUSED const char *domain,
-    AVAHI_GCC_UNUSED const char *host_name,
-    const AvahiAddress *address,
-    uint16_t port,
-    AvahiStringList *txt,
-    AVAHI_GCC_UNUSED AvahiLookupResultFlags flags,
-    void *userdata) {
+	AvahiServiceResolver *r,
+	AVAHI_GCC_UNUSED AvahiIfIndex interface,
+	AVAHI_GCC_UNUSED AvahiProtocol protocol,
+	AvahiResolverEvent event,
+	const char *name,
+	AVAHI_GCC_UNUSED const char *type,
+	AVAHI_GCC_UNUSED const char *domain,
+	AVAHI_GCC_UNUSED const char *host_name,
+	const AvahiAddress *address,
+	uint16_t port,
+	AvahiStringList *txt,
+	AVAHI_GCC_UNUSED AvahiLookupResultFlags flags,
+	void *userdata) {
 
 	if (!r || !userdata)
 		return;
 
 	// Called whenever a service has been resolved successfully or timed out
 	switch (event) {
-	    case AVAHI_RESOLVER_FAILURE:
-		    qCritical() << "[mDNS browser] Failed to resolve service " << name << " : " << avahi_strerror(avahi_client_errno(avahi_service_resolver_get_client(r)));
-		    break;
+		case AVAHI_RESOLVER_FAILURE:
+	qCritical() << "[mDNS browser] Failed to resolve service " << name << " : " << avahi_strerror(avahi_client_errno(avahi_service_resolver_get_client(r)));
+	break;
 
-	    case AVAHI_RESOLVER_FOUND: {
-		    MdnsBrowser *i = ((user_data *)userdata)->mdnsBrowser;
+		case AVAHI_RESOLVER_FOUND: {
+	MdnsBrowser *i = ((user_data *)userdata)->mdnsBrowser;
 			emit i->serviceFound(name, address, port, txt);
 			break;
-	    }
+		}
 	}
 
 	avahi_service_resolver_free(r);
