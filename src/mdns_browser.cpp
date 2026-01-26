@@ -29,6 +29,7 @@ MdnsBrowser::MdnsBrowser(VeQItem *rootItem, QObject *parent) :
 	QObject(parent)
 {
 	mEmpirBusSettingsUrlItem = rootItem->itemGetOrCreateAndProduce("EmpirBus/SettingsUrl", "");
+	mEmpirBusUrls.clear();
 	mUserData.mdnsBrowser = this;
 	mServiceBrowser = nullptr;
 	mClient = nullptr;
@@ -49,6 +50,9 @@ void MdnsBrowser::restart()
 		avahi_client_free(mClient);
 		mClient = nullptr;
 	}
+
+	mEmpirBusUrls.clear();
+	setEmpirBusUrlsItem();
 
 	startClient();
 }
@@ -103,19 +107,19 @@ void MdnsBrowser::clientCallback(AvahiClient *c, AvahiClientState state, AVAHI_G
 	// Called whenever the client or server state changes
 	switch (state) {
 		case AVAHI_CLIENT_FAILURE:
-		qWarning() << "[mDNS browser] Server connection failure: " << avahi_strerror(avahi_client_errno(c)) << ", retrying";
-		emit mdnsBrowser->clientFailure();
-	break;
+			qWarning() << "[mDNS browser] Server connection failure: " << avahi_strerror(avahi_client_errno(c)) << ", retrying";
+			emit mdnsBrowser->clientFailure();
+			break;
 
 		case AVAHI_CLIENT_S_REGISTERING:
 		case AVAHI_CLIENT_S_RUNNING:
 		case AVAHI_CLIENT_S_COLLISION:
-	mdnsBrowser->startBrowser(c);
-	break;
+			mdnsBrowser->startBrowser(c);
+			break;
 
 		// Do nothing while the client connects to the daemon
 		case AVAHI_CLIENT_CONNECTING:
-	break;
+			break;
 	}
 }
 
@@ -139,12 +143,12 @@ void MdnsBrowser::browseCallback(
 	// Called whenever new services becomes available on the LAN or is removed from the LAN
 	switch (event) {
 		case AVAHI_BROWSER_FAILURE:
-
-	qCritical() << "[mDNS browser] " << avahi_strerror(avahi_client_errno(c));
-	return;
+			qWarning() << "[mDNS browser] failure: " << avahi_strerror(avahi_client_errno(c));
+			emit mdnsBrowser->clientFailure();
+			break;
 
 		case AVAHI_BROWSER_NEW:
-	qDebug() << "[mDNS browser] Service added: " << name;
+			qDebug() << "[mDNS browser] Service added: " << name;
 			/* We ignore the returned resolver object. In the callback
 			 * function we free it. If the server is terminated before
 			 * the callback function is called the server will free
@@ -159,16 +163,15 @@ void MdnsBrowser::browseCallback(
 			if (!(avahi_service_resolver_new(c, interface, protocol, name, type, domain, AVAHI_PROTO_UNSPEC, (AvahiLookupFlags) 0, MdnsBrowser::resolveCallback, userdata)))
 				qCritical() << "[mDNS browser] Failed to resolve service " << name << " : " << avahi_strerror(avahi_client_errno(c));
 
-	break;
-		case AVAHI_BROWSER_REMOVE: {
-	qDebug() << "[mDNS browser] Service removed: " << name;
+			break;
+		case AVAHI_BROWSER_REMOVE:
+			qDebug() << "[mDNS browser] Service removed: " << name;
 			emit mdnsBrowser->serviceRemoved(name);
-	break;
-		}
+			break;
 
 		case AVAHI_BROWSER_ALL_FOR_NOW:
 		case AVAHI_BROWSER_CACHE_EXHAUSTED:
-	break;
+			break;
 	}
 }
 
@@ -193,11 +196,11 @@ void MdnsBrowser::resolveCallback(
 	// Called whenever a service has been resolved successfully or timed out
 	switch (event) {
 		case AVAHI_RESOLVER_FAILURE:
-	qCritical() << "[mDNS browser] Failed to resolve service " << name << " : " << avahi_strerror(avahi_client_errno(avahi_service_resolver_get_client(r)));
-	break;
+			qCritical() << "[mDNS browser] Failed to resolve service " << name << " : " << avahi_strerror(avahi_client_errno(avahi_service_resolver_get_client(r)));
+			break;
 
 		case AVAHI_RESOLVER_FOUND: {
-	MdnsBrowser *i = ((user_data *)userdata)->mdnsBrowser;
+			MdnsBrowser *i = ((user_data *)userdata)->mdnsBrowser;
 			emit i->serviceFound(name, address, port, txt);
 			break;
 		}
@@ -251,6 +254,8 @@ void MdnsBrowser::handleNewService(const QString &name, const AvahiAddress *addr
 			connect(fileDownloader, SIGNAL(downloaded(const QString &, const QUrl &, const QByteArray &)), this, SLOT(parseEmpirBusJson(const QString &, const QUrl &, const QByteArray &)));
 			connect(fileDownloader, SIGNAL(downloaded(const QString &, const QUrl &, const QByteArray &)), fileDownloader, SLOT(deleteLater()));
 		}
+		avahi_free(value);
+		avahi_free(pathValue);
 	}
 }
 
