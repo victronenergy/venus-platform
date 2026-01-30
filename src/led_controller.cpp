@@ -2,7 +2,6 @@
 #include <QFile>
 #include <QTextStream>
 #include "led_controller.hpp"
-#include "libevdev/libevdev.h"
 
 static QString srcDir(QString const &led, QString const file = "")
 {

@@ -1,9 +1,9 @@
-#ifndef BUTTONHANDLER_H
-#define BUTTONHANDLER_H
+#pragma once
+
+#include <unordered_map>
+#include <vector>
 
 #include <QObject>
-#include <vector>
-#include <unordered_map>
 #include <QSocketNotifier>
 #include <QTimer>
 
@@ -11,19 +11,17 @@
 
 class LibevdevDevice
 {
-	Q_DISABLE_COPY(LibevdevDevice);
+	Q_DISABLE_COPY(LibevdevDevice)
 
-	int fd = -1;
-	struct libevdev *dev = nullptr;
+	int mFd = -1;
+	struct libevdev *mDev = nullptr;
 
 	void free() noexcept;
 public:
-	enum class KeyEvent
-	{
+	enum class KeyEvent {
 		Up,
 		Down
 	};
-
 
 	LibevdevDevice() = default;
 	LibevdevDevice(const QString &devpath);
@@ -57,7 +55,7 @@ class ButtonHandler : public QObject
 
 private slots:
 	void onShortPressesTimeout();
-	void onLongPresTimeout();
+	void onLongPressTimeout();
 	void onButtonActivity(QSocketDescriptor socket, QSocketNotifier::Type type);
 
 public:
@@ -68,5 +66,3 @@ signals:
 	void doublePress();
 	void longPress();
 };
-
-#endif // BUTTONHANDLER_H

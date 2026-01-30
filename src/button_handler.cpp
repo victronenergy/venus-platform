@@ -2,36 +2,35 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+
 #include <QDir>
 
 void LibevdevDevice::free() noexcept
 {
-	if (dev)
-	{
-		libevdev_free(dev);
-		dev = nullptr;
+	if (mDev) {
+		libevdev_free(mDev);
+		mDev = nullptr;
 	}
 
-	if (fd >= 0)
-	{
-		close(fd);
-		fd = -1;
+	if (mFd >= 0) {
+		close(mFd);
+		mFd = -1;
 	}
 }
 
 LibevdevDevice::LibevdevDevice(const QString &devpath)
 {
-	fd = open(devpath.toStdString().c_str(), O_RDONLY|O_NONBLOCK);
+	mFd = open(devpath.toStdString().c_str(), O_RDONLY | O_NONBLOCK);
 
-	if (fd < 0) {
+	if (mFd < 0) {
 		qCritical() << "LibevdevDevice: can't open" << devpath;
 		return;
 	}
 
-	int rc = libevdev_new_from_fd(fd, &dev);
+	int rc = libevdev_new_from_fd(mFd, &mDev);
 	if (rc < 0) {
-		close(fd);
-		dev = nullptr;
+		close(mFd);
+		mDev = nullptr;
 		qCritical() << "Failed to init libevdev: " << strerror(-rc);
 		return;
 	}
@@ -53,10 +52,10 @@ LibevdevDevice &LibevdevDevice::operator=(LibevdevDevice &&other) noexcept
 {
 	free();
 
-	this->dev = other.dev;
-	this->fd = other.fd;
-	other.fd = -1;
-	other.dev = nullptr;
+	this->mDev = other.mDev;
+	this->mFd = other.mFd;
+	other.mFd = -1;
+	other.mDev = nullptr;
 	return *this;
 }
 
@@ -80,24 +79,24 @@ std::vector<LibevdevDevice> LibevdevDevice::getDevices()
 
 QString LibevdevDevice::getName() const
 {
-	if (!dev)
+	if (!mDev)
 		return "unknown device";
 
-	return libevdev_get_name(dev);
+	return libevdev_get_name(mDev);
 }
 
 bool LibevdevDevice::isButton() const
 {
-	if (!dev)
+	if (!mDev)
 		return false;
 
 	// KEY_CONFIG is just some weird unusual button that was decided for the GX button.
-	return libevdev_has_event_code(dev, EV_KEY, KEY_CONFIG);
+	return libevdev_has_event_code(mDev, EV_KEY, KEY_CONFIG);
 }
 
 int LibevdevDevice::getFd() const
 {
-	return fd;
+	return mFd;
 }
 
 /**
@@ -107,21 +106,18 @@ QList<LibevdevDevice::KeyEvent> LibevdevDevice::getEvents()
 {
 	QList<KeyEvent> result;
 
-	if (!dev)
+	if (!mDev)
 		return result;
 
 	int guard = 0;
 	int rc = 0;
 	do {
-		struct input_event ev;
-		memset(&ev, 0, sizeof(ev));
+		struct input_event ev = {};
 
 		// TODO: what about that sync stuff  https://www.freedesktop.org/software/libevdev/doc/latest/group__events.html#gabb96c864e836c0b98788f4ab771c3a76
-		rc = libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
-		if (rc == 0)
-		{
-			if (ev.type == EV_KEY && ev.code == KEY_CONFIG)
-			{
+		rc = libevdev_next_event(mDev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
+		if (rc == 0) {
+			if (ev.type == EV_KEY && ev.code == KEY_CONFIG) {
 				KeyEvent event = static_cast<KeyEvent>(ev.value);
 				result.push_back(event);
 			}
@@ -144,25 +140,20 @@ void ButtonHandler::onShortPressesTimeout()
 	if (mCurState == LibevdevDevice::KeyEvent::Down)
 		return;
 
-	if (mPressCounter == 1)
-	{
+	if (mPressCounter == 1) {
 		qDebug() << "shortPress";
 		resetPressState();
 		emit shortPress();
-	}
-	else if (mPressCounter == 2)
-	{
+	} else if (mPressCounter == 2) {
 		qDebug() << "doublePress";
 		resetPressState();
 		emit doublePress();
-	}
-	else
-	{
+	} else {
 		resetPressState();
 	}
 }
 
-void ButtonHandler::onLongPresTimeout()
+void ButtonHandler::onLongPressTimeout()
 {
 	qDebug() << "long";
 	resetPressState();
@@ -180,12 +171,10 @@ void ButtonHandler::onButtonActivity(QSocketDescriptor socket, QSocketNotifier::
 	LibevdevDevice &dev = pos->second;
 	QList<LibevdevDevice::KeyEvent> events = dev.getEvents();
 
-	for (LibevdevDevice::KeyEvent event : events)
-	{
+	for (LibevdevDevice::KeyEvent event : events) {
 		mCurState = event;
 
-		if (event == LibevdevDevice::KeyEvent::Up)
-		{
+		if (event == LibevdevDevice::KeyEvent::Up) {
 			mLongPress.stop();
 
 			// Reset on aborted long press while retaining tracking of short presses.
@@ -210,7 +199,7 @@ ButtonHandler::ButtonHandler(QObject *parent) :
 	mLongPress.setInterval(4000);
 
 	connect(&mShortPresses, &QTimer::timeout, this, &ButtonHandler::onShortPressesTimeout);
-	connect(&mLongPress, &QTimer::timeout, this, &ButtonHandler::onLongPresTimeout);
+	connect(&mLongPress, &QTimer::timeout, this, &ButtonHandler::onLongPressTimeout);
 
 	std::vector<LibevdevDevice> all_devices = LibevdevDevice::getDevices();
 
@@ -231,6 +220,3 @@ ButtonHandler::ButtonHandler(QObject *parent) :
 		}
 	}
 }
-
-
-
