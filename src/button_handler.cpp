@@ -109,20 +109,34 @@ QList<LibevdevDevice::KeyEvent> LibevdevDevice::getEvents()
 	if (!mDev)
 		return result;
 
-	int guard = 0;
-	int rc = 0;
-	do {
+	for (;;) {
 		struct input_event ev = {};
 
-		// TODO: what about that sync stuff  https://www.freedesktop.org/software/libevdev/doc/latest/group__events.html#gabb96c864e836c0b98788f4ab771c3a76
-		rc = libevdev_next_event(mDev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
-		if (rc == 0) {
+		int rc = libevdev_next_event(mDev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
+		if (rc == -EAGAIN)
+			break;
+
+		if (rc < 0) {
+			qCritical() << "[button] libevdev_next_event error" << rc << strerror(-rc);
+			break;
+		}
+
+		if (rc == LIBEVDEV_READ_STATUS_SUCCESS) {
 			if (ev.type == EV_KEY && ev.code == KEY_CONFIG) {
 				KeyEvent event = static_cast<KeyEvent>(ev.value);
 				result.push_back(event);
 			}
+		} else if (rc == LIBEVDEV_READ_STATUS_SYNC) {
+			// Note: this sync return code will be returned if the linux event
+			// queue ran over and libevdev needs to poll to create the events.
+			// Since there is only one key in the device, just ignore this. Even
+			// if it ever happens, continuing to read normally will simply empty
+			// the sync queue.
+			qWarning() << "[button] libevdev_next_event returned sync / overrun";
+		} else {
+			qCritical() << "[button] unknown return code" << rc;
 		}
-	} while ((rc == 1 || rc == 0 || rc == -EAGAIN) && guard++ < 1000);
+	}
 
 	return result;
 }

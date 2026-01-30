@@ -1,8 +1,5 @@
 #pragma once
 
-#include <unordered_map>
-#include <vector>
-
 #include <QObject>
 #include <QSocketNotifier>
 #include <QTimer>
