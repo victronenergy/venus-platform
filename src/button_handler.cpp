@@ -23,7 +23,7 @@ LibevdevDevice::LibevdevDevice(const QString &devpath)
 	mFd = open(devpath.toStdString().c_str(), O_RDONLY | O_NONBLOCK);
 
 	if (mFd < 0) {
-		qCritical() << "LibevdevDevice: can't open" << devpath;
+		qCritical() << "[button] LibevdevDevice: can't open" << devpath;
 		return;
 	}
 
@@ -31,11 +31,11 @@ LibevdevDevice::LibevdevDevice(const QString &devpath)
 	if (rc < 0) {
 		close(mFd);
 		mDev = nullptr;
-		qCritical() << "Failed to init libevdev: " << strerror(-rc);
+		qCritical() << "[button] Failed to init libevdev: " << strerror(-rc);
 		return;
 	}
 
-	qDebug() << "Initializing LibevdevDevice from" << devpath << ":" << getName();
+	qDebug() << "[button] Initializing LibevdevDevice from" << devpath << ":" << getName();
 }
 
 LibevdevDevice::LibevdevDevice(LibevdevDevice &&other) noexcept
@@ -155,11 +155,11 @@ void ButtonHandler::onShortPressesTimeout()
 		return;
 
 	if (mPressCounter == 1) {
-		qDebug() << "shortPress";
+		qDebug() << "[button] shortPress";
 		resetPressState();
 		emit shortPress();
 	} else if (mPressCounter == 2) {
-		qDebug() << "doublePress";
+		qDebug() << "[button] doublePress";
 		resetPressState();
 		emit doublePress();
 	} else {
@@ -169,7 +169,7 @@ void ButtonHandler::onShortPressesTimeout()
 
 void ButtonHandler::onLongPressTimeout()
 {
-	qDebug() << "long";
+	qDebug() << "[button] longPress";
 	resetPressState();
 	emit longPress();
 }
@@ -219,7 +219,7 @@ ButtonHandler::ButtonHandler(QObject *parent) :
 
 	for (LibevdevDevice &d : all_devices) {
 		if (d.isButton()) {
-			qDebug() << "Using" << d.getName() << "as GX button";
+			qDebug() << "[button] Using" << d.getName() << "as GX button";
 
 			const int fd = d.getFd();
 			QSocketNotifier *notifier = new QSocketNotifier(fd, QSocketNotifier::Read, this);
