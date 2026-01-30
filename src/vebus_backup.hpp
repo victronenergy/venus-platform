@@ -19,7 +19,7 @@ public:
 	explicit VebusBackupServiceRegistrator(VeQItem *parentItem, VenusServices *services, QObject *parent = 0);
 
 private:
-	VeQItem *parentItemRef;
+	VeQItem *mParentItemRef;
 
 private slots:
 	void onVenusServiceFound(VenusService *service);
@@ -75,24 +75,24 @@ private:
 	bool getProductIdAndVersions();
 	bool checkFirmwareVersionCompatibility(const QString& prodIdAndVersion, const QString& subVersion);
 
-	VenusService *vebusInterfaceService;
+	VenusService *mVebusInterfaceService;
 
-	bool working;
-	bool availableBackupsListValid;
-	bool offline;
-	bool initialized;
+	bool mWorking;
+	bool mAvailableBackupsListValid;
+	bool mOffline;
+	bool mInitialized;
 	const QString backupDir = QStringLiteral("/data/conf/");
 	const QString mk2vscProg = QStringLiteral("/opt/victronenergy/mk2vsc/mk2vsc");
 	const QString mk2vscCacheDir = QStringLiteral("/tmp");
 
-	QString connection;
+	QString mConnection;
 	QString mFileName;
-	QString vebusFirmwareVersionString;
-	QString vebusFirmwareVersionNumber;
-	QString vebusFirmwareSubVersionNumber;
-	QString vebusProductId;
+	QString mVebusFirmwareVersionString;
+	QString mVebusFirmwareVersionNumber;
+	QString mVebusFirmwareSubVersionNumber;
+	QString mVebusProductId;
 	QStringList mBackupFiles;
-	VeQItem *venusPlatformParentItem;
+	VeQItem *mVenusPlatformParentItem;
 	VeQItem *mActionItem;
 	VeQItem *mInfoItem;
 	VeQItem *mErrorItem;
