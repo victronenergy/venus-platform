@@ -22,7 +22,6 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	if (mInitialized || !var.isValid())
 		return;
 
-
 	qDebug() <<  "[Vebus_backup] Vebus connection found" << var.toString();
 
 	mWorking = false;
@@ -188,7 +187,7 @@ void VebusBackupService::updateAvailableBackups()
 
 	QString conFilter = "*-" + mConnection;
 	QDir directory(backupDir);
-	mBackupFiles  = directory.entryList(QStringList() << conFilter + ".rvsc" << conFilter + ".rvms",
+	mBackupFiles = directory.entryList(QStringList() << conFilter + ".rvsc" << conFilter + ".rvms",
 		QDir::Files, QDir::Name);
 
 	QJsonArray backupFilesArray;
@@ -199,7 +198,7 @@ void VebusBackupService::updateAvailableBackups()
 
 	foreach(QString fileName, mBackupFiles) {
 		// Check if files are valid by listing the contents
-		QStringList arguments({"-L","-f",backupDir + fileName});
+		QStringList arguments({"-L","-f", backupDir + fileName});
 		proc.start(mk2vscProg, arguments);
 
 		proc.waitForFinished();
@@ -225,7 +224,7 @@ void VebusBackupService::updateAvailableBackups()
 
 					sectionNumber++;
 
-					if(checkFirmwareVersionCompatibility(firmwareVersion, firmwareSubversion)) {
+					if (checkFirmwareVersionCompatibility(firmwareVersion, firmwareSubversion)) {
 						backupFilesArray.append(fileName);
 						firmwareMatch = true;
 						break;
@@ -318,7 +317,6 @@ void VebusBackupService::runBackupAction()
 
 void VebusBackupService::onRestoreFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-
 	qDebug() << "Ve.Bus restore finished";
 	mWorking = false;
 	mActionItem->produceValue(Action::idle);
@@ -469,9 +467,9 @@ void VebusBackupService::onVebusConnectedChanged(QVariant var)
 		return;
 	}
 
-	if(var.isValid()) {
+	if (var.isValid()) {
 		mOffline = false;
-		if(var.toInt() != 0) {
+		if (var.toInt() != 0) {
 			updateAvailableBackups();
 		}
 	} else {
