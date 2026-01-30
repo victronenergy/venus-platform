@@ -196,7 +196,7 @@ void VebusBackupService::updateAvailableBackups()
 	// Regular expression for extracting both firmware version and subversion number
 	static QRegularExpression regex(R"(Firmware version\s*=\s*(\d+)(?:\s*\nFirmware subversion number\s*=\s*(\d+))?)");
 
-	foreach(QString fileName, mBackupFiles) {
+	for (const QString &fileName: mBackupFiles) {
 		// Check if files are valid by listing the contents
 		QStringList arguments({"-L","-f", backupDir + fileName});
 		proc.start(mk2vscProg, arguments);
