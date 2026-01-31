@@ -8,6 +8,7 @@
 
 #include "alarm_item.hpp"
 #include "buzzer.hpp"
+#include "button_handler.hpp"
 #include "display_controller.hpp"
 #include "led_controller.hpp"
 #include "netlink_monitor.hpp"
@@ -18,7 +19,6 @@
 #include "updater.hpp"
 #include "venus_services.hpp"
 #include "vebus_backup.hpp"
-#include "buttonhandler.hpp"
 
 struct FreeSpace
 {
