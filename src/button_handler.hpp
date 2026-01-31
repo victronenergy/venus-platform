@@ -34,9 +34,6 @@ public:
 	QList<KeyEvent> getEvents();
 };
 
-template<class T> auto privateOverload(void ( QSocketNotifier::* s)( QSocketDescriptor,QSocketNotifier::Type,T ) ){return s;}
-
-
 class ButtonHandler : public QObject
 {
 	Q_OBJECT
@@ -53,7 +50,7 @@ class ButtonHandler : public QObject
 private slots:
 	void onShortPressesTimeout();
 	void onLongPressTimeout();
-	void onButtonActivity(QSocketDescriptor socket, QSocketNotifier::Type type);
+	void onButtonActivity(QSocketDescriptor socket);
 
 public:
 	ButtonHandler(QObject *parent);

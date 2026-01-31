@@ -174,10 +174,8 @@ void ButtonHandler::onLongPressTimeout()
 	emit longPress();
 }
 
-void ButtonHandler::onButtonActivity(QSocketDescriptor socket, QSocketNotifier::Type type)
+void ButtonHandler::onButtonActivity(QSocketDescriptor socket)
 {
-	(void)type;
-
 	auto pos = mButtons.find(socket);
 	if (pos == mButtons.end())
 		return;
@@ -226,7 +224,7 @@ ButtonHandler::ButtonHandler(QObject *parent) :
 
 			connect(
 				notifier,
-				privateOverload(&QSocketNotifier::activated),
+				&QSocketNotifier::activated,
 				this,
 				&ButtonHandler::onButtonActivity);
 
