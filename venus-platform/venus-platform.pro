@@ -2,15 +2,14 @@ QT = core dbus network
 
 unix {
 	bindir = $$(bindir)
-	DESTDIR = $$(DESTDIR)
 	isEmpty(bindir) {
 		bindir = /opt/victronenergy/venus-platform
 	}
-	target.path = $${DESTDIR}$${bindir}
+	target.path = $${bindir}
 }
 !isEmpty(target.path): INSTALLS += target
 
-translations.path = ../$${target.path}/translations
+translations.path = $${target.path}/translations
 translations.files = ../translations/*.qm
 INSTALLS += translations
 
