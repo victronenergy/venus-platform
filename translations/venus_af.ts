@@ -42,7 +42,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="31"/>
       <source>Battery measure error</source>
-      <translation>Battery meet fout</translation>
+      <translation>Battery meingsfout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="34"/>
@@ -62,12 +62,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="47"/>
       <source>Watchdog error</source>
-      <translation>Waghondfout</translation>
+      <translation>Waghond fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="50"/>
       <source>Over voltage</source>
-      <translation>Oorspanning</translation>
+      <translation>Oor spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="53"/>
@@ -92,7 +92,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="65"/>
       <source>ADC error</source>
-      <translation>ADC fout</translation>
+      <translation type="unfinished">ADO fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="68"/>
@@ -102,7 +102,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="71"/>
       <source>Pre-Charge error</source>
-      <translation>Vooraflaaifout</translation>
+      <translation>Vooraflaai fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="75"/>
@@ -112,12 +112,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="79"/>
       <source>Battery update error</source>
-      <translation>Batteryopdateringfout</translation>
+      <translation>Batteryopdaterings fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="82"/>
       <source>BMS cable error</source>
-      <translation>BMS kabel fout</translation>
+      <translation type="unfinished">BMS kabel fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="85"/>
@@ -127,12 +127,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="88"/>
       <source>Wrong system voltage</source>
-      <translation>Verkeerde stelselspanning</translation>
+      <translation>Verkeerde sisteem spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="91"/>
       <source>Pre charge timeout</source>
-      <translation>Pre charge timeout</translation>
+      <translation type="unfinished">Vooraf-laai tyd uit</translation>
     </message>
   </context>
   <context>
@@ -156,7 +156,7 @@
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="11"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="12"/>
       <source>Battery Tsense miswired</source>
-      <translation>Battery Tsense is verkeerd bedraad</translation>
+      <translation>Battery Tsense  verkeerd bedraad</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="13"/>
@@ -197,7 +197,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="21"/>
       <source>Battery mid-point voltage issue</source>
-      <translation>Battery middelpunt spanning kwessie</translation>
+      <translation>Battery middelpunt spanning probleem</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="22"/>
@@ -217,7 +217,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="26"/>
       <source>Charger negative current</source>
-      <translation>Lader negatiewe stroom</translation>
+      <translation>Laaier negatiewe stroom</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="27"/>
@@ -242,27 +242,27 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="31"/>
       <source>Charger fan not detected</source>
-      <translation>Laaiwaaier nie bespeur nie</translation>
+      <translation>Laaier-waaier nie bespeur nie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="32"/>
       <source>Charger fan over-current</source>
-      <translation>Laaiwaaier oorstroom</translation>
+      <translation>Laaier-waaier oorstroom</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="33"/>
       <source>Charger terminal overheat</source>
-      <translation>Laaierterminaal oorverhit</translation>
+      <translation>Laaier-terminaal oorverhit</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="34"/>
       <source>Charger short circuit</source>
-      <translation>Kortsluiting van die laaier</translation>
+      <translation>Kortsluiting in die laaier</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="35"/>
       <source>Charger power stage issue</source>
-      <translation>Laaier krag stadium kwessie</translation>
+      <translation>Laaier krag stadium probleem</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="36"/>
@@ -287,7 +287,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="41"/>
       <source>Input polarity issue</source>
-      <translation>Invoer polariteit kwessie</translation>
+      <translation>Invoer polariteit probleem</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="42"/>
@@ -307,12 +307,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="45"/>
       <source>Input internal failure</source>
-      <translation>Invoer interne mislukking</translation>
+      <translation>Invoer interne faling</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="47"/>
       <source>Panel isolation failure</source>
-      <translation>Paneelisolasie mislukking</translation>
+      <translation>Paneelisolasie faling</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="48"/>
@@ -323,39 +323,39 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="51"/>
       <source>Inverter overload</source>
-      <translation>Omskakelaar oorlading</translation>
+      <translation>Omsetter oorlading</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="52"/>
       <source>Inverter temp too high</source>
-      <translation>Omskakelaar se temperatuur te hoog</translation>
+      <translation>Omsetter se temperatuur te hoog</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="53"/>
       <source>Inverter peak current</source>
-      <translation>Omskakelaar piekstroom</translation>
+      <translation>Omsetter piekstroom</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="54"/>
       <source>Inverter internal DC level</source>
-      <translation>Inverter interne DC vlak</translation>
+      <translation>Omsetter interne WS vlak</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="55"/>
       <source>Inverter wrong ACout level</source>
-      <translation>Omskakelaar verkeerde ACout-vlak</translation>
+      <translation>Omsetter verkeerde ACout-vlak</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="56"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="57"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="59"/>
       <source>Inverter powerstage fault</source>
-      <translation>Omskakelaar kragverhoog fout</translation>
+      <translation>Omsetter kragverhoog fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="58"/>
       <source>Inverter connected to AC</source>
-      <translation>Omskakelaar gekoppel aan AC</translation>
+      <translation>Omsetter gekoppel aan WS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="60"/>
@@ -365,7 +365,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="61"/>
       <source>ACIN2 relay test fault</source>
-      <translation>ACIN2-aflostoetsfout</translation>
+      <translation>ACIN2-relais toets fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="63"/>
@@ -380,7 +380,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="65"/>
       <source>BMS connection lost</source>
-      <translation>BMS-verbinding verloor</translation>
+      <translation>BBS-verbinding verloor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="66"/>
@@ -440,7 +440,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="79"/>
       <source>DC voltage error</source>
-      <translation>DC spanning fout</translation>
+      <translation>WS spanning fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="80"/>
@@ -597,7 +597,7 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="330"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="356"/>
       <source>Low SOC</source>
-      <translation>Lae SOC</translation>
+      <translation type="unfinished">Lae SOC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="248"/>
@@ -607,12 +607,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="249"/>
       <source>Low starter voltage</source>
-      <translation>Lae aansitterspanning</translation>
+      <translation>Lae aansetterspanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="250"/>
       <source>High starter voltage</source>
-      <translation>Hoë aansitterspanning</translation>
+      <translation>Hoë aansetterspanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="251"/>
@@ -637,17 +637,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="254"/>
       <source>Low-fused voltage</source>
-      <translation>Lae-gesmolten spanning</translation>
+      <translation>Lae-smeltdraad spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="255"/>
       <source>High-fused voltage</source>
-      <translation>Hoë gesmelte spanning</translation>
+      <translation>Hoë smeltdraad spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="256"/>
       <source>Fuse blown</source>
-      <translation>Sekering geblaas</translation>
+      <translation>Smeltdraad gebrand</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="257"/>
@@ -657,7 +657,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="258"/>
       <source>Internal failure</source>
-      <translation>Interne mislukking</translation>
+      <translation>Interne faling</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="259"/>
@@ -667,7 +667,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="260"/>
       <source>Cell imbalance</source>
-      <translation>Selwanbalans</translation>
+      <translation>Sel-wanbalans</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="261"/>
@@ -677,17 +677,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="262"/>
       <source>Bad contactor</source>
-      <translation>Slegte kontakor</translation>
+      <translation>Swak kontakor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="263"/>
       <source>BMS cable fault</source>
-      <translation>BMS kabel fout</translation>
+      <translation>BBS kabel fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="266"/>
       <source>Fuse %2 of distributor %1 blown</source>
-      <translation>Sekering %2 van verspreider %1 het geblaas</translation>
+      <translation>Smeltdraad %2 van verspreider %1 het geblaas</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="267"/>
@@ -698,23 +698,23 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="275"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="285"/>
       <source>Low aux voltage</source>
-      <translation>Lae hulpspanning</translation>
+      <translation>Lae bystandspanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="276"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="286"/>
       <source>High aux voltage</source>
-      <translation>Hoë hulpspanning</translation>
+      <translation>Hoë bystandspanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="292"/>
       <source>Temperature sense error</source>
-      <translation>Temperatuurwaarnemingsfout</translation>
+      <translation>Temperatuur-waarnemingsfout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="293"/>
       <source>Voltage sense error</source>
-      <translation>Spanningswaarnemingsfout</translation>
+      <translation>Spannings-waarnemingsfout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="294"/>
@@ -728,12 +728,12 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="329"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="355"/>
       <source>High DC ripple</source>
-      <translation>Hoë DC-rimpeling</translation>
+      <translation>Hoë GS-rimpeling</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="296"/>
       <source>Wrong phase rotation detected</source>
-      <translation>Verkeerde faserotasie bespeur</translation>
+      <translation>Verkeerde fase-rotasie opgemerk</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="299"/>
@@ -743,7 +743,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="300"/>
       <source>Inverter overload on L1</source>
-      <translation>Omskakelaar oorlading op L1</translation>
+      <translation>Omsetter oorlading op L1</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="303"/>
@@ -753,7 +753,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="304"/>
       <source>Inverter overload on L2</source>
-      <translation>Omskakelaar oorlading op L2</translation>
+      <translation>Omsetter oorlading op L2</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="307"/>
@@ -763,12 +763,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="308"/>
       <source>Inverter overload on L3</source>
-      <translation>Omskakelaar oorlading op L3</translation>
+      <translation>Omsetter oorlading op L3</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="311"/>
       <source>Grid lost</source>
-      <translation>Rooster verloor</translation>
+      <translation type="unfinished">Rooster verloor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="314"/>
@@ -783,12 +783,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="318"/>
       <source>BMS pre-alarm</source>
-      <translation>BMS-vooralarm</translation>
+      <translation type="unfinished">BBS-vooralarm</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="319"/>
       <source>BMS connection lost</source>
-      <translation>BMS-verbinding verloor</translation>
+      <translation type="unfinished">BBS-verbinding verloor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="323"/>
@@ -808,13 +808,13 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="325"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="350"/>
       <source>Low AC voltage</source>
-      <translation>Lae AC spanning</translation>
+      <translation>Lae WS spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="326"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="351"/>
       <source>High AC voltage</source>
-      <translation>Hoë AC spanning</translation>
+      <translation>Hoë WS spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="327"/>
@@ -826,12 +826,12 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="328"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="354"/>
       <source>Inverter overload</source>
-      <translation>Omskakelaar oorlading</translation>
+      <translation>Omsetter oorlading</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="361"/>
       <source>Generator not detected at AC input</source>
-      <translation>Generator nie by AC-invoer bespeur nie</translation>
+      <translation>Opwekker nie by WS-invoer bespeur nie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="362"/>
@@ -841,17 +841,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="363"/>
       <source>Auto start function is disabled</source>
-      <translation>Outostartfunksie is gedeaktiveer</translation>
+      <translation>Outo-aanskakelfunksie is gedeaktiveer</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="373"/>
       <source>Please set the VE.Can number to a free one</source>
-      <translation>Stel asseblief die VE.Can-nommer op 'n gratis een</translation>
+      <translation>Stel asseblief die VE.Can-nommer op 'n leë een</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="378"/>
       <source>Grid meter not found #49</source>
-      <translation>Roostermeter nie gevind nie #49</translation>
+      <translation>Roostermeter nie opgespoor nie #49</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="383"/>
@@ -884,7 +884,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/gui/ve_qitem_table_widget.ui" line="14"/>
       <source>QT Table Widget</source>
-      <translation>QT Table Widget</translation>
+      <translation type="unfinished">QT Tabel Widget</translation>
     </message>
   </context>
   <context>
@@ -892,7 +892,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/gui/ve_qitem_tree_widget.ui" line="14"/>
       <source>QT Tree Widget</source>
-      <translation>QT Tree Widget</translation>
+      <translation type="unfinished">QT Tree Widget</translation>
     </message>
   </context>
   <context>
@@ -912,17 +912,17 @@
       <location filename="../src/alarm_item.cpp" line="265"/>
       <location filename="../src/alarm_item.hpp" line="64"/>
       <source>Inverter overload</source>
-      <translation>Omskakelaar oorlading</translation>
+      <translation>Omsetter oorlading</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.hpp" line="64"/>
       <source>Inverter overload on L1</source>
-      <translation>Omskakelaar oorlading op L1</translation>
+      <translation>Omsetter oorlading op L1</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="221"/>
       <source>Temperature sense error</source>
-      <translation>Temperatuurwaarnemingsfout</translation>
+      <translation>Temperatuur waarnemingsfout</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="222"/>
@@ -937,7 +937,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="224"/>
       <source>High DC ripple</source>
-      <translation>Hoë DC-rimpeling</translation>
+      <translation>Hoë GS-rimpeling</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="225"/>
@@ -952,7 +952,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="232"/>
       <source>Inverter overload on L2</source>
-      <translation>Omskakelaar oorlading op L2</translation>
+      <translation>Omsetter oorlading op L2</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="234"/>
@@ -962,12 +962,12 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="235"/>
       <source>Inverter overload on L3</source>
-      <translation>Omskakelaar oorlading op L3</translation>
+      <translation>Omsetter oorlading op L3</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="238"/>
       <source>Grid lost</source>
-      <translation>Rooster verloor</translation>
+      <translation type="unfinished">Rooster verloor</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="241"/>
@@ -982,12 +982,12 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="245"/>
       <source>BMS pre-alarm</source>
-      <translation>BMS-vooralarm</translation>
+      <translation>BBS-vooralarm</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="246"/>
       <source>BMS connection lost</source>
-      <translation>BMS-verbinding verloor</translation>
+      <translation>BBS-verbinding verloor</translation>
     </message>
   </context>
   <context>
@@ -1000,12 +1000,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="13"/>
       <source>Mixed old/new MK2</source>
-      <translation>Gemengde ou/nuwe MK2</translation>
+      <translation type="unfinished">Gemengde ou/nuwe MK2</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="16"/>
       <source>Expected devices error</source>
-      <translation>Verwagte toestelfout</translation>
+      <translation>Verwagte toestel fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="19"/>
@@ -1015,52 +1015,52 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="22"/>
       <source>Overvoltage on AC-out</source>
-      <translation>Oorspanning op AC-out</translation>
+      <translation>Oorspanning op WS-uit</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="25"/>
       <source>DDC program error</source>
-      <translation>DDC program fout</translation>
+      <translation type="unfinished">DDC program fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="28"/>
       <source>VE.Bus BMS without assistant</source>
-      <translation>VE.Bus BMS sonder assistent</translation>
+      <translation>VE.Bus BMS sonder bystand</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="31"/>
       <source>Ground relay test failed</source>
-      <translation>Grondaflostoets het misluk</translation>
+      <translation>Grondrelais toets het gevaal</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="34"/>
       <source>System time sync error</source>
-      <translation>Stelseltydsinkroniseringfout</translation>
+      <translation>Stelsel tyd-sinkroniserings fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="37"/>
       <source>Grid relay test fault</source>
-      <translation>Rooster aflos toets fout</translation>
+      <translation>Rooster relais-toets fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="40"/>
       <source>Config mismatch with 2nd mcu</source>
-      <translation>Config wanpassing met 2de mcu</translation>
+      <translation type="unfinished">Konfigureer wanverhouding met 2de mcu</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="43"/>
       <source>Device transmit error</source>
-      <translation>Toesteloordragfout</translation>
+      <translation>Toestel oordrag fout</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="46"/>
       <source>Awaiting configuration or dongle missing</source>
-      <translation>Wag op konfigurasie of dongle ontbreek</translation>
+      <translation type="unfinished">Wag op konfigurasie of dongle ontbreek</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="49"/>
       <source>Phase master missing</source>
-      <translation>Fasemeester ontbreek</translation>
+      <translation>Fase-meester ontbreek</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="52"/>
@@ -1070,12 +1070,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="55"/>
       <source>Slave does not have AC input!</source>
-      <translation>Slaaf het nie AC-invoer nie!</translation>
+      <translation type="unfinished">Bystand het nie WS-invoer nie!</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="58"/>
       <source>Device can't be slave</source>
-      <translation>Toestel kan nie slaaf wees nie</translation>
+      <translation type="unfinished">Toestel kan nie bystand wees nie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="61"/>
@@ -1085,7 +1085,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="64"/>
       <source>Firmware incompatibiltiy</source>
-      <translation>Firmware onverenigbaarheid</translation>
+      <translation>Firmware onversoenbaar</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="67"/>
@@ -1095,12 +1095,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="70"/>
       <source>Failing relay test prevents connection</source>
-      <translation>Misluk aflostoets verhoed verbinding</translation>
+      <translation>Mislukte relais verhoed verbinding</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="73"/>
       <source>VE.Bus error</source>
-      <translation>VE.Bus Fout</translation>
+      <translation type="unfinished">VE.Bus Fout</translation>
     </message>
   </context>
   <context>
@@ -1148,7 +1148,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="143"/>
       <source>Field drive FET high temperature</source>
-      <translation>Veldaandrywing FET hoë temperatuur</translation>
+      <translation type="unfinished">Veldaandrywing FET hoë temperatuur</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="146"/>
@@ -1183,17 +1183,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="164"/>
       <source>Battery instance ouf of range</source>
-      <translation>Battery-instansie buite bereik</translation>
+      <translation>Battery-toestand buite bereik</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="167"/>
       <source>Too many BMS's</source>
-      <translation>Te veel BMS'e</translation>
+      <translation>Te veel BBS'e</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="170"/>
       <source>Battery about to disconnect</source>
-      <translation>Battery gaan tans ontkoppel</translation>
+      <translation>Battery gaan ontkoppel</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="173"/>
@@ -1223,47 +1223,47 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="188"/>
       <source>BMS connection lost</source>
-      <translation>BMS-verbinding verloor</translation>
+      <translation>BBS-verbinding verloor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="191"/>
       <source>ATC Disabled</source>
-      <translation>ATC gedeaktiveer</translation>
+      <translation type="unfinished">ATC gedeaktiveer</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="194"/>
       <source>DC/DC converter not ready</source>
-      <translation>DC/DC-omsetter nie gereed nie</translation>
+      <translation>WS/GS-omsetter nie gereed nie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="197"/>
       <source>DC/DC high primary voltage</source>
-      <translation>DC/DC hoë primêre spanning</translation>
+      <translation>WS/GS hoë primêre spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="200"/>
       <source>DC/DC low primary voltage</source>
-      <translation>DC/DC lae primêre spanning</translation>
+      <translation>WS/GS lae primêre spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="203"/>
       <source>DC/DC high secondary voltage</source>
-      <translation>DC/DC hoë sekondêre spanning</translation>
+      <translation>WS/GS hoë sekondêre spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="206"/>
       <source>DC/DC low secondary voltage</source>
-      <translation>DC/DC lae sekondêre spanning</translation>
+      <translation>WS/GS lae sekondêre spanning</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="209"/>
       <source>DC/DC high temperature</source>
-      <translation>DC/DC hoë temperatuur</translation>
+      <translation>WS/GSDC/DC hoë temperatuur</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="212"/>
       <source>DC/DC misconfiguration</source>
-      <translation>DC/DC verkeerde konfigurasie</translation>
+      <translation>WS/GS verkeerde konfigurasie</translation>
     </message>
   </context>
   <context>
@@ -1306,7 +1306,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="296"/>
       <source>Low SOC</source>
-      <translation>Lae SOC</translation>
+      <translation type="unfinished">Lae SOC</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="297"/>
@@ -1341,18 +1341,18 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="303"/>
       <source>Low-fused voltage</source>
-      <translation>Lae-gesmolten spanning</translation>
+      <translation>Lae-smeltdraad spanning</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="304"/>
       <source>High-fused voltage</source>
-      <translation>Hoë gesmelte spanning</translation>
+      <translation>Hoë smeltdraad spanning</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="305"/>
       <location filename="../src/alarm_item.cpp" line="329"/>
       <source>Fuse blown</source>
-      <translation>Sekering geblaas</translation>
+      <translation>Smeltdraad geblaas</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="306"/>
@@ -1362,7 +1362,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="307"/>
       <source>Internal failure</source>
-      <translation>Interne mislukking</translation>
+      <translation>Interne faling</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="308"/>
@@ -1372,7 +1372,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="309"/>
       <source>Cell imbalance</source>
-      <translation>Selwanbalans</translation>
+      <translation>Sel-wanbalans</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="310"/>
@@ -1387,7 +1387,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="312"/>
       <source>BMS cable fault</source>
-      <translation>BMS kabel fout</translation>
+      <translation>BBS kabel fout</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="326"/>
@@ -1444,13 +1444,13 @@
       <location filename="../src/alarm_item.cpp" line="88"/>
       <location filename="../src/alarm_item.cpp" line="105"/>
       <source>Low AC voltage</source>
-      <translation>Lae AC spanning</translation>
+      <translation>Lae WS spanning</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="89"/>
       <location filename="../src/alarm_item.cpp" line="106"/>
       <source>High AC voltage</source>
-      <translation>Hoë AC spanning</translation>
+      <translation>Hoë WS spanning</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="90"/>
@@ -1468,23 +1468,23 @@
       <location filename="../src/alarm_item.cpp" line="93"/>
       <location filename="../src/alarm_item.cpp" line="109"/>
       <source>High DC ripple</source>
-      <translation>Hoë DC-rimpeling</translation>
+      <translation>Hoë GS-rimpeling</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="94"/>
       <location filename="../src/alarm_item.cpp" line="110"/>
       <source>Low SOC</source>
-      <translation>Lae SOC</translation>
+      <translation type="unfinished">Lae SOC</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="120"/>
       <source>Circuit breaker tripped</source>
-      <translation>Stroombreker het uitgeskakel</translation>
+      <translation type="unfinished">Stroombreker het afgeskakel</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="121"/>
       <source>DVCC with incompatible firmware #48</source>
-      <translation>DVCC met onversoenbare firmware #48</translation>
+      <translation type="unfinished">DVCC met onversoenbare firmware #48</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="139"/>
@@ -1542,7 +1542,7 @@
     <message>
       <location filename="../src/venus_service.cpp" line="121"/>
       <source>tank</source>
-      <translation>Tenks</translation>
+      <translation>Tenk</translation>
     </message>
   </context>
 </TS>

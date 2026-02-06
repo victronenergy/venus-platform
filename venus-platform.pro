@@ -61,6 +61,7 @@ SOURCES = \
 
 TRANSLATIONS = \
 	translations/venus_ar.ts \
+	translations/venus_af.ts \
 	translations/venus_cs.ts \
 	translations/venus_da.ts \
 	translations/venus_de.ts \
@@ -69,6 +70,7 @@ TRANSLATIONS = \
 	translations/venus_it.ts \
 	translations/venus_nl.ts \
 	translations/venus_pl.ts \
+	translations/venus_pt.ts \
 	translations/venus_ru.ts \
 	translations/venus_ro.ts \
 	translations/venus_sv.ts \

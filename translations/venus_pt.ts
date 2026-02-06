@@ -1,138 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<TS version="2.1" language="pt">
   <context>
     <name>BmsError</name>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="10"/>
       <source>No error</source>
-      <translation>Brak błędu</translation>
+      <translation>Sem erros</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="13"/>
       <source>Battery initialization error</source>
-      <translation>Błąd inicjalizacji akumulatora</translation>
+      <translation>Erro de inicialização da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="16"/>
       <source>No batteries connected</source>
-      <translation>Brak podłączonych akumulatorów</translation>
+      <translation>Nenhuma bateria conectada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="19"/>
       <source>Unknown battery</source>
-      <translation>Nieznany akumulator</translation>
+      <translation>Bateria desconhecida</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="22"/>
       <source>Different battery types</source>
-      <translation>Różne rodzaje akumulatora</translation>
+      <translation>Tipos de bateria diferentes</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="25"/>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="40"/>
       <source>No. of batteries incorrect</source>
-      <translation>Liczba nieprawidłowych baterii</translation>
+      <translation>Nº de baterias incorreto</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="28"/>
       <source>Lynx Shunt not found</source>
-      <translation>Lynx Shunt nie został znaleziony</translation>
+      <translation>Lynx Shunt não encontrado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="31"/>
       <source>Battery measure error</source>
-      <translation>Błąd pomiaru akumulatora</translation>
+      <translation>Erro de medição da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="34"/>
       <source>Internal calculation error</source>
-      <translation>Wewnętrzny błąd obliczeniowy</translation>
+      <translation>Erro de cálculo interno</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="37"/>
       <source>No. of batteries in series incorrect</source>
-      <translation>Liczba baterii w szeregu nieprawidłowa</translation>
+      <translation>Nº de baterias em série incorreto</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="44"/>
       <source>Hardware error</source>
-      <translation>Błąd sprzętowy</translation>
+      <translation>Erro de hardware</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="47"/>
       <source>Watchdog error</source>
-      <translation>Błąd układu Watchdog</translation>
+      <translation>Erro de watchdog</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="50"/>
       <source>Over voltage</source>
-      <translation>Nadmierne napięcie</translation>
+      <translation>Sobretensão</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="53"/>
       <source>Under voltage</source>
-      <translation>Za niskie napięcie</translation>
+      <translation>Subtensão</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="56"/>
       <source>Over temperature</source>
-      <translation>Nadmierna temperatura</translation>
+      <translation>Sobretemperatura</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="59"/>
       <source>Under temperature</source>
-      <translation>Za niska temperatura</translation>
+      <translation>Subtemperatura</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="62"/>
       <source>Under-charge standby</source>
-      <translation>Czuwanie w stanie niedoładowania</translation>
+      <translation>Standby de subcarga</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="65"/>
       <source>ADC error</source>
-      <translation>Błąd ADC</translation>
+      <translation>Erro de ADC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="68"/>
       <source>Battery comm. error</source>
-      <translation>Błąd kom. akumulatora</translation>
+      <translation>Erro de comunicação da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="71"/>
       <source>Pre-Charge error</source>
-      <translation>Błąd wstępnego ładowania</translation>
+      <translation>Erro de pré-carga</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="75"/>
       <source>Safety contactor error</source>
-      <translation>Błąd stycznika bezpieczeństwa</translation>
+      <translation>Erro no contator de segurança</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="79"/>
       <source>Battery update error</source>
-      <translation>Błąd aktualizacji akumulatora</translation>
+      <translation>Erro de atualização da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="82"/>
       <source>BMS cable error</source>
-      <translation>Błąd przewodu BMS</translation>
+      <translation>Erro no cabo do BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="85"/>
       <source>Reference voltage failure</source>
-      <translation>Awaria napięcia odniesienia</translation>
+      <translation>Falha na tensão de referência</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="88"/>
       <source>Wrong system voltage</source>
-      <translation>Nieprawidłowe napięcie systemowe</translation>
+      <translation>Tensão do sistema incorreta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="91"/>
       <source>Pre charge timeout</source>
-      <translation>Limit czasu ładowania wstępnego</translation>
+      <translation>Tempo limite da pré-carga</translation>
     </message>
   </context>
   <context>
@@ -140,327 +140,327 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="7"/>
       <source>No error</source>
-      <translation>Brak błędu</translation>
+      <translation>Sem erros</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="9"/>
       <source>Battery high temperature</source>
-      <translation>Wysoka temperatura akumulatora</translation>
+      <translation>Temperatura alta da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="10"/>
       <source>Battery high voltage</source>
-      <translation>Wysokie napięcie akumulatora</translation>
+      <translation>Tensão alta da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="11"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="12"/>
       <source>Battery Tsense miswired</source>
-      <translation>Tsense akumulatora źle podłączony</translation>
+      <translation>Tsense da bateria mal conectado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="13"/>
       <source>Battery Tsense missing</source>
-      <translation>Brak akumulatora Tsense</translation>
+      <translation>Tsense da bateria ausente</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="14"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="15"/>
       <source>Battery Vsense miswired</source>
-      <translation>Akumulator Vsense źle podłączony</translation>
+      <translation>Vsense da bateria mal conectado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="16"/>
       <source>Battery Vsense missing</source>
-      <translation>Brak Vsense akumulatora</translation>
+      <translation>Vsense da bateria ausente</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="17"/>
       <source>Battery high wire losses</source>
-      <translation>Wysokie straty w przewodach akumulatora</translation>
+      <translation>Perdas altas nos fios da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="18"/>
       <source>Battery low voltage</source>
-      <translation>Niskie napięcie akumulatora</translation>
+      <translation>Tensão baixa da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="19"/>
       <source>Battery high ripple voltage</source>
-      <translation>Wysokie napięcie tętniące akumulatora</translation>
+      <translation>Tensão de ripple alta da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="20"/>
       <source>Battery low state of charge</source>
-      <translation>Niski stan naładowania akumulatora</translation>
+      <translation>Estado de carga baixo da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="21"/>
       <source>Battery mid-point voltage issue</source>
-      <translation>Problem z napięciem środkowego punktu akumulatora</translation>
+      <translation>Problema na tensão do ponto médio da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="22"/>
       <source>Battery temperature too low</source>
-      <translation>Zbyt niska temperatura akumulatora</translation>
+      <translation>Temperatura da bateria muito baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="24"/>
       <source>Charger high temperature</source>
-      <translation>Wysoka temperatura ładowarki</translation>
+      <translation>Temperatura alta do carregador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="25"/>
       <source>Charger excessive current</source>
-      <translation>Nadmierny prąd ładowarki</translation>
+      <translation>Corrente excessiva do carregador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="26"/>
       <source>Charger negative current</source>
-      <translation>Ujemny prąd ładowarki</translation>
+      <translation>Corrente negativa do carregador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="27"/>
       <source>Charger bulk time expired</source>
-      <translation>Upłynął czas ładowania.</translation>
+      <translation>Tempo limite da fase bulk do carregador expirou</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="28"/>
       <source>Charger current sensor issue</source>
-      <translation>Problem z czujnikiem prądu ładowarki</translation>
+      <translation>Problema no sensor de corrente do carregador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="29"/>
       <source>Internal Tsensor miswired</source>
-      <translation>Wewn. czujnik temperatury źle podłączony</translation>
+      <translation>Tsensor interno mal conectado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="30"/>
       <source>Internal Tsensor missing</source>
-      <translation>Brak wewn. czujnika temperatury</translation>
+      <translation>Tsensor interno ausente</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="31"/>
       <source>Charger fan not detected</source>
-      <translation>Nie wykryto wentylatora ładowarki</translation>
+      <translation>Ventoinha do carregador não detectada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="32"/>
       <source>Charger fan over-current</source>
-      <translation>Nadmierny prąd wentylatora ładowarki</translation>
+      <translation>Sobrecarga da ventoinha do carregador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="33"/>
       <source>Charger terminal overheat</source>
-      <translation>Przegrzanie terminala ładowarki</translation>
+      <translation>Superaquecimento do terminal do carregador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="34"/>
       <source>Charger short circuit</source>
-      <translation>Zwarcie w ładowarce</translation>
+      <translation>Curto-circuito do carregador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="35"/>
       <source>Charger power stage issue</source>
-      <translation>Problem ze stopniem mocy ładowarki</translation>
+      <translation>Problema no estágio de potência do carregador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="36"/>
       <source>Over-charge protection</source>
-      <translation>Zabezpieczenie przed przeładowaniem</translation>
+      <translation>Proteção contra sobrecarga</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="38"/>
       <source>Input high voltage</source>
-      <translation>Wysokie napięcie wejściowe</translation>
+      <translation>Tensão de entrada alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="39"/>
       <source>Input excessive current</source>
-      <translation>Nadmierny prąd wejściowy</translation>
+      <translation>Corrente excessiva de entrada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="40"/>
       <source>Input excessive power</source>
-      <translation>Nadmierna moc wejściowa</translation>
+      <translation>Potência excessiva de entrada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="41"/>
       <source>Input polarity issue</source>
-      <translation>Problem z polaryzacją wejścia</translation>
+      <translation>Problema de polaridade de entrada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="42"/>
       <source>Input voltage absent</source>
-      <translation>Brak napięcia wejściowego</translation>
+      <translation>Tensão de entrada ausente</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="43"/>
       <source>Input shutdown (no retries)</source>
-      <translation>Wyłączenie wejścia (bez ponawiania)</translation>
+      <translation>Desligamento de entrada (sem novas tentativas)</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="44"/>
       <source>Input shutdown (retry)</source>
-      <translation>Wyłączenie wejścia (ponowienie)</translation>
+      <translation>Desligamento de entrada (tentar novamente)</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="45"/>
       <source>Input internal failure</source>
-      <translation>Wewnętrzna awaria wejścia</translation>
+      <translation>Falha interna de entrada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="47"/>
       <source>Panel isolation failure</source>
-      <translation>Awaria izolacji panelu</translation>
+      <translation>Falha de isolamento do painel</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="48"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="49"/>
       <source>Ground fault detected</source>
-      <translation>Wykryto zwarcie doziemne</translation>
+      <translation>Fuga para a terra detetada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="51"/>
       <source>Inverter overload</source>
-      <translation>Przeciążenie inwertera</translation>
+      <translation>Sobrecarga do inversor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="52"/>
       <source>Inverter temp too high</source>
-      <translation>Za wysoka temperatura inwertera</translation>
+      <translation>Temperatura do inversor muito alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="53"/>
       <source>Inverter peak current</source>
-      <translation>Prąd szczytowy inwertera</translation>
+      <translation>Corrente de pico do inversor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="54"/>
       <source>Inverter internal DC level</source>
-      <translation>Wewnętrzny poziom DC inwertera</translation>
+      <translation>Nível DC interno do inversor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="55"/>
       <source>Inverter wrong ACout level</source>
-      <translation>Błędny poziom ACout inwertera</translation>
+      <translation>Nível ACout incorreto do inversor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="56"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="57"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="59"/>
       <source>Inverter powerstage fault</source>
-      <translation>Błąd stopnia mocy inwertera</translation>
+      <translation>Falha no estágio de potência do inversor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="58"/>
       <source>Inverter connected to AC</source>
-      <translation>Inwerter podłączony do prądu</translation>
+      <translation>Inversor conectado a AC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="60"/>
       <source>ACIN1 relay test fault</source>
-      <translation>Błąd testu przekaźnika ACIN1</translation>
+      <translation>Falha no teste do relé ACIN1</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="61"/>
       <source>ACIN2 relay test fault</source>
-      <translation>Błąd testu przekaźnika ACIN2</translation>
+      <translation>Falha no teste do relé ACIN2</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="63"/>
       <source>Device disappeared</source>
-      <translation>Urządzenie zniknęło</translation>
+      <translation>Dispositivo desapareceu</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="64"/>
       <source>Incompatible device</source>
-      <translation>Niekompatybilne urządzenie</translation>
+      <translation>Dispositivo incompatível</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="65"/>
       <source>BMS connection lost</source>
-      <translation>Utrata połączenia z BMS</translation>
+      <translation>Conexão BMS perdida</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="66"/>
       <source>Network misconfigured</source>
-      <translation>Sieć źle skonfigurowana</translation>
+      <translation>Rede mal configurada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="68"/>
       <source>Memory write error</source>
-      <translation>Błąd zapisu w pamięci</translation>
+      <translation>Erro de escrita na memória</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="69"/>
       <source>CPU temperature too high</source>
-      <translation>Zbyt wysoka temperatura procesora</translation>
+      <translation>Temperatura da CPU muito alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="70"/>
       <source>Communication lost</source>
-      <translation>Utracona łączność</translation>
+      <translation>Comunicação perdida</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="71"/>
       <source>Calibration data lost</source>
-      <translation>Utrata danych kalibracyjnych</translation>
+      <translation>Dados de calibração perdidos</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="72"/>
       <source>Incompatible firmware</source>
-      <translation>Niekompatybilne oprogramowanie</translation>
+      <translation>Firmware incompatível</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="73"/>
       <source>Incompatible hardware</source>
-      <translation>Niekompatybilny sprzęt</translation>
+      <translation>Hardware incompatível</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="74"/>
       <source>Settings invalid</source>
-      <translation>Ustawienia nieprawidłowe</translation>
+      <translation>Configurações inválidas</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="75"/>
       <source>Reference voltage failed</source>
-      <translation>Błąd napięcia referencyjnego</translation>
+      <translation>Tensão de referência falhou</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="76"/>
       <source>Tester fail</source>
-      <translation>Awaria testera</translation>
+      <translation>Teste falhou</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="77"/>
       <source>History invalid</source>
-      <translation>Historia nieprawidłowa</translation>
+      <translation>Histórico inválido</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="79"/>
       <source>DC voltage error</source>
-      <translation>Błąd napięcia DC</translation>
+      <translation>Erro de tensão CC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="80"/>
       <source>3V3 supply error</source>
-      <translation>Błąd zasilania 3V3</translation>
+      <translation>Erro de alimentação 3V3</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="81"/>
       <source>5V supply error</source>
-      <translation>Błąd zasilania 5V</translation>
+      <translation>Erro de alimentação 5V</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="82"/>
       <source>12V supply error</source>
-      <translation>Błąd zasilania 12V</translation>
+      <translation>Erro de alimentação 12V</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="83"/>
       <source>15V supply error</source>
-      <translation>Błąd zasilania 15V</translation>
+      <translation>Erro de alimentação 15V</translation>
     </message>
   </context>
   <context>
@@ -468,37 +468,37 @@
     <message>
       <location filename="../src/dbus_service.cpp" line="179"/>
       <source>Fuel</source>
-      <translation>Paliwo</translation>
+      <translation>Combustível</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="180"/>
       <source>Fresh water</source>
-      <translation>Woda słodka</translation>
+      <translation>Água potável</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="181"/>
       <source>Waste water</source>
-      <translation>Ścieki</translation>
+      <translation>Água residual</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="182"/>
       <source>Live well</source>
-      <translation>Żyj dobrze</translation>
+      <translation>Viveiro</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="183"/>
       <source>Oil</source>
-      <translation>Olej</translation>
+      <translation>Óleo</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="184"/>
       <source>Black water (sewage)</source>
-      <translation>Czarna woda (ścieki)</translation>
+      <translation>Águas negras (esgoto)</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="185"/>
       <source>Gasoline</source>
-      <translation>Benzyna</translation>
+      <translation>Gasolina</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="186"/>
@@ -508,32 +508,32 @@
     <message>
       <location filename="../src/dbus_service.cpp" line="187"/>
       <source>LPG</source>
-      <translation>LPG</translation>
+      <translation>GPL</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="188"/>
       <source>LNG</source>
-      <translation>LNG</translation>
+      <translation>GNL</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="189"/>
       <source>Hydraulic oil</source>
-      <translation>Olej hydrauliczny</translation>
+      <translation>Óleo hidráulico</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="190"/>
       <source>Raw water</source>
-      <translation>Woda surowa</translation>
+      <translation>Água bruta</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="203"/>
       <source>Unknown</source>
-      <translation>Nieznany</translation>
+      <translation>Desconhecido</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="239"/>
       <source>tank</source>
-      <translation>zbiornik</translation>
+      <translation>tanque</translation>
     </message>
   </context>
   <context>
@@ -541,78 +541,78 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="227"/>
       <source>Warning</source>
-      <translation>Ostrzeżenie</translation>
+      <translation>Aviso</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="229"/>
       <source>Alarm</source>
-      <translation>Alarm</translation>
+      <translation>Alarme</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="231"/>
       <source>Notification</source>
-      <translation>Powiadomienie</translation>
+      <translation>Notificação</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="240"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="273"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="283"/>
       <source>Low voltage</source>
-      <translation>Niskie napięcie</translation>
+      <translation>Tensão baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="241"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="274"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="284"/>
       <source>High voltage</source>
-      <translation>Wysokie napięcie</translation>
+      <translation>Tensão alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="242"/>
       <source>High current</source>
-      <translation>Wysoki prąd</translation>
+      <translation>Corrente alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="243"/>
       <source>High charge current</source>
-      <translation>Wysoki prąd ładowania</translation>
+      <translation>Corrente de carga alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="244"/>
       <source>High discharge current</source>
-      <translation>Wysoki prąd rozładowania</translation>
+      <translation>Corrente de descarga alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="245"/>
       <source>High charge temperature</source>
-      <translation>Wysoka temperatura ładowania</translation>
+      <translation>Temperatura de carga alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="246"/>
       <source>Low charge temperature</source>
-      <translation>Niska temperatura ładowania</translation>
+      <translation>Temperatura de carga baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="247"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="330"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="356"/>
       <source>Low SOC</source>
-      <translation>Niski SOC</translation>
+      <translation>SOC baixo</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="248"/>
       <source>State of health</source>
-      <translation>Stan ogólny</translation>
+      <translation>Estado de saúde</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="249"/>
       <source>Low starter voltage</source>
-      <translation>Niskie napięcie rozruchowe</translation>
+      <translation>Tensão de partida baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="250"/>
       <source>High starter voltage</source>
-      <translation>Wysokie napięcie rozruchowe</translation>
+      <translation>Tensão de partida alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="251"/>
@@ -620,181 +620,181 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="287"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="352"/>
       <source>Low temperature</source>
-      <translation>Niska temperatura</translation>
+      <translation>Temperatura baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="252"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="278"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="288"/>
       <source>High Temperature</source>
-      <translation>Wysoka temperatura</translation>
+      <translation>Temperatura alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="253"/>
       <source>Mid-point voltage</source>
-      <translation>Napięcie środkowe</translation>
+      <translation>Tensão do ponto médio</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="254"/>
       <source>Low-fused voltage</source>
-      <translation>Niskie napięcie bezpieczników</translation>
+      <translation>Tensão fundida baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="255"/>
       <source>High-fused voltage</source>
-      <translation>Wysokie napięcie bezpieczników</translation>
+      <translation>Tensão fundida alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="256"/>
       <source>Fuse blown</source>
-      <translation>Przepalony bezpiecznik</translation>
+      <translation>Fusível queimado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="257"/>
       <source>High internal temperature</source>
-      <translation>Wysoka temperatura wewnętrzna</translation>
+      <translation>Temperatura interna alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="258"/>
       <source>Internal failure</source>
-      <translation>Uszkodzenie wewnętrzne</translation>
+      <translation>Falha interna</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="259"/>
       <source>Battery temperature sensor</source>
-      <translation>Czujnik temperatury akumulatora</translation>
+      <translation>Sensor de temperatura da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="260"/>
       <source>Cell imbalance</source>
-      <translation>Niewyrównane cele</translation>
+      <translation>Desequilíbrio de célula</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="261"/>
       <source>Low cell voltage</source>
-      <translation>Niskie napięcie celi</translation>
+      <translation>Tensão de célula baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="262"/>
       <source>Bad contactor</source>
-      <translation>Zły stycznik</translation>
+      <translation>Contator defeituoso</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="263"/>
       <source>BMS cable fault</source>
-      <translation>Usterka kabla BMS</translation>
+      <translation>Falha no cabo do BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="266"/>
       <source>Fuse %2 of distributor %1 blown</source>
-      <translation>Przepalony bezpiecznik %2 dystrybutora %1</translation>
+      <translation>Fusível %2 do distribuidor %1 queimado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="267"/>
       <source>Distributor %1 connection lost</source>
-      <translation>Utracono połączenie z dystrybutorem %1</translation>
+      <translation>Conexão do distribuidor %1 perdida</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="275"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="285"/>
       <source>Low aux voltage</source>
-      <translation>Niskie napięcie aux</translation>
+      <translation>Tensão auxiliar baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="276"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="286"/>
       <source>High aux voltage</source>
-      <translation>Wysokie napięcie aux</translation>
+      <translation>Tensão auxiliar alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="292"/>
       <source>Temperature sense error</source>
-      <translation>Błąd czujnika temperatury</translation>
+      <translation>Erro no sensor de temperatura</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="293"/>
       <source>Voltage sense error</source>
-      <translation>Błąd czujnika napięcia</translation>
+      <translation>Erro no sensor de tensão</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="294"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="335"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="342"/>
       <source>Low battery voltage</source>
-      <translation>Niskie napięcie akumulatora</translation>
+      <translation>Tensão da bateria baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="295"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="329"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="355"/>
       <source>High DC ripple</source>
-      <translation>Wysokie tętnienia prądu stałego</translation>
+      <translation>Ondulação CC alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="296"/>
       <source>Wrong phase rotation detected</source>
-      <translation>Wykryto niewłaściwą rotację faz</translation>
+      <translation>Rotação de fase incorreta detectada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="299"/>
       <source>High Temperature on L1</source>
-      <translation>Wysoka temperatura na L1</translation>
+      <translation>Temperatura alta em L1</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="300"/>
       <source>Inverter overload on L1</source>
-      <translation>Przeciążenie inwertera na L1</translation>
+      <translation>Sobrecarga do inversor em L1</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="303"/>
       <source>High Temperature on L2</source>
-      <translation>Wysoka temperatura na L2</translation>
+      <translation>Temperatura alta em L2</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="304"/>
       <source>Inverter overload on L2</source>
-      <translation>Przeciążenie falownika na L2</translation>
+      <translation>Sobrecarga do inversor em L2</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="307"/>
       <source>High Temperature on L3</source>
-      <translation>Wysoka temperatura na L3</translation>
+      <translation>Temperatura alta em L3</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="308"/>
       <source>Inverter overload on L3</source>
-      <translation>Przeciążenie inwertera na L3</translation>
+      <translation>Sobrecarga do inversor em L3</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="311"/>
       <source>Grid lost</source>
-      <translation>Utracona siatka</translation>
+      <translation>Rede perdida</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="314"/>
       <source>High DC voltage</source>
-      <translation>Wysokie napięcie stałe</translation>
+      <translation>Tensão CC alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="315"/>
       <source>High DC current</source>
-      <translation>Wysoki prąd DC</translation>
+      <translation>Corrente CC alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="318"/>
       <source>BMS pre-alarm</source>
-      <translation>Alarm wstępny BMS</translation>
+      <translation>Pré-alarme do BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="319"/>
       <source>BMS connection lost</source>
-      <translation>Utrata połączenia z BMS</translation>
+      <translation>Ligação BMS perdida</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="323"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="348"/>
       <source>Low batttery voltage</source>
-      <translation>Niskie napięcie akumulatora</translation>
+      <translation>Tensão baixa da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="324"/>
@@ -802,81 +802,81 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="343"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="349"/>
       <source>High battery voltage</source>
-      <translation>Wysokie napięcie akumulatora</translation>
+      <translation>Tensão alta da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="325"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="350"/>
       <source>Low AC voltage</source>
-      <translation>Niskie napięcie AC</translation>
+      <translation>Tensão AC baixa</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="326"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="351"/>
       <source>High AC voltage</source>
-      <translation>Wysokie napięcie AC</translation>
+      <translation>Tensão AC alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="327"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="353"/>
       <source>High temperature</source>
-      <translation>Wysoka temperatura</translation>
+      <translation>Temperatura alta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="328"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="354"/>
       <source>Inverter overload</source>
-      <translation>Przeciążenie inwertera</translation>
+      <translation>Sobrecarga do inversor</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="361"/>
       <source>Generator not detected at AC input</source>
-      <translation>Generator nie jest wykrywany na wejściu AC</translation>
+      <translation>Gerador não detetado na entrada AC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="362"/>
       <source>Service interval exceeded</source>
-      <translation>Przekroczony interwał serwisowy</translation>
+      <translation>Intervalo de serviço excedido</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="363"/>
       <source>Auto start function is disabled</source>
-      <translation>Funkcja automatycznego startu jest wyłączona</translation>
+      <translation>Função de arranque automático desativada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="373"/>
       <source>Please set the VE.Can number to a free one</source>
-      <translation>Proszę ustawić numer VE.Can na wolny</translation>
+      <translation>Por favor, defina o número VE.Can para um livre</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="378"/>
       <source>Grid meter not found #49</source>
-      <translation>Nie znaleziono licznika sieci #49</translation>
+      <translation>Medidor de rede não encontrado #49</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="383"/>
       <source>Circuit breaker tripped</source>
-      <translation>Zadziałał wyłącznik automatyczny</translation>
+      <translation>Disjuntor disparado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="384"/>
       <source>DVCC with incompatible firmware #48</source>
-      <translation>DVCC z niekompatybilnym firmware #48</translation>
+      <translation>DVCC com firmware incompatível #48</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="390"/>
       <source>Low level alarm</source>
-      <translation>Alarm niskiego poziomu</translation>
+      <translation>Alarme de nível baixo</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="391"/>
       <source>High level alarm</source>
-      <translation>Alarm wysokiego poziomu</translation>
+      <translation>Alarme de nível alto</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="396"/>
       <source>#42 Storage is corrupt on this device</source>
-      <translation>#42 Pamięć na tym urządzeniu jest uszkodzona</translation>
+      <translation>#42 O armazenamento está corrompido neste dispositivo</translation>
     </message>
   </context>
   <context>
@@ -884,7 +884,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/gui/ve_qitem_table_widget.ui" line="14"/>
       <source>QT Table Widget</source>
-      <translation>QT Table Widget</translation>
+      <translation>Widget de tabela QT</translation>
     </message>
   </context>
   <context>
@@ -892,7 +892,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/gui/ve_qitem_tree_widget.ui" line="14"/>
       <source>QT Tree Widget</source>
-      <translation>QT Tree Widżet</translation>
+      <translation>Widget de árvore QT</translation>
     </message>
   </context>
   <context>
@@ -901,93 +901,93 @@
       <location filename="../src/alarm_item.cpp" line="264"/>
       <location filename="../src/alarm_item.hpp" line="63"/>
       <source>High Temperature</source>
-      <translation>Wysoka temperatura</translation>
+      <translation>Temperatura Alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.hpp" line="63"/>
       <source>High Temperature on L1</source>
-      <translation>Wysoka temperatura na L1</translation>
+      <translation>Temperatura Alta em L1</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="265"/>
       <location filename="../src/alarm_item.hpp" line="64"/>
       <source>Inverter overload</source>
-      <translation>Przeciążenie inwertera</translation>
+      <translation>Sobrecarga do inversor</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.hpp" line="64"/>
       <source>Inverter overload on L1</source>
-      <translation>Przeciążenie inwertera na L1</translation>
+      <translation>Sobrecarga do inversor em L1</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="221"/>
       <source>Temperature sense error</source>
-      <translation>Błąd czujnika temperatury</translation>
+      <translation>Erro no sensor de temperatura</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="222"/>
       <source>Voltage sense error</source>
-      <translation>Błąd czujnika napięcia</translation>
+      <translation>Erro no sensor de tensão</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="223"/>
       <source>Low battery voltage</source>
-      <translation>Niskie napięcie akumulatora</translation>
+      <translation>Tensão da bateria baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="224"/>
       <source>High DC ripple</source>
-      <translation>Wysokie tętnienia DC</translation>
+      <translation>Ondulação DC alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="225"/>
       <source>Wrong phase rotation detected</source>
-      <translation>Wykryto niewłaściwą rotację faz</translation>
+      <translation>Rotação de fase incorreta detectada</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="231"/>
       <source>High Temperature on L2</source>
-      <translation>Wysoka temperatura na L2</translation>
+      <translation>Temperatura alta em L2</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="232"/>
       <source>Inverter overload on L2</source>
-      <translation>Przeciążenie inwertera na L2</translation>
+      <translation>Sobrecarga do inversor em L2</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="234"/>
       <source>High Temperature on L3</source>
-      <translation>Wysoka temperatura na L3</translation>
+      <translation>Temperatura alta em L3</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="235"/>
       <source>Inverter overload on L3</source>
-      <translation>Przeciążenie inwertera na L3</translation>
+      <translation>Sobrecarga do inversor em L3</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="238"/>
       <source>Grid lost</source>
-      <translation>Utracono sieć</translation>
+      <translation>Rede perdida</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="241"/>
       <source>High DC voltage</source>
-      <translation>Wysokie napięcie DC</translation>
+      <translation>Tensão DC alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
       <source>High DC current</source>
-      <translation>Wysoki prąd DC</translation>
+      <translation>Corrente DC alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="245"/>
       <source>BMS pre-alarm</source>
-      <translation>Alarm wstępny BMS</translation>
+      <translation>Pré-alarme BMS</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="246"/>
       <source>BMS connection lost</source>
-      <translation>Utrata połączenia z BMS</translation>
+      <translation>Conexão BMS perdida</translation>
     </message>
   </context>
   <context>
@@ -995,112 +995,112 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="10"/>
       <source>Device switched off</source>
-      <translation>Urządzenie wyłączone</translation>
+      <translation>Dispositivo desligado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="13"/>
       <source>Mixed old/new MK2</source>
-      <translation>Mieszane stare/nowe MK2</translation>
+      <translation>MK2 antigo/novo misturado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="16"/>
       <source>Expected devices error</source>
-      <translation>Oczekiwany błąd urządzeń</translation>
+      <translation>Erro de dispositivos esperados</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="19"/>
       <source>No other device detected</source>
-      <translation>Nie wykryto innego urządzenia</translation>
+      <translation>Nenhum outro dispositivo detetado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="22"/>
       <source>Overvoltage on AC-out</source>
-      <translation>Przepięcie na wyjściu AC</translation>
+      <translation>Sobretensão na saída AC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="25"/>
       <source>DDC program error</source>
-      <translation>Błąd programu DDC</translation>
+      <translation>Erro no programa DDC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="28"/>
       <source>VE.Bus BMS without assistant</source>
-      <translation>VE.Bus BMS bez asystenta</translation>
+      <translation>VE.Bus BMS sem assistente</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="31"/>
       <source>Ground relay test failed</source>
-      <translation>Test przekaźnika uziemienia nie powiódł się</translation>
+      <translation>Teste do relé de terra falhou</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="34"/>
       <source>System time sync error</source>
-      <translation>Błąd synchronizacji czasu systemowego</translation>
+      <translation>Erro de sincronização da hora do sistema</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="37"/>
       <source>Grid relay test fault</source>
-      <translation>Błąd testu przekaźnika sieciowego</translation>
+      <translation>Falha no teste do relé de rede</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="40"/>
       <source>Config mismatch with 2nd mcu</source>
-      <translation>Niedopasowanie konfiguracji z drugim mcu</translation>
+      <translation>Incompatibilidade de configuração com o 2º mcu</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="43"/>
       <source>Device transmit error</source>
-      <translation>Błąd transmisji urządzenia</translation>
+      <translation>Erro de transmissão do dispositivo</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="46"/>
       <source>Awaiting configuration or dongle missing</source>
-      <translation>Oczekiwanie na konfigurację lub brak adaptera</translation>
+      <translation>Aguardando configuração ou dongle ausente</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="49"/>
       <source>Phase master missing</source>
-      <translation>Brak matrycy fazowej</translation>
+      <translation>Fase mestre ausente</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="52"/>
       <source>Overvoltage has occurred</source>
-      <translation>Wystąpiło przepięcie</translation>
+      <translation>Ocorreu uma sobretensão</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="55"/>
       <source>Slave does not have AC input!</source>
-      <translation>Slave nie ma wejścia AC!</translation>
+      <translation>O Slave não tem entrada AC!</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="58"/>
       <source>Device can't be slave</source>
-      <translation>Urządzenie nie może być podrzędne</translation>
+      <translation>O dispositivo não pode ser slave</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="61"/>
       <source>System protection initiated</source>
-      <translation>Zainicjowanie ochrony systemu</translation>
+      <translation>Proteção do sistema iniciada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="64"/>
       <source>Firmware incompatibiltiy</source>
-      <translation>Niekompatybilność oprogramowania</translation>
+      <translation>Incompatibilidade de firmware</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="67"/>
       <source>Internal error</source>
-      <translation>Błąd wewnętrzny</translation>
+      <translation>Erro interno</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="70"/>
       <source>Failing relay test prevents connection</source>
-      <translation>Niepowodzenie testu przekaźnika uniemożliwia połączenie</translation>
+      <translation>O teste de relé falhado impede a ligação</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="73"/>
       <source>VE.Bus error</source>
-      <translation>Błąd VE.Bus</translation>
+      <translation>Erro VE.Bus</translation>
     </message>
   </context>
   <context>
@@ -1108,162 +1108,162 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="116"/>
       <source>Internal error</source>
-      <translation>Błąd wewnętrzny</translation>
+      <translation>Erro interno</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="121"/>
       <source>No error</source>
-      <translation>Brak błędu</translation>
+      <translation>Sem erro</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="124"/>
       <source>Battery high temperature</source>
-      <translation>Wysoka temperatura akumulatora</translation>
+      <translation>Temperatura alta da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="127"/>
       <source>Battery high voltage</source>
-      <translation>Wysokie napięcie akumulatora</translation>
+      <translation>Tensão alta da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="130"/>
       <source>Battery low voltage</source>
-      <translation>Niskie napięcie akumulatora</translation>
+      <translation>Tensão baixa da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="133"/>
       <source>Battery voltage exceeded configured max</source>
-      <translation>Napięcie akumulatora przekroczyło skonfigurowane maksimum</translation>
+      <translation>Tensão da bateria excedeu o máximo configurado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="137"/>
       <source>Alternator high temperature</source>
-      <translation>Wysoka temperatura alternatora</translation>
+      <translation>Temperatura alta do alternador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="140"/>
       <source>Alternator high RPM</source>
-      <translation>Wysokie obroty alternatora</translation>
+      <translation>RPM alto do alternador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="143"/>
       <source>Field drive FET high temperature</source>
-      <translation>Napęd polowy FET wysoka temperatura</translation>
+      <translation>Temperatura alta do FET de acionamento de campo</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="146"/>
       <source>Required sensor missing</source>
-      <translation>Brak wymaganego czujnika</translation>
+      <translation>Sensor necessário em falta</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="149"/>
       <source>Alternator low voltage</source>
-      <translation>Niskie napięcie alternatora</translation>
+      <translation>Tensão baixa do alternador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="152"/>
       <source>Alternator high voltage offset</source>
-      <translation>Zakres wysokiego napięcia alternatora</translation>
+      <translation>Desvio de tensão alta do alternador</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="155"/>
       <source>Alternator Voltage exceeded configured max</source>
-      <translation>Napięcie alternatora przekroczyło skonfigurowane maksimum</translation>
+      <translation>A tensão do alternador excedeu o máximo configurado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="158"/>
       <source>Battery disconnected</source>
-      <translation>Akumulator odłączony</translation>
+      <translation>Bateria desligada</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="161"/>
       <source>Battery high voltage disconnect</source>
-      <translation>Odłączenie wysokiego napięcia akumulatora</translation>
+      <translation>Desconexão por tensão alta da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="164"/>
       <source>Battery instance ouf of range</source>
-      <translation>Akumulator poza zasięgiem</translation>
+      <translation>Instância de bateria fora do intervalo</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="167"/>
       <source>Too many BMS's</source>
-      <translation>Zbyt wiele BMS-ów</translation>
+      <translation>Demasiados BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="170"/>
       <source>Battery about to disconnect</source>
-      <translation>Akumulator zaraz się rozłączy</translation>
+      <translation>Bateria prestes a desligar</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="173"/>
       <source>Too many devices to track</source>
-      <translation>Zbyt wiele urządzeń do śledzenia</translation>
+      <translation>Demasiados dispositivos para rastrear</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="176"/>
       <source>Battery low voltage disconnect</source>
-      <translation>Odłączenie niskiego napięcia akumulatora</translation>
+      <translation>Desconexão por tensão baixa da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="179"/>
       <source>Battery high current disconnect</source>
-      <translation>Odłączenie wysokiego prądu akumulatora</translation>
+      <translation>Desconexão por corrente alta da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="182"/>
       <source>Battery high temperature disconnect</source>
-      <translation>Odłączenie wysokiej temperatury akumulatora</translation>
+      <translation>Desconexão por temperatura alta da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="185"/>
       <source>Battery low temperature disconnect</source>
-      <translation>Odłączenie akumulatora przy niskiej temperaturze</translation>
+      <translation>Desconexão por temperatura baixa da bateria</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="188"/>
       <source>BMS connection lost</source>
-      <translation>Utrata połączenia z BMS</translation>
+      <translation>Ligação BMS perdida</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="191"/>
       <source>ATC Disabled</source>
-      <translation>ATC Wyłączone</translation>
+      <translation>ATC Desativado</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="194"/>
       <source>DC/DC converter not ready</source>
-      <translation>Konwerter DC/DC nie jest gotowy</translation>
+      <translation>Conversor DC/DC não está pronto</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="197"/>
       <source>DC/DC high primary voltage</source>
-      <translation>DC/DC wysokie napięcie pierwotne</translation>
+      <translation>Tensão primária alta do DC/DC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="200"/>
       <source>DC/DC low primary voltage</source>
-      <translation>DC/DC niskie napięcie pierwotne</translation>
+      <translation>Tensão primária baixa do DC/DC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="203"/>
       <source>DC/DC high secondary voltage</source>
-      <translation>DC/DC wysokie napięcie wtórne</translation>
+      <translation>Tensão secundária alta do DC/DC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="206"/>
       <source>DC/DC low secondary voltage</source>
-      <translation>DC/DC niskie napięcie wtórne</translation>
+      <translation>Tensão secundária baixa do DC/DC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="209"/>
       <source>DC/DC high temperature</source>
-      <translation>DC/DC wysoka temperatura</translation>
+      <translation>Temperatura alta do DC/DC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="212"/>
       <source>DC/DC misconfiguration</source>
-      <translation>Nieprawidłowa konfiguracja DC/DC</translation>
+      <translation>Configuração incorreta do DC/DC</translation>
     </message>
   </context>
   <context>
@@ -1271,128 +1271,128 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="289"/>
       <source>Low voltage</source>
-      <translation>Niskie napięcie</translation>
+      <translation>Tensão baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="290"/>
       <source>High voltage</source>
-      <translation>Wysokie napięcie</translation>
+      <translation>Tensão alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="291"/>
       <source>High current</source>
-      <translation>Wysoki prąd</translation>
+      <translation>Corrente alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="292"/>
       <source>High charge current</source>
-      <translation>Wysoki prąd ładowania</translation>
+      <translation>Corrente de carga alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="293"/>
       <source>High discharge current</source>
-      <translation>Wysoki prąd rozładowania</translation>
+      <translation>Corrente de descarga alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="294"/>
       <source>High charge temperature</source>
-      <translation>Wysoka temperatura ładowania</translation>
+      <translation>Temperatura de carga alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="295"/>
       <source>Low charge temperature</source>
-      <translation>Niska temperatura ładowania</translation>
+      <translation>Temperatura de carga baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="296"/>
       <source>Low SOC</source>
-      <translation>Niski SOC</translation>
+      <translation>SOC baixo</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="297"/>
       <source>State of health</source>
-      <translation>Stan ogólny</translation>
+      <translation>Estado de saúde</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="298"/>
       <source>Low starter voltage</source>
-      <translation>Niskie napięcie rozruchowe</translation>
+      <translation>Tensão de partida baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="299"/>
       <source>High starter voltage</source>
-      <translation>Wysokie napięcie rozruchowe</translation>
+      <translation>Tensão de partida alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="300"/>
       <source>Low temperature</source>
-      <translation>Niska temperatura</translation>
+      <translation>Temperatura baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="301"/>
       <source>High Temperature</source>
-      <translation>Wysoka temperatura</translation>
+      <translation>Temperatura alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="302"/>
       <source>Mid-point voltage</source>
-      <translation>Napięcie środkowe</translation>
+      <translation>Tensão do ponto médio</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="303"/>
       <source>Low-fused voltage</source>
-      <translation>Niskie napięcie bezpieczników</translation>
+      <translation>Tensão de fusível baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="304"/>
       <source>High-fused voltage</source>
-      <translation>Wysokie napięcie bezpieczników</translation>
+      <translation>Tensão de fusível alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="305"/>
       <location filename="../src/alarm_item.cpp" line="329"/>
       <source>Fuse blown</source>
-      <translation>Przepalony bezpiecznik</translation>
+      <translation>Fusível queimado</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="306"/>
       <source>High internal temperature</source>
-      <translation>Wysoka temperatura wewnętrzna</translation>
+      <translation>Temperatura interna alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="307"/>
       <source>Internal failure</source>
-      <translation>Uszkodzenie wewnętrzne</translation>
+      <translation>Falha interna</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="308"/>
       <source>Battery temperature sensor</source>
-      <translation>Czujnik temperatury akumulatora</translation>
+      <translation>Sensor de temperatura da bateria</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="309"/>
       <source>Cell imbalance</source>
-      <translation>Brak równowagi celi</translation>
+      <translation>Desequilíbrio de célula</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="310"/>
       <source>Low cell voltage</source>
-      <translation>Niskie napięcie celi</translation>
+      <translation>Tensão de célula baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="311"/>
       <source>Bad contactor</source>
-      <translation>Zły stycznik</translation>
+      <translation>Contator defeituoso</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="312"/>
       <source>BMS cable fault</source>
-      <translation>Usterka przewodu BMS</translation>
+      <translation>Falha no cabo BMS</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="326"/>
       <source>Distributor %1 connection lost</source>
-      <translation>Utracono połączenie z dystrybutorem %1</translation>
+      <translation>Conexão do Distribuidor %1 perdida</translation>
     </message>
   </context>
   <context>
@@ -1400,17 +1400,17 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="42"/>
       <source>Generator not detected at AC input</source>
-      <translation>Generator niewykryty na wejściu AC</translation>
+      <translation>Gerador não detectado na entrada AC</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="43"/>
       <source>Service interval exceeded</source>
-      <translation>Przekroczony interwał serwisowy</translation>
+      <translation>Intervalo de serviço excedido</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="44"/>
       <source>Auto start function is disabled</source>
-      <translation>Funkcja autostart jest wyłączona</translation>
+      <translation>A função de partida automática está desativada</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="62"/>
@@ -1418,7 +1418,7 @@
       <location filename="../src/alarm_item.cpp" line="86"/>
       <location filename="../src/alarm_item.cpp" line="103"/>
       <source>Low battery voltage</source>
-      <translation>Niskie napięcie aku.</translation>
+      <translation>Tensão da bateria baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="63"/>
@@ -1426,115 +1426,115 @@
       <location filename="../src/alarm_item.cpp" line="87"/>
       <location filename="../src/alarm_item.cpp" line="104"/>
       <source>High battery voltage</source>
-      <translation>Wysokie napięcie aku.</translation>
+      <translation>Tensão da bateria alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="64"/>
       <location filename="../src/alarm_item.cpp" line="91"/>
       <location filename="../src/alarm_item.cpp" line="107"/>
       <source>High temperature</source>
-      <translation>Wysoka temperatura</translation>
+      <translation>Temperatura alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="65"/>
       <source>Short circuit</source>
-      <translation>Zwarcie</translation>
+      <translation>Curto-circuito</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="88"/>
       <location filename="../src/alarm_item.cpp" line="105"/>
       <source>Low AC voltage</source>
-      <translation>Niskie napięcie AC</translation>
+      <translation>Tensão AC baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="89"/>
       <location filename="../src/alarm_item.cpp" line="106"/>
       <source>High AC voltage</source>
-      <translation>Wysokie napięcie AC</translation>
+      <translation>Tensão AC alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="90"/>
       <location filename="../src/alarm_item.cpp" line="162"/>
       <source>Low temperature</source>
-      <translation>Niska temperatura</translation>
+      <translation>Temperatura baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="92"/>
       <location filename="../src/alarm_item.cpp" line="108"/>
       <source>Inverter overload</source>
-      <translation>Przeciążenie inwertera</translation>
+      <translation>Sobrecarga do inversor</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="93"/>
       <location filename="../src/alarm_item.cpp" line="109"/>
       <source>High DC ripple</source>
-      <translation>Wysokie tętnienia DC</translation>
+      <translation>Ondulação DC alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="94"/>
       <location filename="../src/alarm_item.cpp" line="110"/>
       <source>Low SOC</source>
-      <translation>Niski SOC</translation>
+      <translation>SOC baixo</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="120"/>
       <source>Circuit breaker tripped</source>
-      <translation>Zadziałał wyłącznik automatyczny</translation>
+      <translation>Disjuntor desarmado</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="121"/>
       <source>DVCC with incompatible firmware #48</source>
-      <translation>DVCC z niekompatybilnym firmware #48</translation>
+      <translation>DVCC com firmware incompatível #48</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="139"/>
       <source>Grid meter not found #49</source>
-      <translation>Nie znaleziono licznika sieci #49</translation>
+      <translation>Medidor de rede não encontrado #49</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="148"/>
       <source>Low level alarm</source>
-      <translation>Alarm niskiego poziomu</translation>
+      <translation>Alarme de nível baixo</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="149"/>
       <source>High level alarm</source>
-      <translation>Alarm wysokiego poziomu</translation>
+      <translation>Alarme de nível alto</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="158"/>
       <source>Low voltage</source>
-      <translation>Niskie napięcie</translation>
+      <translation>Tensão baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="159"/>
       <source>High voltage</source>
-      <translation>Wysokie napięcie</translation>
+      <translation>Tensão alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="160"/>
       <source>Low aux voltage</source>
-      <translation>Niskie napięcie aux</translation>
+      <translation>Tensão auxiliar baixa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="161"/>
       <source>High aux voltage</source>
-      <translation>Wysokie napięcie aux</translation>
+      <translation>Tensão auxiliar alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="163"/>
       <source>High Temperature</source>
-      <translation>Wysoka temperatura</translation>
+      <translation>Temperatura alta</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="193"/>
       <source>#42 Storage is corrupt on this device</source>
-      <translation>#42 Pamięć na tym urządzeniu jest uszkodzona</translation>
+      <translation>#42 O armazenamento está corrompido neste dispositivo</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="202"/>
       <source>Low battery</source>
-      <translation>Słaby akumulator</translation>
+      <translation>Bateria fraca</translation>
     </message>
   </context>
   <context>
@@ -1542,7 +1542,7 @@
     <message>
       <location filename="../src/venus_service.cpp" line="121"/>
       <source>tank</source>
-      <translation>zbiornik</translation>
+      <translation>tanque</translation>
     </message>
   </context>
 </TS>
