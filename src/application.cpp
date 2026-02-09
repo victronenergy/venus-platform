@@ -11,6 +11,7 @@
 #include "application.hpp"
 #include "modifications_check.hpp"
 #include "security_profiles.hpp"
+#include "switchable_output_monitor.hpp"
 #include "time.hpp"
 #include "utils.hpp"
 
@@ -849,6 +850,8 @@ void Application::start()
 	mAlarmBusitems = new AlarmBusitems(mVenusServices, mNotifications);
 
 	mVebusBackup = new VebusBackupServiceRegistrator(mService, mVenusServices, this);
+
+	new SwitchableOutputMonitor(mNotifications, mVenusServices);
 
 	new SecurityProfiles(mService, mSettings, mVenusServices, this);
 
