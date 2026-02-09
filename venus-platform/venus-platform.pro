@@ -33,6 +33,7 @@ HEADERS = \
 	../src/notifications.hpp \
 	../src/relay.hpp \
 	../src/security_profiles.hpp \
+	../src/switchable_output_monitor.hpp \
 	../src/token_users.hpp \
 	../src/time.hpp \
 	../src/updater.hpp \
@@ -58,6 +59,7 @@ SOURCES = \
 	../src/notifications.cpp \
 	../src/relay.cpp \
 	../src/security_profiles.cpp \
+	../src/switchable_output_monitor.cpp \
 	../src/time.cpp \
 	../src/token_users.cpp \
 	../src/updater.cpp \
