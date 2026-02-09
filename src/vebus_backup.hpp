@@ -62,7 +62,8 @@ public:
 		{31, "Write Settings Data"},
 		{32, "Write assistants"},
 		{33, "Write VE.Bus configuration"},
-		{40, "Resetting VE.Bus products"}
+		{40, "Resetting VE.Bus products"},
+		{41, "Waiting for password entry"}
 	};
 
 private:
@@ -92,6 +93,7 @@ private:
 	QString mVebusFirmwareSubVersionNumber;
 	QString mVebusProductId;
 	QStringList mBackupFiles;
+	QStringList mCompatibleBackupFiles;
 	VeQItem *mVenusPlatformParentItem;
 	VeQItem *mActionItem;
 	VeQItem *mInfoItem;
@@ -106,17 +108,36 @@ private:
 	VeQItem *mMk2DbusProductIdItem;
 	VeQItem *mRestoreNotifyItem;
 	VeQItem *mRestoreActionItem;
+	VeQItem *mRestorePasswordInputItem;
+	VeQItem *mRestorePasswordInputPendingItem;
+	VeQItem *mRestorePasswordAccessLevelItem;
+	VeQItem *mRestorePasswordCancelStateItem;
+	VeQItem *mRestoreInfoItem;
+	VeQItem *mk2VscPasswInputItem;
+	VeQItem *mk2VscPasswCancelStateItem;
+	VeQItem *mPasswordInputItem;
+	VeQItem *mPasswordInputPendingItem;
+	VeQItem *mPasswordInputCancelStateItem;
+	VeQItem *mPasswordInputTimeoutCounterItem;
+	VeQItem *mPasswordForAccessLevelItem;
 
 private slots:
-	//void onVenusServiceFound(VenusService *service); 	// We need this to monitor mk2vsc
+	//void onVenusServiceFound(VenusService *service);	// We need this to monitor mk2vsc
 
 	void onMk2ConnectionItemChanged(QVariant var);
 	void onActionChanged(QVariant var);
 	void onFileNameChanged(QVariant var);
 	void onFileIndexChanged(QVariant var);
 	void onRestoreActionItemChanged(QVariant var);
+	void onRestorePasswordInputChanged(QVariant var);
+	void onPasswordInputChanged(QVariant var);
+	void onPasswordCancelChanged(QVariant var);
 	void onMk2VscStateChanged(QVariant var);
+	void onMk2VscPasswPendingChanged(QVariant var);
+	void onMk2VscPasswCancelStateChanged(QVariant var);
+	void onMk2VscPasswTimeoutCounterChanged(QVariant var);
+	void onMk2VscPasswAccessLevelChanged(QVariant var);
+
 	void onVebusProductIdOrVersionChanged(QVariant var);
 	void onVebusConnectedChanged(QVariant var);
 };
-

@@ -50,10 +50,19 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	mFileItem = vebusRootItem->itemGetOrCreateAndProduce("File", "");
 	mActionItem = vebusRootItem->itemGetOrCreateAndProduce("Action", 0);
 
+	VeQItem *vebusPasswordRootItem = vebusRootItem->itemGetOrCreate("Password");
+
+	mPasswordInputItem = vebusPasswordRootItem->itemGetOrCreate("Input");
+	mPasswordInputPendingItem = vebusPasswordRootItem->itemGetOrCreate("UserInputPending");
+	mPasswordInputCancelStateItem = vebusPasswordRootItem->itemGetOrCreate("CancelUserInput");
+	mPasswordInputTimeoutCounterItem = vebusPasswordRootItem->itemGetOrCreate("UserInputTimeoutCounter");
+	mPasswordForAccessLevelItem = vebusPasswordRootItem->itemGetOrCreate("AccessLevel");
+
 	mActionItem->produceValue(0);
 	mActionItem->getValueAndChanges(this, SLOT(onActionChanged(QVariant)));
 	mFileItem->getValueAndChanges(this, SLOT(onFileNameChanged(QVariant)));
-
+	mPasswordInputItem->getValueAndChanges(this,SLOT(onPasswordInputChanged(QVariant)));
+	mPasswordInputCancelStateItem->getValueAndChanges(this,SLOT(onPasswordCancelChanged(QVariant)));
 	// File index feature
 	QString devicesPath = mConnection.startsWith("ttyUSB") ? "Vebus/Devices/1" : "Vebus/Devices/0";
 	if (mVenusPlatformParentItem->itemGet(devicesPath) == nullptr) {
@@ -63,11 +72,22 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 		mRestoreActionItem = deviceRootItem->itemGetOrCreate("Restore/Action");
 		mRestoreActionItem->getValueAndChanges(this, SLOT(onRestoreActionItemChanged(QVariant)));
 		mRestoreNotifyItem = deviceRootItem->itemGetOrCreate("Restore/Notify");
+		mRestoreInfoItem = deviceRootItem->itemGetOrCreate("Restore/Info");
+		mRestorePasswordInputPendingItem = deviceRootItem->itemGetOrCreate("Restore/Password/UserInputPending");
+		mRestorePasswordAccessLevelItem = deviceRootItem->itemGetOrCreate("Restore/Password/AccessLevel");
+		mRestorePasswordInputItem = deviceRootItem->itemGetOrCreate("Restore/Password/Input"); /* Cancel on empty string */
+		mRestorePasswordInputItem->getValueAndChanges(this, SLOT(onRestorePasswordInputChanged(QVariant)));
 	}
+
 
 	// Connect to the mk2vsc service
 	VeQItem *mk2VscRootItem = mVebusInterfaceService->item()->itemParent()->itemGetOrCreate("com.victronenergy.mk2vsc");
 	VeQItem *mk2VscStateItem = mk2VscRootItem->itemGetOrCreate("State");
+	mk2VscPasswInputItem = mk2VscRootItem->itemGetOrCreate("Password/Input");
+	mk2VscPasswCancelStateItem = mk2VscRootItem->itemGetOrCreate("Password/CancelUserInput");
+	VeQItem *mk2VscPasswPendingItem = mk2VscRootItem->itemGetOrCreate("Password/UserInputPending");
+	VeQItem *mk2VscPasswTimeoutCounterItem = mk2VscRootItem->itemGetOrCreate("Password/UserInputTimeoutCounter");
+	VeQItem *mk2VscPasswAccessLevelItem = mk2VscRootItem->itemGetOrCreate("Password/AccessLevel");
 
 	VeQItem *mk2DbusConnectedItem = mVebusInterfaceService->item("Connected");
 	mMk2DbusProductIdItem = mVebusInterfaceService->item("ProductId");
@@ -75,6 +95,11 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	mMk2DbusSubVersionItem = mVebusInterfaceService->item("FirmwareSubVersion");
 
 	mk2VscStateItem->getValueAndChanges(this, SLOT(onMk2VscStateChanged(QVariant)));
+	mk2VscPasswPendingItem->getValueAndChanges(this, SLOT(onMk2VscPasswPendingChanged(QVariant)));
+	mk2VscPasswCancelStateItem->getValueAndChanges(this, SLOT(onMk2VscPasswCancelStateChanged(QVariant)));
+	mk2VscPasswTimeoutCounterItem->getValueAndChanges(this, SLOT(onMk2VscPasswTimeoutCounterChanged(QVariant)));
+	mk2VscPasswAccessLevelItem->getValueAndChanges(this, SLOT(onMk2VscPasswAccessLevelChanged(QVariant)));
+
 	mMk2DbusProductIdItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
 	mMk2DbusFirmwareVersionItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
 	mMk2DbusSubVersionItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
@@ -88,6 +113,10 @@ VebusBackupService::VebusBackupService(VeQItem *parentItem, VenusService *servic
 	mInitialized = false;
 	mRestoreNotifyItem = nullptr;
 	mRestoreActionItem = nullptr;
+	mRestoreInfoItem = nullptr;
+	mRestorePasswordInputItem = nullptr;
+	mRestorePasswordInputPendingItem = nullptr;
+	mRestorePasswordAccessLevelItem = nullptr;
 	mVebusInterfaceService = service;
 	mVenusPlatformParentItem = parentItem;
 	mMk2DbusMk2ConnectionItem = service->item("/Interfaces/Mk2/Connection");
@@ -115,6 +144,9 @@ void VebusBackupService::onActionChanged(QVariant var)
 		// out of Idle.
 		if (action == Action::idle) {
 			mInfoItem->produceValue(QVariant());
+			if (mRestoreInfoItem) {
+				mRestoreInfoItem->produceValue(QVariant());
+			}
 		} else {
 			mNotifyItem->produceValue(QVariant());
 		}
@@ -139,9 +171,77 @@ void VebusBackupService::onActionChanged(QVariant var)
 
 void VebusBackupService::onMk2VscStateChanged(QVariant var)
 {
+	int info = var.toInt();
+
 	if (var.isValid()) {
 		// Forward the state
-		mInfoItem->produceValue(var.toInt());
+		mInfoItem->produceValue(info);
+		if (mRestoreInfoItem) {
+			mRestoreInfoItem->produceValue(info);
+		}
+	}
+}
+
+void VebusBackupService::onMk2VscPasswPendingChanged(QVariant var) {
+	int state;
+
+	if (var.isValid()) {
+		// Forward the state
+		state = var.toInt();
+		qDebug() << "[Vebus_backup] Password pending changed to " << var.toInt();
+	} else {
+		state = 0; // In case mk2vsc exits we need to clear the pending state
+	}
+
+	mPasswordInputPendingItem ->produceValue(state);
+	if(mRestorePasswordInputPendingItem) {
+		mRestorePasswordInputPendingItem->produceValue(state);
+	}
+}
+
+void VebusBackupService::onPasswordCancelChanged(QVariant var) {
+	if (var.isValid()) {
+		// Forward the state
+		mk2VscPasswCancelStateItem->setValue(var.toInt());
+	}
+}
+
+void VebusBackupService::onMk2VscPasswCancelStateChanged(QVariant var){
+	if (var.isValid()) {
+		// Forward the state
+		mPasswordInputCancelStateItem->produceValue(var.toInt());
+	}
+}
+
+void VebusBackupService::onMk2VscPasswTimeoutCounterChanged(QVariant var) {
+	if (var.isValid()) {
+		// Forward the state
+		mPasswordInputTimeoutCounterItem->produceValue(var.toInt());
+	}
+}
+
+void VebusBackupService::onMk2VscPasswAccessLevelChanged(QVariant var) {
+	int accessLevel = var.toInt();
+
+	if (var.isValid()) {
+		// Forward the state
+		mPasswordForAccessLevelItem->produceValue(accessLevel);
+		if (mRestorePasswordAccessLevelItem) {
+			mRestorePasswordAccessLevelItem->produceValue(accessLevel);
+		}
+	}
+}
+
+void VebusBackupService::onPasswordInputChanged(QVariant var) {
+	if (var.isValid()) {
+		// Forward the password
+		qDebug() << "[Vebus_backup] Forward password to mk2vsc " << var.toString();
+
+		mk2VscPasswInputItem->setValue(var.toString());
+		mPasswordInputItem->produceValue("******");
+		if (mRestorePasswordInputItem){
+			mRestorePasswordInputItem->produceValue("******");
+		}
 	}
 }
 
@@ -157,9 +257,9 @@ void VebusBackupService::onFileNameChanged(QVariant var)
 void VebusBackupService::onFileIndexChanged(QVariant var)
 {
 	int idx = var.toInt();
-	if (idx < mBackupFiles.size()) {
+	if (idx < mCompatibleBackupFiles.size()) {
 		// This also fires onFileNameChanged
-		mFileItem->produceValue(mBackupFiles[idx].remove(QRegularExpression("-[^.-]*?\\.rv(sc|ms)$")));
+		mFileItem->produceValue(mCompatibleBackupFiles[idx].remove(QRegularExpression("-[^.-]*?\\.rv(sc|ms)$")));
 	} else {
 		mFileItem->produceValue("");
 	}
@@ -169,6 +269,18 @@ void VebusBackupService::onRestoreActionItemChanged(QVariant var)
 {
 	if (var.isValid() && var.toInt() != 0) {
 		mActionItem->produceValue(Action::restore);
+	}
+}
+
+void VebusBackupService::onRestorePasswordInputChanged(QVariant var)
+{
+	if (var.isValid()) {
+		if (var.toString().isEmpty()) {
+			// Cancel password input
+			mPasswordInputCancelStateItem->produceValue(1);
+		} else {
+			mPasswordInputItem->produceValue(var.toString());
+		}
 	}
 }
 
@@ -192,6 +304,8 @@ void VebusBackupService::updateAvailableBackups()
 
 	QJsonArray backupFilesArray;
 	QJsonArray incompBackupFilesArray;
+
+	mCompatibleBackupFiles.clear(); // This is used for select file through index (Modbus)
 
 	// Regular expression for extracting both firmware version and subversion number
 	static QRegularExpression regex(R"(Firmware version\s*=\s*(\d+)(?:\s*\nFirmware subversion number\s*=\s*(\d+))?)");
@@ -226,6 +340,7 @@ void VebusBackupService::updateAvailableBackups()
 
 					if (checkFirmwareVersionCompatibility(firmwareVersion, firmwareSubversion)) {
 						backupFilesArray.append(fileName);
+						mCompatibleBackupFiles.append(fileName);
 						firmwareMatch = true;
 						break;
 					}
@@ -361,6 +476,7 @@ void VebusBackupService::runRestoreAction()
 						   "-S", // Allow single unit replace
 						   "-f",
 						   backupDir + mFileName + "-" + mConnection,
+						   "-P", // Ask for password if required
 						   "-s"});
 
 	if (mOffline) {
@@ -372,6 +488,12 @@ void VebusBackupService::runRestoreAction()
 	}
 
 	restoreProcess->start(mk2vscProg, arguments);
+
+#if 0 // Log mk2vsc output
+	connect(restoreProcess, &QProcess::readyRead, this, [restoreProcess]() {
+		qDebug().noquote() << restoreProcess->readAll();
+	});
+#endif
 }
 
 void VebusBackupService::deleteBackupFile()
