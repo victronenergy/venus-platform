@@ -99,6 +99,7 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	mk2VscPasswCancelStateItem->getValueAndChanges(this, SLOT(onMk2VscPasswCancelStateChanged(QVariant)));
 	mk2VscPasswTimeoutCounterItem->getValueAndChanges(this, SLOT(onMk2VscPasswTimeoutCounterChanged(QVariant)));
 	mk2VscPasswAccessLevelItem->getValueAndChanges(this, SLOT(onMk2VscPasswAccessLevelChanged(QVariant)));
+	mk2VscPasswInputItem->getValueAndChanges(this,SLOT(onMk2VscPasswInputChanged(QVariant)));
 
 	mMk2DbusProductIdItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
 	mMk2DbusFirmwareVersionItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
@@ -186,23 +187,34 @@ void VebusBackupService::onMk2VscPasswPendingChanged(QVariant var) {
 	int state;
 
 	if (var.isValid()) {
-		// Forward the state
 		state = var.toInt();
-		qDebug() << "[Vebus_backup] Password pending changed to " << var.toInt();
+
+		if (mPasswordInputPreEntered && (state == 1)) {
+			qDebug() << "[Vebus_backup] Use pre-entered password";
+			mPasswordInputItem->produceValue(mPreEnteredPassword);
+			mPreEnteredPassword.clear();
+			mPasswordInputPreEntered =false;
+		}
 	} else {
 		state = 0; // In case mk2vsc exits we need to clear the pending state
 	}
 
-	mPasswordInputPendingItem ->produceValue(state);
 	if(mRestorePasswordInputPendingItem) {
 		mRestorePasswordInputPendingItem->produceValue(state);
 	}
+
+	mPasswordInputPendingItem ->produceValue(state);
+
 }
 
 void VebusBackupService::onPasswordCancelChanged(QVariant var) {
+	int state;
 	if (var.isValid()) {
-		// Forward the state
-		mk2VscPasswCancelStateItem->setValue(var.toInt());
+		state = var.toInt();
+		if (state > 0) {
+			// Forward the state
+			mk2VscPasswCancelStateItem->setValue(state);
+		}
 	}
 }
 
@@ -233,14 +245,22 @@ void VebusBackupService::onMk2VscPasswAccessLevelChanged(QVariant var) {
 }
 
 void VebusBackupService::onPasswordInputChanged(QVariant var) {
+	QString passw = var.toString();
+
 	if (var.isValid()) {
 		// Forward the password
-		qDebug() << "[Vebus_backup] Forward password to mk2vsc " << var.toString();
-
-		mk2VscPasswInputItem->setValue(var.toString());
-		mPasswordInputItem->produceValue("******");
-		if (mRestorePasswordInputItem){
-			mRestorePasswordInputItem->produceValue("******");
+		if (passw != "******") { // Do not forward our own produced string
+			if(mWorking == false) {
+				mPreEnteredPassword = passw;
+				mPasswordInputPreEntered = true;
+			} else {
+				qDebug() << "[Vebus_backup] Forward password to mk2vsc";
+				mk2VscPasswInputItem->setValue(passw);
+			}
+			mPasswordInputItem->produceValue("******");
+			if (mRestorePasswordInputItem){
+				mRestorePasswordInputItem->produceValue("******");
+			}
 		}
 	}
 }

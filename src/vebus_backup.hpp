@@ -82,6 +82,7 @@ private:
 	bool mAvailableBackupsListValid;
 	bool mOffline;
 	bool mInitialized;
+	bool mPasswordInputPreEntered;// A single password can already be entered before mk2vsc is running
 	const QString backupDir = QStringLiteral("/data/conf/");
 	const QString mk2vscProg = QStringLiteral("/opt/victronenergy/mk2vsc/mk2vsc");
 	const QString mk2vscCacheDir = QStringLiteral("/tmp");
@@ -92,6 +93,7 @@ private:
 	QString mVebusFirmwareVersionNumber;
 	QString mVebusFirmwareSubVersionNumber;
 	QString mVebusProductId;
+	QString mPreEnteredPassword;
 	QStringList mBackupFiles;
 	QStringList mCompatibleBackupFiles;
 	VeQItem *mVenusPlatformParentItem;
