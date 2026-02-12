@@ -344,6 +344,7 @@ public:
 			add("Services/AccessPoint", 1, 0, 1);
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/Bluetooth", 1, 0, 1);
+		add("Services/EthernetLinkLocal", 1, 0, 1);
 		add("Services/Evcc", 1, 0, 1);
 		add("Services/Modbus", 0, 0, 1);
 		add("Services/MqttLocal", 0, 0, 1);
@@ -611,6 +612,9 @@ void Application::manageDaemontoolsServices()
 
 	new DaemonToolsService(mSettings, "/service/dbus-modbustcp", "Settings/Services/Modbus",
 						   this, QStringList() << "-s" << "dbus-modbustcp");
+
+	new DaemonToolsService(mSettings, "/service/avahi-autoipd", "Settings/Services/EthernetLinkLocal",
+						   this, QStringList() << "-s" << "avahi-autoipd");
 
 	// Temperature relay
 	QList<QString> tempSensorRelayList = QList<QString>() << "Settings/Relay/Function" << "Settings/Relay/1/Function";
