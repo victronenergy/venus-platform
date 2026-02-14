@@ -10,6 +10,7 @@
 #include "buzzer.hpp"
 #include "display_controller.hpp"
 #include "led_controller.hpp"
+#include "netlink_monitor.hpp"
 #include "network_controller.hpp"
 #include "notifications.hpp"
 #include "relay.hpp"
@@ -99,6 +100,8 @@ protected slots:
 	void onGensetStateChanged(VeQItem::State state);
 	void onBatteryProductIdChanged(QVariant var);
 	void checkDataPartitionUsedSpace();
+	void onNetlinkAddressAdded(const QString &iface, const QString &address);
+	void onNetlinkAddressRemoved(const QString &iface, const QString &address);
 
 private:
 	void createItemsForFlashmq();
@@ -117,8 +120,9 @@ private:
 	CanInterfaceMonitor *mCanInterfaceMonitor;
 	Updater *mUpdater;
 	DisplayController *mDisplayController;
+	NetlinkMonitor mNetlinkMonitor;
+	VeQItem *mLinkLocalItem;
 	NetworkController *mNetworkController;
-
 	QString mLanguage;
 	QTranslator mTranslator;
 

@@ -55,7 +55,6 @@ public:
 private slots:
 	void handleCommand(const QJsonDocument &doc);
 	void buildServicesList();
-	void updateLinkLocal();
 	void updateWifiState();
 	void onServiceAdded(const QString &);
 	void onServiceRemoved(const QString &);
@@ -63,7 +62,6 @@ private slots:
 
 private:
 	QString getState(const QString &state);
-	QString getLinkLocalAddr();
 	void setServiceProperties(CmService *service, const QVariantMap &data);
 	void setIpConfiguration(CmService *service, QVariant var);
 	void setIpv4Property(CmService *service, QString name, QVariant var);

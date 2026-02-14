@@ -53,7 +53,6 @@ NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
 	mItem->itemAddChild("SetValue", parser);
 
 	VeQItem *ethernet = mItem->itemGetOrCreate("Ethernet");
-	ethernet->itemAddChild("LinkLocalIpAddress", new VeQItemQuantity());
 
 	CmTechnology *tech = mConnman->getTechnology("wifi");
 	QStringList services;
@@ -85,7 +84,6 @@ NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
 		mEthernetService = mConnman->getService(services[0]);
 		if (mEthernetService) {
 			connectServiceSignals(mEthernetService);
-			updateLinkLocal();
 		}
 	}
 
@@ -223,7 +221,6 @@ void NetworkController::onServiceAdded(const QString &path)
 		if (s && s->type() == "ethernet") {
 			mEthernetService = s;
 			connectServiceSignals(mEthernetService);
-			updateLinkLocal();
 		}
 	}
 }
@@ -232,7 +229,6 @@ void NetworkController::onServiceRemoved(const QString &path)
 {
 	if (mEthernetService && path == mEthernetService->path()) {
 		mEthernetService = nullptr;
-		updateLinkLocal();
 	} else if (mWifiService && path == mWifiService->path()) {
 		mWifiService = nullptr;
 		updateWifiState();
@@ -254,24 +250,6 @@ void NetworkController::setServiceProperties(CmService *service, const QVariantM
 		setIpv4Property(service, "Netmask", data["Netmask"]);
 	if (data.contains("Nameserver"))
 		setDnsServer(service, data["Nameserver"]);
-}
-
-QString NetworkController::getLinkLocalAddr()
-{
-	QProcess proc;
-
-	proc.start("ip", QStringList{"-o", "-4", "addr", "sh", "dev", "ll-eth0", "scope", "link"});
-	proc.waitForFinished();
-
-	QString out(proc.readAllStandardOutput());
-	QString ip = out.simplified().section(' ', 3, 3);
-
-	return ip.section('/', 0, 0);
-}
-
-void NetworkController::updateLinkLocal()
-{
-	mItem->itemGetOrCreateAndProduce("Ethernet/LinkLocalIpAddress", getLinkLocalAddr());
 }
 
 void NetworkController::updateWifiState()

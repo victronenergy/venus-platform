@@ -615,6 +615,9 @@ void Application::manageDaemontoolsServices()
 
 	new DaemonToolsService(mSettings, "/service/avahi-autoipd", "Settings/Services/EthernetLinkLocal",
 						   this, QStringList() << "-s" << "avahi-autoipd");
+	mLinkLocalItem = mService->itemGetOrCreateAndProduce("Network/Ethernet/LinkLocalIpAddress", "");
+	connect(&mNetlinkMonitor, &NetlinkMonitor::addressAdded, this, &Application::onNetlinkAddressAdded);
+	connect(&mNetlinkMonitor, &NetlinkMonitor::addressRemoved, this, &Application::onNetlinkAddressRemoved);
 
 	// Temperature relay
 	QList<QString> tempSensorRelayList = QList<QString>() << "Settings/Relay/Function" << "Settings/Relay/1/Function";
@@ -821,6 +824,9 @@ void Application::start()
 	// Scan for dbus services
 	mVenusServices->initialScan();
 
+	if (!mNetlinkMonitor.requestInitialAddresses())
+		qWarning() << "Failed to request initial ip-addresses";
+
 	// With everything ready, do export the service to the dbus
 	VeQItemExportedDbusServices *publisher = new VeQItemExportedDbusServices(toDbus->services(), this);
 	mService->produceValue(QString());
@@ -838,6 +844,20 @@ void Application::checkDataPartitionUsedSpace()
 	}
 
 	mService->itemGetOrCreateAndProduce("Device/DataPartitionFullError", percent_used > 90 ? 1 : 0);
+}
+
+void Application::onNetlinkAddressAdded(const QString &iface, const QString &address)
+{
+	if (iface != "ll-eth0")
+		return;
+	mLinkLocalItem->produceValue(address);
+}
+
+void Application::onNetlinkAddressRemoved(const QString &iface, const QString &address)
+{
+	Q_UNUSED(iface); // might be unknown
+	if (mLinkLocalItem->getLocalValue().toString() == address)
+		mLinkLocalItem->produceValue("");
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)
