@@ -11,7 +11,7 @@ public:
 	explicit NetlinkMonitor(QObject *parent = nullptr);
 	~NetlinkMonitor();
 
-	void requestInitialAddresses();
+	bool requestInitialAddresses();
 
 signals:
 	void addressAdded(const QString &iface, const QString &address);
@@ -24,5 +24,5 @@ private:
 	int mFd = -1;
 	QSocketNotifier *mNotifier = nullptr;
 
-	bool handleAddrMsg(struct nlmsghdr *nlh);
+	void handleAddrMsg(struct nlmsghdr *nlh);
 };

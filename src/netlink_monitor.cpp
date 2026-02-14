@@ -61,7 +61,7 @@ void NetlinkMonitor::readNetlink()
 	}
 }
 
-bool NetlinkMonitor::handleAddrMsg(struct nlmsghdr *nlh)
+void NetlinkMonitor::handleAddrMsg(struct nlmsghdr *nlh)
 {
 	auto *ifa = reinterpret_cast<ifaddrmsg *>(NLMSG_DATA(nlh));
 	int len = nlh->nlmsg_len - NLMSG_LENGTH(sizeof(*ifa));
@@ -95,7 +95,7 @@ bool NetlinkMonitor::handleAddrMsg(struct nlmsghdr *nlh)
 	}
 }
 
-void NetlinkMonitor::requestInitialAddresses()
+bool NetlinkMonitor::requestInitialAddresses()
 {
 	struct {
 		nlmsghdr nlh;
