@@ -8,6 +8,7 @@
 #include <veutil/qt/ve_qitems_dbus.hpp>
 
 #include "mqtt_bridge_registrator.hpp"
+#include "notification.hpp"
 #include "venus_services.hpp"
 
 // The security level can be lowered to allow convenien, but less
@@ -139,6 +140,7 @@ private:
 	VrmTunnelSetup *mTunnelSetup;
 	QFileSystemWatcher passwordWatcher;
 	VeQItem *mSecurityState;
+	Notification *mSecurityNotification = nullptr;
 	VeQItem *mPasswordFileSize;
 	VeQItem *mPasswordAge;
 

@@ -80,6 +80,8 @@ public:
 		return mRunningGui.toInt();
 	}
 
+	Notifications *getNotifications() { return mNotifications; }
+
 signals:
 	void languageChanged();
 	void runningGuiVersionChanged();

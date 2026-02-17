@@ -1,3 +1,4 @@
+#include <chrono>
 #include <unistd.h>
 #include <QDir>
 
@@ -5,6 +6,7 @@
 #include "security_profiles.hpp"
 
 QString const passwordFileName = QStringLiteral("/data/conf/vncpassword.txt");
+static QTimer securityCheckDisableTimer;
 
 SecurityApi::SecurityApi(VeQItem *pltService, VeQItemSettings *settings) :
 	VeQItemQuantity("")
@@ -71,6 +73,8 @@ int SecurityApi::setValue(const QVariant &value)
 			}
 		} else {
 			QProcess cmd;
+
+			securityCheckDisableTimer.start();
 			qDebug() << "[Api] Changing password to" << (password == "" ? "nothing" : "'***NOT GOING TO LOG A PASSWORD***'");
 			// qDebug() << "[Api] Changing password to " << password.toString();
 			cmd.start("/sbin/ve-set-passwd", QStringList() << password.toString());
@@ -131,6 +135,7 @@ int SecurityApi::setValue(const QVariant &value)
 		case SECURITY_PROFILE_UNSECURED:
 			{
 				qDebug() << "[Api] Removing password protection since access level is set to insecure!";
+				securityCheckDisableTimer.start();
 				QFile passwd(passwordFileName);
 				passwd.open(QIODevice::WriteOnly);
 				passwd.resize(0);
@@ -303,6 +308,10 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 	connect(&passwordWatcher, &QFileSystemWatcher::fileChanged, this, &SecurityProfiles::checkPassword);
 	connect(&passwordWatcher, &QFileSystemWatcher::directoryChanged, this, &SecurityProfiles::checkPassword);
 
+	securityCheckDisableTimer.setInterval(std::chrono::seconds(60));
+	securityCheckDisableTimer.setSingleShot(true);
+	connect(&securityCheckDisableTimer, &QTimer::timeout, this, &SecurityProfiles::checkPassword);
+
 	mMqttBridgeRegistrator = new VeQItemMqttBridgeRegistrator(pltService);
 	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", mMqttBridgeRegistrator);
 	connect(mMqttBridgeRegistrator, SIGNAL(bridgeConfigChanged()), this, SLOT(onBridgeConfigChanged()));
@@ -341,6 +350,7 @@ void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
 	// Note: changing the Security Profile should be done though the SecurityApi
 	mSecurityProfile = var;
 	checkMqttOnLan();
+	securityCheckDisableTimer.stop();
 	checkPassword();
 }
 
@@ -380,6 +390,9 @@ void SecurityProfiles::checkPassword()
 	if (!mSecurityProfile.isValid())
 		return;
 
+	if (securityCheckDisableTimer.isActive())
+		return;
+
 	SecurityState state = SECURITY_STATE_OK;
 	if (mSecurityProfile.toInt() == SECURITY_PROFILE_INDETERMINATE) {
 		if (hasPasswordFile())
@@ -407,6 +420,20 @@ void SecurityProfiles::checkPassword()
 		mPasswordAge->produceValue(pwd.lastModified().toSecsSinceEpoch() / (60 * 60 * 24));
 	}
 
+	Application *app = static_cast<Application *>(qApp);
+	Notifications *notifications = app->getNotifications();
+
+	if (state == SECURITY_STATE_OK) {
+		if (mSecurityNotification) {
+			notifications->removeNotification(mSecurityNotification);
+			mSecurityNotification = nullptr;
+		}
+	} else {
+		if (mSecurityNotification == nullptr) {
+			mSecurityNotification = notifications->addNotification(
+				Notification::NOTIFICATION, "Venus OS", "", "Inconsistent Network Security Profile"
+			);
+		}
 	}
 }
 
