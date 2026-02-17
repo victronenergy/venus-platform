@@ -57,6 +57,12 @@ int SecurityApi::setValue(const QVariant &value)
 		qDebug() << "[Api] begin: SecurityProfile:" << mSecurityProfile->getLocalValue().toInt();
 	}
 
+	password = map.value("SetRootPassword");
+	if (password.isValid()) {
+		qCritical() << "[Api] Changing root password";
+		ok = Application::setRootPassword(password.toString());
+	}
+
 	password = map.value("SetPassword");
 	if (password.isValid()) {
 		// venus-platform relies on the UIs to check password strength
@@ -92,12 +98,6 @@ int SecurityApi::setValue(const QVariant &value)
 			if (!hadPasswordFile)
 				passwordFileCreated = true;
 		}
-	}
-
-	password = map.value("SetRootPassword");
-	if (password.isValid()) {
-		qCritical() << "[Api] Changing root password";
-		ok = Application::setRootPassword(password.toString());
 	}
 
 	securityProfile = map.value("SetSecurityProfile");
