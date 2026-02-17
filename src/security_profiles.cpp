@@ -20,11 +20,40 @@ SecurityApi::SecurityApi(VeQItem *pltService, VeQItemSettings *settings) :
 	mPendingServiceRestart = pltService->itemGetOrCreateAndProduce("Network/ConfigChanged", NETWORK_CONFIG_NO_EVENT);
 }
 
+
+void SecurityApi::changeSecurityProfile(int value)
+{
+	qCritical() << "[Api] Changing security profile to" << value;
+
+	switch (value)
+	{
+	case SECURITY_PROFILE_SECURED:
+		// A password is required in secured mode. It is up to the UI to make sure that is
+		// actually done, since for example checking password strength is easier there.
+		// If that should be double checked, it should be part of the API, since this is
+		// invoked after the profile has already been changed.
+
+		// https for VRM logger is required in secure mode.
+		mVrmLoggerHttpsEnabled->setValue(1);
+		break;
+
+	case SECURITY_PROFILE_WEAK:
+		// In weak mode it is up to the user.
+		break;
+
+	case SECURITY_PROFILE_UNSECURED:
+		break;
+	}
+
+	mSecurityProfile->setValue(value);
+}
+
 int SecurityApi::setValue(const QVariant &value)
 {
 	bool ok;
 	QVariantMap map;
 	QVariant password;
+	QString passwordVal;
 	QJsonDocument doc;
 	QVariant securityProfile;
 	NetworkConfigEvent configEvent = NETWORK_CONFIG_NO_EVENT;
@@ -63,27 +92,51 @@ int SecurityApi::setValue(const QVariant &value)
 		ok = Application::setRootPassword(password.toString());
 	}
 
-	password = map.value("SetPassword");
+	password = map.value("SetPassword").toString();
 	if (password.isValid()) {
-		// venus-platform relies on the UIs to check password strength
-		// against whatever is considered best practice for the moment,
-		// but surely not having a password is a not allowed (unless you
-		// purposely choose to be an insecure device).
-		if (password.toString().isEmpty()) {
-			bool ok;
-			if (map.value("SetSecurityProfile").toInt(&ok) != SECURITY_PROFILE_UNSECURED || !ok) {
-				qCritical() << "[Api] ignoring empty password field, set the" <<
-								"device to insecure to remove the password" <<
-								map.value("SetSecurityProfile").toInt();
-				return -2;
-			}
-		} else {
-			QProcess cmd;
+		passwordVal = password.toString();
 
-			securityCheckDisableTimer.start();
-			qDebug() << "[Api] Changing password to" << (password == "" ? "nothing" : "'***NOT GOING TO LOG A PASSWORD***'");
-			// qDebug() << "[Api] Changing password to " << password.toString();
-			cmd.start("/sbin/ve-set-passwd", QStringList() << password.toString());
+		securityProfile = map.value("SetSecurityProfile");
+		if (!securityProfile.isValid()) {
+			qCritical() << "[Api] SetSecurityProfile must be combined with SetPassword";
+			ok = false;
+			goto out;
+		}
+
+		uint securityProfileVal = securityProfile.toUInt(&ok);
+		if (!ok || securityProfileVal >= SECURITY_PROFILE_INDETERMINATE) {
+			qCritical() << "[Api] Invalid security profile" << securityProfile.toString();
+			ok = false;
+			goto out;
+		}
+
+		securityCheckDisableTimer.start();
+		if (securityProfile == SECURITY_PROFILE_UNSECURED) {
+			if (!passwordVal.isEmpty()) {
+				qCritical() << "[Api] Unsecured doesn't have a password";
+				ok = false;
+				goto out;
+			}
+
+			qDebug() << "[Api] Removing password protection since access level is set to insecure!";
+			QFile passwd(passwordFileName);
+			passwd.open(QIODevice::WriteOnly);
+			passwd.resize(0);
+			::fsync(passwd.handle());
+			if (!hadPasswordFile)
+				passwordFileCreated = true;
+
+		} else {
+			if (passwordVal.length() < 8) {
+				qCritical() << "[Api] The password is too short";
+				ok = false;
+				goto out;
+			}
+
+			qDebug() << "[Api] Changing password";
+			// qDebug() << "[Api] Changing password to " << passwordVal;
+			QProcess cmd;
+			cmd.start("/sbin/ve-set-passwd", {passwordVal});
 			if (!cmd.waitForFinished() || cmd.exitCode() != 0) {
 				qCritical() << "[Api] Changing the password failed";
 				ok = false;
@@ -98,59 +151,8 @@ int SecurityApi::setValue(const QVariant &value)
 			if (!hadPasswordFile)
 				passwordFileCreated = true;
 		}
-	}
 
-	securityProfile = map.value("SetSecurityProfile");
-	if (securityProfile.isValid()) {
-
-		uint value = securityProfile.toUInt(&ok);
-		if (!ok || value > SECURITY_PROFILE_LAST) {
-			ok = false;
-			qCritical() << "[Api] Invalid security profile" << securityProfile.toString();
-			goto out;
-		}
-		
-		if (value != SECURITY_PROFILE_UNSECURED && !map.value("SetPassword").isValid()) {
-			qCritical() << "[Api] SetSecurityProfile without a password";
-			return -3;
-		}
-
-		qCritical() << "[Api] Changing security profile to" << value;
-		switch (value)
-		{
-		case SECURITY_PROFILE_SECURED:
-			// A password is required in secured mode. It is up to the UI to make sure that is
-			// actually done, since for example checking password strength is easier there.
-			// If that should be double checked, it should be part of the API, since this is
-			// invoked after the profile has already been changed.
-
-			// https for VRM logger is required in secure mode.
-			mVrmLoggerHttpsEnabled->setValue(1);
-			break;
-
-		case SECURITY_PROFILE_WEAK:
-			// In weak mode it is up to the user.
-			break;
-
-		case SECURITY_PROFILE_UNSECURED:
-			{
-				qDebug() << "[Api] Removing password protection since access level is set to insecure!";
-				securityCheckDisableTimer.start();
-				QFile passwd(passwordFileName);
-				passwd.open(QIODevice::WriteOnly);
-				passwd.resize(0);
-				::fsync(passwd.handle());
-				if (!hadPasswordFile)
-					passwordFileCreated = true;
-				break;
-			}
-
-		case SECURITY_PROFILE_INDETERMINATE:
-			qDebug() << "[Api] The security profile cannot be set to indeterminate";
-			return -1;
-		}
-
-		mSecurityProfile->setValue(value);
+		changeSecurityProfile(securityProfileVal);
 
 		// Announce on the network as well that wss:// mqtt logins now work.
 		if (passwordFileCreated)

@@ -70,6 +70,8 @@ private slots:
 	void resetConfigEvent();
 
 private:
+	void changeSecurityProfile(int value);
+
 	VeQItem *mVrmLoggerHttpsEnabled;
 	VeQItem *mSecurityProfile;
 	VeQItem *mPendingServiceRestart;
