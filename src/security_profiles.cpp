@@ -402,10 +402,12 @@ void SecurityProfiles::checkPassword()
 	if (!pwd.exists()) {
 		mPasswordFileSize->produceValue(QVariant());
 		mPasswordAge->produceValue(QVariant());
-		return;
+	} else {
+		mPasswordFileSize->produceValue(pwd.size());
+		mPasswordAge->produceValue(pwd.lastModified().toSecsSinceEpoch() / (60 * 60 * 24));
 	}
-	mPasswordFileSize->produceValue(pwd.size());
-	mPasswordAge->produceValue(pwd.lastModified().toSecsSinceEpoch() / (60 * 60 * 24));
+
+	}
 }
 
 void SecurityProfiles::enableMqttBridge(bool configChanged)
