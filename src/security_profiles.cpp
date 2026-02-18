@@ -433,7 +433,7 @@ void SecurityProfiles::checkPassword()
 	} else {
 		if (mSecurityNotification == nullptr) {
 			mSecurityNotification = notifications->addNotification(
-				Notification::NOTIFICATION, "Venus OS", "", "Inconsistent Network Security Profile"
+				Notification::WARNING, "Venus OS", "", "Inconsistent Network Security Profile"
 			);
 		}
 	}
