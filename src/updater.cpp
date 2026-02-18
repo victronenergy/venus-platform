@@ -154,6 +154,7 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 	VeQItem *installed = mItem->itemGetOrCreate("Installed");
 	installed->itemAddChild("Version", new VeQItemQuantity());
 	installed->itemAddChild("Build", new VeQItemQuantity());
+	installed->itemGetOrCreateAndProduce("ImageType", getFeature("image-type"));
 
 	VeQItem *backup = mItem->itemGetOrCreate("Backup");
 	backup->itemAddChild("AvailableVersion", new VeQItemQuantity());
