@@ -106,8 +106,6 @@ void NetworkController::connectServiceSignals(CmService *service)
 	if (service->type() == "wifi") {
 		connect(service, SIGNAL(stateChanged()), this, SLOT(updateWifiState()));
 		connect(service, SIGNAL(strengthChanged()), this, SLOT(updateWifiSignalStrength()));
-	} else {
-		connect(mEthernetService, SIGNAL(stateChanged()), this, SLOT(updateLinkLocal()));
 	}
 }
 
