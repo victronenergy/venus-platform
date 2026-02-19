@@ -271,9 +271,9 @@ void NetworkController::setIpConfiguration(CmService *service, QVariant var)
 	if (!service || !var.isValid())
 		return;
 
-	QVariantMap ipv4Config = service->ipv4();
+	QVariantMap ipv4Config;
 	QStringList nameServersConfig = service->nameservers();
-	QVariant oldMethod = ipv4Config["Method"];
+	QVariant oldMethod = service->ipv4()["Method"];
 
 	QString method = var.toString();
 
@@ -281,11 +281,11 @@ void NetworkController::setIpConfiguration(CmService *service, QVariant var)
 		return;
 
 	if (method == "dhcp") {
-		ipv4Config["Address"] = "255.255.255.255";
-		service->ipv4Config(ipv4Config);
+		// Start with a fresh map so no old "Address" keys exist which connman will try to validate.
 		ipv4Config["Method"] = "dhcp";
 		nameServersConfig.clear();
 	} else if (method == "manual") {
+		ipv4Config = service->ipv4();
 		ipv4Config["Method"] = "manual";
 		QString ipAddress = service->checkIpAddress(ipv4Config["Address"].toString());
 		/*
@@ -299,6 +299,8 @@ void NetworkController::setIpConfiguration(CmService *service, QVariant var)
 			ipv4Config["Gateway"] = "169.254.1.1";
 		}
 	}
+	else
+		return;
 
 	service->nameserversConfig(nameServersConfig);
 	service->ipv4Config(ipv4Config);
