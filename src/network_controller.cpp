@@ -280,7 +280,6 @@ void NetworkController::setIpConfiguration(CmService *service, QVariant var)
 
 	if (method == "dhcp") {
 		ipv4Config["Address"] = "255.255.255.255";
-		service->ipv4Config(ipv4Config);
 		ipv4Config["Method"] = "dhcp";
 		nameServersConfig.clear();
 	} else if (method == "manual") {
