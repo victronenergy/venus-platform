@@ -1,7 +1,7 @@
 #include <iostream>
 #include <src/application.hpp>
 
-static const char *version = "2.23";
+static const char *version = "2.24";
 
 int main(int argc, char *argv[])
 {
