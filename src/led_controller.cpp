@@ -47,24 +47,24 @@ LedController::LedController(VeQItemSettings *settings, QObject *parent) :
 	}
 
 	// Monitor the "trigger" files of all the LED directories (/sys/class/leds/*)
-	connect(&mLedWatcher, SIGNAL(fileChanged(QString)), SLOT(updateLed(QString)));
+	connect(&mLedWatcher, &QFileSystemWatcher::fileChanged, this, &LedController::updateLed);
 
 	mTimer = new QTimer(this);
 	mTimer->setSingleShot(true);
-	connect(mTimer, SIGNAL(timeout()), this, SLOT(timerExpired()));
+	connect(mTimer, &QTimer::timeout, this, &LedController::timerExpired);
 	mTimer->start(10000);
 	syncLeds(true);
 
 	VeQItem *ledEnableSetting = settings->root()->itemGetOrCreate("Settings/LEDs/Enable");
-	ledEnableSetting->getValueAndChanges(this, SLOT(ledSettingChanged(QVariant)));
+	ledEnableSetting->getValueAndChanges(this, &LedController::ledSettingChanged);
 
 	VeQItem *bluetoothSetting = settings->root()->itemGet("Settings/Services/Bluetooth");
 	if (bluetoothSetting)
-		bluetoothSetting->getValueAndChanges(this, SLOT(dbusSettingChanged()));
+		bluetoothSetting->getValueAndChanges(this, &LedController::dbusSettingChanged);
 
 	VeQItem *accessPointSetting = settings->root()->itemGet("Settings/Services/AccessPoint");
 	if (accessPointSetting)
-		accessPointSetting->getValueAndChanges(this, SLOT(dbusSettingChanged()));
+		accessPointSetting->getValueAndChanges(this, &LedController::dbusSettingChanged);
 }
 
 void LedController::ledSettingChanged(QVariant var)

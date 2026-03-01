@@ -255,9 +255,9 @@ VebusAlarms::VebusAlarms(VenusService *service, Notifications *notications) :
 	DeviceAlarms(service, notications)
 {
 	mNumberOfPhases = service->item("/Ac/NumberOfPhases");
-	mNumberOfPhases->getValueAndChanges(this, SLOT(numberOfPhasesChanged(QVariant)));
+	mNumberOfPhases->getValueAndChanges(this, &VebusAlarms::numberOfPhasesChanged);
 	mConnectionType = service->item("/Mgmt/Connection");
-	mConnectionType->getValueAndChanges(this, SLOT(connectionTypeChanged(QVariant)));
+	mConnectionType->getValueAndChanges(this, &VebusAlarms::connectionTypeChanged);
 }
 
 void VebusAlarms::init(bool single)
@@ -333,7 +333,7 @@ BatteryAlarms::BatteryAlarms(VenusService *service, Notifications *notications) 
 	DeviceAlarms(service, notications), mDistributorAlarmsAdded(false)
 {
 	mNrOfDistributors = service->item("/NrOfDistributors");
-	mNrOfDistributors->getValueAndChanges(this, SLOT(numberOfDistributorsChanged(QVariant)));
+	mNrOfDistributors->getValueAndChanges(this, &BatteryAlarms::numberOfDistributorsChanged);
 
 	addTripplet(tr("Low voltage"),						"/Alarms/LowVoltage",							nullptr,		"");
 	addTripplet(tr("High voltage"),						"/Alarms/HighVoltage",							nullptr,		"");
@@ -392,7 +392,7 @@ GensetAlarms::GensetAlarms(VenusService *service, Notifications *notications) :
 	DeviceAlarms(service, notications)
 {
 	mNumberOfPhasesItem = service->item("/NrOfPhases");
-	mNumberOfPhasesItem->getValueAndChanges(this, SLOT(numberOfPhasesChanged(QVariant)));
+	mNumberOfPhasesItem->getValueAndChanges(this, &GensetAlarms::numberOfPhasesChanged);
 
 	addGensetError("/Error/0/Id");
 }

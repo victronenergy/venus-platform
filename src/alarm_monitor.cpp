@@ -15,9 +15,9 @@ AlarmMonitor::AlarmMonitor(VenusService *service, Type type, const QString &busi
 	// Alarms can optionally be enabled / supressed by a setting, but the setting is not necessarily present
 	if (alarmEnableItem != nullptr) {
 		mEnabledNotifications = NO_ALARM;
-		connect(alarmEnableItem, SIGNAL(stateChanged(VeQItem::State)), this, SLOT(settingStateChanged(VeQItem::State)));
+		connect(alarmEnableItem, &VeQItem::stateChanged, this, &AlarmMonitor::settingStateChanged);
 		// Get the value, this will trigger a settingStateChanged event
-		alarmEnableItem->getValueAndChanges(this, SLOT(settingChanged(QVariant)));
+		alarmEnableItem->getValueAndChanges(this, &AlarmMonitor::settingChanged);
 	} else {
 		mEnabledNotifications = ALARM_AND_WARNING;
 	}
@@ -33,7 +33,7 @@ AlarmMonitor::AlarmMonitor(VenusService *service, Type type, const QString &busi
 
 	// The actual trigger of the alarm, see Type for the supported formats.
 	mAlarmTrigger = service->item(busitemPathAlarm);
-	mAlarmTrigger->getValueAndChanges(this, SLOT(updateAlarm(QVariant)));
+	mAlarmTrigger->getValueAndChanges(this, &AlarmMonitor::updateAlarm);
 }
 
 AlarmMonitor::~AlarmMonitor()

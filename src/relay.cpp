@@ -6,15 +6,15 @@ Relay::Relay(QString relayPath, Notifications *notifications, QObject *parent) :
 	mIntendedState(false)
 {
 	mPolaritySetting = VeQItems::getRoot()->itemGetOrCreate("dbus/com.victronenergy.settings/Settings/Relay/Polarity");
-	mPolaritySetting->getValueAndChanges(this, SLOT(updateRelayState()), true, true);
+	mPolaritySetting->getValueAndChanges(this, &Relay::updateRelayState, VeQItem::DoFetch, Qt::QueuedConnection);
 
 	mRelayFunction = VeQItems::getRoot()->itemGetOrCreate("dbus/com.victronenergy.settings/Settings/Relay/Function");
-	mRelayFunction->getValueAndChanges(this, SLOT(updateRelayState()), true, true);
+	mRelayFunction->getValueAndChanges(this, &Relay::updateRelayState, VeQItem::DoFetch, Qt::QueuedConnection);
 
 	mRelayState = VeQItems::getRoot()->itemGetOrCreate(relayPath);
-	mRelayState->getValueAndChanges(this, SLOT(updateRelayState()), true, true);
+	mRelayState->getValueAndChanges(this, &Relay::updateRelayState, VeQItem::DoFetch, Qt::QueuedConnection);
 
-	connect(notifications, SIGNAL(alarmChanged()), this, SLOT(alarmChanged()));
+	connect(notifications, &Notifications::alarmChanged, this, &Relay::alarmChanged);
 	setRelayOn(notifications->isAlarm());
 }
 

@@ -51,17 +51,17 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	mActionItem = vebusRootItem->itemGetOrCreateAndProduce("Action", 0);
 
 	mActionItem->produceValue(0);
-	mActionItem->getValueAndChanges(this, SLOT(onActionChanged(QVariant)));
-	mFileItem->getValueAndChanges(this, SLOT(onFileNameChanged(QVariant)));
+	mActionItem->getValueAndChanges(this, &VebusBackupService::onActionChanged);
+	mFileItem->getValueAndChanges(this, &VebusBackupService::onFileNameChanged);
 
 	// File index feature
 	QString devicesPath = mConnection.startsWith("ttyUSB") ? "Vebus/Devices/1" : "Vebus/Devices/0";
 	if (mVenusPlatformParentItem->itemGet(devicesPath) == nullptr) {
 		VeQItem *deviceRootItem = mVenusPlatformParentItem->itemGetOrCreate(devicesPath);
 		VeQItem *fileIndexItem = deviceRootItem->itemGetOrCreate("Restore/FileIndex");
-		fileIndexItem->getValueAndChanges(this, SLOT(onFileIndexChanged(QVariant)));
+		fileIndexItem->getValueAndChanges(this, &VebusBackupService::onFileIndexChanged);
 		mRestoreActionItem = deviceRootItem->itemGetOrCreate("Restore/Action");
-		mRestoreActionItem->getValueAndChanges(this, SLOT(onRestoreActionItemChanged(QVariant)));
+		mRestoreActionItem->getValueAndChanges(this, &VebusBackupService::onRestoreActionItemChanged);
 		mRestoreNotifyItem = deviceRootItem->itemGetOrCreate("Restore/Notify");
 	}
 
@@ -74,11 +74,11 @@ void VebusBackupService::onMk2ConnectionItemChanged(QVariant var)
 	mMk2DbusFirmwareVersionItem = mVebusInterfaceService->item("FirmwareVersion");
 	mMk2DbusSubVersionItem = mVebusInterfaceService->item("FirmwareSubVersion");
 
-	mk2VscStateItem->getValueAndChanges(this, SLOT(onMk2VscStateChanged(QVariant)));
-	mMk2DbusProductIdItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
-	mMk2DbusFirmwareVersionItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
-	mMk2DbusSubVersionItem->getValueAndChanges(this, SLOT(onVebusProductIdOrVersionChanged(QVariant)));
-	mk2DbusConnectedItem->getValueAndChanges(this, SLOT(onVebusConnectedChanged(QVariant)));
+	mk2VscStateItem->getValueAndChanges(this, &VebusBackupService::onMk2VscStateChanged);
+	mMk2DbusProductIdItem->getValueAndChanges(this, &VebusBackupService::onVebusProductIdOrVersionChanged);
+	mMk2DbusFirmwareVersionItem->getValueAndChanges(this, &VebusBackupService::onVebusProductIdOrVersionChanged);
+	mMk2DbusSubVersionItem->getValueAndChanges(this, &VebusBackupService::onVebusProductIdOrVersionChanged);
+	mk2DbusConnectedItem->getValueAndChanges(this, &VebusBackupService::onVebusConnectedChanged);
 	mInitialized = true;
 }
 
@@ -91,7 +91,7 @@ VebusBackupService::VebusBackupService(VeQItem *parentItem, VenusService *servic
 	mVebusInterfaceService = service;
 	mVenusPlatformParentItem = parentItem;
 	mMk2DbusMk2ConnectionItem = service->item("/Interfaces/Mk2/Connection");
-	mMk2DbusMk2ConnectionItem->getValueAndChanges(this, SLOT(onMk2ConnectionItemChanged(QVariant)));
+	mMk2DbusMk2ConnectionItem->getValueAndChanges(this, &VebusBackupService::onMk2ConnectionItemChanged);
 	// Wait until the connection item is valid
 }
 

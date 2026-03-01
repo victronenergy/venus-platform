@@ -228,7 +228,7 @@ VrmTunnelSetup::VrmTunnelSetup(VeQItem *pltService, VeQItemSettings *settings,
 	// NOTE: The venus-access service actually starts the remote tunnel in case
 	// remote support is enabled, hence that doesn't need to be done here.
 	mVrmPortal = settings->root()->itemGetOrCreate("Settings/Network/VrmPortal");
-	mVrmPortal->getValueAndChanges(this, SLOT(checkVrmTunnel()));
+	mVrmPortal->getValueAndChanges(this, &VrmTunnelSetup::checkVrmTunnel);
 
 	connect(qApp, SIGNAL(runningGuiVersionChanged()), this, SLOT(checkVrmTunnel()));
 	checkVrmTunnel();
@@ -236,7 +236,7 @@ VrmTunnelSetup::VrmTunnelSetup(VeQItem *pltService, VeQItemSettings *settings,
 	// Even if gui-v1 is running, it only needs a tunnel when also VNC is anabled and
 	// Full VRM portal access.
 	mVncEnabled = settings->root()->itemGetOrCreate("Settings/System/VncLocal");
-	mVncEnabled->getValueAndChanges(this, SLOT(checkVrmTunnel()));
+	mVncEnabled->getValueAndChanges(this, &VrmTunnelSetup::checkVrmTunnel);
 
 	// Look for EV chargers
 	connect(venusServices, SIGNAL(found(VenusService*)), SLOT(onServiceFound(VenusService*)));
@@ -244,12 +244,12 @@ VrmTunnelSetup::VrmTunnelSetup(VeQItem *pltService, VeQItemSettings *settings,
 	// Large image services
 	if (serviceExists("node-red-venus")) {
 		mNodeRed = settings->root()->itemGetOrCreate("Settings/Services/NodeRed");
-		mNodeRed->getValueAndChanges(this, SLOT(checkVrmTunnel()));
+		mNodeRed->getValueAndChanges(this, &VrmTunnelSetup::checkVrmTunnel);
 	}
 
 	if (serviceExists("signalk-server")) {
 		mSignalK = settings->root()->itemGetOrCreate("Settings/Services/SignalK");
-		mSignalK->getValueAndChanges(this, SLOT(checkVrmTunnel()));
+		mSignalK->getValueAndChanges(this, &VrmTunnelSetup::checkVrmTunnel);
 	}
 }
 
@@ -325,13 +325,13 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 	// NOTE: the setting is added system-wide in /etc/venus/settings, since several
 	// programs / scripts depend on it.
 	VeQItem *item = settings->root()->itemGetOrCreate("Settings/System/SecurityProfile");
-	item->getValueAndChanges(this, SLOT(onSecurityProfileChanged(QVariant)));
+	item->getValueAndChanges(this, &SecurityProfiles::onSecurityProfileChanged);
 
 	item = settings->root()->itemGetOrCreate("Settings/Services/MqttLocal");
-	item->getValueAndChanges(this, SLOT(onMqttAccessChanged(QVariant)));
+	item->getValueAndChanges(this, &SecurityProfiles::onMqttAccessChanged);
 
 	item = settings->root()->itemGetOrCreate("Settings/Network/VrmPortal");
-	item->getValueAndChanges(this, SLOT(onVrmPortalChange(QVariant)));
+	item->getValueAndChanges(this, &SecurityProfiles::onVrmPortalChange);
 
 	enableMqttOnLan(false); // Disable LAN socket access by default, unless explicitly enabled.
 	mFlashMq = new DaemonToolsService("/service/flashmq", this);

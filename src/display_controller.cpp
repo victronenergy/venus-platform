@@ -9,11 +9,11 @@ DisplayController::DisplayController(VeQItemSettings *settings, QObject *parent)
 
 	VeQItem *item = settings->root()->itemGet("Settings/Gui/Brightness");
 	if (item)
-		item->getValueAndChanges(this, SLOT(onBrightnessSettingChanged(QVariant)));
+		item->getValueAndChanges(this, &DisplayController::onBrightnessSettingChanged);
 
 	item = settings->root()->itemGet("Settings/Gui/AutoBrightness");
 	if (item)
-		item->getValueAndChanges(this, SLOT(onAutoBrightnessSettingChanged(QVariant)));
+		item->getValueAndChanges(this, &DisplayController::onAutoBrightnessSettingChanged);
 }
 
 void DisplayController::onBrightnessSettingChanged(QVariant var)

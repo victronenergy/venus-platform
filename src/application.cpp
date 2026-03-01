@@ -507,7 +507,7 @@ void Application::onServiceAdded(VeQItem *var)
 	} else if (var->id().startsWith("com.victronenergy.battery")) {
 		// Need to look at the product id to decide if the parallel bms service needs to start.
 		VeQItem *item = var->itemGetOrCreate("ProductId");
-		item->getValueAndChanges(this, SLOT(onBatteryProductIdChanged(QVariant)));
+		item->getValueAndChanges(this, &Application::onBatteryProductIdChanged);
 	}
 }
 
@@ -574,7 +574,7 @@ void Application::initDaemonStartupConditions(VeQItem *service)
 			mGeneratorStarterConditions << service->id();
 		} else if (service->id().startsWith("com.victronenergy.battery")) {
 			VeQItem *item = service->itemGetOrCreate("ProductId");
-			item->getValueAndChanges(this, SLOT(onBatteryProductIdChanged(QVariant)));
+			item->getValueAndChanges(this, &Application::onBatteryProductIdChanged);
 		}
 	}
 }
@@ -592,12 +592,12 @@ void Application::manageDaemontoolsServices()
 		mGuiSwitcher = new DaemonToolsService("/service/start-gui");
 
 	VeQItem *item = mSettings->root()->itemGetOrCreate("Settings/Gui/RunningVersion");
-	item->getValueAndChanges(this, SLOT(onRunningGuiVersionObtained(QVariant)));
+	item->getValueAndChanges(this, &Application::onRunningGuiVersionObtained);
 
 	mParallelBmsStarter = new DaemonToolsService("/service/dbus-parallel-bms");
 	mGeneratorStarter = new DaemonToolsService("/service/dbus-generator");
 	item = mSettings->root()->itemGetOrCreate("Settings/Relay/Function");
-	item->getValueAndChanges(this, SLOT(onRelaySettingChanged(QVariant)));
+	item->getValueAndChanges(this, &Application::onRelaySettingChanged);
 
 	VeQItem::Children const children = mServices->itemChildren();
 	for (VeQItem *child: children)
@@ -643,7 +643,7 @@ void Application::manageDaemontoolsServices()
 						   this, QStringList() << "-s" << "vesmart-server");
 
 	item = mSettings->root()->itemGetOrCreate("Settings/Vebus/AllowMk3Fw212Update");
-	item->getValueAndChanges(this, SLOT(onMk3UpdateAllowedChanged(QVariant)));
+	item->getValueAndChanges(this, &Application::onMk3UpdateAllowedChanged);
 
 	if (templateExists("hostapd")) {
 		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/AccessPoint"), "Enabled",
@@ -652,7 +652,7 @@ void Application::manageDaemontoolsServices()
 							   this, QStringList() << "-s" << "hostapd");
 
 		item = mSettings->root()->itemGetOrCreate("Settings/Services/AccessPointPassword");
-		item->getValueAndChanges(this, SLOT(onAccessPointPasswordChanged(QVariant)));
+		item->getValueAndChanges(this, &Application::onAccessPointPasswordChanged, VeQItem::DoFetch);
 	}
 
 	/*
@@ -671,7 +671,7 @@ void Application::manageDaemontoolsServices()
 	// An optionally service, which can be installed by e.g. a pendrive.
 	if (QDir("/data/evcc/service/").exists()) {
 		VeQItem *item =	mSettings->root()->itemGetOrCreate("Settings/Services/Evcc");
-		item->getValueAndChanges(this, SLOT(onEvccSettingChanged(QVariant)));
+		item->getValueAndChanges(this, &Application::onEvccSettingChanged);
 	}
 
 	mTokenWatcher = new TokenUserWatcher(mService);
@@ -696,7 +696,7 @@ void Application::init()
 	// Load the correct translation file first of all. Note, the add settings call above
 	// already obtained the selected language, hence this directly continues in the slot.
 	VeQItem *lang = mSettings->root()->itemGetOrCreate("Settings/Gui/Language");
-	lang->getValueAndChanges(this, SLOT(onLanguageChanged(QVariant)));
+	lang->getValueAndChanges(this, &Application::onLanguageChanged);
 }
 
 void Application::onLanguageChanged(QVariant var)
@@ -798,7 +798,7 @@ void Application::start()
 
 	// Demo mode
 	VeQItem *demoModeSetting = mSettings->root()->itemGetOrCreate("Settings/Gui/DemoMode");
-	demoModeSetting->getValueAndChanges(this, SLOT(onDemoSettingChanged(QVariant)));
+	demoModeSetting->getValueAndChanges(this, &Application::onDemoSettingChanged);
 
 	// Notifications
 	mNotifications = new Notifications(mService, this);
@@ -813,8 +813,8 @@ void Application::start()
 	mAudibleAlarm = mSettings->root()->itemGetOrCreate("Settings/Alarm/Audible");
 	mAlarm = mService->itemGetOrCreate("/Notifications/Alarm");
 	mBuzzer = new Buzzer("dbus/com.victronenergy.system/Buzzer/State");
-	mAlarm->getValueAndChanges(this, SLOT(onAlarmChanged(QVariant)));
-	mAudibleAlarm->getValueAndChanges(this, SLOT(onAlarmChanged(QVariant)));
+	mAlarm->getValueAndChanges(this, &Application::onAlarmChanged);
+	mAudibleAlarm->getValueAndChanges(this, &Application::onAlarmChanged);
 
 	mRelay = new Relay("dbus/com.victronenergy.system/Relay/0/State", mNotifications, this);
 
@@ -863,7 +863,7 @@ void Application::onNetlinkAddressRemoved(const QString &iface, const QString &a
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)
 {
 	QProcess *proc = new QProcess();
-	connect(proc, SIGNAL(finished(int)), proc, SLOT(deleteLater()));
+	connect(proc, &QProcess::finished, proc, &QObject::deleteLater);
 	proc->start(cmd, args);
 	return proc;
 }

@@ -13,10 +13,10 @@ VenusService::VenusService(VeQItem *serviceItem, VenusServiceType serviceType, Q
 	// Note: to support service without a CustomName item at all, also the state changes need
 	// to be connected to, since there won't be any valueChange if the CustomName is not supported
 	// at all!
-	connect(item("CustomName"), SIGNAL(stateChanged(VeQItem::State)), SLOT(updateDescription()));
-	connect(item("ProductName"), SIGNAL(stateChanged(VeQItem::State)), SLOT(updateDescription()));
-	item("ProductName")->getValueAndChanges(this, SLOT(updateDescription()), true, true);
-	item("CustomName")->getValueAndChanges(this, SLOT(updateDescription()), true, true);
+	connect(item("CustomName"), &VeQItem::stateChanged, this, &VenusService::updateDescription);
+	connect(item("ProductName"), &VeQItem::stateChanged, this, &VenusService::updateDescription);
+	item("ProductName")->getValueAndChanges(this, &VenusService::updateDescription, VeQItem::DoFetch, Qt::QueuedConnection);
+	item("CustomName")->getValueAndChanges(this, &VenusService::updateDescription, VeQItem::DoFetch, Qt::QueuedConnection);
 	connect(serviceItem, SIGNAL(stateChanged(VeQItem::State)), SIGNAL(connectedChanged()));
 	connect(serviceItem, SIGNAL(stateChanged(VeQItem::State)), SLOT(updateDescription()));
 }
@@ -90,11 +90,11 @@ VenusTankService::VenusTankService(VeQItem *serviceItem, QObject *parent) :
 	VenusService(serviceItem, VenusServiceType::TANK, parent)
 {
 	// MIND IT! since bulk init might be active here, the state can bounch a bit.
-	connect(item("DeviceInstance"), SIGNAL(stateChanged(VeQItem::State)), SLOT(updateDescription()));
-	connect(item("FluidType"), SIGNAL(stateChanged(VeQItem::State)), SLOT(updateDescription()));
+	connect(item("DeviceInstance"), &VeQItem::stateChanged, this, &VenusTankService::updateDescription);
+	connect(item("FluidType"), &VeQItem::stateChanged, this, &VenusTankService::updateDescription);
 
-	item("DeviceInstance")->getValueAndChanges(this, SLOT(updateDescription()), true, true);
-	item("FluidType")->getValueAndChanges(this, SLOT(updateDescription()), true, true);
+	item("DeviceInstance")->getValueAndChanges(this, &VenusTankService::updateDescription, VeQItem::DoFetch, Qt::QueuedConnection);
+	item("FluidType")->getValueAndChanges(this, &VenusTankService::updateDescription, VeQItem::DoFetch, Qt::QueuedConnection);
 }
 
 void VenusTankService::updateDescription()

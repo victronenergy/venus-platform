@@ -21,7 +21,7 @@ Notification::Notification(Type type, const QString &devicename, const QString &
 	mSilencedItem = mIndexItem->itemGetOrCreateAndProduce("Silenced", QVariant::fromValue(false));
 	mIndexItem->itemGetOrCreateAndProduce("Description", description);
 
-	mAcknowledgedItem->getValueAndChanges(this, SLOT(acknowledgedItemChanged(QVariant)));
+	mAcknowledgedItem->getValueAndChanges(this, &Notification::acknowledgedItemChanged);
 }
 
 void Notification::setAcknowledged(bool acknowledged)

@@ -97,8 +97,8 @@ public:
 		mk3Version = alarms->mService->item("Interfaces/Mk2/Version");
 		updateSetting = mk3Version->itemRoot()->itemGetOrCreate("dbus/com.victronenergy.settings/Settings/Vebus/AllowMk3Fw212Update");
 
-		mk3Version->getValueAndChanges(this, SLOT(checkMk3Version()));
-		updateSetting->getValueAndChanges(this, SLOT(checkMk3Version()));
+		mk3Version->getValueAndChanges(this, &mk3FirmwareUpdateNotification::checkMk3Version);
+		updateSetting->getValueAndChanges(this, &mk3FirmwareUpdateNotification::checkMk3Version);
 	}
 
 private slots:
