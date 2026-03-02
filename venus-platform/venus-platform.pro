@@ -69,6 +69,7 @@ TRANSLATIONS = \
 	translations/venus_da.ts \
 	translations/venus_de.ts \
 	translations/venus_es.ts \
+	translations/venus_fi.ts \
 	translations/venus_fr.ts \
 	translations/venus_it.ts \
 	translations/venus_nl.ts \
