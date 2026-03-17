@@ -160,6 +160,8 @@ void VrmTokenRegistrator::onNetworkRequestFinished(QNetworkReply *reply)
 	if (!reply)
 		return;
 
+	reply->deleteLater();
+
 	const int httpCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 	if (!(reply->error() == QNetworkReply::NoError && httpCode == 200 && reply->readAll().startsWith("OK:"))) {
 		std::chrono::milliseconds retry(60000);
