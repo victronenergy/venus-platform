@@ -61,11 +61,7 @@ QStringList getFeatureList(QString const &name, bool lines)
 			if (!line.isEmpty())
 				ret.append(line);
 		} else {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 			ret.append(line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts));
-#else
-			ret.append(line.split(QRegExp("\\s+"), QString::SkipEmptyParts));
-#endif
 		}
 	}
 
