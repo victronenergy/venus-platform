@@ -639,15 +639,17 @@ void Application::manageDaemontoolsServices()
 	QList<QString> tempSensorRelayList = QList<QString>() << "Settings/Relay/Function" << "Settings/Relay/1/Function";
 	new DaemonToolsService(mSettings, "/service/dbus-tempsensor-relay", tempSensorRelayList, 4, this, false);
 
-	// Opportunity loads
-	mOpportunityLoadsStarter = new DaemonToolsService("/service/venus-opportunity-loads");
-	mOpportunityLoadsStarter->setSveCtlArgs({"-s", "venus-opportunity-loads"});
+	if (templateExists("venus-opportunity-loads")) {
+		// Opportunity loads
+		mOpportunityLoadsStarter = new DaemonToolsService("/service/venus-opportunity-loads");
+		mOpportunityLoadsStarter->setSveCtlArgs({"-s", "venus-opportunity-loads"});
 
-	item = mSettings->root()->itemGetOrCreate("Settings/DynamicEss/Mode");
-	item->getValueAndChanges(this, &Application::manageOpportunityLoads);
+		item = mSettings->root()->itemGetOrCreate("Settings/DynamicEss/Mode");
+		item->getValueAndChanges(this, &Application::manageOpportunityLoads);
 
-	item = mSettings->root()->itemGetOrCreate("Settings/Services/OpportunityLoads");
-	item->getValueAndChanges(this, &Application::manageOpportunityLoads);
+		item = mSettings->root()->itemGetOrCreate("Settings/Services/OpportunityLoads");
+		item->getValueAndChanges(this, &Application::manageOpportunityLoads);
+	}
 
 	// Large image services
 	if (serviceExists("node-red-venus")) {
