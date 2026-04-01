@@ -74,6 +74,12 @@ void NetworkReset::setSettingsToDefault()
 									"/Settings/Services/AccessPointPassword"};
 
 	for (const QString &path : settingPaths) {
+
+		// NOTE: This is somewhat problematic, there is nothing which assures the GetItems call
+		// to localsettings has completed yet, besides the 1.5 second led delay, which will _often_
+		// work, but it is quite fragile. Remove the led delay and who knows what happens.
+		// There is actually things can't be done blocking here. There is no any other code running,
+		// but the QItem are not suitable for that, at least not for the moment.
 		VeQItem *item = mSettings->root()->itemGet(path);
 
 		if (!item) {
@@ -85,6 +91,8 @@ void NetworkReset::setSettingsToDefault()
 
 		QVariant defaultVal = item->itemProperty("defaultValue");
 		qDebug() << "Setting " << path << "to default value."; // Not logging value, which could be sensitive.
+		// NOTE: if the same value is set, this will not go to a storing state if the value is
+		// the same!
 		item->setValue(defaultVal);
 
 		VeQItem::State itemState = item->getState();
@@ -161,6 +169,13 @@ void NetworkReset::defaultValueSetStateChanged(VeQItem::State state)
 	 * Note that this mechanism doesn't detect setValue commands to the same value.
 	 * That's why a timeout is used.
 	 */
+
+	// NOTE: Setting the same value won't increment mDefaultValueSetCounter.
+	// Above comment at least _should_ be incorrect.
+
+	// NOTE: this will never be called at the moment if the remove declined
+	// the setValue. The signal setValueResult will be emitted, but to handle
+	// that makes things far too complicated
 
 	if (state != VeQItem::Synchronized)
 		return;
