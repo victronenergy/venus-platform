@@ -647,8 +647,9 @@ void Application::manageDaemontoolsServices()
 		item = mSettings->root()->itemGetOrCreate("Settings/DynamicEss/Mode");
 		item->getValueAndChanges(this, &Application::manageOpportunityLoads);
 
-		item = mSettings->root()->itemGetOrCreate("Settings/Services/OpportunityLoads");
-		item->getValueAndChanges(this, &Application::manageOpportunityLoads);
+		VeQItem *opportunitySetting = mSettings->root()->itemGetOrCreate("Settings/Services/OpportunityLoads");
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/OpportunityLoads"), "Mode", opportunitySetting);
+		opportunitySetting->getValueAndChanges(this, &Application::manageOpportunityLoads);
 	}
 
 	// Large image services
