@@ -126,9 +126,9 @@ bool TokenUsers::addTokenUser(const TokenUser &user)
 	return true;
 }
 
-char const *tokendir = "/var/volatile/tokens";
+QString const tokendir = "/var/volatile/tokens";
 char const *tokenfile = "/data/conf/tokens.json";
-char const *pairingSignalFile = "/var/volatile/tokens/pairing.json";
+QString const pairingSignalFile = tokendir + "/pairing.json";
 constexpr std::chrono::seconds pairingDuration(30);
 
 TokenUserWatcher::TokenUserWatcher(VeQItem *platform) : QObject()
@@ -142,10 +142,10 @@ TokenUserWatcher::TokenUserWatcher(VeQItem *platform) : QObject()
 	QDir dir(tokendir);
 	if (!dir.exists()) {
 		dir.mkpath(".");
-		chmod(tokendir, S_IRUSR | S_IWUSR | S_IXUSR);
+		chmod(tokendir.toUtf8(), S_IRUSR | S_IWUSR | S_IXUSR);
 		struct passwd * pw = getpwnam("php-fpm");
 		if (pw)
-			chown(tokendir, pw->pw_uid, pw->pw_gid);
+			chown(tokendir.toUtf8(), pw->pw_uid, pw->pw_gid);
 		else
 			qCritical() << "user php-fpm not found";
 	}
@@ -208,7 +208,7 @@ void TokenUserWatcher::updateTokens()
 int TokenRemoveItem::setValue(const QVariant &value)
 {
 	QString token = value.toString();
-	qDebug() << "removing" << token;
+	qDebug() << "[tokens] removing" << token;
 
 	TokenUsers users;
 	if (!users.load(tokenfile)) {
@@ -256,35 +256,31 @@ void TokenPairingEnableItem::onCountDownTimeout()
 
 	mPairingCountDownValue--;
 
-	if (mCountDownItem) {
+	if (mCountDownItem)
 		mCountDownItem->setValue(mPairingCountDownValue);
-	}
 }
 
 TokenPairingEnableItem::TokenPairingEnableItem(VeQItem *countDownItem) :
 	VeQItemAction(),
 	mCountDownItem(countDownItem)
 {
-	produceValue("");
-
 	mPairingCountDownTimer.setInterval(1000);
 	connect(&mPairingCountDownTimer, &QTimer::timeout, this, &TokenPairingEnableItem::onCountDownTimeout);
 }
 
 int TokenPairingEnableItem::setValue(const QVariant &value)
 {
-	(void) value;
-
 	QJsonObject obj;
 	obj["expires_at"] = QDateTime::currentSecsSinceEpoch() + pairingDuration.count();
 	QJsonDocument doc(obj);
 	QString json = doc.toJson(QJsonDocument::Compact);
 
+	qDebug() << "[tokens] Enable pairing";
 	QFile f(pairingSignalFile);
 
 	if (!f.open(QFile::WriteOnly)) {
 		qCritical() << "Can't open" << pairingSignalFile;
-		return 1;
+		return -1;
 	}
 
 	f.write(json.toLatin1());
@@ -292,5 +288,5 @@ int TokenPairingEnableItem::setValue(const QVariant &value)
 
 	startCountDown();
 
-	return 0;
+	return VeQItemAction::setValue(value);
 }
