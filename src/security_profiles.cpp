@@ -259,8 +259,8 @@ void VrmTunnelSetup::checkVrmTunnel()
 	bool ok;
 
 	// When VRM portal mode is not 'full', the tunnel is kept disabled (except that venus-access
-	// still enables it when remote support is activated). When it IS 'full', we still only
-	// activate it when we need to.
+	// still enables it when remote support is activated). When it IS 'full', the tunnel is only
+	// activated when needed.
 	if (mVrmPortal->getLocalValue().toInt(&ok) != VRM_PORTAL_FULL || !ok) {
 		if (ok)
 			qDebug() << "[tunnel] VRM portal is not set to full";
