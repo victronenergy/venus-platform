@@ -4,8 +4,12 @@
 #include <QDebug>
 #include <QDir>
 
+#include <veutil/qt/daemontools_service.hpp>
+
 #include "network_reset.hpp"
 #include "utils.hpp"
+
+using namespace std::chrono;
 
 void NetworkReset::initiate()
 {
@@ -17,25 +21,18 @@ void NetworkReset::initiate()
 
 void NetworkReset::stopRelevantServices()
 {
-	{
-		qDebug() << "Stopping connman";
-		QProcess p;
-		p.start("/etc/init.d/connman", {"stop"});
-		p.waitForFinished();
-	}
+	QProcess p;
 
-	{
-		qDebug() << "Stopping venus-platform";
-		QProcess p;
-		p.start("svc", {"-d" , "/service/venus-platform/"});
-		p.waitForFinished();
-	}
+	qDebug() << "Stopping connman";
+	p.start("/etc/init.d/connman", {"stop"});
+	p.waitForFinished();
 
-	const bool platformStopped = stopServiceAndWaitForExit("venus-platform");
+	qDebug() << "Stopping venus-platform";
+	DaemonToolsService platform("/service/venus-platform/");
+	platform.stop();
 
-	if (!platformStopped) {
+	if (!platform.waitTillDown(10s)) {
 		qDebug() << "Timeout waiting for Venus-platform, force-killing";
-		QProcess p;
 		p.start("killall", {"-9", "venus-platform"});
 		p.waitForFinished();
 	}
@@ -77,16 +74,18 @@ void NetworkReset::setSettingsToDefault()
 	for (const QString &path : settingPaths) {
 		VeQItem *item = mSettings->root()->itemGet(path);
 
-		if (!item)
+		if (!item) {
+			qDebug() << "not an item" << path;
 			continue;
+		}
 
 		connect(item, &VeQItem::stateChanged, this, &NetworkReset::defaultValueSetStateChanged);
 
-		auto defaultVal = item->itemProperty("defaultValue");
+		QVariant defaultVal = item->itemProperty("defaultValue");
 		qDebug() << "Setting " << path << "to default value."; // Not logging value, which could be sensitive.
 		item->setValue(defaultVal);
 
-		auto itemState = item->getState();
+		VeQItem::State itemState = item->getState();
 
 		if (itemState == VeQItem::State::Storing)
 			mDefaultValueSetCounter++;
@@ -137,15 +136,9 @@ void NetworkReset::deletePaths()
 void NetworkReset::initiateSettingsShutdownAndReboot()
 {
 	// The localsettings has an exit handler that properly saves and fsyncs settings.
-	{
-		QProcess p;
-		p.start("svc", {"-d" , "/service/localsettings/"});
-		p.waitForFinished();
-	}
-
-	const bool localsettings_stopped = stopServiceAndWaitForExit("localsettings");
-
-	if (!localsettings_stopped)
+	DaemonToolsService settings("/service/localsettings/");
+	settings.stop();
+	if (!settings.waitTillDown(10s))
 		qWarning() << "localsettings did not exit? Rebooting anyway.";
 
 	// Reboot is required, to make localsettings correct things.
