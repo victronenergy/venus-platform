@@ -69,9 +69,9 @@ void NetworkReset::makeLedsIndicateReset()
 
 void NetworkReset::setSettingsToDefault()
 {
-	const QStringList settingPaths({"Settings/Ble/Service/Pincode", "Settings/Services/AccessPoint",
+	const QStringList settingPaths{"Settings/Ble/Service/Pincode", "Settings/Services/AccessPoint",
 									"Settings/Services/Bluetooth", "/Settings/System/SecurityProfile",
-									"/Settings/Services/AccessPointPassword"});
+									"/Settings/Services/AccessPointPassword"};
 
 	for (const QString &path : settingPaths) {
 		VeQItem *item = mSettings->root()->itemGet(path);
@@ -100,7 +100,7 @@ void NetworkReset::setSettingsToDefault()
 
 void NetworkReset::deletePaths()
 {
-	const QStringList deletePaths({"/data/conf/vncpassword.txt", "/data/var/lib/bluetooth", "/data/var/lib/connman" });
+	const QStringList deletePaths{"/data/conf/vncpassword.txt", "/data/var/lib/bluetooth", "/data/var/lib/connman"};
 
 	for (const QString &s : deletePaths) {
 		qDebug() << "Removing" << s;
