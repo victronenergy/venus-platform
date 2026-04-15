@@ -18,6 +18,7 @@
 #define LYNX_BMS_500_NG 0xA3E4
 #define LYNX_BMS_1000 0xA3E6
 #define LYNX_BMS_1000_NG 0xA3E7
+#define LYNX_BMS_PARALLEL 0xA3E3
 
 static QDir machineRuntimeDir = QDir("/etc/venus");
 static QDir venusDir = QDir("/opt/victronenergy");
@@ -527,7 +528,10 @@ void Application::onBatteryProductIdChanged(QVariant var)
 	VeQItem *parent = item->itemParent();
 	if (var.isValid()) {
 		int id = var.toInt();
-		if (id == LYNX_BMS_500 || id == LYNX_BMS_500_NG || id == LYNX_BMS_1000 || id == LYNX_BMS_1000_NG)
+		// Keep the parallel BMS service alive even when it is the only service left.
+		// The parallel BMS service will remain on dbus as long as there are BMS services in the cache
+		// When it goes down (cache cleared and no BMS services on dbus), the service will be stopped.
+		if (id == LYNX_BMS_500 || id == LYNX_BMS_500_NG || id == LYNX_BMS_1000 || id == LYNX_BMS_1000_NG || id == LYNX_BMS_PARALLEL)
 			mParallelBmsConditions << parent->id();
 		else
 			mParallelBmsConditions.removeAll(parent->id());
