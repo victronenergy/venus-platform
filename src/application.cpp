@@ -316,6 +316,7 @@ public:
 				add("Gui/AutoBrightness", 0, 0, 0);
 		}
 
+		add("Alarm/Audible", 1, 0, 0);
 		add("Alarm/Vebus/HighDcCurrent", 1, 0, 2);
 		add("Alarm/Vebus/HighDcRipple", 1, 0, 2);
 		add("Alarm/Vebus/HighDcVoltage", 1, 0, 2);
