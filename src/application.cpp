@@ -925,7 +925,10 @@ void Application::onButtonDoublePress()
 
 void Application::onButtonLongPress()
 {
-
+	qDebug() <<"[button] Restoring network settings to the default";
+	char const *const args[] = {"/opt/victronenergy/venus-button-handler/network-reset", NULL};
+	char *env[] = {NULL};
+	::execve("/opt/victronenergy/venus-button-handler/network-reset", (char * const*) args, env);
 }
 
 QProcess *Application::spawn(QString const &cmd, const QStringList &args)
