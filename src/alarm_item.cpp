@@ -225,6 +225,15 @@ DeviceAlarms *DeviceAlarms::createTemperatureSensorAlarms(VenusService *service,
 	return alarms;
 }
 
+DeviceAlarms *DeviceAlarms::createOpportunityLoadsAlarms(VenusService *service, Notifications *noticationCenter)
+{
+	DeviceAlarms *alarms = new DeviceAlarms(service, noticationCenter);
+
+	alarms->addTripplet(tr("System incompatible for opportunity loads"), "/Alarms/IncompatibleSystem", nullptr, nullptr);
+
+	return alarms;
+}
+
 DeviceAlarms *DeviceAlarms::createEvChargerAlarms(VenusService *service, Notifications *notificationCenter)
 {
 	DeviceAlarms *alarms = new DeviceAlarms(service, notificationCenter);
@@ -479,6 +488,9 @@ void AlarmBusitems::onVenusServiceFound(VenusService *service)
 		break;
 	case VenusServiceType::EV_CHARGER:
 		DeviceAlarms::createEvChargerAlarms(service, mNotifications);
+		break;
+	case VenusServiceType::OPPORTUNITY_LOADS:
+		DeviceAlarms::createOpportunityLoadsAlarms(service, mNotifications);
 		break;
 	default:
 		;
