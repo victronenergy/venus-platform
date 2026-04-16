@@ -6,6 +6,8 @@
 #include <QString>
 #include <QTimer>
 
+#include "led_controller.hpp"
+
 #include <veutil/qt/ve_qitem.hpp>
 #include <veutil/qt/ve_qitem_utils.hpp>
 
@@ -50,7 +52,7 @@ private:
 class TokenUserWatcher : public QObject {
 	Q_OBJECT
 public:
-	TokenUserWatcher(VeQItem *platform);
+	TokenUserWatcher(VeQItem *platform, LedController *ledController);
 	~TokenUserWatcher();
 
 	void updateTokens();
@@ -89,6 +91,7 @@ class TokenPairingEnableItem : public VeQItemAction
 	VeQItem *mCountDownItem = nullptr;
 	int mPairingCountDownValue = 0;
 	QTimer mPairingCountDownTimer;
+	LedController *mLedController;
 
 	void startCountDown();
 
@@ -96,6 +99,6 @@ private slots:
 	void onCountDownTimeout();
 
 public:
-	explicit TokenPairingEnableItem(VeQItem *countDownItem);
+	explicit TokenPairingEnableItem(VeQItem *countDownItem, LedController *ledController);
 	int setValue(const QVariant &value) override;
 };

@@ -161,4 +161,5 @@ private:
 
 	DaemonToolsService *mNodeRed = nullptr;
 	TokenUserWatcher *mTokenWatcher;
+	LedController *mLedController = nullptr;
 };

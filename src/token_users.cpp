@@ -131,13 +131,13 @@ char const *tokenfile = "/data/conf/tokens.json";
 QString const pairingSignalFile = tokendir + "/pairing.json";
 constexpr std::chrono::seconds pairingDuration(30);
 
-TokenUserWatcher::TokenUserWatcher(VeQItem *platform) : QObject()
+TokenUserWatcher::TokenUserWatcher(VeQItem *platform, LedController *ledController) : QObject()
 {
 	mTokensItem = platform->itemGetOrCreate("Tokens/Users");
 	platform->itemGet("Tokens")->itemAddChild("Remove", new TokenRemoveItem(this));
 
 	auto *pairing = platform->itemGetOrCreate("Tokens/Pairing");
-	pairing->itemAddChild("Enable", new TokenPairingEnableItem(pairing->itemGetOrCreate("CountDown")));
+	pairing->itemAddChild("Enable", new TokenPairingEnableItem(pairing->itemGetOrCreate("CountDown"), ledController));
 
 	QDir dir(tokendir);
 	if (!dir.exists()) {
@@ -239,6 +239,9 @@ int TokenRemoveItem::setValue(const QVariant &value)
 
 void TokenPairingEnableItem::startCountDown()
 {
+	if (!mPairingCountDownTimer.isActive())
+		mLedController->forceLed("bluetooth", "blink-fast");
+
 	mPairingCountDownValue = pairingDuration.count();
 	mPairingCountDownTimer.start();
 }
@@ -251,6 +254,8 @@ void TokenPairingEnableItem::onCountDownTimeout()
 		QFile f(pairingSignalFile);
 		f.remove();
 
+		mLedController->resumeNormalLedBehaviour("bluetooth");
+
 		return;
 	}
 
@@ -260,9 +265,10 @@ void TokenPairingEnableItem::onCountDownTimeout()
 		mCountDownItem->setValue(mPairingCountDownValue);
 }
 
-TokenPairingEnableItem::TokenPairingEnableItem(VeQItem *countDownItem) :
+TokenPairingEnableItem::TokenPairingEnableItem(VeQItem *countDownItem, LedController *ledController) :
 	VeQItemAction(),
-	mCountDownItem(countDownItem)
+	mCountDownItem(countDownItem),
+	mLedController(ledController)
 {
 	mPairingCountDownTimer.setInterval(1000);
 	connect(&mPairingCountDownTimer, &QTimer::timeout, this, &TokenPairingEnableItem::onCountDownTimeout);
