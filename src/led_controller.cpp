@@ -91,14 +91,54 @@ void LedController::dbusSettingChanged(void)
 void LedController::syncLeds(bool ledsOn)
 {
 	if (ledsOn) {
-		for (auto const &led: leds) {
+		for (QString const &led: leds) {
+			if (mForcedLeds.contains(led))
+				continue;
 			updateLed(srcDir(led, "trigger"));
 			updateLed(srcDir(led, "brightness"));
 		}
 	} else {
-		for (auto const &led: leds)
+		for (QString const &led: leds) {
+			if (mForcedLeds.contains(led))
+				continue;
 			disableLed(destDir(led));
+		}
 	}
+}
+
+bool LedController::forceLed(const QString &ledName, const QString &trigger)
+{
+	if (!leds.contains(ledName))
+		return true;
+
+	if (mForcedLeds.contains(ledName)) {
+		qCritical() << ledName << "is already forced to a state";
+		return false;
+	}
+
+	QFile tiggerFile(destDir(ledName, "trigger"));
+	if (!tiggerFile.open(QIODevice::WriteOnly)) {
+		qCritical() << "opening" << tiggerFile.fileName() << "failed";
+		return false;
+	}
+	tiggerFile.write(trigger.toUtf8());
+
+	QFile brightnessFile(destDir(ledName, "brightness"));
+	if (!brightnessFile.open(QIODevice::WriteOnly)) {
+		qCritical() << "opening" << brightnessFile.fileName() << "failed";
+		return false;
+	}
+	brightnessFile.write("1");
+
+	mForcedLeds.append(ledName);
+
+	return true;
+}
+
+void LedController::resumeNormalLedBehaviour(const QString &ledName)
+{
+	mForcedLeds.removeAll(ledName);
+	syncLeds(mLedsEnabled);
 }
 
 void LedController::updateLed(const QString &src)
@@ -113,6 +153,13 @@ void LedController::updateLed(const QString &src)
 	if (!mTimerExpired || mLedsEnabled)	{
 		QString dest = src;
 		dest.replace(0, 4, "/sys/class");
+
+		QStringList parts = src.split("/", Qt::SkipEmptyParts);
+		if (parts.length() == 4) {
+			QString led = parts[3];
+			if (mForcedLeds.contains(led))
+				return;
+		}
 
 		QFile srcFile(src);
 		QFile destFile(dest);
@@ -132,7 +179,19 @@ void LedController::updateLed(const QString &src)
 
 		// Destination file (/sys/class/) should exist.
 		destFile.open(QIODevice::WriteOnly);
-		destFile.write(srcFile.readAll());
+		QByteArray bytes = srcFile.readAll();
+
+		// This is a bit weird code, but it is possible to get here, if the leds was
+		// not in used, forced to be used for something else and there after restoring
+		// original behaviour, so the files of touchAndClearFile are seen. Empty strings
+		// are not a valid sysfs value, so the write below would always fail.
+		if (QString(bytes) == "") {
+			if (QFileInfo(src).fileName() != "trigger")
+				return;
+			bytes = "none";
+		}
+
+		destFile.write(bytes);
 	}
 }
 
