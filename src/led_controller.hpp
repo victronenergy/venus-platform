@@ -16,6 +16,9 @@ public:
 	LedController(VeQItemSettings *settings, QObject *parent);
 	static bool hasLeds();
 
+	bool forceLed(QString const &ledName, QString const &trigger);
+	void resumeNormalLedBehaviour(QString const &ledName);
+
 private slots:
 	void dbusSettingChanged();
 	void ledSettingChanged(QVariant var);
@@ -31,4 +34,5 @@ private:
 	QAtomicInt mLedsEnabled;
 	QAtomicInt mTimerExpired;
 	QTimer *mTimer;
+	QStringList mForcedLeds;
 };
