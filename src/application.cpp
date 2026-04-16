@@ -703,8 +703,6 @@ void Application::manageDaemontoolsServices()
 		VeQItem *item =	mSettings->root()->itemGetOrCreate("Settings/Services/Evcc");
 		item->getValueAndChanges(this, &Application::onEvccSettingChanged);
 	}
-
-	mTokenWatcher = new TokenUserWatcher(mService);
 }
 
 void Application::init()
@@ -797,8 +795,9 @@ void Application::start()
 
 	mUpdater = new Updater(mService, this);
 
-	if (LedController::hasLeds())
-		new LedController(mSettings, this);
+	mLedController =new LedController(mSettings, this);
+
+	mTokenWatcher = new TokenUserWatcher(mService, mLedController);
 
 	// Network controller
 	mNetworkController = new NetworkController(mService, this);
