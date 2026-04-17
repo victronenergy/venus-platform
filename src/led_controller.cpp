@@ -223,9 +223,11 @@ void LedController::disableLed(const QString &path)
 void LedController::touchAndClearFile(QString const &fileName)
 {
 	QDir dir = QFileInfo(fileName).absoluteDir();
-	dir.mkpath(dir.dirName());
+	if (!dir.exists())
+		dir.mkpath(".");
 	QFile file(fileName);
-	if (!file.exists())
-		file.open(QIODevice::ReadWrite);
-	file.resize(0);
+	if (!file.exists()) {
+		file.open(QIODevice::WriteOnly);
+		file.resize(0);
+	}
 }
