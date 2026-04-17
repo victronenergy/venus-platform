@@ -206,7 +206,7 @@ ButtonHandler::ButtonHandler(QObject *parent) :
 	QObject(parent)
 {
 	mShortPresses.setSingleShot(true);
-	mShortPresses.setInterval(750);
+	mShortPresses.setInterval(1500);
 	mLongPress.setSingleShot(true);
 	mLongPress.setInterval(4000);
 
