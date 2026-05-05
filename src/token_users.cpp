@@ -129,7 +129,7 @@ bool TokenUsers::addTokenUser(const TokenUser &user)
 QString const tokendir = "/var/volatile/tokens";
 char const *tokenfile = "/data/conf/tokens.json";
 QString const pairingSignalFile = tokendir + "/pairing.json";
-constexpr std::chrono::seconds pairingDuration(30);
+constexpr std::chrono::seconds pairingDuration(120);
 
 TokenUserWatcher::TokenUserWatcher(VeQItem *platform, LedController *ledController) : QObject()
 {
