@@ -229,7 +229,7 @@ DeviceAlarms *DeviceAlarms::createOpportunityLoadsAlarms(VenusService *service, 
 {
 	DeviceAlarms *alarms = new DeviceAlarms(service, noticationCenter);
 
-	alarms->addTripplet(tr("System incompatible for opportunity loads"), "/Alarms/IncompatibleSystem", nullptr, nullptr);
+	alarms->addTripplet(tr("System incompatible for Opportunity Loads"), "/Alarms/IncompatibleSystem", nullptr, nullptr);
 
 	return alarms;
 }
