@@ -15,6 +15,7 @@
 #include <veutil/qt/ve_dbus_connection.hpp>
 
 #include "token_users.hpp"
+#include "utils.hpp"
 
 TokenUser TokenUser::fromJson(const QJsonObject &json)
 {
@@ -276,8 +277,13 @@ TokenPairingEnableItem::TokenPairingEnableItem(VeQItem *countDownItem, LedContro
 
 int TokenPairingEnableItem::setValue(const QVariant &value)
 {
+	const int uptime {getSystemUptimeInSeconds()};
+
+	if (uptime < 0)
+		return -1;
+
 	QJsonObject obj;
-	obj["expires_at"] = QDateTime::currentSecsSinceEpoch() + pairingDuration.count();
+	obj["expires_at"] = uptime + pairingDuration.count();
 	QJsonDocument doc(obj);
 	QString json = doc.toJson(QJsonDocument::Compact);
 
