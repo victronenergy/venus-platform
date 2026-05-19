@@ -346,7 +346,7 @@ public:
 		add("Services/EthernetLinkLocal", 1, 0, 1);
 		add("Services/Evcc", 1, 0, 1);
 		add("Services/Modbus", 0, 0, 1);
-		add("Services/MqttLocal", 0, 0, 1);
+		add("Services/MqttLocal", 0, 0, 2);
 		add("Services/NodeRed", 0, 0, 2);
 		add("Services/OpportunityLoads", 0, 0, 1);
 		add("Services/SignalK", 0, 0, 1);

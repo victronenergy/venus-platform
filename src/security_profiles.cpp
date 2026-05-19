@@ -328,11 +328,14 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 	VeQItem *item = settings->root()->itemGetOrCreate("Settings/System/SecurityProfile");
 	item->getValueAndChanges(this, &SecurityProfiles::onSecurityProfileChanged);
 
-	item = settings->root()->itemGetOrCreate("Settings/Services/MqttLocal");
-	item->getValueAndChanges(this, &SecurityProfiles::onMqttAccessChanged);
+	mMqttOnLanItem = settings->root()->itemGetOrCreate("Settings/Services/MqttLocal");
+	mMqttOnLanItem->getValueAndChanges(this, &SecurityProfiles::onMqttAccessChanged);
 
 	item = settings->root()->itemGetOrCreate("Settings/Network/VrmPortal");
 	item->getValueAndChanges(this, &SecurityProfiles::onVrmPortalChange);
+
+	item = pltService->itemGetOrCreate("Tokens/Users");
+	item->getValueAndChanges(this, &SecurityProfiles::onTokenChange);
 
 	enableMqttOnLan(false); // Disable LAN socket access by default, unless explicitly enabled.
 	mFlashMq = new DaemonToolsService("/service/flashmq", this);
@@ -379,6 +382,39 @@ void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 			mMqttBridgeRegistrator->check();
 
 		enableMqttBridge(false);
+	}
+}
+
+void SecurityProfiles::onTokenChange(const QVariant &var)
+{
+	QString s = var.toString();
+
+	if (s.isEmpty())
+		return;
+
+	auto j = QJsonDocument::fromJson(s.toUtf8());
+
+	if (!j.isArray())
+		return;
+
+	if (mTokenCount < 0) {
+		mTokenCount = j.array().size();
+		return;
+	}
+
+	mTokenCount = j.array().size();
+
+	if (!mMqttOnLanItem)
+		return;
+
+	if (mTokenCount > 0 && mMqttAccess.toInt() == MQTT_ACCESS_OFF) {
+		qInfo() << "[Tokens] Added token. Setting MQTT LAN access to TOKENS_ONLY because it was OFF";
+		mMqttOnLanItem->setValue(MQTT_ACCESS_TOKENS_ONLY);
+	} else if (mTokenCount == 0 && mMqttAccess.toInt() == MQTT_ACCESS_TOKENS_ONLY) {
+		qInfo() << "[Tokens] Removed last token. Setting MQTT LAN access to OFF because it was TOKENS_ONLY";
+		mMqttOnLanItem->setValue(MQTT_ACCESS_OFF);
+	} else {
+		checkMqttOnLan();
 	}
 }
 
@@ -502,23 +538,31 @@ void SecurityProfiles::onMqttAccessChanged(QVariant const &var)
 void SecurityProfiles::checkMqttOnLan()
 {
 	// Wait till all required settings are valid...
-	if (!mMqttAccess.isValid() || !mSecurityProfile.isValid()) {
+	if (!mMqttAccess.isValid() || !mSecurityProfile.isValid() || mTokenCount < 0 ) {
 		enableMqttOnLan(false);
 		return;
 	}
 
+	bool allowInsecure = false;
+	bool allowSecure = false;
+
+	// Aside from Venus Platform setting it, the 'token only' setting can also be set externally,
+	// so make sure this is checked.
+	if (mMqttAccess.toInt() == MQTT_ACCESS_TOKENS_ONLY) {
+		allowSecure = mTokenCount > 0;
+	}
+
 	// LAN support for MQTT (manage firewall rules)
 	if (mMqttAccess.toInt() == MQTT_ACCESS_ON) {
-		enableMqttOnLan(true);
+		allowSecure = true;
 
 		// If the security level permits it, also enable the unsecure version.
 		int securityLevel = mSecurityProfile.toInt();
-		bool allowInsecure = (securityLevel == SECURITY_PROFILE_WEAK || securityLevel == SECURITY_PROFILE_UNSECURED);
-		enableMqttOnLanInsecure(allowInsecure);
-
-	} else {
-		enableMqttOnLan(false);
+		allowInsecure = (securityLevel == SECURITY_PROFILE_WEAK || securityLevel == SECURITY_PROFILE_UNSECURED);
 	}
+
+	enableMqttOnLanInsecure(allowInsecure);
+	enableMqttOnLan(allowSecure);
 }
 
 void SecurityProfiles::enableMqttOnLan(bool enabled)

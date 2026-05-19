@@ -34,7 +34,8 @@ enum SecurityState {
 // determines if unencrypted connected are allowed as well.
 enum MqttAccess : int {
 	MQTT_ACCESS_OFF, // (default)
-	MQTT_ACCESS_ON
+	MQTT_ACCESS_ON,
+	MQTT_ACCESS_TOKENS_ONLY // Checked by dbus-flashmq
 };
 
 enum VrmPortal {
@@ -121,6 +122,7 @@ private slots:
 	void onMqttAccessChanged(QVariant const &var);
 	void onSecurityProfileChanged(QVariant const &var);
 	void onVrmPortalChange(QVariant const &var);
+	void onTokenChange(QVariant const &var);
 
 private:
 	void checkMqttOnLan();
@@ -131,6 +133,7 @@ private:
 	QVariant mMqttAccess;
 	QVariant mSecurityProfile;
 	QVariant mVrmPortal;
+	int mTokenCount = -1;
 
 	// These are QVariant, just to unequal fo false for startup/init
 	QVariant mMqttOnLan;
@@ -145,6 +148,7 @@ private:
 	Notification *mSecurityNotification = nullptr;
 	VeQItem *mPasswordFileSize;
 	VeQItem *mPasswordAge;
+	VeQItem *mMqttOnLanItem {};
 
 	VeQItemMqttBridgeRegistrator *mMqttBridgeRegistrator = nullptr;
 };
