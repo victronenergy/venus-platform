@@ -235,7 +235,7 @@ int TokenRemoveItem::setValue(const QVariant &value)
 	if (!VeDbusConnection::getConnection().send(signal))
 		qCritical() << "failed to send token remove signal";
 
-	return 0;
+	return VeQItemAction::setValue(value);
 }
 
 void TokenPairingEnableItem::startCountDown()
