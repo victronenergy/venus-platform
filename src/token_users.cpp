@@ -283,7 +283,7 @@ int TokenPairingEnableItem::setValue(const QVariant &value)
 		return -1;
 
 	QJsonObject obj;
-	obj["expires_at"] = uptime + pairingDuration.count();
+	obj["expires_at"] = static_cast<int>(uptime + static_cast<int>(pairingDuration.count()));
 	QJsonDocument doc(obj);
 	QString json = doc.toJson(QJsonDocument::Compact);
 
