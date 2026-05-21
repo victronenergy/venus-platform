@@ -362,7 +362,6 @@ void SecurityProfiles::onSecurityProfileChanged(QVariant const &var)
 
 void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 {
-	bool wasValid = mVrmPortal.isValid();
 	if (var != mVrmPortal) {
 		mVrmPortal = var;
 
@@ -378,8 +377,7 @@ void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 		// Flashmq depends on the settings as well, since off, read-only and full change
 		// the bridge configuration. Trigger the MQTT registration for changes to
 		// read-only and full, so the config gets updated.
-		if (wasValid && mVrmPortal.isValid() && mVrmPortal != VRM_PORTAL_OFF)
-			mMqttBridgeRegistrator->check();
+		mMqttBridgeRegistrator->resolve();
 
 		enableMqttBridge(false);
 	}

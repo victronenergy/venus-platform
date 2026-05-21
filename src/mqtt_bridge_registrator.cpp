@@ -281,35 +281,38 @@ VeQItemMqttBridgeRegistrator::VeQItemMqttBridgeRegistrator(VeQItem *pltService) 
 int VeQItemMqttBridgeRegistrator::setValue(const QVariant &value)
 {
 	(void) value;
-
-	if (!mVrmPortalMode.isValid()) {
-		mRegistrationIsPending = true;
-		return 0;
-	}
-
-	return check();
+	return resolve();
 }
 
 void VeQItemMqttBridgeRegistrator::setVrmPortalMode(const QVariant &mode)
 {
 	this->mVrmPortalMode = mode;
 
-	if (mRegistrationIsPending) {
-		mRegistrationIsPending = false;
-		check();
+	if (mRegistrationIsDeferred) {
+		mRegistrationIsDeferred = false;
+		resolve();
 	}
 }
 
-int VeQItemMqttBridgeRegistrator::check()
+int VeQItemMqttBridgeRegistrator::resolve()
 {
+	if (!mVrmPortalMode.isValid()) {
+		mRegistrationIsDeferred = true;
+		return 0;
+	}
+
+	if (mVrmPortalMode.toInt() == VRM_PORTAL_OFF) {
+		if (registrator) {
+			qDebug() << "[VeQItemMqttBridgeRegistrator] VRM portal mode switched off, aborting running registration request.";
+			registrator->stop();
+			registrator.reset();
+		}
+		return 0;
+	}
+
 	if (registrator) {
-		/*
-		 * Abort any already running request instead of returning here, because when the vrm portal mode
-		 * setting is flapped by the user a couple of times, we must be sure we process the final
-		 * setting (because we not only register a token, we also generate a FlashMQ config depending on settings).
-		 */
-		registrator->stop();
-		registrator.reset();
+		qDebug() << "[VeQItemMqttBridgeRegistrator] Request pending. Not doing another one.";
+		return 0;
 	}
 
 	registrator.reset(new VrmTokenRegistrator(mVrmId, mVrmPortalMode));
