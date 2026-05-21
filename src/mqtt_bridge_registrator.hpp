@@ -57,13 +57,13 @@ public:
 
 	int setValue(const QVariant &value) override;
 	void setVrmPortalMode(const QVariant &mode);
-	int check();
+	int resolve();
 
 signals:
 	void bridgeConfigChanged();
 
 private:
-	bool mRegistrationIsPending = false;
+	bool mRegistrationIsDeferred = false;
 	QString mVrmId;
 	QVariant mVrmPortalMode;
 	QScopedPointer<VrmTokenRegistrator, QScopedPointerDeleteLater> registrator;

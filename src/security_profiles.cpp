@@ -375,8 +375,8 @@ void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 		// Flashmq depends on the settings as well, since off, read-only and full change
 		// the bridge configuration. Trigger the MQTT registration for changes to
 		// read-only and full, so the config gets updated.
-		if (wasValid && mVrmPortal.isValid() && mVrmPortal != VRM_PORTAL_OFF)
-			mMqttBridgeRegistrator->check();
+		if (wasValid)
+			mMqttBridgeRegistrator->resolve();
 
 		enableMqttBridge(false);
 	}
