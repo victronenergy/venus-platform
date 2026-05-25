@@ -99,11 +99,15 @@ int Notifications::addTrackedNotification(Notification::Type type, const QString
 
 	Notification *notification = addNotification(type, devicename, "", description, alarmTrigger, "", service);
 
-	// Connect signal to track the notification, so it can be removed when the service disappears
+	// Connect signal to track the notification, so it can be deactivated when the service disappears.
+	// We intentionally do not remove it from mNotifications: removing would reset the index counter and
+	// cause gui-v2 to lose sync (it sees a slot vanish and reappear at the same index rather than
+	// seeing a clean active→inactive transition on a stable slot).
 	connect(venusService, &VenusService::connectedChanged, this, [this, notification]() {
 		VenusService *service = static_cast<VenusService *>(sender());
 		if (!service->getConnected()) {
-			removeNotification(notification);
+			notification->setActive(false);
+			notification->setAcknowledged(true);
 		}
 	});
 
