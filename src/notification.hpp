@@ -34,7 +34,7 @@ public:
 	 * however while the alarm has not been acknowledged yet. In that case
 	 * active becomes false.
 	 */
-	bool isActive() const { return mActiveItem->getLocalValue().toBool(); }
+	bool isActive() const { return mActive; }
 	void setActive(bool active);
 
 	Notification::Type type() const { return static_cast<Type>(mTypeItem->getLocalValue().toInt()); }
@@ -47,6 +47,7 @@ signals:
 
 private slots:
 	void acknowledgedItemChanged(QVariant var) { setAcknowledged(var.toBool()); }
+	void activeItemChanged(QVariant var) { setActive(var.toBool()); }
 
 private:
 	VeQItem *mAcknowledgedItem;
@@ -55,4 +56,5 @@ private:
 	VeQItem *mIndexItem;
 	VeQItem *mTypeItem;
 	bool mAcknowledged = false;
+	bool mActive = true;
 };
