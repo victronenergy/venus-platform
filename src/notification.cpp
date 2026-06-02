@@ -21,6 +21,7 @@ Notification::Notification(Type type, const QString &devicename, const QString &
 	mSilencedItem = mIndexItem->itemGetOrCreateAndProduce("Silenced", QVariant::fromValue(0));
 	mIndexItem->itemGetOrCreateAndProduce("Description", description);
 
+	mActiveItem->getValueAndChanges(this, &Notification::activeItemChanged);
 	mAcknowledgedItem->getValueAndChanges(this, &Notification::acknowledgedItemChanged);
 }
 
@@ -43,7 +44,8 @@ void Notification::setSilenced(bool silenced)
 
 void Notification::setActive(bool active)
 {
-	if (active != isActive()) {
+	if (active != mActive) {
+		mActive = active;
 		mActiveItem->produceValue(QVariant::fromValue(active ? 1 : 0));
 		emit activeChanged(this);
 	}
