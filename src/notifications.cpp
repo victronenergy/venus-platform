@@ -173,6 +173,9 @@ void Notifications::activeChanged(Notification *notification)
 	updateAlarm();
 	updateAlert();
 
+	if (notification->isActive())
+		return;
+
 	if (notification->type() == Notification::ALARM)
 		mNumberOfActiveAlarms->produceValue(mNumberOfActiveAlarms->getValue().toInt() - 1);
 	else if (notification->type() == Notification::WARNING)
