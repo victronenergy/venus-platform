@@ -407,12 +407,21 @@ void SecurityProfiles::onTokenChange(const QVariant &var)
 	if (!mMqttOnLanItem)
 		return;
 
+	Application *app = static_cast<Application *>(qApp);
+	Notifications *notifications = app->getNotifications();
+
 	if (mTokenCount > 0 && mMqttAccess.toInt() == MQTT_ACCESS_OFF) {
 		qInfo() << "[Tokens] Added token. Setting MQTT LAN access to TOKENS_ONLY because it was OFF";
 		mMqttOnLanItem->setValue(MQTT_ACCESS_TOKENS_ONLY);
+		notifications->addNotification(
+			Notification::NOTIFICATION, "VenusOS", "", "MQTT Access changed automatically.\nAn MQTT device was paired, so MQTT Access changed from Off to Paired devices only."
+		)->setActive(false);
 	} else if (mTokenCount == 0 && mMqttAccess.toInt() == MQTT_ACCESS_TOKENS_ONLY) {
 		qInfo() << "[Tokens] Removed last token. Setting MQTT LAN access to OFF because it was TOKENS_ONLY";
 		mMqttOnLanItem->setValue(MQTT_ACCESS_OFF);
+		notifications->addNotification(
+			Notification::NOTIFICATION, "VenusOS", "", "MQTT Access changed automatically.\nThe last paired MQTT device was removed, so MQTT Access changed from Paired devices only to Off."
+		)->setActive(false);
 	} else {
 		checkMqttOnLan();
 	}
