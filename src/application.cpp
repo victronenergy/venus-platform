@@ -629,7 +629,8 @@ void Application::manageDaemontoolsServices()
 	connect(mServices, SIGNAL(childAdded(VeQItem*)), SLOT(onServiceAdded(VeQItem*)));
 	manageGeneratorStartStop();
 
-	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this);
+	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this,
+							QStringList() << "-s" << "dbus-ble-sensors");
 
 	new DaemonToolsService(mSettings, "/service/dbus-pump", "Settings/Relay/Function", 3, this);
 
