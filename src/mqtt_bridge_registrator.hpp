@@ -15,6 +15,16 @@ class VrmTokenRegistrator : public QObject
 	Q_OBJECT
 	Q_DISABLE_COPY_MOVE(VrmTokenRegistrator)
 
+public:
+	VrmTokenRegistrator(const QString &vrmId, const QVariant &vrmPortalMode);
+
+	bool start();
+	void stop();
+
+signals:
+	void done(bool configChanged);
+
+private:
 	QNetworkAccessManager mNetworkManager;
 	QSslConfiguration mSslConfig;
 	const QString mVrmId;
@@ -24,8 +34,8 @@ class VrmTokenRegistrator : public QObject
 	QString mBrokerPassword;
 	QString mBridgeSettingsRpcTemplate;
 	QString mBridgeSettingsDbusTemplate;
-	bool stopping = false;
-	bool quiet = false;
+	bool mStopping = false;
+	bool mQuiet = false;
 
 	bool generateAndOrGetPassword(QString &output);
 	void setupSsl();
@@ -36,16 +46,6 @@ class VrmTokenRegistrator : public QObject
 
 private slots:
 	void onNetworkRequestFinished(QNetworkReply *reply);
-
-public:
-	VrmTokenRegistrator(const QString &vrmId, const QVariant &vrmPortalMode);
-
-	bool start();
-	void stop();
-
-signals:
-	void done(bool configChanged);
-
 };
 
 class VeQItemMqttBridgeRegistrator: public VeQItemAction
@@ -66,7 +66,7 @@ private:
 	bool mRegistrationIsDeferred = false;
 	QString mVrmId;
 	QVariant mVrmPortalMode;
-	QScopedPointer<VrmTokenRegistrator, QScopedPointerDeleteLater> registrator;
+	QScopedPointer<VrmTokenRegistrator, QScopedPointerDeleteLater> mRegistrator;
 
 private slots:
 	void onRegistratorDone(bool configChanged);

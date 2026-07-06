@@ -22,7 +22,7 @@ bool VrmTokenRegistrator::generateAndOrGetPassword(QString &output)
 	 * If the file is there, we use it at all costs, regardless of its contents. We should not overwrite it.
 	 */
 	if (QFile::exists(mqttPasswordFilePath)) {
-		if (!quiet)
+		if (!mQuiet)
 			qDebug() << "Using existing" << mqttPasswordFilePath;
 		password = readFirstLineFromFile(mqttPasswordFilePath);
 
@@ -129,13 +129,10 @@ bool VrmTokenRegistrator::start()
 
 void VrmTokenRegistrator::stop()
 {
-	stopping = true;
+	mStopping = true;
 
-	foreach (auto *reply, mNetworkManager.findChildren<QNetworkReply*>()) {
-		if (!reply)
-			continue;
+	for (QNetworkReply *reply: mNetworkManager.findChildren<QNetworkReply*>())
 		reply->abort();
-	}
 }
 
 void VrmTokenRegistrator::setupSsl()
@@ -154,7 +151,7 @@ void VrmTokenRegistrator::setupSsl()
 
 void VrmTokenRegistrator::onNetworkRequestFinished(QNetworkReply *reply)
 {
-	if (stopping)
+	if (mStopping)
 		return;
 
 	if (!reply)
@@ -165,10 +162,10 @@ void VrmTokenRegistrator::onNetworkRequestFinished(QNetworkReply *reply)
 	const int httpCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 	if (!(reply->error() == QNetworkReply::NoError && httpCode == 200 && reply->readAll().startsWith("OK:"))) {
 		std::chrono::milliseconds retry(60000);
-		if (!quiet)
+		if (!mQuiet)
 			qDebug() << "VrmTokenRegistrator network request failed. Retrying silently every" << retry.count() << "ms.";
 		QTimer::singleShot(retry, this, &VrmTokenRegistrator::registerWithVrm);
-		quiet = true;
+		mQuiet = true;
 		return;
 	}
 
@@ -244,7 +241,7 @@ bool VrmTokenRegistrator::registerWithVrm()
 		return false;
 	}
 
-	if (!quiet)
+	if (!mQuiet)
 		qDebug() << "Initiating posting of MQTT/token password.";
 
 	QString url("https://ccgxlogging.victronenergy.com/log/storemqttpassword.php");
@@ -280,7 +277,7 @@ VeQItemMqttBridgeRegistrator::VeQItemMqttBridgeRegistrator(VeQItem *pltService) 
 
 int VeQItemMqttBridgeRegistrator::setValue(const QVariant &value)
 {
-	(void) value;
+	Q_UNUSED(value);
 	return resolve();
 }
 
@@ -302,25 +299,25 @@ int VeQItemMqttBridgeRegistrator::resolve()
 	}
 
 	if (mVrmPortalMode.toInt() == VRM_PORTAL_OFF) {
-		if (registrator) {
+		if (mRegistrator) {
 			qDebug() << "[VeQItemMqttBridgeRegistrator] VRM portal mode switched off, aborting running registration request.";
-			registrator->stop();
-			registrator.reset();
+			mRegistrator->stop();
+			mRegistrator.reset();
 		}
 		return 0;
 	}
 
-	if (registrator) {
+	if (mRegistrator) {
 		qDebug() << "[VeQItemMqttBridgeRegistrator] Request pending. Not doing another one.";
 		return 0;
 	}
 
-	registrator.reset(new VrmTokenRegistrator(mVrmId, mVrmPortalMode));
-	connect(registrator.get(), &VrmTokenRegistrator::done, this, &VeQItemMqttBridgeRegistrator::onRegistratorDone);
+	mRegistrator.reset(new VrmTokenRegistrator(mVrmId, mVrmPortalMode));
+	connect(mRegistrator.get(), &VrmTokenRegistrator::done, this, &VeQItemMqttBridgeRegistrator::onRegistratorDone);
 
-	if (!registrator->start()) {
+	if (!mRegistrator->start()) {
 		qCritical() << "Failure starting the VrmTokenRegistrator.";
-		registrator.reset();
+		mRegistrator.reset();
 		return -1;
 	}
 
@@ -329,7 +326,7 @@ int VeQItemMqttBridgeRegistrator::resolve()
 
 void VeQItemMqttBridgeRegistrator::onRegistratorDone(bool configChanged)
 {
-	registrator.reset();
+	mRegistrator.reset();
 
 	if (configChanged)
 		emit bridgeConfigChanged();
