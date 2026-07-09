@@ -151,16 +151,14 @@ void VrmTokenRegistrator::setupSsl()
 
 void VrmTokenRegistrator::onNetworkRequestFinished(QNetworkReply *reply)
 {
+	reply->deleteLater();
+
 	if (mStopping)
 		return;
 
-	if (!reply)
-		return;
-
-	reply->deleteLater();
-
 	const int httpCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-	if (!(reply->error() == QNetworkReply::NoError && httpCode == 200 && reply->readAll().startsWith("OK:"))) {
+	QByteArray response = reply->readAll();
+	if (!(reply->error() == QNetworkReply::NoError && httpCode == 200 && response.startsWith("OK:"))) {
 		std::chrono::milliseconds retry(60000);
 		if (!mQuiet)
 			qDebug() << "VrmTokenRegistrator network request failed. Retrying silently every" << retry.count() << "ms.";
