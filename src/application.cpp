@@ -642,6 +642,9 @@ void Application::manageDaemontoolsServices()
 
 	new DaemonToolsService(mSettings, "/service/avahi-autoipd", "Settings/Services/EthernetLinkLocal",
 						   this, QStringList() << "-s" << "avahi-autoipd");
+
+	new DaemonToolsService(mSettings, "/service/venus-dynamicess", "Settings/DynamicEss/Mode",
+	                       this, QStringList() << "-s" << "venus-dynamicess");
 	mLinkLocalItem = mService->itemGetOrCreateAndProduce("Network/Ethernet/LinkLocalIpAddress", "");
 	connect(&mNetlinkMonitor, &NetlinkMonitor::addressAdded, this, &Application::onNetlinkAddressAdded);
 	connect(&mNetlinkMonitor, &NetlinkMonitor::addressRemoved, this, &Application::onNetlinkAddressRemoved);
