@@ -160,6 +160,6 @@ private:
 	QList<QString> mParallelBmsConditions;
 
 	DaemonToolsService *mNodeRed = nullptr;
-	TokenUserWatcher *mTokenWatcher;
+	TokenSupport *mTokenSupport;
 	LedController *mLedController = nullptr;
 };

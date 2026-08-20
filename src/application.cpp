@@ -807,7 +807,7 @@ void Application::start()
 
 	mLedController =new LedController(mSettings, this);
 
-	mTokenWatcher = new TokenUserWatcher(mService, mLedController);
+	mTokenSupport = new TokenSupport(mService, mLedController);
 
 	// Network controller
 	mNetworkController = new NetworkController(mService, this);

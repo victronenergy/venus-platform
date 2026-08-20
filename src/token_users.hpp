@@ -52,10 +52,12 @@ private:
 class TokenUserWatcher : public QObject {
 	Q_OBJECT
 public:
-	TokenUserWatcher(VeQItem *platform, LedController *ledController);
+	TokenUserWatcher(VeQItem *platform, QString kind);
 	~TokenUserWatcher();
 
 	void updateTokens();
+	QString tokenFile() { return mTokenFile; }
+	QString tokenKind() { return mKind; }
 
 private slots:
 	void scanDirectory();
@@ -64,7 +66,17 @@ private:
 	QFileSystemWatcher mWatcher;
 	VeQItem *mTokensItem;
 	VeQItem *mPairingCountDown = nullptr;
+	QString mTokenDir;
+	QString mTokenFile;
+	QString mKind;
+};
 
+class TokenSupport {
+public:
+	explicit TokenSupport(VeQItem *platform, LedController *ledController);
+private:
+	TokenUserWatcher mMqttTokens;
+	TokenUserWatcher mBleTokens;
 };
 
 class TokenRemoveItem : public VeQItemAction

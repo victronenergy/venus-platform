@@ -127,31 +127,33 @@ bool TokenUsers::addTokenUser(const TokenUser &user)
 	return true;
 }
 
-QString const tokendir = "/var/volatile/tokens";
-char const *tokenfile = "/data/conf/tokens.json";
-QString const pairingSignalFile = tokendir + "/pairing.json";
+QString const pairingSignalFile = "/var/volatile/tokens/pairing.json";
 constexpr std::chrono::seconds pairingDuration(120);
 
-TokenUserWatcher::TokenUserWatcher(VeQItem *platform, LedController *ledController) : QObject()
+// Kind is Tokens for mqtt and BleTokens for the bluetooth forward.
+TokenUserWatcher::TokenUserWatcher(VeQItem *platform, QString kind) :
+	QObject(),
+	mKind(kind)
 {
-	mTokensItem = platform->itemGetOrCreate("Tokens/Users");
-	platform->itemGet("Tokens")->itemAddChild("Remove", new TokenRemoveItem(this));
+	VeQItem *tokens = platform->itemGetOrCreate(kind);
+	mTokensItem = tokens->itemGetOrCreate("Users");
+	tokens->itemAddChild("Remove", new TokenRemoveItem(this));
 
-	auto *pairing = platform->itemGetOrCreate("Tokens/Pairing");
-	pairing->itemAddChild("Enable", new TokenPairingEnableItem(pairing->itemGetOrCreate("CountDown"), ledController));
+	mTokenDir = "/var/volatile/" + kind.toLower();
+	mTokenFile = "/data/conf/" + kind.toLower() + ".json";
 
-	QDir dir(tokendir);
+	QDir dir(mTokenDir);
 	if (!dir.exists()) {
 		dir.mkpath(".");
-		chmod(tokendir.toUtf8(), S_IRUSR | S_IWUSR | S_IXUSR);
+		chmod(mTokenDir.toUtf8(), S_IRUSR | S_IWUSR | S_IXUSR);
 		struct passwd * pw = getpwnam("php-fpm");
 		if (pw)
-			chown(tokendir.toUtf8(), pw->pw_uid, pw->pw_gid);
+			chown(mTokenDir.toUtf8(), pw->pw_uid, pw->pw_gid);
 		else
 			qCritical() << "user php-fpm not found";
 	}
 
-	mWatcher.addPath(tokendir);
+	mWatcher.addPath(mTokenDir);
 	connect(&mWatcher, &QFileSystemWatcher::directoryChanged, this, &TokenUserWatcher::scanDirectory);
 	scanDirectory();
 	updateTokens();
@@ -163,7 +165,7 @@ TokenUserWatcher::~TokenUserWatcher()
 
 void TokenUserWatcher::scanDirectory()
 {
-	QDir directory(tokendir);
+	QDir directory(mTokenDir);
 	for (QString const &filename: directory.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
 		QFile json(directory.filePath(filename));
 
@@ -178,11 +180,11 @@ void TokenUserWatcher::scanDirectory()
 			if (user.isValid()) {
 				TokenUsers users;
 
-				if (!users.load(tokenfile))
+				if (!users.load(mTokenFile))
 					qCritical() << "failed to load token users";
 
 				if (users.addTokenUser(user)) {
-					users.save(tokenfile);
+					users.save(mTokenFile);
 					qInfo() << "adding token" << user;
 					updateTokens();
 				}
@@ -199,7 +201,7 @@ void TokenUserWatcher::scanDirectory()
 void TokenUserWatcher::updateTokens()
 {
 	TokenUsers users;
-	users.load(tokenfile);
+	users.load(mTokenFile);
 	QJsonArray array = users.toJson(false);
 	QJsonDocument doc(array);
 	QString json = doc.toJson(QJsonDocument::Compact);
@@ -210,6 +212,8 @@ int TokenRemoveItem::setValue(const QVariant &value)
 {
 	QString token = value.toString();
 	qDebug() << "[tokens] removing" << token;
+
+	QString tokenfile = mWatcher->tokenFile();
 
 	TokenUsers users;
 	if (!users.load(tokenfile)) {
@@ -230,7 +234,7 @@ int TokenRemoveItem::setValue(const QVariant &value)
 
 	mWatcher->updateTokens();
 
-	QDBusMessage signal = QDBusMessage::createSignal("/Tokens/Users", "com.victronenergy.TokenUsers", "UserRemoved");
+	QDBusMessage signal = QDBusMessage::createSignal("/" + mWatcher->tokenKind() + "/Users", "com.victronenergy.TokenUsers", "UserRemoved");
 	signal << token;
 	if (!VeDbusConnection::getConnection().send(signal))
 		qCritical() << "failed to send token remove signal";
@@ -301,4 +305,12 @@ int TokenPairingEnableItem::setValue(const QVariant &value)
 	startCountDown();
 
 	return VeQItemAction::setValue(value);
+}
+
+TokenSupport::TokenSupport(VeQItem *platform, LedController *ledController) :
+	mMqttTokens(platform, "Tokens"),
+	mBleTokens(platform, "BleTokens")
+{
+	auto *pairing = platform->itemGetOrCreate("Tokens/Pairing");
+	pairing->itemAddChild("Enable", new TokenPairingEnableItem(pairing->itemGetOrCreate("CountDown"), ledController));
 }
