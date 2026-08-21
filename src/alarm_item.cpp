@@ -368,7 +368,7 @@ BatteryAlarms::BatteryAlarms(VenusService *service, Notifications *notications) 
 	addTripplet(tr("Cell imbalance"),					"/Alarms/CellImbalance",						nullptr,		"");
 	addTripplet(tr("Low cell voltage"),					"/Alarms/LowCellVoltage",						nullptr,		"/System/MinCellVoltage");
 	addTripplet(tr("Bad contactor"),					"/Alarms/Contactor",							nullptr,		"");
-	addTripplet(tr("BMS cable fault"),					"/Alarms/BmsCable",								nullptr,		"");
+	addTripplet(tr("Battery communication lost"),		"/Alarms/BmsCable",								nullptr,		"");
 	addTripplet(tr("To update battery: https://ve3.nl/ngut"), "/Alarms/FirmwareUpdateFailure",			nullptr,		"");
 	addTripplet(tr("Parallel BMS connection lost"),		"/Alarms/ParallelBmsLost",						nullptr,		"");
 	addErrorFlag(tr("Communication error"),				"/Errors/SmartLithium/Communication",			nullptr);
