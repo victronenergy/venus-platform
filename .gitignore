@@ -1,3 +1,6 @@
 venus-platform.pro.user
 *.pro.user
-build
+build*
+.vscode
+.qmake.stash
+Makefile
