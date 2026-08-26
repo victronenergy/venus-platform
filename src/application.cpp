@@ -356,7 +356,7 @@ public:
 		add("Services/Socketcand", 0, 0, 1);
 		add("System/AccessLevel", 1, 0, 3);
 		add("System/AutoUpdate", 2, 0, 3);
-		add("System/ImageType", 0, 0, 1);
+		add("System/ImageType", 0, 0, 2);
 		add("System/LogLevel", 2, 0, 0);
 		add("System/ReleaseType", 0, 0, 3);
 		add("System/TimeZone", "/UTC");
