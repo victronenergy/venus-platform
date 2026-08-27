@@ -111,6 +111,7 @@ DeviceAlarms *DeviceAlarms::createMultiRsAlarms(VenusService *service, Notificat
 {
 	DeviceAlarms *alarms = new DeviceAlarms(service, notications);
 
+	alarms->addTripplet(tr("Grid meter not found #49"), "/Alarms/EnergyMeterMissing", nullptr, "");
 	alarms->addTripplet(tr("Low battery voltage"),	"/Alarms/LowVoltage",		service->item("/Settings/AlarmLevel/LowVoltage"),		"");
 	alarms->addTripplet(tr("High battery voltage"),	"/Alarms/HighVoltage",		service->item("/Settings/AlarmLevel/HighVoltage"),		"");
 	alarms->addTripplet(tr("Low AC voltage"),		"/Alarms/LowVoltageAcOut",	service->item("/Settings/AlarmLevel/LowVoltageAcOut"),	""); /* Single phase is not always on L1 */
