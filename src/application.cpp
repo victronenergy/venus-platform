@@ -343,6 +343,7 @@ public:
 			add("Services/AccessPoint", 1, 0, 1);
 		add("Services/BleSensors", 0, 0, 1);
 		add("Services/Bluetooth", 1, 0, 1);
+		add("Services/Containers", 0, 0, 1);
 		add("Services/Eebus", 0, 0, 1);
 		add("Services/EthernetLinkLocal", 1, 0, 1);
 		add("Services/Evcc", 1, 0, 1);
@@ -677,6 +678,12 @@ void Application::manageDaemontoolsServices()
 		new DaemonToolsService(mSettings, "/service/signalk-server", "Settings/Services/SignalK", this);
 		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/SignalK"), "Enabled",
 							   mSettings->root()->itemGetOrCreate("Settings/Services/SignalK"));
+	}
+
+	if (serviceExists("venus-containers")) {
+		new DaemonToolsService(mSettings, "/service/venus-containers", "Settings/Services/Containers", this);
+		VeQItemProxy::addProxy(mService->itemGetOrCreate("Services/Containers"), "Enabled",
+							   mSettings->root()->itemGetOrCreate("Settings/Services/Containers"));
 	}
 
 	new DaemonToolsService(mSettings, "/service/vesmart-server", "Settings/Services/Bluetooth",
