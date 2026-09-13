@@ -137,13 +137,20 @@ int VeQItemDoUpdate::setValue(const QVariant &value)
 Updater::Updater(VeQItem *parentItem, QObject *parent) :
 	QObject(parent)
 {
-	touchFile(updateFile);
-	touchFile(updateFileRelease);
-	touchFile(versionFile);
+	// no swupdate-scripts (e.g. an OCI container) means no update feed to check
+	// and no A/B partitions to activate a backup on - skip those D-Bus items
+	// entirely rather than expose actions that can only fail.
+	const bool hasSwupdate = QFile::exists(updateScript);
 
-	mUpdateWatcher.addPath(updateFile);
-	mUpdateWatcher.addPath(updateFileRelease);
+	touchFile(versionFile);
 	mUpdateWatcher.addPath(versionFile);
+
+	if (hasSwupdate) {
+		touchFile(updateFile);
+		touchFile(updateFileRelease);
+		mUpdateWatcher.addPath(updateFile);
+		mUpdateWatcher.addPath(updateFileRelease);
+	}
 
 	mItem = parentItem->itemGetOrCreate("Firmware");
 
@@ -164,6 +171,9 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 
 	connect(&mUpdateWatcher, SIGNAL(fileChanged(QString)),
 			SLOT(checkFile(QString)));
+
+	if (!hasSwupdate)
+		return;
 
 	mItem->itemGetOrCreate("Backup")->itemAddChild("Activate", new VeQItemSwitchVersion());
 
