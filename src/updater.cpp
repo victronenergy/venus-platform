@@ -5,6 +5,7 @@
 
 #include "application.hpp"
 #include "updater.hpp"
+#include "utils.hpp"
 #include <veutil/qt/ve_qitem_utils.hpp>
 #include <veutil/qt/firmware_updater_data.hpp>
 
@@ -137,13 +138,17 @@ int VeQItemDoUpdate::setValue(const QVariant &value)
 Updater::Updater(VeQItem *parentItem, QObject *parent) :
 	QObject(parent)
 {
-	touchFile(updateFile);
-	touchFile(updateFileRelease);
-	touchFile(versionFile);
+	const bool hasSwupdate = !isContainer();
 
+	touchFile(updateFile);
+	touchFile(versionFile);
 	mUpdateWatcher.addPath(updateFile);
-	mUpdateWatcher.addPath(updateFileRelease);
 	mUpdateWatcher.addPath(versionFile);
+
+	if (hasSwupdate) {
+		touchFile(updateFileRelease);
+		mUpdateWatcher.addPath(updateFileRelease);
+	}
 
 	mItem = parentItem->itemGetOrCreate("Firmware");
 
@@ -164,12 +169,16 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 
 	connect(&mUpdateWatcher, &QFileSystemWatcher::fileChanged, this, &Updater::checkFile);
 
-	mItem->itemGetOrCreate("Backup")->itemAddChild("Activate", new VeQItemSwitchVersion());
-
 	VeQItem *online = mItem->itemGetOrCreate("Online");
 	online->itemAddChild("AvailableVersion", new VeQItemQuantity());
 	online->itemAddChild("AvailableBuild", new VeQItemQuantity());
 	online->itemAddChild("Check", new VeQItemCheckUpdate(FirmwareFeed::Online, state));
+
+	// A container is updated by pulling a new image, it can only check for updates.
+	if (!hasSwupdate)
+		return;
+
+	backup->itemAddChild("Activate", new VeQItemSwitchVersion());
 	online->itemAddChild("Install", new VeQItemDoUpdate(FirmwareFeed::Online, progress, state));
 
 	VeQItem *offline = mItem->itemGetOrCreate("Offline");
@@ -210,9 +219,11 @@ void Updater::getUpdateInfoFromFile(QString const &fileName, QString const &feed
 		mItem->itemGetOrCreateAndProduce("Online/AvailableVersion", version);
 		mItem->itemGetOrCreateAndProduce("Online/AvailableBuild", build);
 
-		getVersionInfoFromLine(lines[2], build, version);
-		mItem->itemGetOrCreateAndProduce("Offline/AvailableVersion", version);
-		mItem->itemGetOrCreateAndProduce("Offline/AvailableBuild", build);
+		if (!isContainer()) {
+			getVersionInfoFromLine(lines[2], build, version);
+			mItem->itemGetOrCreateAndProduce("Offline/AvailableVersion", version);
+			mItem->itemGetOrCreateAndProduce("Offline/AvailableBuild", build);
+		}
 	}
 
 	// Installing starts with checking for an update first, ignore that state.
