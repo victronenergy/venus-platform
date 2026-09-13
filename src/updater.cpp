@@ -137,13 +137,17 @@ int VeQItemDoUpdate::setValue(const QVariant &value)
 Updater::Updater(VeQItem *parentItem, QObject *parent) :
 	QObject(parent)
 {
-	touchFile(updateFile);
-	touchFile(updateFileRelease);
-	touchFile(versionFile);
+	const bool hasSwupdate = QFile::exists(updateScript);
 
-	mUpdateWatcher.addPath(updateFile);
-	mUpdateWatcher.addPath(updateFileRelease);
+	touchFile(versionFile);
 	mUpdateWatcher.addPath(versionFile);
+
+	if (hasSwupdate) {
+		touchFile(updateFile);
+		touchFile(updateFileRelease);
+		mUpdateWatcher.addPath(updateFile);
+		mUpdateWatcher.addPath(updateFileRelease);
+	}
 
 	mItem = parentItem->itemGetOrCreate("Firmware");
 
@@ -164,6 +168,9 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 
 	connect(&mUpdateWatcher, SIGNAL(fileChanged(QString)),
 			SLOT(checkFile(QString)));
+
+	if (!hasSwupdate)
+		return;
 
 	mItem->itemGetOrCreate("Backup")->itemAddChild("Activate", new VeQItemSwitchVersion());
 
