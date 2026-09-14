@@ -67,24 +67,26 @@ SOURCES = \
 	../src/vebus_backup.cpp \
 
 TRANSLATIONS = \
-	translations/venus_ar.ts \
-	translations/venus_af.ts \
-	translations/venus_cs.ts \
-	translations/venus_da.ts \
-	translations/venus_de.ts \
-	translations/venus_es.ts \
-	translations/venus_fi.ts \
-	translations/venus_fr.ts \
-	translations/venus_it.ts \
-	translations/venus_ja.ts \
-	translations/venus_nl.ts \
-	translations/venus_pl.ts \
-	translations/venus_pt.ts \
-	translations/venus_ru.ts \
-	translations/venus_ro.ts \
-	translations/venus_sv.ts \
-	translations/venus_tr.ts \
-	translations/venus_zh-CN.ts \
+	../translations/venus_ar.ts \
+	../translations/venus_af.ts \
+	../translations/venus_cs.ts \
+	../translations/venus_da.ts \
+	../translations/venus_de.ts \
+	../translations/venus_es.ts \
+	../translations/venus_fi.ts \
+	../translations/venus_fr.ts \
+	../translations/venus_it.ts \
+	../translations/venus_ja.ts \
+	../translations/venus_nl.ts \
+	../translations/venus_pl.ts \
+	../translations/venus_pt.ts \
+	../translations/venus_ru.ts \
+	../translations/venus_ro.ts \
+	../translations/venus_sv.ts \
+	../translations/venus_th.ts \
+	../translations/venus_tr.ts \
+	../translations/venus_uk.ts \
+	../translations/venus_zh-CN.ts \
 
 unix {
 	CONFIG += link_pkgconfig
