@@ -134,6 +134,46 @@
       <source>Pre charge timeout</source>
       <translation>Timeout di pre-carica</translation>
     </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="94"/>
+      <source>ATC/ATD failure</source>
+      <translation>Errore ATC/ATD</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="98"/>
+      <source>Calibration data lost</source>
+      <translation>Dati di calibrazione persi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="102"/>
+      <source>Settings invalid</source>
+      <translation>Impostazioni non valide</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="105"/>
+      <source>Interlock</source>
+      <translation>Interblocco</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="108"/>
+      <source>Emergency stop</source>
+      <translation>Arresto di emergenza</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="111"/>
+      <source>Communication timeout</source>
+      <translation>Timeout di comunicazione</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="114"/>
+      <source>Safety lock</source>
+      <translation>Blocco di sicurezza</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="117"/>
+      <source>Terminal over temperature</source>
+      <translation>Sovratemperatura terminale</translation>
+    </message>
   </context>
   <context>
     <name>ChargerError</name>
@@ -461,6 +501,81 @@
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="83"/>
       <source>15V supply error</source>
       <translation>Errore di alimentazione 15 V</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="23"/>
+      <source>Battery relay fault</source>
+      <translation>Guasto relè batteria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="24"/>
+      <source>Battery not found</source>
+      <translation>Batteria non trovata</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="49"/>
+      <source>PV isolation failure</source>
+      <translation>Isolamento del FV difettoso</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="99"/>
+      <source>PV Input shutdown</source>
+      <translation>Arresto ingresso FV</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="115"/>
+      <source>Charger pre-charge failed</source>
+      <translation>Pre-carica caricabatterie fallita</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="116"/>
+      <source>Charger solar relay failed</source>
+      <translation>Guasto relè solare caricabatterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="117"/>
+      <source>Charger solar short</source>
+      <translation>Cortocircuito solare caricabatterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="118"/>
+      <source>Charger solar connect failed</source>
+      <translation>Connessione solare caricabatterie fallita</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="72"/>
+      <source>Phase rotation</source>
+      <translation>Rotazione fase</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="73"/>
+      <source>Multiple AC inputs</source>
+      <translation>Vari ingressi CA</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="74"/>
+      <source>Too many units in parallel</source>
+      <translation>Troppe unità in parallelo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="76"/>
+      <source>Network incomplete</source>
+      <translation>Rete incompleta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="77"/>
+      <source>Settings sync disabled</source>
+      <translation>Sincronizzazione impostazioni disabilitata</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="89"/>
+      <source>kWh counters invalid</source>
+      <translation>Contatori kWh non validi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="93"/>
+      <source>GFCI sensor error</source>
+      <translation>Errore del sensore GFCI</translation>
     </message>
   </context>
   <context>
@@ -1394,6 +1509,51 @@
       <source>Distributor %1 connection lost</source>
       <translation>Perso collegamento distributore %1</translation>
     </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="350"/>
+      <source>High cell voltage</source>
+      <translation>Alta tensione cella</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="372"/>
+      <source>Battery communication lost</source>
+      <translation>Comunicazione batteria persa</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="373"/>
+      <source>To update battery: https://ve3.nl/ngut</source>
+      <translation>Per aggiornare la batteria: https://ve3.nl/ngut</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="374"/>
+      <source>Parallel BMS connection lost</source>
+      <translation>Connessione BMS parallelo persa</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="375"/>
+      <source>Cell measurements fault</source>
+      <translation>Errore misurazione celle</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="376"/>
+      <source>Communication error</source>
+      <translation>Errore di comunicazione</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="377"/>
+      <source>Invalid battery configuration</source>
+      <translation>Configurazione della batteria non valida</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="378"/>
+      <source>Incorrect number of batteries</source>
+      <translation>Numero di batterie non corretto</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="379"/>
+      <source>Battery voltage not supported</source>
+      <translation>Tensione batteria non supportata</translation>
+    </message>
   </context>
   <context>
     <name>DeviceAlarms</name>
@@ -1536,6 +1696,141 @@
       <source>Low battery</source>
       <translation>Batteria in esaurimento</translation>
     </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="53"/>
+      <source>DC generator is not providing power</source>
+      <translation>Il generatore CC non fornisce alimentazione</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="55"/>
+      <source>GX Auto start/stop is disabled</source>
+      <translation>Avvio/arresto automatico GX disattivato</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="56"/>
+      <source>Remote start is disabled on the genset</source>
+      <translation>Avvio remoto disabilitato sul generatore</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="57"/>
+      <source>Generator stopped due to low tank level</source>
+      <translation>Generatore arrestato a causa del basso livello nel serbatoio</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="133"/>
+      <source>Grid lost</source>
+      <translation>Persa rete</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="134"/>
+      <source>Phase rotation</source>
+      <translation>Rotazione fase</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="233"/>
+      <source>System incompatible for Opportunity Loads</source>
+      <translation>Sistema incompatibile per Carichi Opportunistici</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="242"/>
+      <source>#01 GND not present</source>
+      <translation>#01 GND non presente</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="243"/>
+      <source>#02 Welded contacts</source>
+      <translation>#02 Contatti saldati</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="244"/>
+      <source>#03 CP input short-circuit</source>
+      <translation>#03 Cortocircuito ingresso CP</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="245"/>
+      <source>#04 Residual current</source>
+      <translation>#04 Corrente residua</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="246"/>
+      <source>#05 Over temperature</source>
+      <translation>#05 Sovratemperatura</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="247"/>
+      <source>#06 Light sensor IC fault</source>
+      <translation>#06 Guasto sensore ottico IC</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="248"/>
+      <source>#07 Tamper detected</source>
+      <translation>#07 Manomissione rilevata</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>Initial setup not completed</source>
+      <translation>Configurazione iniziale non completata</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>EVCS externally blocked by grid operator</source>
+      <translation>EVCS bloccato esternamente dall'operatore di rete</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>EVCS high temperature detected</source>
+      <translation>Rilevata temperatura elevata EVCS</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>GX communication warning</source>
+      <translation>Avviso di comunicazione GX</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>Overload detected</source>
+      <translation>Rilevato sovraccarico</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>Overload active</source>
+      <translation>Sovraccarico attivo</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>Scheduled mode failed - time sync issue</source>
+      <translation>Modalità programmata non riuscita - problema di sincronizzazione oraria</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>The charging current is limited by an external switch</source>
+      <translation>La corrente di carica è limitata da un interruttore esterno</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="257"/>
+      <source>The charging current is limited due to inverter overtemperature</source>
+      <translation>La corrente di carica è limitata a causa della sovratemperatura dell'inverter</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="258"/>
+      <source>Can't update display FW due to broken file. Please perform update again</source>
+      <translation>Impossibile aggiornare il FW del display a causa di un file danneggiato. Eseguire nuovamente l'aggiornamento</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="259"/>
+      <source>Can't update display FW due to communication issues</source>
+      <translation>Impossibile aggiornare il FW del display a causa di problemi di comunicazione</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="260"/>
+      <source>Updating display FW. EV charging will be available after a while</source>
+      <translation>Aggiornamento FW display in corso. La ricarica EV sarà disponibile a breve</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="215"/>
+      <source>#46 Data partition full</source>
+      <translation>#46 Partizione dati piena</translation>
+    </message>
   </context>
   <context>
     <name>VenusTankService</name>
@@ -1543,6 +1838,1136 @@
       <location filename="../src/venus_service.cpp" line="121"/>
       <source>tank</source>
       <translation>Serbatoio</translation>
+    </message>
+  </context>
+  <context>
+    <name>AlternatorError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="22"/>
+      <source>No error</source>
+      <translation>Nessun errore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="25"/>
+      <source>Unknown error: %1</source>
+      <translation>Errore sconosciuto: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>CRE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="855"/>
+      <source>Unknown error: </source>
+      <translation>Errore sconosciuto:</translation>
+    </message>
+  </context>
+  <context>
+    <name>CUMMINS</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="1034"/>
+      <source>Unknown error: </source>
+      <translation>Errore sconosciuto:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DEIF</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="874"/>
+      <source>Unknown error: </source>
+      <translation>Errore sconosciuto:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DSE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="259"/>
+      <source>Unknown error: </source>
+      <translation>Errore sconosciuto:</translation>
+    </message>
+  </context>
+  <context>
+    <name>FischerPanda</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="104"/>
+      <source>Unknown error: </source>
+      <translation>Errore sconosciuto: </translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="115"/>
+      <source>No error</source>
+      <translation>Nessun errore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage L1 too low</source>
+      <translation>Tensione CA L1 troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage too low</source>
+      <translation>Tensione CA troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage L1 too high</source>
+      <translation>Tensione CA L1 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage too high</source>
+      <translation>Tensione CA troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency L1 too low</source>
+      <translation>Frequenza CA L1 troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency too low</source>
+      <translation>Frequenza CA troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency L1 too high</source>
+      <translation>Frequenza CA L1 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency too high</source>
+      <translation>Frequenza CA troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current L1 too high</source>
+      <translation>Corrente CA L1 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current too high</source>
+      <translation>Corrente CA troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power L1 too high</source>
+      <translation>Potenza CA L1 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power too high</source>
+      <translation>Potenza CA troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="124"/>
+      <source>Emergency stop</source>
+      <translation>Arresto di emergenza</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="125"/>
+      <source>Servo current too high</source>
+      <translation>Corrente servomotore troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="126"/>
+      <source>Oil pressure too low</source>
+      <translation>Pressione olio troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="127"/>
+      <source>Oil pressure too high</source>
+      <translation>Pressione olio troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="128"/>
+      <source>Engine temperature too low</source>
+      <translation>Temperatura motore troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="129"/>
+      <source>Engine temperature too high</source>
+      <translation>Temperatura motore troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="130"/>
+      <source>Winding temperature too low</source>
+      <translation>Temperatura avvolgimento troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="131"/>
+      <source>Winding temperature too high</source>
+      <translation>Temperatura avvolgimento troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="132"/>
+      <source>Exhaust temperature too low</source>
+      <translation>Temperatura gas di scarico troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="133"/>
+      <source>Exhaust temperature too high</source>
+      <translation>Temperatura gas di scarico troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="134"/>
+      <source>Electronic temperature low</source>
+      <translation>Temperatura elettronica bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="135"/>
+      <source>Electronic temperature high</source>
+      <translation>Temperatura elettronica alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="136"/>
+      <source>Starter voltage too low</source>
+      <translation>Tensione motorino d'avviamento troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="137"/>
+      <source>Starter current too high</source>
+      <translation>Corrente motorino d'avviamento troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="138"/>
+      <source>Glow voltage too low</source>
+      <translation>Tensione candelette troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="139"/>
+      <source>Glow current too high</source>
+      <translation>Corrente candelette troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="140"/>
+      <source>Cold-Start-Aid voltage too high</source>
+      <translation>Tensione dispositivo di avviamento a freddo troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="141"/>
+      <source>Cold-Start-Aid current too high</source>
+      <translation>Corrente dispositivo di avviamento a freddo troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="142"/>
+      <source>Fuel holding magnet voltage too low</source>
+      <translation>Tensione magnete di ritenuta carburante troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="143"/>
+      <source>Fuel holding magnet current too high</source>
+      <translation>Corrente magnete di ritenuta carburante troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="144"/>
+      <source>Stop solenoid hold coil voltage too low</source>
+      <translation>Tensione bobina di ritenuta solenoide di arresto troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="145"/>
+      <source>Stop solenoid hold coil current too high</source>
+      <translation>Corrente bobina di ritenzione del solenoide di arresto troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="146"/>
+      <source>Stop solenoid pull coil voltage too low </source>
+      <translation>Tensione bobina di tiraggio del solenoide di arresto troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="147"/>
+      <source>Stop solenoid pull coil current too high</source>
+      <translation>Corrente bobina di spinta troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="148"/>
+      <source>Fan/water pump voltage too low</source>
+      <translation>Tensione ventola/pompa dell’acqua troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="149"/>
+      <source>Fan/water pump current too high</source>
+      <translation>Corrente ventola/pompa dell'acqua troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="150"/>
+      <source>Current sensor voltage low</source>
+      <translation>Tensione sensore di corrente bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="151"/>
+      <source>Current sensor current high</source>
+      <translation>Corrente sensore di corrente alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="152"/>
+      <source>Boost output voltage too low</source>
+      <translation>Tensione uscita dell’incremento troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="153"/>
+      <source>Boost output current too high</source>
+      <translation>Corrente uscita dell’incremento troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="154"/>
+      <source>Bus supply voltage too low</source>
+      <translation>Tensione di alimentazione del bus troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="155"/>
+      <source>Bus supply current too high</source>
+      <translation>Corrente di alimentazione del bus troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="156"/>
+      <source>Starter battery voltage too low</source>
+      <translation>Tensione batteria di avviamento troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="157"/>
+      <source>Starter battery voltage too high</source>
+      <translation>Tensione della batteria di avviamento troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="158"/>
+      <source>Rotation too low</source>
+      <translation>Rotazione insufficiente</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="159"/>
+      <source>Rotation too high</source>
+      <translation>Rotazione eccessiva</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="160"/>
+      <source>Unexpected stop/problem with fuel supply</source>
+      <translation>Arresto imprevisto/problema dell'alimentazione del carburante</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="161"/>
+      <source>Power contactor voltage too low</source>
+      <translation>Tensione del contattore di potenza troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="162"/>
+      <source>Power contactor current too high</source>
+      <translation>Corrente del contattore di potenza troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="163"/>
+      <source>AC voltage L2 too low</source>
+      <translation>Tensione CA L2 troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="164"/>
+      <source>AC voltage L2 too high</source>
+      <translation>Tensione CA L2 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="165"/>
+      <source>AC frequency L2 too low</source>
+      <translation>Frequenza CA L2 troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="166"/>
+      <source>AC frequency L2 too high</source>
+      <translation>Frequenza CA L2 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="167"/>
+      <source>AC current L2 too high</source>
+      <translation>Corrente CA L2 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="168"/>
+      <source>AC power L2 too high</source>
+      <translation>Potenza CA L2 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="169"/>
+      <source>AC voltage L3 too low</source>
+      <translation>Tensione CA L3 troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="170"/>
+      <source>AC voltage L3 too high</source>
+      <translation>Tensione CA L3 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="171"/>
+      <source>AC frequency L3 too low</source>
+      <translation>Frequenza CA L3 troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="172"/>
+      <source>AC frequency L3 too high</source>
+      <translation>Frequenza CA L3 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="173"/>
+      <source>AC current L3 too high</source>
+      <translation>Corrente CA L3 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="174"/>
+      <source>AC power L3 too high</source>
+      <translation>Potenza CA L3 troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="175"/>
+      <source>Output Inverter voltage too low</source>
+      <translation>Tensione di uscita dell'inverter troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="176"/>
+      <source>Output Inverter current too  high</source>
+      <translation>Corrente di uscita dell'inverter troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="177"/>
+      <source>Universal output (1A) voltage too low</source>
+      <translation>Tensione uscita universale (1 A) troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="178"/>
+      <source>Universal output (1A) current too high</source>
+      <translation>Corrente uscita universale (1 A) troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="179"/>
+      <source>Universal output (5A) voltage too low</source>
+      <translation>Tensione uscita universale (5 A) troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="180"/>
+      <source>Universal output (5A) current too high</source>
+      <translation>Corrente uscita universale (5 A) troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="181"/>
+      <source>AGT DC voltage 1 low</source>
+      <translation>Tensione CC AGT 1 bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="182"/>
+      <source>AGT DC voltage 1 high</source>
+      <translation>Tensione CC AGT 1 alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="183"/>
+      <source>AGT DC current 1 low</source>
+      <translation>Corrente CC AGT 1 bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="184"/>
+      <source>AGT DC current 1 high</source>
+      <translation>Corrente CC AGT 1 alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="185"/>
+      <source>AGT DC voltage 2 low</source>
+      <translation>Tensione CC AGT 2 bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="186"/>
+      <source>AGT DC voltage 2 high</source>
+      <translation>Tensione CC AGT 2 alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="187"/>
+      <source>AGT DC current 2 low</source>
+      <translation>Corrente CC AGT 2 bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="188"/>
+      <source>AGT DC current 2 high</source>
+      <translation>Corrente CC AGT 2 alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="189"/>
+      <source>AGT B6 cooler low</source>
+      <translation>Refrigerante B6 AGT basso</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="190"/>
+      <source>AGT B6 cooler high</source>
+      <translation>Refrigerante B6 AGT alto</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="191"/>
+      <source>AGT B6 rail (-) low</source>
+      <translation>Guida (-) B6 AGT bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="192"/>
+      <source>AGT B6 rail (-) high</source>
+      <translation>Guida (-) B6 AGT alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="193"/>
+      <source>AGT B6 rail (+) low</source>
+      <translation>Guida (+) B6 AGT bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="194"/>
+      <source>AGT B6 rail (+) high</source>
+      <translation>Guida (+) B6 AGT alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="195"/>
+      <source>Fuel temperature too low</source>
+      <translation>Temperatura carburante troppo bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="196"/>
+      <source>Fuel temperature too high</source>
+      <translation>Temperatura carburante troppo alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="197"/>
+      <source>Fuel level too low</source>
+      <translation>Livello carburante troppo basso</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="200"/>
+      <source>Lost control unit</source>
+      <translation>Perdita controllo dell'unità</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="201"/>
+      <source>Lost panel</source>
+      <translation>Perdita pannello</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="202"/>
+      <source>Service needed</source>
+      <translation>Servizio necessario</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="203"/>
+      <source>Lost 3-phase module</source>
+      <translation>Perdita modulo trifase</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="204"/>
+      <source>Lost AGT module</source>
+      <translation>Perdita modulo AGT</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="205"/>
+      <source>Synchronization failure</source>
+      <translation>Errore di sincronizzazione</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="206"/>
+      <source>Lost external ECU</source>
+      <translation>ECU esterna persa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="207"/>
+      <source>Intake airfilter</source>
+      <translation>Filtro di immissione dell'aria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="208"/>
+      <source>Diagnostic message (ECU)</source>
+      <translation>Messaggio diagnostico (ECU)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="209"/>
+      <source>Lost sync. module</source>
+      <translation>Perdita di sincr. del modulo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="210"/>
+      <source>Load-balance failed</source>
+      <translation>Errore di bilanciamento del carico</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="211"/>
+      <source>Sync-mode deactivated</source>
+      <translation>Modalità di sincr. disattivata</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="212"/>
+      <source>Red Stop Lamp (RSL)</source>
+      <translation>Spia di arresto rossa (RSL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="213"/>
+      <source>Amber Warning Lamp (AWL)</source>
+      <translation>Spia di avviso ambra (AWL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="214"/>
+      <source>Malfunction Indicator Lamp (MIL)</source>
+      <translation>Spia di malfunzionamento (MIL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="215"/>
+      <source>Protect Lamp (PL)</source>
+      <translation>Spia di protezione (PL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="216"/>
+      <source>Rotating field wrong</source>
+      <translation>Errore nel campo rotante</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="217"/>
+      <source>Fuel level sensor lost</source>
+      <translation>Perdita del sensore di livello del carburante</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="218"/>
+      <source>Starting without inverter</source>
+      <translation>Avviamento senza inverter</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="219"/>
+      <source>Bus #1 dead</source>
+      <translation>Bus #1 non funzionante</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="220"/>
+      <source>Start request denied</source>
+      <translation>Richiesta di avvio negata</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="221"/>
+      <source>Remote start denied</source>
+      <translation>Avvio remoto negato</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="222"/>
+      <source>Forced switch off load relay</source>
+      <translation>Relè di carico a disattivazione forzata</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="223"/>
+      <source>Synchronization Module is offline</source>
+      <translation>Il modulo di sincronizzazione è offline</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="224"/>
+      <source>Lost BMS</source>
+      <translation>BMS perso</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="225"/>
+      <source>Converter DC Link Voltage Low/Reverse</source>
+      <translation>Tensione bassa/inversa collegamento CC convertitore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="226"/>
+      <source>Converter DC Link Current Low</source>
+      <translation>Corrente bassa collegamento CC convertitore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="227"/>
+      <source>Converter DC Precharge Voltage Low</source>
+      <translation>Tensione bassa precarica CC convertitore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="228"/>
+      <source>Converter DC Precharge Voltage High</source>
+      <translation>Tensione alta precarica CC convertitore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="229"/>
+      <source>Converter IGBT/MOSFET Driver Error</source>
+      <translation>Errore del driver IGBT/MOSFET convertitore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="230"/>
+      <source>Converter Error Power Control Loop</source>
+      <translation>Errore del ciclo di controllo della potenza del convertitore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="231"/>
+      <source>Converter AC Frequency Detection</source>
+      <translation>Rilevamento frequenza CA del convertitore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="232"/>
+      <source>Converter Control Value Fail</source>
+      <translation>Errore del valore di controllo del convertitore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="233"/>
+      <source>Factory setting changed</source>
+      <translation>Impostazioni di fabbrica modificate</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="234"/>
+      <source>Parameter changed in admin mode</source>
+      <translation>Parametro modificato in modalità amministratore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="235"/>
+      <source>Manual Intervention (ext. System)</source>
+      <translation>Intervento manuale (sistema esterno)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="238"/>
+      <source>Init failed</source>
+      <translation>Inizializzazione non riuscita</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="239"/>
+      <source>Watchdog</source>
+      <translation>Watchdog</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="240"/>
+      <source>Inverter temperature high L1</source>
+      <translation>Temperatura inverter alta L1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="241"/>
+      <source>Inverter temperature high L2</source>
+      <translation>Temperatura inverter alta L2</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="242"/>
+      <source>Inverter temperature high L3</source>
+      <translation>Temperatura inverter alta L3</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="243"/>
+      <source>Inverter temperature high DC link</source>
+      <translation>Temperatura inverter alta collegamento CC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="244"/>
+      <source>Inverter overload</source>
+      <translation>Sovraccarico inverter</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="245"/>
+      <source>Inverter communication lost</source>
+      <translation>Perdita comunicazione inverter</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="246"/>
+      <source>DC overload</source>
+      <translation>Sovraccarico CC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="247"/>
+      <source>DC overvoltage</source>
+      <translation>Sovratensione CC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="249"/>
+      <source>No connection</source>
+      <translation>Connessione non presente</translation>
+    </message>
+  </context>
+  <context>
+    <name>GensetError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="83"/>
+      <source>No error</source>
+      <translation>Nessun errore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="96"/>
+      <source>Unknown error: %1</source>
+      <translation>Errore sconosciuto: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>Hatz</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="795"/>
+      <source>Unknown error: </source>
+      <translation>Errore sconosciuto:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="814"/>
+      <source>Oil pressure</source>
+      <translation>Pressione dell'olio</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="815"/>
+      <source>Cylinder head overtemperature</source>
+      <translation>Sovratemperatura della testa del cilindro</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="816"/>
+      <source>Charge control</source>
+      <translation>Controllo della carica</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="817"/>
+      <source>Speed higher than expected</source>
+      <translation>Velocità superiore al previsto</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="818"/>
+      <source>Overspeed</source>
+      <translation>Velocità eccessiva</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="820"/>
+      <source>Oil temperature higher than expected</source>
+      <translation>Temperatura olio superiore al previsto</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="821"/>
+      <source>Oil temperature open circuit / short to power</source>
+      <translation>Circuito aperto/cortocircuito verso positivo temperatura olio</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="822"/>
+      <source>Oil temperature short to ground</source>
+      <translation>Cortocircuito verso massa temperatura olio</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="823"/>
+      <source>Analog setpoint high / short to power</source>
+      <translation>Setpoint analogico alto / cortocircuito di alimentazione</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="824"/>
+      <source>Analog setpoint low / short to ground</source>
+      <translation>Setpoint analogico basso / cortocircuito a terra</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="825"/>
+      <source>TSC1 message receive timeout</source>
+      <translation>Timeout ricezione messaggi TSC1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="826"/>
+      <source>CM1 message receive timeout</source>
+      <translation>Timeout ricezione messaggi CM1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="827"/>
+      <source>Battery voltage high</source>
+      <translation>Tensione batteria alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="828"/>
+      <source>Battery voltage low</source>
+      <translation>Tensione batteria bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="829"/>
+      <source>Speed signal distorted</source>
+      <translation>Segnale di velocità distorto</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="830"/>
+      <source>Internal 5V sensor supply high</source>
+      <translation>Alimentazione interna del sensore a 5 V alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="831"/>
+      <source>Internal 5V sensor supply low</source>
+      <translation>Alimentazione interna del sensore a 5 V bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="832"/>
+      <source>Barometric pressure high</source>
+      <translation>Pressione barometrica alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="833"/>
+      <source>Barometric pressure low</source>
+      <translation>Pressione barometrica bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="834"/>
+      <source>Output fuelpump short to power</source>
+      <translation>Cortocircuito di alimentazione pompa carburante in uscita</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="835"/>
+      <source>Output fuelpump short to ground</source>
+      <translation>Cortocircuito a terra pompa carburante in uscita</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="836"/>
+      <source>Output glow plug short to power</source>
+      <translation>Cortocircuito di alimentazione uscita candeletta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="837"/>
+      <source>Output glow plug short to ground</source>
+      <translation>Cortocircuito a terra uscita candeletta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="838"/>
+      <source>Injector open circuit/low side short to ground</source>
+      <translation>Cortocircuito a terra circuito aperto/lato basso iniettore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="839"/>
+      <source>Injector coil internal short circuit</source>
+      <translation>Cortocircuito interno bobina iniettore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="840"/>
+      <source>Injector low side short to power</source>
+      <translation>Cortocircuito di alimentazione lato basso iniettore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="841"/>
+      <source>Service hours expired</source>
+      <translation>Ore di servizio scadute</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="845"/>
+      <source>Processor failure</source>
+      <translation>Guasto del processore</translation>
+    </message>
+  </context>
+  <context>
+    <name>QObject</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="125"/>
+      <source>Fuel</source>
+      <translation>Carburante</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="126"/>
+      <source>Fresh water</source>
+      <translation>Acqua dolce</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="127"/>
+      <source>Waste water</source>
+      <translation>Acque reflue</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="128"/>
+      <source>Live well</source>
+      <translation>Serbatoio</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="129"/>
+      <source>Oil</source>
+      <translation>Olio</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="130"/>
+      <source>Black water (sewage)</source>
+      <translation>Acque nere (scarico)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="131"/>
+      <source>Gasoline</source>
+      <translation>Benzina</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="132"/>
+      <source>Diesel</source>
+      <translation>Diesel</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="133"/>
+      <source>LPG</source>
+      <translation>LPG</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="134"/>
+      <source>LNG</source>
+      <translation>LNG</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="135"/>
+      <source>Hydraulic oil</source>
+      <translation>Olio idraulico</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="136"/>
+      <source>Raw water</source>
+      <translation>Acqua grezza</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="143"/>
+      <source>Unknown</source>
+      <translation>Sconosciuto</translation>
+    </message>
+  </context>
+  <context>
+    <name>Wakespeed</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="138"/>
+      <source>Unknown error: </source>
+      <translation>Errore sconosciuto:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="151"/>
+      <source>Internal error</source>
+      <translation>Errore interno</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="156"/>
+      <source>No error</source>
+      <translation>Nessun errore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="159"/>
+      <source>Battery high temperature</source>
+      <translation>Alta temperatura della batteria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="162"/>
+      <source>Battery high voltage</source>
+      <translation>Alta tensione batteria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="165"/>
+      <source>Battery low voltage</source>
+      <translation>Basso Voltaggio della Batteria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="168"/>
+      <source>Battery voltage exceeded configured max</source>
+      <translation>La tensione della batteria ha superato il valore massimo configurato</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="171"/>
+      <source>Battery temperature sensor defective</source>
+      <translation>Sensore di temperatura batteria difettoso</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="175"/>
+      <source>Alternator high temperature</source>
+      <translation>Alta temperatura dell’alternatore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="178"/>
+      <source>Alternator high RPM</source>
+      <translation>Alti giri/min dell’alternatore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="181"/>
+      <source>Field drive FET high temperature</source>
+      <translation>Alta temperatura FET azionamento di campo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="184"/>
+      <source>Required sensor missing</source>
+      <translation>Sensore richiesto mancante</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="187"/>
+      <source>Alternator low voltage</source>
+      <translation>Bassa tensione alternatore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="190"/>
+      <source>Alternator high voltage offset</source>
+      <translation>Offset alta tensione alternatore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="193"/>
+      <source>Alternator Voltage exceeded configured max</source>
+      <translation>La tensione dell’alternatore ha superato il valore massimo configurato</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="196"/>
+      <source>Alternator high voltage</source>
+      <translation>Alta tensione dell’alternatore</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="199"/>
+      <source>Battery disconnected</source>
+      <translation>Batteria scollegata</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="202"/>
+      <source>Battery high voltage disconnect</source>
+      <translation>Disconnessione alta tensione batteria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="205"/>
+      <source>Battery instance ouf of range</source>
+      <translation>Le istanze della batteria non rientrano nell’intervallo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="208"/>
+      <source>Too many BMS's</source>
+      <translation>Troppi BMS</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="211"/>
+      <source>Battery about to disconnect</source>
+      <translation>La batteria sta per scollegarsi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="214"/>
+      <source>Too many devices to track</source>
+      <translation>Troppi dispositivi da monitorare</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="217"/>
+      <source>Battery low voltage disconnect</source>
+      <translation>Disconnessione per bassa tensione batteria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="220"/>
+      <source>Battery high current disconnect</source>
+      <translation>Disconnessione alta corrente batteria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="223"/>
+      <source>Battery high temperature disconnect</source>
+      <translation>Disconnessione per alta temperatura batteria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="226"/>
+      <source>Battery low temperature disconnect</source>
+      <translation>Disconnessione per bassa temperatura batteria</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="229"/>
+      <source>BMS connection lost</source>
+      <translation>Perso collegamento BMS</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="232"/>
+      <source>ATC Disabled</source>
+      <translation>ATC disabilitato</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="235"/>
+      <source>DC/DC converter not ready</source>
+      <translation>Convertitore CC/CC non pronto</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="238"/>
+      <source>DC/DC high primary voltage</source>
+      <translation>Tensione principale CC/CC alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="241"/>
+      <source>DC/DC low primary voltage</source>
+      <translation>Tensione principale CC/CC bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="244"/>
+      <source>DC/DC high secondary voltage</source>
+      <translation>Tensione secondaria CC/CC alta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="247"/>
+      <source>DC/DC low secondary voltage</source>
+      <translation>Tensione secondaria CC/CC bassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="250"/>
+      <source>DC/DC high temperature</source>
+      <translation>Temperatura alta CC/CC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="253"/>
+      <source>DC/DC misconfiguration</source>
+      <translation>Configurazione errata CC/CC</translation>
     </message>
   </context>
 </TS>

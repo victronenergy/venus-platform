@@ -134,6 +134,46 @@
       <source>Pre charge timeout</source>
       <translation>หมดเวลาชาร์จล่วงหน้า</translation>
     </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="94"/>
+      <source>ATC/ATD failure</source>
+      <translation>ATC/ATD ล้มเหลว</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="98"/>
+      <source>Calibration data lost</source>
+      <translation>ข้อมูลการสอบเทียบสูญหาย</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="102"/>
+      <source>Settings invalid</source>
+      <translation>การตั้งค่าไม่ถูกต้อง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="105"/>
+      <source>Interlock</source>
+      <translation>ลูกโซ่</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="108"/>
+      <source>Emergency stop</source>
+      <translation>หยุดฉุกเฉิน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="111"/>
+      <source>Communication timeout</source>
+      <translation>หมดเวลาการสื่อสาร</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="114"/>
+      <source>Safety lock</source>
+      <translation>ล็อคเพื่อความปลอดภัย</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="117"/>
+      <source>Terminal over temperature</source>
+      <translation>เทอร์มินัลเกินอุณหภูมิ</translation>
+    </message>
   </context>
   <context>
     <name>ChargerError</name>
@@ -461,6 +501,81 @@
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="83"/>
       <source>15V supply error</source>
       <translation>ข้อผิดพลาดในการจ่ายไฟ 15V</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="23"/>
+      <source>Battery relay fault</source>
+      <translation>รีเลย์แบตเตอรี่ขัดข้อง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="24"/>
+      <source>Battery not found</source>
+      <translation>ไม่พบแบตเตอรี่</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="49"/>
+      <source>PV isolation failure</source>
+      <translation>การแยก PV ล้มเหลว</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="99"/>
+      <source>PV Input shutdown</source>
+      <translation>การปิดอินพุต PV</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="115"/>
+      <source>Charger pre-charge failed</source>
+      <translation>การชาร์จไฟล่วงหน้าล้มเหลว</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="116"/>
+      <source>Charger solar relay failed</source>
+      <translation>รีเลย์โซลาร์ของเครื่องชาร์จขัดข้อง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="117"/>
+      <source>Charger solar short</source>
+      <translation>โซลาร์ของเครื่องชาร์จลัดวงจร</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="118"/>
+      <source>Charger solar connect failed</source>
+      <translation>การเชื่อมต่อโซลาร์ของเครื่องชาร์จล้มเหลว</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="72"/>
+      <source>Phase rotation</source>
+      <translation>การหมุนเฟส</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="73"/>
+      <source>Multiple AC inputs</source>
+      <translation>อินพุต AC หลายช่อง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="74"/>
+      <source>Too many units in parallel</source>
+      <translation>มีการเชื่อมต่อแบบขนานมากเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="76"/>
+      <source>Network incomplete</source>
+      <translation>เครือข่ายไม่สมบูรณ์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="77"/>
+      <source>Settings sync disabled</source>
+      <translation>ปิดการใช้งานการซิงค์การตั้งค่า</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="89"/>
+      <source>kWh counters invalid</source>
+      <translation>ตัวนับ kWh ไม่ถูกต้อง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="93"/>
+      <source>GFCI sensor error</source>
+      <translation>ข้อผิดพลาดของเซ็นเซอร์ GFCI</translation>
     </message>
   </context>
   <context>
@@ -1394,6 +1509,51 @@
       <source>Distributor %1 connection lost</source>
       <translation>สูญเสียการเชื่อมต่อ %1 ของผู้จัดจำหน่าย</translation>
     </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="350"/>
+      <source>High cell voltage</source>
+      <translation>แรงดันไฟฟ้าเซลล์สูง</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="372"/>
+      <source>Battery communication lost</source>
+      <translation>การสื่อสารกับแบตเตอรี่ขาดหาย</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="373"/>
+      <source>To update battery: https://ve3.nl/ngut</source>
+      <translation>หากต้องการอัปเดตแบตเตอรี่: https://ve3.nl/ngut</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="374"/>
+      <source>Parallel BMS connection lost</source>
+      <translation>การเชื่อมต่อ BMS แบบขนานขาดหาย</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="375"/>
+      <source>Cell measurements fault</source>
+      <translation>ข้อผิดพลาดในการวัดค่าเซลล์</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="376"/>
+      <source>Communication error</source>
+      <translation>ข้อผิดพลาดในการสื่อสาร</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="377"/>
+      <source>Invalid battery configuration</source>
+      <translation>การกำหนดค่าแบตเตอรี่ไม่ถูกต้อง</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="378"/>
+      <source>Incorrect number of batteries</source>
+      <translation>จำนวนแบตเตอรี่ไม่ถูกต้อง</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="379"/>
+      <source>Battery voltage not supported</source>
+      <translation>ไม่รองรับแรงดันไฟฟ้าของแบตเตอรี่</translation>
+    </message>
   </context>
   <context>
     <name>DeviceAlarms</name>
@@ -1536,6 +1696,141 @@
       <source>Low battery</source>
       <translation>แบตเตอร์รี่ต่ำ</translation>
     </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="53"/>
+      <source>DC generator is not providing power</source>
+      <translation>เครื่องกำเนิดไฟฟ้ากระแสตรง (DC) ไม่จ่ายพลังงาน</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="55"/>
+      <source>GX Auto start/stop is disabled</source>
+      <translation>ระบบสตาร์ต/หยุดอัตโนมัติของ GX ถูกปิดใช้งาน</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="56"/>
+      <source>Remote start is disabled on the genset</source>
+      <translation>การสตาร์ตจากระยะไกลถูกปิดใช้งานที่เครื่องกำเนิดไฟฟ้า</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="57"/>
+      <source>Generator stopped due to low tank level</source>
+      <translation>เครื่องกำเนิดไฟฟ้าหยุดทำงานเนื่องจากระดับน้ำมันในถังต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="133"/>
+      <source>Grid lost</source>
+      <translation>กริดหายไป</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="134"/>
+      <source>Phase rotation</source>
+      <translation>การหมุนเฟส</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="233"/>
+      <source>System incompatible for Opportunity Loads</source>
+      <translation>ระบบไม่รองรับสำหรับ Opportunity Loads</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="242"/>
+      <source>#01 GND not present</source>
+      <translation>#01 ไม่มีสายดิน (GND)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="243"/>
+      <source>#02 Welded contacts</source>
+      <translation>#02 หน้าสัมผัสเชื่อมติดกัน</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="244"/>
+      <source>#03 CP input short-circuit</source>
+      <translation>#03 อินพุต CP ลัดวงจร</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="245"/>
+      <source>#04 Residual current</source>
+      <translation>#04 กระแสไฟฟ้ารั่ว</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="246"/>
+      <source>#05 Over temperature</source>
+      <translation>#05 อุณหภูมิสูงเกิน</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="247"/>
+      <source>#06 Light sensor IC fault</source>
+      <translation>#06 IC เซ็นเซอร์แสงขัดข้อง</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="248"/>
+      <source>#07 Tamper detected</source>
+      <translation>#07 ตรวจพบการงัดแงะ</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>Initial setup not completed</source>
+      <translation>การตั้งค่าเริ่มต้นยังไม่เสร็จสมบูรณ์</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>EVCS externally blocked by grid operator</source>
+      <translation>EVCS ถูกบล็อกจากภายนอกโดยผู้ให้บริการโครงข่ายไฟฟ้า</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>EVCS high temperature detected</source>
+      <translation>ตรวจพบอุณหภูมิ EVCS สูง</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>GX communication warning</source>
+      <translation>คำเตือนการสื่อสารของ GX</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>Overload detected</source>
+      <translation>ตรวจพบการใช้งานเกินกำลัง (โอเวอร์โหลด)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>Overload active</source>
+      <translation>กำลังเกิดการใช้งานเกินกำลัง (โอเวอร์โหลด)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>Scheduled mode failed - time sync issue</source>
+      <translation>โหมดตั้งเวลาล้มเหลว - เกิดปัญหาการซิงค์เวลา</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>The charging current is limited by an external switch</source>
+      <translation>กระแสไฟชาร์จถูกจำกัดโดยสวิตช์ภายนอก</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="257"/>
+      <source>The charging current is limited due to inverter overtemperature</source>
+      <translation>กระแสไฟชาร์จถูกจำกัดเนื่องจากอุณหภูมิอินเวอร์เตอร์สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="258"/>
+      <source>Can't update display FW due to broken file. Please perform update again</source>
+      <translation>ไม่สามารถอัปเดต FW ของจอแสดงผลได้เนื่องจากไฟล์เสียหาย โปรดดำเนินการอัปเดตอีกครั้ง</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="259"/>
+      <source>Can't update display FW due to communication issues</source>
+      <translation>ไม่สามารถอัปเดต FW ของจอแสดงผลได้เนื่องจากปัญหาการสื่อสาร</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="260"/>
+      <source>Updating display FW. EV charging will be available after a while</source>
+      <translation>กำลังอัปเดต FW ของจอแสดงผล การชาร์จ EV จะพร้อมใช้งานหลังจากนี้สักครู่</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="215"/>
+      <source>#46 Data partition full</source>
+      <translation>#46 พาร์ติชันข้อมูลเต็ม</translation>
+    </message>
   </context>
   <context>
     <name>VenusTankService</name>
@@ -1543,6 +1838,1136 @@
       <location filename="../src/venus_service.cpp" line="121"/>
       <source>tank</source>
       <translation>ถัง</translation>
+    </message>
+  </context>
+  <context>
+    <name>AlternatorError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="22"/>
+      <source>No error</source>
+      <translation>ไม่มีข้อผิดพลาด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="25"/>
+      <source>Unknown error: %1</source>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>CRE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="855"/>
+      <source>Unknown error: </source>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก:</translation>
+    </message>
+  </context>
+  <context>
+    <name>CUMMINS</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="1034"/>
+      <source>Unknown error: </source>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DEIF</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="874"/>
+      <source>Unknown error: </source>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DSE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="259"/>
+      <source>Unknown error: </source>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก:</translation>
+    </message>
+  </context>
+  <context>
+    <name>FischerPanda</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="104"/>
+      <source>Unknown error: </source>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก: </translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="115"/>
+      <source>No error</source>
+      <translation>ไม่มีข้อผิดพลาด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage L1 too low</source>
+      <translation>แรงดันไฟฟ้ากระแสสลับ L1 ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage too low</source>
+      <translation>แรงดันไฟฟ้ากระแสสลับต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage L1 too high</source>
+      <translation>แรงดันไฟฟ้ากระแสสลับ L1 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage too high</source>
+      <translation>แรงดันไฟฟ้ากระแสสลับสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency L1 too low</source>
+      <translation>ความถี่ไฟฟ้ากระแสสลับ L1 ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency too low</source>
+      <translation>ความถี่ไฟฟ้ากระแสสลับต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency L1 too high</source>
+      <translation>ความถี่ไฟฟ้ากระแสสลับ L1 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency too high</source>
+      <translation>ความถี่ไฟฟ้ากระแสสลับสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current L1 too high</source>
+      <translation>กระแสไฟฟ้ากระแสสลับ L1 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current too high</source>
+      <translation>กระแสไฟฟ้ากระแสสลับสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power L1 too high</source>
+      <translation>กำลังไฟฟ้ากระแสสลับ L1 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power too high</source>
+      <translation>กำลังไฟฟ้ากระแสสลับสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="124"/>
+      <source>Emergency stop</source>
+      <translation>หยุดฉุกเฉิน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="125"/>
+      <source>Servo current too high</source>
+      <translation>กระแสไฟเซอร์โวสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="126"/>
+      <source>Oil pressure too low</source>
+      <translation>แรงดันน้ำมันเครื่องต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="127"/>
+      <source>Oil pressure too high</source>
+      <translation>แรงดันน้ำมันเครื่องสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="128"/>
+      <source>Engine temperature too low</source>
+      <translation>อุณหภูมิเครื่องยนต์ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="129"/>
+      <source>Engine temperature too high</source>
+      <translation>อุณหภูมิเครื่องยนต์สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="130"/>
+      <source>Winding temperature too low</source>
+      <translation>อุณหภูมิขดลวดต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="131"/>
+      <source>Winding temperature too high</source>
+      <translation>อุณหภูมิขดลวดสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="132"/>
+      <source>Exhaust temperature too low</source>
+      <translation>อุณหภูมิไอเสียต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="133"/>
+      <source>Exhaust temperature too high</source>
+      <translation>อุณหภูมิไอเสียสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="134"/>
+      <source>Electronic temperature low</source>
+      <translation>อุณหภูมิอุปกรณ์อิเล็กทรอนิกส์ต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="135"/>
+      <source>Electronic temperature high</source>
+      <translation>อุณหภูมิอุปกรณ์อิเล็กทรอนิกส์สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="136"/>
+      <source>Starter voltage too low</source>
+      <translation>แรงดันไฟฟ้ามอเตอร์สตาร์ตต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="137"/>
+      <source>Starter current too high</source>
+      <translation>กระแสไฟฟ้ามอเตอร์สตาร์ตสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="138"/>
+      <source>Glow voltage too low</source>
+      <translation>แรงดันไฟฟ้าหัวเผาต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="139"/>
+      <source>Glow current too high</source>
+      <translation>กระแสไฟฟ้าหัวเผาสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="140"/>
+      <source>Cold-Start-Aid voltage too high</source>
+      <translation>แรงดันไฟฟ้าอุปกรณ์ช่วยสตาร์ตเครื่องเย็นสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="141"/>
+      <source>Cold-Start-Aid current too high</source>
+      <translation>กระแสไฟฟ้าอุปกรณ์ช่วยสตาร์ตเครื่องเย็นสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="142"/>
+      <source>Fuel holding magnet voltage too low</source>
+      <translation>แรงดันไฟฟ้าแม่เหล็กหน่วงเชื้อเพลิงต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="143"/>
+      <source>Fuel holding magnet current too high</source>
+      <translation>กระแสไฟฟ้าแม่เหล็กหน่วงเชื้อเพลิงสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="144"/>
+      <source>Stop solenoid hold coil voltage too low</source>
+      <translation>แรงดันไฟฟ้าคอยล์หน่วงของโซลินอยด์ดับเครื่องต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="145"/>
+      <source>Stop solenoid hold coil current too high</source>
+      <translation>หยุดโซลินอยด์ถือกระแสคอยล์สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="146"/>
+      <source>Stop solenoid pull coil voltage too low </source>
+      <translation>หยุดขดลวดดึงโซลินอยด์แรงดันไฟฟ้าต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="147"/>
+      <source>Stop solenoid pull coil current too high</source>
+      <translation>หยุดกระแสดึงขดลวดโซลินอยด์สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="148"/>
+      <source>Fan/water pump voltage too low</source>
+      <translation>แรงดันไฟพัดลม/ปั๊มน้ำต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="149"/>
+      <source>Fan/water pump current too high</source>
+      <translation>กระแสไฟพัดลม/ปั๊มน้ำสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="150"/>
+      <source>Current sensor voltage low</source>
+      <translation>แรงดันไฟเซ็นเซอร์ปัจจุบันต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="151"/>
+      <source>Current sensor current high</source>
+      <translation>เซ็นเซอร์กระแสไฟกระแสสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="152"/>
+      <source>Boost output voltage too low</source>
+      <translation>แรงดันเอาท์พุตบูสต์ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="153"/>
+      <source>Boost output current too high</source>
+      <translation>การเพิ่มกระแสไฟขาออกสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="154"/>
+      <source>Bus supply voltage too low</source>
+      <translation>แรงดันไฟจ่ายบัสต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="155"/>
+      <source>Bus supply current too high</source>
+      <translation>กระแสไฟจ่ายบัสสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="156"/>
+      <source>Starter battery voltage too low</source>
+      <translation>แรงดันแบตเตอรี่สตาร์ทต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="157"/>
+      <source>Starter battery voltage too high</source>
+      <translation>แรงดันไฟแบตเตอรี่สตาร์ทสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="158"/>
+      <source>Rotation too low</source>
+      <translation>การหมุนต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="159"/>
+      <source>Rotation too high</source>
+      <translation>หมุนสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="160"/>
+      <source>Unexpected stop/problem with fuel supply</source>
+      <translation>การหยุดกะทันหัน/ปัญหาการจ่ายน้ำมัน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="161"/>
+      <source>Power contactor voltage too low</source>
+      <translation>แรงดันไฟคอนแทคเตอร์ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="162"/>
+      <source>Power contactor current too high</source>
+      <translation>กระแสไฟคอนแทคสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="163"/>
+      <source>AC voltage L2 too low</source>
+      <translation>แรงดันไฟฟ้ากระแสสลับ L2 ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="164"/>
+      <source>AC voltage L2 too high</source>
+      <translation>แรงดันไฟฟ้ากระแสสลับ L2 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="165"/>
+      <source>AC frequency L2 too low</source>
+      <translation>ความถี่ AC L2 ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="166"/>
+      <source>AC frequency L2 too high</source>
+      <translation>ความถี่ AC L2 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="167"/>
+      <source>AC current L2 too high</source>
+      <translation>กระแสไฟ AC L2 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="168"/>
+      <source>AC power L2 too high</source>
+      <translation>ไฟ AC L2 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="169"/>
+      <source>AC voltage L3 too low</source>
+      <translation>แรงดันไฟฟ้ากระแสสลับ L3 ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="170"/>
+      <source>AC voltage L3 too high</source>
+      <translation>แรงดันไฟฟ้ากระแสสลับ L3 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="171"/>
+      <source>AC frequency L3 too low</source>
+      <translation>ความถี่ AC L3 ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="172"/>
+      <source>AC frequency L3 too high</source>
+      <translation>ความถี่ AC L3 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="173"/>
+      <source>AC current L3 too high</source>
+      <translation>กระแสไฟ AC L3 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="174"/>
+      <source>AC power L3 too high</source>
+      <translation>ไฟ AC L3 สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="175"/>
+      <source>Output Inverter voltage too low</source>
+      <translation>แรงดันไฟเอาท์พุตของอินเวอร์เตอร์ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="176"/>
+      <source>Output Inverter current too  high</source>
+      <translation>กระแสอินเวอร์เตอร์เอาท์พุตสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="177"/>
+      <source>Universal output (1A) voltage too low</source>
+      <translation>แรงดันไฟขาออกสากล (1A) ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="178"/>
+      <source>Universal output (1A) current too high</source>
+      <translation>กระแสไฟขาออกสากล (1A) สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="179"/>
+      <source>Universal output (5A) voltage too low</source>
+      <translation>แรงดันไฟขาออกสากล (5A) ต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="180"/>
+      <source>Universal output (5A) current too high</source>
+      <translation>กระแสไฟขาออกสากล (5A) สูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="181"/>
+      <source>AGT DC voltage 1 low</source>
+      <translation>AGT แรงดันไฟ DC 1 ต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="182"/>
+      <source>AGT DC voltage 1 high</source>
+      <translation>แรงดันไฟ DC AGT 1 สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="183"/>
+      <source>AGT DC current 1 low</source>
+      <translation>AGT กระแสไฟ DC 1 ต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="184"/>
+      <source>AGT DC current 1 high</source>
+      <translation>AGT กระแสไฟ DC 1 สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="185"/>
+      <source>AGT DC voltage 2 low</source>
+      <translation>AGT แรงดันไฟ DC 2 ต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="186"/>
+      <source>AGT DC voltage 2 high</source>
+      <translation>แรงดันไฟ DC AGT 2 สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="187"/>
+      <source>AGT DC current 2 low</source>
+      <translation>กระแสไฟ DC AGT 2 ต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="188"/>
+      <source>AGT DC current 2 high</source>
+      <translation>AGT กระแสไฟ DC 2 สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="189"/>
+      <source>AGT B6 cooler low</source>
+      <translation>AGT B6 คูลเลอร์ต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="190"/>
+      <source>AGT B6 cooler high</source>
+      <translation>AGT B6 คูลเลอร์สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="191"/>
+      <source>AGT B6 rail (-) low</source>
+      <translation>ราง AGT B6 (-) ต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="192"/>
+      <source>AGT B6 rail (-) high</source>
+      <translation>ราง AGT B6 (-) สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="193"/>
+      <source>AGT B6 rail (+) low</source>
+      <translation>ราง AGT B6 (+) ต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="194"/>
+      <source>AGT B6 rail (+) high</source>
+      <translation>ราง AGT B6 (+) สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="195"/>
+      <source>Fuel temperature too low</source>
+      <translation>อุณหภูมิน้ำมันเชื้อเพลิงต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="196"/>
+      <source>Fuel temperature too high</source>
+      <translation>อุณหภูมิน้ำมันเชื้อเพลิงสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="197"/>
+      <source>Fuel level too low</source>
+      <translation>ระดับน้ำมันเชื้อเพลิงต่ำเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="200"/>
+      <source>Lost control unit</source>
+      <translation>หน่วยควบคุมหาย</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="201"/>
+      <source>Lost panel</source>
+      <translation>แผงหายไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="202"/>
+      <source>Service needed</source>
+      <translation>ต้องรับการตรวจเช็ค</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="203"/>
+      <source>Lost 3-phase module</source>
+      <translation>โมดูล 3 เฟสหาย</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="204"/>
+      <source>Lost AGT module</source>
+      <translation>โมดูล AGT ที่หายไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="205"/>
+      <source>Synchronization failure</source>
+      <translation>การซิงโครไนซ์ล้มเหลว</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="206"/>
+      <source>Lost external ECU</source>
+      <translation>สูญเสีย ECU ภายนอก</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="207"/>
+      <source>Intake airfilter</source>
+      <translation>กรองอากาศเข้า</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="208"/>
+      <source>Diagnostic message (ECU)</source>
+      <translation>ข้อความวินิจฉัย (ECU)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="209"/>
+      <source>Lost sync. module</source>
+      <translation>การซิงค์ที่หายไป โมดูล</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="210"/>
+      <source>Load-balance failed</source>
+      <translation>โหลดบาลานซ์ล้มเหลว</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="211"/>
+      <source>Sync-mode deactivated</source>
+      <translation>ปิดใช้งานโหมดซิงค์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="212"/>
+      <source>Red Stop Lamp (RSL)</source>
+      <translation>ไฟเบรกสีแดง (RSL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="213"/>
+      <source>Amber Warning Lamp (AWL)</source>
+      <translation>ไฟเตือนสีเหลืองอำพัน (AWL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="214"/>
+      <source>Malfunction Indicator Lamp (MIL)</source>
+      <translation>ไฟแสดงการทำงานผิดปกติ (MIL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="215"/>
+      <source>Protect Lamp (PL)</source>
+      <translation>โคมไฟป้องกัน (PL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="216"/>
+      <source>Rotating field wrong</source>
+      <translation>การหมุนผิด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="217"/>
+      <source>Fuel level sensor lost</source>
+      <translation>เซ็นเซอร์ระดับน้ำมันเชื้อเพลิงหาย</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="218"/>
+      <source>Starting without inverter</source>
+      <translation>การสตาร์ทโดยไม่ต้องใช้อินเวอร์เตอร์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="219"/>
+      <source>Bus #1 dead</source>
+      <translation>บัสหมายเลข 1 ไม่ตอบสนอง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="220"/>
+      <source>Start request denied</source>
+      <translation>คำขอเริ่มต้นถูกปฏิเสธ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="221"/>
+      <source>Remote start denied</source>
+      <translation>การเริ่มต้นระยะไกลถูกปฏิเสธ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="222"/>
+      <source>Forced switch off load relay</source>
+      <translation>รีเลย์ปิดโหลดแบบบังคับ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="223"/>
+      <source>Synchronization Module is offline</source>
+      <translation>โมดูลการซิงโครไนซ์ออฟไลน์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="224"/>
+      <source>Lost BMS</source>
+      <translation>BMS หาย</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="225"/>
+      <source>Converter DC Link Voltage Low/Reverse</source>
+      <translation>ตัวแปลง DC Link แรงดันไฟต่ำ/ย้อนกลับ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="226"/>
+      <source>Converter DC Link Current Low</source>
+      <translation>ตัวแปลงกระแสตรงเชื่อมต่อกระแสต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="227"/>
+      <source>Converter DC Precharge Voltage Low</source>
+      <translation>ตัวแปลง DC แรงดันไฟชาร์จล่วงหน้าต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="228"/>
+      <source>Converter DC Precharge Voltage High</source>
+      <translation>ตัวแปลง DC แรงดันไฟชาร์จล่วงหน้าสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="229"/>
+      <source>Converter IGBT/MOSFET Driver Error</source>
+      <translation>ข้อผิดพลาดไดรเวอร์ตัวแปลง IGBT/MOSFET</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="230"/>
+      <source>Converter Error Power Control Loop</source>
+      <translation>วงจรควบคุมพลังงานผิดพลาดของตัวแปลง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="231"/>
+      <source>Converter AC Frequency Detection</source>
+      <translation>การตรวจจับความถี่ตัวแปลงไฟฟ้ากระแสสลับ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="232"/>
+      <source>Converter Control Value Fail</source>
+      <translation>ค่าควบคุมตัวแปลงล้มเหลว</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="233"/>
+      <source>Factory setting changed</source>
+      <translation>การตั้งค่าจากโรงงานมีการเปลี่ยนแปลง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="234"/>
+      <source>Parameter changed in admin mode</source>
+      <translation>พารามิเตอร์เปลี่ยนแปลงในโหมดผู้ดูแลระบบ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="235"/>
+      <source>Manual Intervention (ext. System)</source>
+      <translation>การแทรกแซงด้วยตนเอง (ระบบภายนอก)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="238"/>
+      <source>Init failed</source>
+      <translation>การเริ่มต้นล้มเหลว</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="239"/>
+      <source>Watchdog</source>
+      <translation>สุนัขเฝ้าบ้าน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="240"/>
+      <source>Inverter temperature high L1</source>
+      <translation>อุณหภูมิอินเวอร์เตอร์สูง L1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="241"/>
+      <source>Inverter temperature high L2</source>
+      <translation>อุณหภูมิอินเวอร์เตอร์สูง L2</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="242"/>
+      <source>Inverter temperature high L3</source>
+      <translation>อุณหภูมิอินเวอร์เตอร์สูง L3</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="243"/>
+      <source>Inverter temperature high DC link</source>
+      <translation>อินเวอร์เตอร์อุณหภูมิสูง DC ลิงค์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="244"/>
+      <source>Inverter overload</source>
+      <translation>โอเวอร์โหลดอินเวอร์เตอร์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="245"/>
+      <source>Inverter communication lost</source>
+      <translation>การสื่อสารของอินเวอร์เตอร์สูญหาย</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="246"/>
+      <source>DC overload</source>
+      <translation>DC โอเวอร์โหลด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="247"/>
+      <source>DC overvoltage</source>
+      <translation>DC แรงดันไฟเกิน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="249"/>
+      <source>No connection</source>
+      <translation>ไม่มีการเชื่อมต่อ</translation>
+    </message>
+  </context>
+  <context>
+    <name>GensetError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="83"/>
+      <source>No error</source>
+      <translation>ไม่มีข้อผิดพลาด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="96"/>
+      <source>Unknown error: %1</source>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>Hatz</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="795"/>
+      <source>Unknown error: </source>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="814"/>
+      <source>Oil pressure</source>
+      <translation>แรงดันน้ำมัน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="815"/>
+      <source>Cylinder head overtemperature</source>
+      <translation>หัวกระบอกสูบมีอุณหภูมิสูงเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="816"/>
+      <source>Charge control</source>
+      <translation>การควบคุมการชาร์จ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="817"/>
+      <source>Speed higher than expected</source>
+      <translation>ความเร็วสูงเกินความคาดหวัง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="818"/>
+      <source>Overspeed</source>
+      <translation>ความเร็วเกินกำหนด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="820"/>
+      <source>Oil temperature higher than expected</source>
+      <translation>อุณหภูมิน้ำมันสูงเกินคาด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="821"/>
+      <source>Oil temperature open circuit / short to power</source>
+      <translation>วงจรวัดอุณหภูมิน้ำมันขาด/ลัดวงจรลงไฟบวก</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="822"/>
+      <source>Oil temperature short to ground</source>
+      <translation>วงจรวัดอุณหภูมิน้ำมันลัดวงจรลงกราวด์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="823"/>
+      <source>Analog setpoint high / short to power</source>
+      <translation>เซ็ตพอยต์อนาล็อกสูง/ลัดวงจร</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="824"/>
+      <source>Analog setpoint low / short to ground</source>
+      <translation>เซ็ตพอยต์อนาล็อกต่ำ/ลัดวงจรลงกราวด์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="825"/>
+      <source>TSC1 message receive timeout</source>
+      <translation>หมดเวลารับข้อความ TSC1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="826"/>
+      <source>CM1 message receive timeout</source>
+      <translation>CM1 หมดเวลารับข้อความ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="827"/>
+      <source>Battery voltage high</source>
+      <translation>แรงดันไฟแบตเตอรี่สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="828"/>
+      <source>Battery voltage low</source>
+      <translation>แรงดันไฟแบตเตอรี่ต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="829"/>
+      <source>Speed signal distorted</source>
+      <translation>สัญญาณความเร็วผิดเพี้ยน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="830"/>
+      <source>Internal 5V sensor supply high</source>
+      <translation>เซ็นเซอร์ภายใน 5V จ่ายไฟสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="831"/>
+      <source>Internal 5V sensor supply low</source>
+      <translation>เซ็นเซอร์ภายใน 5V จ่ายไฟต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="832"/>
+      <source>Barometric pressure high</source>
+      <translation>ความกดอากาศสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="833"/>
+      <source>Barometric pressure low</source>
+      <translation>ความกดอากาศต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="834"/>
+      <source>Output fuelpump short to power</source>
+      <translation>ปั๊มเชื้อเพลิงเอาท์พุตลัดวงจร</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="835"/>
+      <source>Output fuelpump short to ground</source>
+      <translation>ปั๊มเชื้อเพลิงเอาท์พุตลัดวงจรลงกราวด์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="836"/>
+      <source>Output glow plug short to power</source>
+      <translation>หัวเทียนร้อนออกลัดวงจรต่อไฟ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="837"/>
+      <source>Output glow plug short to ground</source>
+      <translation>หัวเทียนร้อนออกลัดวงจรลงกราวด์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="838"/>
+      <source>Injector open circuit/low side short to ground</source>
+      <translation>หัวฉีดเปิดวงจร/ด้านต่ำลัดวงจรลงกราวด์</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="839"/>
+      <source>Injector coil internal short circuit</source>
+      <translation>วงจรภายในของคอยล์หัวฉีดลัดวงจร</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="840"/>
+      <source>Injector low side short to power</source>
+      <translation>หัวฉีดด้านต่ำลัดวงจรไฟฟ้า</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="841"/>
+      <source>Service hours expired</source>
+      <translation>ชั่วโมงบริการหมดเขตแล้ว</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="845"/>
+      <source>Processor failure</source>
+      <translation>โปรเซสเซอร์ขัดข้อง</translation>
+    </message>
+  </context>
+  <context>
+    <name>QObject</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="125"/>
+      <source>Fuel</source>
+      <translation>เชื้อเพลิง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="126"/>
+      <source>Fresh water</source>
+      <translation>น้ำจืด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="127"/>
+      <source>Waste water</source>
+      <translation>น้ำเสีย</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="128"/>
+      <source>Live well</source>
+      <translation>อยู่ดีมีสุข</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="129"/>
+      <source>Oil</source>
+      <translation>น้ำมัน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="130"/>
+      <source>Black water (sewage)</source>
+      <translation>น้ำดำ (น้ำเสีย)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="131"/>
+      <source>Gasoline</source>
+      <translation>น้ำมันเบนซิน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="132"/>
+      <source>Diesel</source>
+      <translation>ดีเซล</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="133"/>
+      <source>LPG</source>
+      <translation>แอลพีจี</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="134"/>
+      <source>LNG</source>
+      <translation>LNG</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="135"/>
+      <source>Hydraulic oil</source>
+      <translation>น้ำมันไฮดรอลิก</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="136"/>
+      <source>Raw water</source>
+      <translation>น้ำดิบ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="143"/>
+      <source>Unknown</source>
+      <translation>ไม่รู้จัก</translation>
+    </message>
+  </context>
+  <context>
+    <name>Wakespeed</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="138"/>
+      <source>Unknown error: </source>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="151"/>
+      <source>Internal error</source>
+      <translation>ข้อผิดพลาดภายใน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="156"/>
+      <source>No error</source>
+      <translation>ไม่มีข้อผิดพลาด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="159"/>
+      <source>Battery high temperature</source>
+      <translation>อุณหภูมิสูงแบตเตอรี่</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="162"/>
+      <source>Battery high voltage</source>
+      <translation>แบตเตอรี่ไฟฟ้าแรงสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="165"/>
+      <source>Battery low voltage</source>
+      <translation>แรงดันไฟต่ำของแบตเตอรี่</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="168"/>
+      <source>Battery voltage exceeded configured max</source>
+      <translation>แรงดันแบตเตอรี่เกินการกำหนดค่าสูงสุด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="171"/>
+      <source>Battery temperature sensor defective</source>
+      <translation>เซ็นเซอร์อุณหภูมิแบตเตอรี่ชำรุด</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="175"/>
+      <source>Alternator high temperature</source>
+      <translation>เครื่องกำเนิดไฟฟ้ากระแสสลับอุณหภูมิสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="178"/>
+      <source>Alternator high RPM</source>
+      <translation>เครื่องกำเนิดไฟฟ้ากระแสสลับ RPM สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="181"/>
+      <source>Field drive FET high temperature</source>
+      <translation>ไดรฟ์ภาคสนาม FET อุณหภูมิสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="184"/>
+      <source>Required sensor missing</source>
+      <translation>ขาดเซ็นเซอร์ที่จำเป็น</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="187"/>
+      <source>Alternator low voltage</source>
+      <translation>เครื่องกำเนิดไฟฟ้ากระแสสลับแรงดันต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="190"/>
+      <source>Alternator high voltage offset</source>
+      <translation>ออฟเซ็ตไฟฟ้าแรงสูงกระแสสลับ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="193"/>
+      <source>Alternator Voltage exceeded configured max</source>
+      <translation>แรงดันไฟฟ้ากระแสสลับเกินกำหนดmax</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="196"/>
+      <source>Alternator high voltage</source>
+      <translation>เครื่องกำเนิดไฟฟ้ากระแสสลับแรงสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="199"/>
+      <source>Battery disconnected</source>
+      <translation>ถอดแบตเตอรี่</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="202"/>
+      <source>Battery high voltage disconnect</source>
+      <translation>ตัดการเชื่อมต่อไฟฟ้าแรงสูงของแบตเตอรี่</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="205"/>
+      <source>Battery instance ouf of range</source>
+      <translation>อินสแตนซ์แบตเตอรี่อยู่นอกช่วง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="208"/>
+      <source>Too many BMS's</source>
+      <translation>BMS มากเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="211"/>
+      <source>Battery about to disconnect</source>
+      <translation>เกี่ยวกับการตัดการเชื่อมต่อแบตเตอรี่</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="214"/>
+      <source>Too many devices to track</source>
+      <translation>มีอุปกรณ์ให้ติดตามมากเกินไป</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="217"/>
+      <source>Battery low voltage disconnect</source>
+      <translation>ตัดการเชื่อมต่อ แบตเตอรี่แรงดันต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="220"/>
+      <source>Battery high current disconnect</source>
+      <translation>ตัดการเชื่อมต่อ กระแสไฟของแบตเตอรี่สูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="223"/>
+      <source>Battery high temperature disconnect</source>
+      <translation>ตัดการเชื่อมต่อ แบตเตอรี่อุณหภูมิสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="226"/>
+      <source>Battery low temperature disconnect</source>
+      <translation>ตัดการเชื่อมต่อ แบตเตอรี่อุณหภูมิต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="229"/>
+      <source>BMS connection lost</source>
+      <translation>ขาดการเชื่อมต่อ BMS</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="232"/>
+      <source>ATC Disabled</source>
+      <translation>ATC พิการ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="235"/>
+      <source>DC/DC converter not ready</source>
+      <translation>ตัวแปลง DC/DC ไม่พร้อมทำงาน</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="238"/>
+      <source>DC/DC high primary voltage</source>
+      <translation>DC/DC แรงดันไฟฟ้าหลักสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="241"/>
+      <source>DC/DC low primary voltage</source>
+      <translation>DC/DC แรงดันไฟหลักต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="244"/>
+      <source>DC/DC high secondary voltage</source>
+      <translation>DC/DC แรงดันไฟฟ้าทุติยภูมิสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="247"/>
+      <source>DC/DC low secondary voltage</source>
+      <translation>DC/DC แรงดันไฟฟ้าทุติยภูมิต่ำ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="250"/>
+      <source>DC/DC high temperature</source>
+      <translation>DC/DC อุณหภูมิสูง</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="253"/>
+      <source>DC/DC misconfiguration</source>
+      <translation>การกำหนดค่า DC/DC ผิดพลาด</translation>
     </message>
   </context>
 </TS>

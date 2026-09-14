@@ -11,7 +11,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="13"/>
       <source>Battery initialization error</source>
-      <translation>Chyba spuštění baterie</translation>
+      <translation>Chyba inicializace baterie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="16"/>
@@ -32,12 +32,12 @@
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="25"/>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="40"/>
       <source>No. of batteries incorrect</source>
-      <translation>Počet neprávných baterií</translation>
+      <translation>Nesprávný počet baterií</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="28"/>
       <source>Lynx Shunt not found</source>
-      <translation>Lynx Shunt nenalazen</translation>
+      <translation>Lynx Shunt nenalezen</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="31"/>
@@ -62,7 +62,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="47"/>
       <source>Watchdog error</source>
-      <translation>Chyba hlídače</translation>
+      <translation>Chyba watchdogu</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="50"/>
@@ -87,7 +87,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="62"/>
       <source>Under-charge standby</source>
-      <translation>Nedostatečné nabíjení v pohotovostním režimu</translation>
+      <translation>Pohotovostní režim při nedostatečném nabití</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="65"/>
@@ -102,7 +102,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="71"/>
       <source>Pre-Charge error</source>
-      <translation>Chyba počátku nabíjení</translation>
+      <translation>Chyba přednabití</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="75"/>
@@ -117,7 +117,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="82"/>
       <source>BMS cable error</source>
-      <translation>Chyba komunikačního kabelu BMS</translation>
+      <translation>Chyba kabelu BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="85"/>
@@ -132,7 +132,47 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="91"/>
       <source>Pre charge timeout</source>
-      <translation>Vypršel čas pro počáteční nabíjení</translation>
+      <translation>Vypršel časový limit přednabití</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="94"/>
+      <source>ATC/ATD failure</source>
+      <translation>Selhání ATC/ATD</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="98"/>
+      <source>Calibration data lost</source>
+      <translation>Ztráta kalibračních dat</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="102"/>
+      <source>Settings invalid</source>
+      <translation>Neplatné nastavení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="105"/>
+      <source>Interlock</source>
+      <translation>Interlock</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="108"/>
+      <source>Emergency stop</source>
+      <translation>Nouzové vypnutí</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="111"/>
+      <source>Communication timeout</source>
+      <translation>Časový limit komunikace</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="114"/>
+      <source>Safety lock</source>
+      <translation>Bezpečnostní zámek</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="117"/>
+      <source>Terminal over temperature</source>
+      <translation>Přehřátí terminálu</translation>
     </message>
   </context>
   <context>
@@ -156,28 +196,28 @@
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="11"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="12"/>
       <source>Battery Tsense miswired</source>
-      <translation>Tčidlo baterie chybně zapojeno</translation>
+      <translation>Teplotní čidlo baterie je chybně zapojeno</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="13"/>
       <source>Battery Tsense missing</source>
-      <translation>Chybějící Tčidlo baterie</translation>
+      <translation>Chybí teplotní čidlo baterie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="14"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="15"/>
       <source>Battery Vsense miswired</source>
-      <translation>Včidlo baterie chybně zapojeno</translation>
+      <translation>Napěťové čidlo baterie je chybně zapojeno</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="16"/>
       <source>Battery Vsense missing</source>
-      <translation>Chybějící Včidlo baterie</translation>
+      <translation>Chybí napěťové čidlo baterie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="17"/>
       <source>Battery high wire losses</source>
-      <translation>Vysoké ztráty vodičů baterie</translation>
+      <translation>Vysoké ztráty na vedení baterie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="18"/>
@@ -187,17 +227,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="19"/>
       <source>Battery high ripple voltage</source>
-      <translation>Velké zvlnění napětí baterie</translation>
+      <translation>Vysoké zvlnění napětí baterie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="20"/>
       <source>Battery low state of charge</source>
-      <translation>Nízká úroveň stavu nabití</translation>
+      <translation>Nízký stav nabití baterie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="21"/>
       <source>Battery mid-point voltage issue</source>
-      <translation>Problém se středním napětím baterie</translation>
+      <translation>Problém s napětím středního bodu baterie</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="22"/>
@@ -222,7 +262,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="27"/>
       <source>Charger bulk time expired</source>
-      <translation>Překročen čas pro bulk</translation>
+      <translation>Překročen čas fáze Bulk</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="28"/>
@@ -232,17 +272,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="29"/>
       <source>Internal Tsensor miswired</source>
-      <translation>Interní T čidlo špatně zapojeno</translation>
+      <translation>Interní teplotní čidlo je chybně zapojeno</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="30"/>
       <source>Internal Tsensor missing</source>
-      <translation>Chybějící interní T čidlo</translation>
+      <translation>Chybí interní teplotní čidlo</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="31"/>
       <source>Charger fan not detected</source>
-      <translation>Ventilátor nabíječky nebyl nalezen</translation>
+      <translation>Ventilátor nabíječky nebyl detekován</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="32"/>
@@ -262,7 +302,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="35"/>
       <source>Charger power stage issue</source>
-      <translation>Problém fáze rychlého nabíjení</translation>
+      <translation>Problém výkonového stupně nabíječky</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="36"/>
@@ -297,12 +337,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="43"/>
       <source>Input shutdown (no retries)</source>
-      <translation>Vypnutí vstupu (žádné opětovné zapnutí)</translation>
+      <translation>Vypnutí vstupu (bez opakování)</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="44"/>
       <source>Input shutdown (retry)</source>
-      <translation>Vypnutí vstupu (opětovné zapnutí)</translation>
+      <translation>Vypnutí vstupu (s opakováním)</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="45"/>
@@ -318,7 +358,7 @@
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="48"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="49"/>
       <source>Ground fault detected</source>
-      <translation>Detekována chyba uzemnění</translation>
+      <translation>Detekováno zemní spojení</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="51"/>
@@ -338,7 +378,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="54"/>
       <source>Inverter internal DC level</source>
-      <translation>Interní úroveň DC měniče</translation>
+      <translation>Interní úroveň DC napětí měniče</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="55"/>
@@ -350,7 +390,7 @@
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="57"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="59"/>
       <source>Inverter powerstage fault</source>
-      <translation>Chyba fáze rychlého nabíjení měniče</translation>
+      <translation>Chyba výkonového stupně měniče</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="58"/>
@@ -370,7 +410,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="63"/>
       <source>Device disappeared</source>
-      <translation>Zařízení zmizelo</translation>
+      <translation>Zařízení přestalo být dostupné</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="64"/>
@@ -380,7 +420,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="65"/>
       <source>BMS connection lost</source>
-      <translation>Ztráta BMS komunikace</translation>
+      <translation>Ztráta komunikace s BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="66"/>
@@ -430,7 +470,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="76"/>
       <source>Tester fail</source>
-      <translation>Selhání testování</translation>
+      <translation>Test selhal</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="77"/>
@@ -462,6 +502,81 @@
       <source>15V supply error</source>
       <translation>Chyba napájení 15V</translation>
     </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="23"/>
+      <source>Battery relay fault</source>
+      <translation>Porucha bateriového relé</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="24"/>
+      <source>Battery not found</source>
+      <translation>Baterie nebyla nalezena</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="49"/>
+      <source>PV isolation failure</source>
+      <translation>Selhání izolace fotovoltaického panelu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="99"/>
+      <source>PV Input shutdown</source>
+      <translation>Vypnutí vstupu PV</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="115"/>
+      <source>Charger pre-charge failed</source>
+      <translation>Přednabití nabíječky selhalo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="116"/>
+      <source>Charger solar relay failed</source>
+      <translation>Solární relé nabíječky selhalo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="117"/>
+      <source>Charger solar short</source>
+      <translation>Zkrat na solárním vstupu nabíječky</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="118"/>
+      <source>Charger solar connect failed</source>
+      <translation>Připojení solárního vstupu nabíječky selhalo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="72"/>
+      <source>Phase rotation</source>
+      <translation>Otáčení fáze</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="73"/>
+      <source>Multiple AC inputs</source>
+      <translation>Více vstupů střídavého proudu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="74"/>
+      <source>Too many units in parallel</source>
+      <translation>Příliš mnoho jednotek paralelně</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="76"/>
+      <source>Network incomplete</source>
+      <translation>Síť není kompletní</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="77"/>
+      <source>Settings sync disabled</source>
+      <translation>Synchronizace nastavení zakázána</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="89"/>
+      <source>kWh counters invalid</source>
+      <translation>Neplatné čítače kWh</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="93"/>
+      <source>GFCI sensor error</source>
+      <translation>Chyba snímače GFCI</translation>
+    </message>
   </context>
   <context>
     <name>DBusTankService</name>
@@ -483,7 +598,7 @@
     <message>
       <location filename="../src/dbus_service.cpp" line="182"/>
       <source>Live well</source>
-      <translation>Nádrž na vodu</translation>
+      <translation>Nádrž na živé ryby</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="183"/>
@@ -493,7 +608,7 @@
     <message>
       <location filename="../src/dbus_service.cpp" line="184"/>
       <source>Black water (sewage)</source>
-      <translation>Splašky</translation>
+      <translation>Odpadová voda (splašky)</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="185"/>
@@ -523,7 +638,7 @@
     <message>
       <location filename="../src/dbus_service.cpp" line="190"/>
       <source>Raw water</source>
-      <translation>Surová voda</translation>
+      <translation>Neupravená voda</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="203"/>
@@ -585,24 +700,24 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="245"/>
       <source>High charge temperature</source>
-      <translation>Teplota vysokého stavu nabití</translation>
+      <translation>Vysoká teplota při nabíjení</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="246"/>
       <source>Low charge temperature</source>
-      <translation>Teplota nízkého stavu nabití</translation>
+      <translation>Nízká teplota při nabíjení</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="247"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="330"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="356"/>
       <source>Low SOC</source>
-      <translation>Nízký stav nabití baterie</translation>
+      <translation>Nízké SOC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="248"/>
       <source>State of health</source>
-      <translation>Stav životnosti</translation>
+      <translation>Stav baterie (SOH)</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="249"/>
@@ -632,7 +747,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="253"/>
       <source>Mid-point voltage</source>
-      <translation>Střední napětí</translation>
+      <translation>Napětí středního bodu</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="254"/>
@@ -647,7 +762,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="256"/>
       <source>Fuse blown</source>
-      <translation>Spálená pojistka</translation>
+      <translation>Přepálená pojistka</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="257"/>
@@ -677,7 +792,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="262"/>
       <source>Bad contactor</source>
-      <translation>Špatný stykač</translation>
+      <translation>Vadný stykač</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="263"/>
@@ -687,12 +802,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="266"/>
       <source>Fuse %2 of distributor %1 blown</source>
-      <translation>Přepálená pojistka %2 rozdělovače %1</translation>
+      <translation>Pojistka %2 distributoru %1 je přepálená</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="267"/>
       <source>Distributor %1 connection lost</source>
-      <translation>Ztráta připojení rozvaděče %1</translation>
+      <translation>Ztráta komunikace s distributorem %1</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="275"/>
@@ -733,7 +848,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="296"/>
       <source>Wrong phase rotation detected</source>
-      <translation>Detekována chybné otáčení fáze</translation>
+      <translation>Detekováno nesprávné pořadí fází</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="299"/>
@@ -788,7 +903,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="319"/>
       <source>BMS connection lost</source>
-      <translation>Ztráta BMS komunikace</translation>
+      <translation>Ztráta komunikace s BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="323"/>
@@ -856,12 +971,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="383"/>
       <source>Circuit breaker tripped</source>
-      <translation>Vypnutí jističe</translation>
+      <translation>Vybavení jističe</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="384"/>
       <source>DVCC with incompatible firmware #48</source>
-      <translation>DVCC s nekompatibilním firmwarem č.48</translation>
+      <translation>DVCC s nekompatibilním firmwarem #48</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="390"/>
@@ -884,7 +999,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/gui/ve_qitem_table_widget.ui" line="14"/>
       <source>QT Table Widget</source>
-      <translation>QT Tabulka Widget</translation>
+      <translation>Tabulka QT</translation>
     </message>
   </context>
   <context>
@@ -892,7 +1007,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/gui/ve_qitem_tree_widget.ui" line="14"/>
       <source>QT Tree Widget</source>
-      <translation>QT strom Widget</translation>
+      <translation>Strom QT</translation>
     </message>
   </context>
   <context>
@@ -942,7 +1057,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="225"/>
       <source>Wrong phase rotation detected</source>
-      <translation>Detekována chybné otáčení fáze</translation>
+      <translation>Detekováno nesprávné pořadí fází</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="231"/>
@@ -987,7 +1102,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="246"/>
       <source>BMS connection lost</source>
-      <translation>Ztráta BMS komunikace</translation>
+      <translation>Ztráta komunikace s BMS</translation>
     </message>
   </context>
   <context>
@@ -1005,7 +1120,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="16"/>
       <source>Expected devices error</source>
-      <translation>Očekávaná chyba zařízení</translation>
+      <translation>Nesprávný počet očekávaných zařízení</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="19"/>
@@ -1015,7 +1130,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="22"/>
       <source>Overvoltage on AC-out</source>
-      <translation>Přepětí na AC-výstup</translation>
+      <translation>Přepětí na AC výstupu</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="25"/>
@@ -1045,7 +1160,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="40"/>
       <source>Config mismatch with 2nd mcu</source>
-      <translation>Neshoda konfigurace s druhou jednotkou mcu</translation>
+      <translation>Neshoda konfigurace s druhým MCU</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="43"/>
@@ -1080,7 +1195,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="61"/>
       <source>System protection initiated</source>
-      <translation>Byla iniciována ochrana systému</translation>
+      <translation>Aktivována ochrana systému</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="64"/>
@@ -1100,7 +1215,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="73"/>
       <source>VE.Bus error</source>
-      <translation>VE.Bus chyba</translation>
+      <translation>Chyba VE.Bus</translation>
     </message>
   </context>
   <context>
@@ -1148,7 +1263,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="143"/>
       <source>Field drive FET high temperature</source>
-      <translation>Vysoká teplota FET polního pohonu</translation>
+      <translation>Vysoká teplota FET tranzistoru buzení</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="146"/>
@@ -1163,7 +1278,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="152"/>
       <source>Alternator high voltage offset</source>
-      <translation>Posunutí vysokého napětí alternátoru</translation>
+      <translation>Velká odchylka napětí alternátoru</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="155"/>
@@ -1183,12 +1298,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="164"/>
       <source>Battery instance ouf of range</source>
-      <translation>Akumulátor mimo rozsah</translation>
+      <translation>Instance baterie mimo rozsah</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="167"/>
       <source>Too many BMS's</source>
-      <translation>Příliš mnoho zařízení BMS</translation>
+      <translation>Příliš mnoho BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="170"/>
@@ -1223,7 +1338,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="188"/>
       <source>BMS connection lost</source>
-      <translation>Ztráta BMS komunikace</translation>
+      <translation>Ztráta komunikace s BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="191"/>
@@ -1296,12 +1411,12 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="294"/>
       <source>High charge temperature</source>
-      <translation>Teplota vysokého stavu nabití</translation>
+      <translation>Vysoká teplota při nabíjení</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="295"/>
       <source>Low charge temperature</source>
-      <translation>Teplota nízkého stavu nabití</translation>
+      <translation>Nízká teplota při nabíjení</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="296"/>
@@ -1311,7 +1426,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="297"/>
       <source>State of health</source>
-      <translation>Stav životnosti</translation>
+      <translation>Stav baterie (SOH)</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="298"/>
@@ -1336,7 +1451,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="302"/>
       <source>Mid-point voltage</source>
-      <translation>Střední napětí</translation>
+      <translation>Napětí středního bodu</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="303"/>
@@ -1352,7 +1467,7 @@
       <location filename="../src/alarm_item.cpp" line="305"/>
       <location filename="../src/alarm_item.cpp" line="329"/>
       <source>Fuse blown</source>
-      <translation>Spálená pojistka</translation>
+      <translation>Přepálená pojistka</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="306"/>
@@ -1382,7 +1497,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="311"/>
       <source>Bad contactor</source>
-      <translation>Špatný stykač</translation>
+      <translation>Vadný stykač</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="312"/>
@@ -1392,7 +1507,52 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="326"/>
       <source>Distributor %1 connection lost</source>
-      <translation>Ztráta připojení rozvaděče %1</translation>
+      <translation>Ztráta komunikace s distributorem %1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="350"/>
+      <source>High cell voltage</source>
+      <translation>Vysoké napětí článků</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="372"/>
+      <source>Battery communication lost</source>
+      <translation>Ztráta komunikace s baterií</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="373"/>
+      <source>To update battery: https://ve3.nl/ngut</source>
+      <translation>Pro aktualizaci baterie: https://ve3.nl/ngut</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="374"/>
+      <source>Parallel BMS connection lost</source>
+      <translation>Paralelní spojení BMS ztraceno</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="375"/>
+      <source>Cell measurements fault</source>
+      <translation>Chyba měření článků</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="376"/>
+      <source>Communication error</source>
+      <translation>Chyba komunikace</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="377"/>
+      <source>Invalid battery configuration</source>
+      <translation>Nesprávná konfigurace baterie</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="378"/>
+      <source>Incorrect number of batteries</source>
+      <translation>Nesprávný počet baterií</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="379"/>
+      <source>Battery voltage not supported</source>
+      <translation>Napětí baterie není podporováno</translation>
     </message>
   </context>
   <context>
@@ -1479,12 +1639,12 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="120"/>
       <source>Circuit breaker tripped</source>
-      <translation>Vypnutí jističe</translation>
+      <translation>Vybavení jističe</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="121"/>
       <source>DVCC with incompatible firmware #48</source>
-      <translation>DVCC s nekompatibilním firmwarem č.48</translation>
+      <translation>DVCC s nekompatibilním firmwarem #48</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="139"/>
@@ -1536,6 +1696,141 @@
       <source>Low battery</source>
       <translation>Nízké napětí baterie</translation>
     </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="53"/>
+      <source>DC generator is not providing power</source>
+      <translation>Stejnosměrný generátor nedodává energii</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="55"/>
+      <source>GX Auto start/stop is disabled</source>
+      <translation>Automatické spuštění/zastavení GX je zakázáno</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="56"/>
+      <source>Remote start is disabled on the genset</source>
+      <translation>Dálkové spuštění je na generátoru zakázáno</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="57"/>
+      <source>Generator stopped due to low tank level</source>
+      <translation>Generátor se zastavil z důvodu nízké hladiny v nádrži</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="133"/>
+      <source>Grid lost</source>
+      <translation>Ztráta sítě</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="134"/>
+      <source>Phase rotation</source>
+      <translation>Otáčení fáze</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="233"/>
+      <source>System incompatible for Opportunity Loads</source>
+      <translation>Systém není kompatibilní s příležitostnou zátěží</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="242"/>
+      <source>#01 GND not present</source>
+      <translation>#01 GND není k dispozici</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="243"/>
+      <source>#02 Welded contacts</source>
+      <translation>#02 Svařené kontakty</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="244"/>
+      <source>#03 CP input short-circuit</source>
+      <translation>#03 Zkrat na vstupu CP</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="245"/>
+      <source>#04 Residual current</source>
+      <translation>#04 Zbytkový proud</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="246"/>
+      <source>#05 Over temperature</source>
+      <translation>#05 Přehřátí</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="247"/>
+      <source>#06 Light sensor IC fault</source>
+      <translation>#06 Porucha integrovaného obvodu světelného senzoru</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="248"/>
+      <source>#07 Tamper detected</source>
+      <translation>#07 Zjištěna neoprávněná manipulace</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>Initial setup not completed</source>
+      <translation>Počáteční nastavení nebylo dokončeno</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>EVCS externally blocked by grid operator</source>
+      <translation>EVCS externě zablokováno provozovatelem sítě</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>EVCS high temperature detected</source>
+      <translation>Zjištěna vysoká teplota EVCS</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>GX communication warning</source>
+      <translation>Varování komunikace GX</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>Overload detected</source>
+      <translation>Zjištěno přetížení</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>Overload active</source>
+      <translation>Přetížení aktivní</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>Scheduled mode failed - time sync issue</source>
+      <translation>Plánovaný režim selhal – problém se synchronizací času</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>The charging current is limited by an external switch</source>
+      <translation>Nabíjecí proud je omezen externím spínačem</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="257"/>
+      <source>The charging current is limited due to inverter overtemperature</source>
+      <translation>Nabíjecí proud je omezen z důvodu přehřátí střídače</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="258"/>
+      <source>Can't update display FW due to broken file. Please perform update again</source>
+      <translation>Nelze aktualizovat FW displeje kvůli poškozenému souboru. Proveďte aktualizaci znovu</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="259"/>
+      <source>Can't update display FW due to communication issues</source>
+      <translation>Nelze aktualizovat FW displeje kvůli problémům s komunikací</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="260"/>
+      <source>Updating display FW. EV charging will be available after a while</source>
+      <translation>Aktualizace FW displeje. Nabíjení elektromobilu bude k dispozici za chvíli</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="215"/>
+      <source>#46 Data partition full</source>
+      <translation>#46 Datový oddíl je plný</translation>
+    </message>
   </context>
   <context>
     <name>VenusTankService</name>
@@ -1543,6 +1838,1136 @@
       <location filename="../src/venus_service.cpp" line="121"/>
       <source>tank</source>
       <translation>nádrž</translation>
+    </message>
+  </context>
+  <context>
+    <name>AlternatorError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="22"/>
+      <source>No error</source>
+      <translation>Žádná chyba</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="25"/>
+      <source>Unknown error: %1</source>
+      <translation>Neznámá chyba: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>CRE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="855"/>
+      <source>Unknown error: </source>
+      <translation>Neznámá chyba:</translation>
+    </message>
+  </context>
+  <context>
+    <name>CUMMINS</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="1034"/>
+      <source>Unknown error: </source>
+      <translation>Neznámá chyba:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DEIF</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="874"/>
+      <source>Unknown error: </source>
+      <translation>Neznámá chyba:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DSE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="259"/>
+      <source>Unknown error: </source>
+      <translation>Neznámá chyba:</translation>
+    </message>
+  </context>
+  <context>
+    <name>FischerPanda</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="104"/>
+      <source>Unknown error: </source>
+      <translation>Neznámá chyba: </translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="115"/>
+      <source>No error</source>
+      <translation>Žádná chyba</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage L1 too low</source>
+      <translation>Střídavé napětí L1 příliš nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage too low</source>
+      <translation>Střídavé napětí příliš nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage L1 too high</source>
+      <translation>Střídavé napětí L1 příliš vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage too high</source>
+      <translation>Střídavé napětí příliš vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency L1 too low</source>
+      <translation>Střídavá frekvence L1 příliš nízká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency too low</source>
+      <translation>Střídavá frekvence příliš nízká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency L1 too high</source>
+      <translation>Střídavá frekvence L1 příliš vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency too high</source>
+      <translation>Střídavá frekvence příliš vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current L1 too high</source>
+      <translation>Střídavý proud L1 příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current too high</source>
+      <translation>Střídavý proud příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power L1 too high</source>
+      <translation>Střídavý výkon L1 příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power too high</source>
+      <translation>Střídavý výkon příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="124"/>
+      <source>Emergency stop</source>
+      <translation>Nouzové zastavení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="125"/>
+      <source>Servo current too high</source>
+      <translation>Proud serva příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="126"/>
+      <source>Oil pressure too low</source>
+      <translation>Tlak oleje příliš nízký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="127"/>
+      <source>Oil pressure too high</source>
+      <translation>Tlak oleje příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="128"/>
+      <source>Engine temperature too low</source>
+      <translation>Teplota motoru příliš nízká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="129"/>
+      <source>Engine temperature too high</source>
+      <translation>Teplota motoru příliš vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="130"/>
+      <source>Winding temperature too low</source>
+      <translation>Teplota vinutí příliš nízká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="131"/>
+      <source>Winding temperature too high</source>
+      <translation>Teplota vinutí příliš vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="132"/>
+      <source>Exhaust temperature too low</source>
+      <translation>Teplota výfukových plynů příliš nízká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="133"/>
+      <source>Exhaust temperature too high</source>
+      <translation>Teplota výfukových plynů příliš vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="134"/>
+      <source>Electronic temperature low</source>
+      <translation>Teplota elektroniky nízká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="135"/>
+      <source>Electronic temperature high</source>
+      <translation>Teplota elektroniky vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="136"/>
+      <source>Starter voltage too low</source>
+      <translation>Napětí startéru příliš nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="137"/>
+      <source>Starter current too high</source>
+      <translation>Proud startéru příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="138"/>
+      <source>Glow voltage too low</source>
+      <translation>Napětí žhavení příliš nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="139"/>
+      <source>Glow current too high</source>
+      <translation>Proud žhavení příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="140"/>
+      <source>Cold-Start-Aid voltage too high</source>
+      <translation>Napětí pomůcky pro studený start příliš vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="141"/>
+      <source>Cold-Start-Aid current too high</source>
+      <translation>Proud pomůcky pro studený start příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="142"/>
+      <source>Fuel holding magnet voltage too low</source>
+      <translation>Napětí přídržného magnetu paliva příliš nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="143"/>
+      <source>Fuel holding magnet current too high</source>
+      <translation>Proud přídržného magnetu paliva příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="144"/>
+      <source>Stop solenoid hold coil voltage too low</source>
+      <translation>Napětí přídržné cívky solenoidu zastavení příliš nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="145"/>
+      <source>Stop solenoid hold coil current too high</source>
+      <translation>Proud stojícího elektromagnetu cívky je příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="146"/>
+      <source>Stop solenoid pull coil voltage too low </source>
+      <translation>Příliš nízké napětí na tahové cívce elektromagnetické brzdy</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="147"/>
+      <source>Stop solenoid pull coil current too high</source>
+      <translation>Proud stojícího elektromagnetu tažné cívky je příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="148"/>
+      <source>Fan/water pump voltage too low</source>
+      <translation>Příliš nízké napětí ventilátoru/vodního čerpadla</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="149"/>
+      <source>Fan/water pump current too high</source>
+      <translation>Příliš vysoký proud ventilátoru/vodního čerpadla</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="150"/>
+      <source>Current sensor voltage low</source>
+      <translation>Nízké napětí proudového senzoru</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="151"/>
+      <source>Current sensor current high</source>
+      <translation>Proudový snímač proudu vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="152"/>
+      <source>Boost output voltage too low</source>
+      <translation>Příliš nízké výstupní napětí Boostu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="153"/>
+      <source>Boost output current too high</source>
+      <translation>Příliš vysoký proud posíleného výstupu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="154"/>
+      <source>Bus supply voltage too low</source>
+      <translation>Příliš nízké napájecí napětí sběrnice</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="155"/>
+      <source>Bus supply current too high</source>
+      <translation>Příliš vysoký napájecí proud sběrnice</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="156"/>
+      <source>Starter battery voltage too low</source>
+      <translation>Napětí startovací baterie příliš nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="157"/>
+      <source>Starter battery voltage too high</source>
+      <translation>Napětí startovací baterie příliš vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="158"/>
+      <source>Rotation too low</source>
+      <translation>Příliš pomalé otáčení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="159"/>
+      <source>Rotation too high</source>
+      <translation>Příliš rychlé otáčení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="160"/>
+      <source>Unexpected stop/problem with fuel supply</source>
+      <translation>Neočekávané zastavení/problém s přívodem paliva</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="161"/>
+      <source>Power contactor voltage too low</source>
+      <translation>Příliš nízké napětí napájecího stykače</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="162"/>
+      <source>Power contactor current too high</source>
+      <translation>Proud výkonového stykače příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="163"/>
+      <source>AC voltage L2 too low</source>
+      <translation>AC napětí L2 příliš nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="164"/>
+      <source>AC voltage L2 too high</source>
+      <translation>AC napětí L2 příliš vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="165"/>
+      <source>AC frequency L2 too low</source>
+      <translation>AC frekvence L2 příliš nízká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="166"/>
+      <source>AC frequency L2 too high</source>
+      <translation>AC frekvence L2 příliš vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="167"/>
+      <source>AC current L2 too high</source>
+      <translation>AC proud L2 příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="168"/>
+      <source>AC power L2 too high</source>
+      <translation>AC výkon L2 příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="169"/>
+      <source>AC voltage L3 too low</source>
+      <translation>AC napětí L3 příliš nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="170"/>
+      <source>AC voltage L3 too high</source>
+      <translation>AC napětí L3 příliš vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="171"/>
+      <source>AC frequency L3 too low</source>
+      <translation>AC frekvence L3 příliš nízká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="172"/>
+      <source>AC frequency L3 too high</source>
+      <translation>AC frekvence L3 příliš vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="173"/>
+      <source>AC current L3 too high</source>
+      <translation>AC proud L3 příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="174"/>
+      <source>AC power L3 too high</source>
+      <translation>AC výkon L3 příliš vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="175"/>
+      <source>Output Inverter voltage too low</source>
+      <translation>Příliš nízké výstupní napětí měniče</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="176"/>
+      <source>Output Inverter current too  high</source>
+      <translation>Příliš vysoký výstupní proud měniče</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="177"/>
+      <source>Universal output (1A) voltage too low</source>
+      <translation>Příliš nízké napětí univerzálního výstupu (1A)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="178"/>
+      <source>Universal output (1A) current too high</source>
+      <translation>Příliš vysoký proud univerzálního výstupu (1A)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="179"/>
+      <source>Universal output (5A) voltage too low</source>
+      <translation>Příliš nízké napětí univerzálního výstupu (5 A)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="180"/>
+      <source>Universal output (5A) current too high</source>
+      <translation>Příliš vysoký proud univerzálního výstupu (5 A)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="181"/>
+      <source>AGT DC voltage 1 low</source>
+      <translation>AGT DC napětí 1 nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="182"/>
+      <source>AGT DC voltage 1 high</source>
+      <translation>AGT stejnosměrné napětí 1 vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="183"/>
+      <source>AGT DC current 1 low</source>
+      <translation>AGT stejnosměrný proud 1 nízký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="184"/>
+      <source>AGT DC current 1 high</source>
+      <translation>AGT stejnosměrný proud 1 vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="185"/>
+      <source>AGT DC voltage 2 low</source>
+      <translation>Napětí AGT DC 2 nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="186"/>
+      <source>AGT DC voltage 2 high</source>
+      <translation>Napětí AGT DC 2 vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="187"/>
+      <source>AGT DC current 2 low</source>
+      <translation>AGT stejnosměrný proud 2 nízký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="188"/>
+      <source>AGT DC current 2 high</source>
+      <translation>AGT stejnosměrný proud 2 vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="189"/>
+      <source>AGT B6 cooler low</source>
+      <translation>Nízký chladič AGT B6</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="190"/>
+      <source>AGT B6 cooler high</source>
+      <translation>AGT B6 chladič vysoký</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="191"/>
+      <source>AGT B6 rail (-) low</source>
+      <translation>AGT B6 rail (-) low</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="192"/>
+      <source>AGT B6 rail (-) high</source>
+      <translation>AGT B6 kolejnice (-) vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="193"/>
+      <source>AGT B6 rail (+) low</source>
+      <translation>AGT B6 rail (+) nízká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="194"/>
+      <source>AGT B6 rail (+) high</source>
+      <translation>AGT B6 rail (+) vysoká</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="195"/>
+      <source>Fuel temperature too low</source>
+      <translation>Příliš nízká teplota paliva</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="196"/>
+      <source>Fuel temperature too high</source>
+      <translation>Vysoká teplota paliva</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="197"/>
+      <source>Fuel level too low</source>
+      <translation>Příliš malé množství paliva</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="200"/>
+      <source>Lost control unit</source>
+      <translation>Ztráta řídící jednotky</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="201"/>
+      <source>Lost panel</source>
+      <translation>Ztráta panelu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="202"/>
+      <source>Service needed</source>
+      <translation>Nutnost servisu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="203"/>
+      <source>Lost 3-phase module</source>
+      <translation>Ztráta třífázového modulu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="204"/>
+      <source>Lost AGT module</source>
+      <translation>Ztráta AGT modulu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="205"/>
+      <source>Synchronization failure</source>
+      <translation>Synchronizační selhání</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="206"/>
+      <source>Lost external ECU</source>
+      <translation>Ztráta externí ECU</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="207"/>
+      <source>Intake airfilter</source>
+      <translation>Přívod vzduchového filtru</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="208"/>
+      <source>Diagnostic message (ECU)</source>
+      <translation>Diagnostická zpráva (ECU)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="209"/>
+      <source>Lost sync. module</source>
+      <translation>Ztráta synchronizačního modulu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="210"/>
+      <source>Load-balance failed</source>
+      <translation>Selhání vyvážení zátěže</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="211"/>
+      <source>Sync-mode deactivated</source>
+      <translation>Deaktivován synchronizační mód</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="212"/>
+      <source>Red Stop Lamp (RSL)</source>
+      <translation>Červené brzdové světlo (RSL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="213"/>
+      <source>Amber Warning Lamp (AWL)</source>
+      <translation>Výstražné světlo oranžové barvy (AWL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="214"/>
+      <source>Malfunction Indicator Lamp (MIL)</source>
+      <translation>Kontrolka poruchy (MIL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="215"/>
+      <source>Protect Lamp (PL)</source>
+      <translation>Ochranná lampa (PL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="216"/>
+      <source>Rotating field wrong</source>
+      <translation>Špatné rotační pole</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="217"/>
+      <source>Fuel level sensor lost</source>
+      <translation>Chyba palivového čidla</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="218"/>
+      <source>Starting without inverter</source>
+      <translation>Spuštění bez měniče</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="219"/>
+      <source>Bus #1 dead</source>
+      <translation>Autobus č. 1 mrtvý</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="220"/>
+      <source>Start request denied</source>
+      <translation>Žádost o zahájení zamítnuta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="221"/>
+      <source>Remote start denied</source>
+      <translation>Odmítnutí dálkového spuštění</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="222"/>
+      <source>Forced switch off load relay</source>
+      <translation>Vynucené vypnutí zátěžového relé</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="223"/>
+      <source>Synchronization Module is offline</source>
+      <translation>Synchronizační modul je offline</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="224"/>
+      <source>Lost BMS</source>
+      <translation>Ztracený systém BMS</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="225"/>
+      <source>Converter DC Link Voltage Low/Reverse</source>
+      <translation>Převodník DC Link Voltage Low/Reverse</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="226"/>
+      <source>Converter DC Link Current Low</source>
+      <translation>Převodník DC Link Current Low</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="227"/>
+      <source>Converter DC Precharge Voltage Low</source>
+      <translation>Převodník DC Předběžné napětí nízké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="228"/>
+      <source>Converter DC Precharge Voltage High</source>
+      <translation>Převodník DC Přednabíjecí napětí Vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="229"/>
+      <source>Converter IGBT/MOSFET Driver Error</source>
+      <translation>Chyba ovladače převodníku IGBT/MOSFET</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="230"/>
+      <source>Converter Error Power Control Loop</source>
+      <translation>Chybová smyčka řízení výkonu měniče</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="231"/>
+      <source>Converter AC Frequency Detection</source>
+      <translation>Měnič Detekce frekvence střídavého proudu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="232"/>
+      <source>Converter Control Value Fail</source>
+      <translation>Selhání řídicí hodnoty převodníku</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="233"/>
+      <source>Factory setting changed</source>
+      <translation>Změna továrního nastavení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="234"/>
+      <source>Parameter changed in admin mode</source>
+      <translation>Změna parametru v režimu správce</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="235"/>
+      <source>Manual Intervention (ext. System)</source>
+      <translation>Ruční zásah (ext. systém)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="238"/>
+      <source>Init failed</source>
+      <translation>Nezdařený start</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="239"/>
+      <source>Watchdog</source>
+      <translation>Hlídací pes</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="240"/>
+      <source>Inverter temperature high L1</source>
+      <translation>Vysoká teplota měniče L1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="241"/>
+      <source>Inverter temperature high L2</source>
+      <translation>Vysoká teplota měniče L2</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="242"/>
+      <source>Inverter temperature high L3</source>
+      <translation>Vysoká teplota měniče L3</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="243"/>
+      <source>Inverter temperature high DC link</source>
+      <translation>Vysoká teplota měniče DC link</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="244"/>
+      <source>Inverter overload</source>
+      <translation>Přetížení měniče</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="245"/>
+      <source>Inverter communication lost</source>
+      <translation>Ztráta komunikace měniče</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="246"/>
+      <source>DC overload</source>
+      <translation>DC přetížení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="247"/>
+      <source>DC overvoltage</source>
+      <translation>DC přepětí</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="249"/>
+      <source>No connection</source>
+      <translation>Bez spojení</translation>
+    </message>
+  </context>
+  <context>
+    <name>GensetError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="83"/>
+      <source>No error</source>
+      <translation>Žádná chyba</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="96"/>
+      <source>Unknown error: %1</source>
+      <translation>Neznámá chyba: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>Hatz</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="795"/>
+      <source>Unknown error: </source>
+      <translation>Neznámá chyba:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="814"/>
+      <source>Oil pressure</source>
+      <translation>Tlak oleje</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="815"/>
+      <source>Cylinder head overtemperature</source>
+      <translation>Přehřátí hlavy válců</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="816"/>
+      <source>Charge control</source>
+      <translation>Řízení nabíjení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="817"/>
+      <source>Speed higher than expected</source>
+      <translation>Rychlost vyšší, než se očekávalo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="818"/>
+      <source>Overspeed</source>
+      <translation>Nadměrná rychlost</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="820"/>
+      <source>Oil temperature higher than expected</source>
+      <translation>Teplota oleje je vyšší, než se očekávalo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="821"/>
+      <source>Oil temperature open circuit / short to power</source>
+      <translation>Teplota oleje: přerušený obvod / zkrat na napájení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="822"/>
+      <source>Oil temperature short to ground</source>
+      <translation>Teplota oleje: zkrat na kostru</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="823"/>
+      <source>Analog setpoint high / short to power</source>
+      <translation>Analogová nastavená hodnota vysoká / krátká na napájení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="824"/>
+      <source>Analog setpoint low / short to ground</source>
+      <translation>Analogová nastavená hodnota nízká / zkrat na zem</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="825"/>
+      <source>TSC1 message receive timeout</source>
+      <translation>Časový limit příjmu zprávy TSC1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="826"/>
+      <source>CM1 message receive timeout</source>
+      <translation>Časový limit příjmu zprávy CM1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="827"/>
+      <source>Battery voltage high</source>
+      <translation>Vysoké napětí baterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="828"/>
+      <source>Battery voltage low</source>
+      <translation>Nízké napětí baterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="829"/>
+      <source>Speed signal distorted</source>
+      <translation>Zkreslený signál rychlosti</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="830"/>
+      <source>Internal 5V sensor supply high</source>
+      <translation>Interní napájení snímače 5 V vysoké</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="831"/>
+      <source>Internal 5V sensor supply low</source>
+      <translation>Nízké vnitřní napájení snímače 5 V</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="832"/>
+      <source>Barometric pressure high</source>
+      <translation>Vysoký barometrický tlak</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="833"/>
+      <source>Barometric pressure low</source>
+      <translation>Nízký barometrický tlak</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="834"/>
+      <source>Output fuelpump short to power</source>
+      <translation>Zkrat výstupního palivového čerpadla na napájení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="835"/>
+      <source>Output fuelpump short to ground</source>
+      <translation>Zkrat výstupního palivového čerpadla na zem</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="836"/>
+      <source>Output glow plug short to power</source>
+      <translation>Zkrat výstupní žhavicí svíčky na napájení</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="837"/>
+      <source>Output glow plug short to ground</source>
+      <translation>Zkrat výstupní žhavicí svíčky na zem</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="838"/>
+      <source>Injector open circuit/low side short to ground</source>
+      <translation>Rozpojený obvod vstřikovače/zkrat na spodní straně na zem</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="839"/>
+      <source>Injector coil internal short circuit</source>
+      <translation>Vnitřní zkrat cívky vstřikovače</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="840"/>
+      <source>Injector low side short to power</source>
+      <translation>Zkrat na spodní straně vstřikovače</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="841"/>
+      <source>Service hours expired</source>
+      <translation>Uplynulé hodiny služby</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="845"/>
+      <source>Processor failure</source>
+      <translation>Selhání procesoru</translation>
+    </message>
+  </context>
+  <context>
+    <name>QObject</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="125"/>
+      <source>Fuel</source>
+      <translation>Palivo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="126"/>
+      <source>Fresh water</source>
+      <translation>Čistá voda</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="127"/>
+      <source>Waste water</source>
+      <translation>Odpadní voda</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="128"/>
+      <source>Live well</source>
+      <translation>Nádrž na vodu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="129"/>
+      <source>Oil</source>
+      <translation>Olej</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="130"/>
+      <source>Black water (sewage)</source>
+      <translation>Splašky</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="131"/>
+      <source>Gasoline</source>
+      <translation>Benzín</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="132"/>
+      <source>Diesel</source>
+      <translation>Nafta</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="133"/>
+      <source>LPG</source>
+      <translation>LPG</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="134"/>
+      <source>LNG</source>
+      <translation>LNG</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="135"/>
+      <source>Hydraulic oil</source>
+      <translation>Hydraulický olej</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="136"/>
+      <source>Raw water</source>
+      <translation>Surová voda</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="143"/>
+      <source>Unknown</source>
+      <translation>Neznámý</translation>
+    </message>
+  </context>
+  <context>
+    <name>Wakespeed</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="138"/>
+      <source>Unknown error: </source>
+      <translation>Neznámá chyba:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="151"/>
+      <source>Internal error</source>
+      <translation>Interní chyba</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="156"/>
+      <source>No error</source>
+      <translation>Žádná chyba</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="159"/>
+      <source>Battery high temperature</source>
+      <translation>Vysoká teplota baterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="162"/>
+      <source>Battery high voltage</source>
+      <translation>Vysoké napětí baterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="165"/>
+      <source>Battery low voltage</source>
+      <translation>Nízké napětí baterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="168"/>
+      <source>Battery voltage exceeded configured max</source>
+      <translation>Napětí baterie překročilo nakonfigurované maximum</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="171"/>
+      <source>Battery temperature sensor defective</source>
+      <translation>Vadný snímač teploty baterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="175"/>
+      <source>Alternator high temperature</source>
+      <translation>Vysoká teplota alternátoru</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="178"/>
+      <source>Alternator high RPM</source>
+      <translation>Vysoké otáčky alternátoru</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="181"/>
+      <source>Field drive FET high temperature</source>
+      <translation>Vysoká teplota FET polního pohonu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="184"/>
+      <source>Required sensor missing</source>
+      <translation>Chybí požadovaný snímač</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="187"/>
+      <source>Alternator low voltage</source>
+      <translation>Nízké napětí alternátoru</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="190"/>
+      <source>Alternator high voltage offset</source>
+      <translation>Posunutí vysokého napětí alternátoru</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="193"/>
+      <source>Alternator Voltage exceeded configured max</source>
+      <translation>Napětí alternátoru překročilo nakonfigurované maximum</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="196"/>
+      <source>Alternator high voltage</source>
+      <translation>Vysoké napětí alternátoru</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="199"/>
+      <source>Battery disconnected</source>
+      <translation>Odpojená baterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="202"/>
+      <source>Battery high voltage disconnect</source>
+      <translation>Odpojení baterie při vysokém napětí</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="205"/>
+      <source>Battery instance ouf of range</source>
+      <translation>Akumulátor mimo rozsah</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="208"/>
+      <source>Too many BMS's</source>
+      <translation>Příliš mnoho zařízení BMS</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="211"/>
+      <source>Battery about to disconnect</source>
+      <translation>Brzy dojde k odpojení baterie</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="214"/>
+      <source>Too many devices to track</source>
+      <translation>Příliš mnoho zařízení ke sledování</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="217"/>
+      <source>Battery low voltage disconnect</source>
+      <translation>Odpojení baterie při nízkém napětí</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="220"/>
+      <source>Battery high current disconnect</source>
+      <translation>Odpojení baterie při vysokém proudu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="223"/>
+      <source>Battery high temperature disconnect</source>
+      <translation>Odpojení baterie při vysoké teplotě</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="226"/>
+      <source>Battery low temperature disconnect</source>
+      <translation>Odpojení baterie při nízké teplotě</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="229"/>
+      <source>BMS connection lost</source>
+      <translation>Ztráta BMS komunikace</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="232"/>
+      <source>ATC Disabled</source>
+      <translation>ATC vypnuto</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="235"/>
+      <source>DC/DC converter not ready</source>
+      <translation>Měnič DC/DC není připraven</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="238"/>
+      <source>DC/DC high primary voltage</source>
+      <translation>Vysoké primární napětí DC/DC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="241"/>
+      <source>DC/DC low primary voltage</source>
+      <translation>Nízké primární napětí DC/DC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="244"/>
+      <source>DC/DC high secondary voltage</source>
+      <translation>Vysoké sekundární napětí DC/DC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="247"/>
+      <source>DC/DC low secondary voltage</source>
+      <translation>Nízké sekundární napětí DC/DC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="250"/>
+      <source>DC/DC high temperature</source>
+      <translation>Vysoká teplota DC/DC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="253"/>
+      <source>DC/DC misconfiguration</source>
+      <translation>Chybná konfigurace DC/DC</translation>
     </message>
   </context>
 </TS>

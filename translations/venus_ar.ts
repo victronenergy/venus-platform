@@ -134,6 +134,46 @@
       <source>Pre charge timeout</source>
       <translation>انتهاء مهلة ما قبل الشحن</translation>
     </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="94"/>
+      <source>ATC/ATD failure</source>
+      <translation>عطل ATC/ATD</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="98"/>
+      <source>Calibration data lost</source>
+      <translation>بيانات المعايرة مفقودة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="102"/>
+      <source>Settings invalid</source>
+      <translation>إعدادات غير صالحة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="105"/>
+      <source>Interlock</source>
+      <translation>تعشيق</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="108"/>
+      <source>Emergency stop</source>
+      <translation>توقف لأمر طارئ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="111"/>
+      <source>Communication timeout</source>
+      <translation>مهلة الاتصال</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="114"/>
+      <source>Safety lock</source>
+      <translation>قفل الأمان</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="117"/>
+      <source>Terminal over temperature</source>
+      <translation>المحطة تجاوزت درجة الحرارة</translation>
+    </message>
   </context>
   <context>
     <name>ChargerError</name>
@@ -461,6 +501,81 @@
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="83"/>
       <source>15V supply error</source>
       <translation>خطأ في تغذية 15 فولت</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="23"/>
+      <source>Battery relay fault</source>
+      <translation>خطأ في مرحل البطارية</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="24"/>
+      <source>Battery not found</source>
+      <translation>لم يتم العثور على البطارية</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="49"/>
+      <source>PV isolation failure</source>
+      <translation>فشل عزل الخلايا الكهروضوئية</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="99"/>
+      <source>PV Input shutdown</source>
+      <translation>إغلاق المدخلات الكهروضوئية</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="115"/>
+      <source>Charger pre-charge failed</source>
+      <translation>فشل الشحن المسبق للشاحن</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="116"/>
+      <source>Charger solar relay failed</source>
+      <translation>فشل مرحل الطاقة الشمسية للشاحن</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="117"/>
+      <source>Charger solar short</source>
+      <translation>دائرة قصر في طاقة الشاحن الشمسية</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="118"/>
+      <source>Charger solar connect failed</source>
+      <translation>فشل اتصال الشاحن بالطاقة الشمسية</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="72"/>
+      <source>Phase rotation</source>
+      <translation>تناوب المرحلة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="73"/>
+      <source>Multiple AC inputs</source>
+      <translation>مداخل تيار متردد متعددة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="74"/>
+      <source>Too many units in parallel</source>
+      <translation>عدد الوحدات المتصلة على التوازي كبير جداً</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="76"/>
+      <source>Network incomplete</source>
+      <translation>الشبكة غير مكتملة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="77"/>
+      <source>Settings sync disabled</source>
+      <translation>مزامنة الإعدادات معطلة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="89"/>
+      <source>kWh counters invalid</source>
+      <translation>عدادات كيلووات ساعة غير صالحة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="93"/>
+      <source>GFCI sensor error</source>
+      <translation>خطأ في مستشعر قاطع دارة الأعطال الأرضية</translation>
     </message>
   </context>
   <context>
@@ -1394,6 +1509,51 @@
       <source>Distributor %1 connection lost</source>
       <translation>فقدان اتصال %1 الموزع</translation>
     </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="350"/>
+      <source>High cell voltage</source>
+      <translation>جهد الخلية مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="372"/>
+      <source>Battery communication lost</source>
+      <translation>فُقد الاتصال بالبطارية</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="373"/>
+      <source>To update battery: https://ve3.nl/ngut</source>
+      <translation>لتحديث البطارية: https://ve3.nl/ngut</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="374"/>
+      <source>Parallel BMS connection lost</source>
+      <translation>فُقد الاتصال المتوازي بنظام إدارة البطارية (BMS)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="375"/>
+      <source>Cell measurements fault</source>
+      <translation>عطل في قياسات الخلايا</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="376"/>
+      <source>Communication error</source>
+      <translation>خطأ في الاتصال</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="377"/>
+      <source>Invalid battery configuration</source>
+      <translation>إعداد البطارية غير صالح</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="378"/>
+      <source>Incorrect number of batteries</source>
+      <translation>عدد البطاريات غير صحيح</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="379"/>
+      <source>Battery voltage not supported</source>
+      <translation>الجهد الكهربائي للبطارية غير مدعوم</translation>
+    </message>
   </context>
   <context>
     <name>DeviceAlarms</name>
@@ -1536,6 +1696,141 @@
       <source>Low battery</source>
       <translation>بطارية منخفضة</translation>
     </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="53"/>
+      <source>DC generator is not providing power</source>
+      <translation>مولد التيار المستمر (DC) لا يزود الطاقة</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="55"/>
+      <source>GX Auto start/stop is disabled</source>
+      <translation>تم تعطيل بدء/إيقاف GX التلقائي</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="56"/>
+      <source>Remote start is disabled on the genset</source>
+      <translation>تم تعطيل التشغيل عن بُعد في مجموعة المولدات</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="57"/>
+      <source>Generator stopped due to low tank level</source>
+      <translation>توقف المولد بسبب انخفاض مستوى الخزان</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="133"/>
+      <source>Grid lost</source>
+      <translation>الشبكة مفقودة</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="134"/>
+      <source>Phase rotation</source>
+      <translation>تناوب المرحلة</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="233"/>
+      <source>System incompatible for Opportunity Loads</source>
+      <translation>النظام غير متوافق مع أحمال الفرص (Opportunity Loads)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="242"/>
+      <source>#01 GND not present</source>
+      <translation>#01 التأريض (GND) غير متوفر</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="243"/>
+      <source>#02 Welded contacts</source>
+      <translation>#02 نقاط تلامس ملحومة</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="244"/>
+      <source>#03 CP input short-circuit</source>
+      <translation>#03 ماس كهربائي في دخل CP</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="245"/>
+      <source>#04 Residual current</source>
+      <translation>#04 تيار متبقي</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="246"/>
+      <source>#05 Over temperature</source>
+      <translation>#05 ارتفاع في درجة الحرارة</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="247"/>
+      <source>#06 Light sensor IC fault</source>
+      <translation>#06 عطل في شريحة حساس الضوء (IC)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="248"/>
+      <source>#07 Tamper detected</source>
+      <translation>#07 تم اكتشاف تلاعب</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>Initial setup not completed</source>
+      <translation>لم يكتمل الإعداد الأولي</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>EVCS externally blocked by grid operator</source>
+      <translation>محطة شحن المركبات الكهربائية محظورة خارجيًا بواسطة مشغل الشبكة</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>EVCS high temperature detected</source>
+      <translation>تم اكتشاف ارتفاع في درجة حرارة محطة شحن المركبات الكهربائية</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>GX communication warning</source>
+      <translation>تحذير اتصال GX</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>Overload detected</source>
+      <translation>تم اكتشاف حمل زائد</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>Overload active</source>
+      <translation>الحمل الزائد نشط</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>Scheduled mode failed - time sync issue</source>
+      <translation>فشل الوضع المجدول - مشكلة في مزامنة الوقت</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>The charging current is limited by an external switch</source>
+      <translation>تيار الشحن محدود بواسطة مفتاح خارجي</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="257"/>
+      <source>The charging current is limited due to inverter overtemperature</source>
+      <translation>تيار الشحن محدود بسبب ارتفاع درجة حرارة العاكس</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="258"/>
+      <source>Can't update display FW due to broken file. Please perform update again</source>
+      <translation>تعذر تحديث البرامج الثابتة للشاشة بسبب ملف تالف. يرجى إجراء التحديث مرة أخرى</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="259"/>
+      <source>Can't update display FW due to communication issues</source>
+      <translation>تعذر تحديث البرامج الثابتة للشاشة بسبب مشاكل في الاتصال</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="260"/>
+      <source>Updating display FW. EV charging will be available after a while</source>
+      <translation>جارٍ تحديث البرامج الثابتة للشاشة. سيكون شحن المركبات الكهربائية متاحًا بعد قليل</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="215"/>
+      <source>#46 Data partition full</source>
+      <translation>#46 قسم البيانات ممتلئ</translation>
+    </message>
   </context>
   <context>
     <name>VenusTankService</name>
@@ -1543,6 +1838,1136 @@
       <location filename="../src/venus_service.cpp" line="121"/>
       <source>tank</source>
       <translation>خزان</translation>
+    </message>
+  </context>
+  <context>
+    <name>AlternatorError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="22"/>
+      <source>No error</source>
+      <translation>لا يوجد خطأ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="25"/>
+      <source>Unknown error: %1</source>
+      <translation>خطأ غير معروف: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>CRE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="855"/>
+      <source>Unknown error: </source>
+      <translation>خطأ غير معروف:</translation>
+    </message>
+  </context>
+  <context>
+    <name>CUMMINS</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="1034"/>
+      <source>Unknown error: </source>
+      <translation>خطأ غير معروف:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DEIF</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="874"/>
+      <source>Unknown error: </source>
+      <translation>خطأ غير معروف:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DSE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="259"/>
+      <source>Unknown error: </source>
+      <translation>خطأ غير معروف:</translation>
+    </message>
+  </context>
+  <context>
+    <name>FischerPanda</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="104"/>
+      <source>Unknown error: </source>
+      <translation>خطأ غير معروف: </translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="115"/>
+      <source>No error</source>
+      <translation>لا يوجد خطأ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage L1 too low</source>
+      <translation>جهد التيار المتردد L1 منخفض جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage too low</source>
+      <translation>جهد التيار المتردد منخفض جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage L1 too high</source>
+      <translation>جهد التيار المتردد L1 مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage too high</source>
+      <translation>جهد التيار المتردد مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency L1 too low</source>
+      <translation>تردد التيار المتردد L1 منخفض جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency too low</source>
+      <translation>تردد التيار المتردد منخفض جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency L1 too high</source>
+      <translation>تردد التيار المتردد L1 مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency too high</source>
+      <translation>تردد التيار المتردد مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current L1 too high</source>
+      <translation>تيار المتردد L1 مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current too high</source>
+      <translation>تيار المتردد مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power L1 too high</source>
+      <translation>قدرة التيار المتردد L1 مرتفعة جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power too high</source>
+      <translation>قدرة التيار المتردد مرتفعة جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="124"/>
+      <source>Emergency stop</source>
+      <translation>إيقاف طوارئ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="125"/>
+      <source>Servo current too high</source>
+      <translation>تيار السيرفو مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="126"/>
+      <source>Oil pressure too low</source>
+      <translation>ضغط الزيت منخفض جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="127"/>
+      <source>Oil pressure too high</source>
+      <translation>ضغط الزيت مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="128"/>
+      <source>Engine temperature too low</source>
+      <translation>درجة حرارة المحرك منخفضة جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="129"/>
+      <source>Engine temperature too high</source>
+      <translation>درجة حرارة المحرك مرتفعة جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="130"/>
+      <source>Winding temperature too low</source>
+      <translation>درجة حرارة الملفات منخفضة جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="131"/>
+      <source>Winding temperature too high</source>
+      <translation>درجة حرارة الملفات مرتفعة جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="132"/>
+      <source>Exhaust temperature too low</source>
+      <translation>درجة حرارة العادم منخفضة جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="133"/>
+      <source>Exhaust temperature too high</source>
+      <translation>درجة حرارة العادم مرتفعة جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="134"/>
+      <source>Electronic temperature low</source>
+      <translation>درجة حرارة الإلكترونيات منخفضة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="135"/>
+      <source>Electronic temperature high</source>
+      <translation>درجة حرارة الإلكترونيات مرتفعة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="136"/>
+      <source>Starter voltage too low</source>
+      <translation>جهد بادئ التشغيل منخفض جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="137"/>
+      <source>Starter current too high</source>
+      <translation>تيار بادئ التشغيل مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="138"/>
+      <source>Glow voltage too low</source>
+      <translation>جهد شمعات التوهج منخفض جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="139"/>
+      <source>Glow current too high</source>
+      <translation>تيار شمعات التوهج مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="140"/>
+      <source>Cold-Start-Aid voltage too high</source>
+      <translation>جهد مساعِد بدء التشغيل على البارد مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="141"/>
+      <source>Cold-Start-Aid current too high</source>
+      <translation>تيار مساعِد بدء التشغيل على البارد مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="142"/>
+      <source>Fuel holding magnet voltage too low</source>
+      <translation>جهد مغناطيس تثبيت الوقود منخفض جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="143"/>
+      <source>Fuel holding magnet current too high</source>
+      <translation>تيار مغناطيس تثبيت الوقود مرتفع جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="144"/>
+      <source>Stop solenoid hold coil voltage too low</source>
+      <translation>جهد ملف تثبيت صمام الإيقاف منخفض جدًا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="145"/>
+      <source>Stop solenoid hold coil current too high</source>
+      <translation>تيار المحث الضابط للملف الكهربائي للتوقف مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="146"/>
+      <source>Stop solenoid pull coil voltage too low </source>
+      <translation>جهد المحث الساحب للملف الكهربائي للتوقف منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="147"/>
+      <source>Stop solenoid pull coil current too high</source>
+      <translation>تيار المحث الساحب للملف الكهربائي للتوقف مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="148"/>
+      <source>Fan/water pump voltage too low</source>
+      <translation>جهد مضخة المروحة/ الماء منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="149"/>
+      <source>Fan/water pump current too high</source>
+      <translation>تيار مضخة المروحة/ الماء مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="150"/>
+      <source>Current sensor voltage low</source>
+      <translation>تيار الجهد الكهربائي للمستشعر منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="151"/>
+      <source>Current sensor current high</source>
+      <translation>تيار مستشعر التيار مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="152"/>
+      <source>Boost output voltage too low</source>
+      <translation>الجهد الكهربائي لخرج التعزيز منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="153"/>
+      <source>Boost output current too high</source>
+      <translation>التيار الخارج المعزز مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="154"/>
+      <source>Bus supply voltage too low</source>
+      <translation>جهد تغذية الناقل منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="155"/>
+      <source>Bus supply current too high</source>
+      <translation>تيار تغذية الناقل مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="156"/>
+      <source>Starter battery voltage too low</source>
+      <translation>الجهد الكهربائي لبطارية البادئ منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="157"/>
+      <source>Starter battery voltage too high</source>
+      <translation>الجهد الكهربائي لمشغل البطارية مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="158"/>
+      <source>Rotation too low</source>
+      <translation>التناوب منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="159"/>
+      <source>Rotation too high</source>
+      <translation>التناوب مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="160"/>
+      <source>Unexpected stop/problem with fuel supply</source>
+      <translation>توقف/ مشكلة مفاجئة في إمداد الوقود</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="161"/>
+      <source>Power contactor voltage too low</source>
+      <translation>جهد ملامس القدرة منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="162"/>
+      <source>Power contactor current too high</source>
+      <translation>تيار ملامس القدرة مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="163"/>
+      <source>AC voltage L2 too low</source>
+      <translation>الجهد الكهربائي L2 للتيار المتردد منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="164"/>
+      <source>AC voltage L2 too high</source>
+      <translation>الجهد الكهربائي L2 للتيار المتردد مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="165"/>
+      <source>AC frequency L2 too low</source>
+      <translation>تردد L2 للتيار المتردد منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="166"/>
+      <source>AC frequency L2 too high</source>
+      <translation>تردد L2 للتيار المتردد مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="167"/>
+      <source>AC current L2 too high</source>
+      <translation>تيار L2 للتيار المتردد مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="168"/>
+      <source>AC power L2 too high</source>
+      <translation>قدرة L2 للتيار المتردد مرتفعة جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="169"/>
+      <source>AC voltage L3 too low</source>
+      <translation>الجهد الكهربائي L3 للتيار المتردد منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="170"/>
+      <source>AC voltage L3 too high</source>
+      <translation>الجهد الكهربائي L3 للتيار المتردد مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="171"/>
+      <source>AC frequency L3 too low</source>
+      <translation>تردد L3 للتيار المتردد منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="172"/>
+      <source>AC frequency L3 too high</source>
+      <translation>تردد L3 للتيار المتردد مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="173"/>
+      <source>AC current L3 too high</source>
+      <translation>تيار L3 للتيار المتردد مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="174"/>
+      <source>AC power L3 too high</source>
+      <translation>طاقة L3 للتيار المتردد مرتفعة جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="175"/>
+      <source>Output Inverter voltage too low</source>
+      <translation>جهد خرج المحول العكسي منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="176"/>
+      <source>Output Inverter current too  high</source>
+      <translation>تيار خرج المحول العكسي مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="177"/>
+      <source>Universal output (1A) voltage too low</source>
+      <translation>جهد الخرج الشامل (1A) منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="178"/>
+      <source>Universal output (1A) current too high</source>
+      <translation>تيار الخرج الشامل (1A) مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="179"/>
+      <source>Universal output (5A) voltage too low</source>
+      <translation>جهد الخرج الشامل (5A) منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="180"/>
+      <source>Universal output (5A) current too high</source>
+      <translation>تيار الخرج الشامل (5A) مرتفع جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="181"/>
+      <source>AGT DC voltage 1 low</source>
+      <translation>جهد التيار المستمر AGT 1 منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="182"/>
+      <source>AGT DC voltage 1 high</source>
+      <translation>جهد التيار المستمر AGT 1 مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="183"/>
+      <source>AGT DC current 1 low</source>
+      <translation>تيار التيار المستمر AGT 1 منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="184"/>
+      <source>AGT DC current 1 high</source>
+      <translation>تيار التيار المستمر AGT 1 مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="185"/>
+      <source>AGT DC voltage 2 low</source>
+      <translation>جهد التيار المستمر AGT 2 منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="186"/>
+      <source>AGT DC voltage 2 high</source>
+      <translation>جهد التيار المستمر AGT 2 مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="187"/>
+      <source>AGT DC current 2 low</source>
+      <translation>تيار التيار المستمر AGT 2 منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="188"/>
+      <source>AGT DC current 2 high</source>
+      <translation>تيار التيار المستمر AGT 2 مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="189"/>
+      <source>AGT B6 cooler low</source>
+      <translation>مبرد AGT B6 منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="190"/>
+      <source>AGT B6 cooler high</source>
+      <translation>مبرد AGT B6 مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="191"/>
+      <source>AGT B6 rail (-) low</source>
+      <translation>قضيب(-) AGT B6 منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="192"/>
+      <source>AGT B6 rail (-) high</source>
+      <translation>قضيب(-) AGT B6 مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="193"/>
+      <source>AGT B6 rail (+) low</source>
+      <translation>قضيب(+) AGT B6 منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="194"/>
+      <source>AGT B6 rail (+) high</source>
+      <translation>قضيب(+) AGT B6 مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="195"/>
+      <source>Fuel temperature too low</source>
+      <translation>حرارة الوقود منخفضة جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="196"/>
+      <source>Fuel temperature too high</source>
+      <translation>حرارة الوقود مرتفعة جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="197"/>
+      <source>Fuel level too low</source>
+      <translation>مستوى الوقود منخفض جدا</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="200"/>
+      <source>Lost control unit</source>
+      <translation>فقدت وحدة التحكم</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="201"/>
+      <source>Lost panel</source>
+      <translation>فقدت اللوحة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="202"/>
+      <source>Service needed</source>
+      <translation>خدمة محتاجة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="203"/>
+      <source>Lost 3-phase module</source>
+      <translation>تم فقد لوحة 3-طور</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="204"/>
+      <source>Lost AGT module</source>
+      <translation>تم فقد وحدة AGT</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="205"/>
+      <source>Synchronization failure</source>
+      <translation>فشل في التزامن</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="206"/>
+      <source>Lost external ECU</source>
+      <translation>فقد وحدة التحكم الإلكترونية الخارجية ECU</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="207"/>
+      <source>Intake airfilter</source>
+      <translation>فلتر هواء السحب</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="208"/>
+      <source>Diagnostic message (ECU)</source>
+      <translation>رسالة تشخيصية (ECU)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="209"/>
+      <source>Lost sync. module</source>
+      <translation>فقدت وحدة التزامن</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="210"/>
+      <source>Load-balance failed</source>
+      <translation>فشل في توازن الحمل</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="211"/>
+      <source>Sync-mode deactivated</source>
+      <translation>وضعية التزامن معطلة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="212"/>
+      <source>Red Stop Lamp (RSL)</source>
+      <translation>ضوء التوقف الأحمر (RSL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="213"/>
+      <source>Amber Warning Lamp (AWL)</source>
+      <translation>ضوء التحذير الأصفر (AWL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="214"/>
+      <source>Malfunction Indicator Lamp (MIL)</source>
+      <translation>ضوء مؤشر العطل (MIL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="215"/>
+      <source>Protect Lamp (PL)</source>
+      <translation>ضوء الحماية (PL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="216"/>
+      <source>Rotating field wrong</source>
+      <translation>تدوير الحقل خاطئ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="217"/>
+      <source>Fuel level sensor lost</source>
+      <translation>فقد حساس مستوى الوقود</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="218"/>
+      <source>Starting without inverter</source>
+      <translation>البدء بدون محول</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="219"/>
+      <source>Bus #1 dead</source>
+      <translation>الناقل #1 متوقف</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="220"/>
+      <source>Start request denied</source>
+      <translation>تم رفض طلب البدء</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="221"/>
+      <source>Remote start denied</source>
+      <translation>تم رفض البدء عن بعد</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="222"/>
+      <source>Forced switch off load relay</source>
+      <translation>تبديل الإيقاف القسري للمرحّل التحميلي</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="223"/>
+      <source>Synchronization Module is offline</source>
+      <translation>وحدة التزامن مفصولة عن الشبكة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="224"/>
+      <source>Lost BMS</source>
+      <translation>نظام إدارة البطاريات مفقود</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="225"/>
+      <source>Converter DC Link Voltage Low/Reverse</source>
+      <translation>جهد رابط وحدة محول التيار المستمر منخفض/عكسي</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="226"/>
+      <source>Converter DC Link Current Low</source>
+      <translation>تيار رابط وحدة محول التيار المستمر منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="227"/>
+      <source>Converter DC Precharge Voltage Low</source>
+      <translation>جهد الشحن المسبق لوحدة التيار المستمر منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="228"/>
+      <source>Converter DC Precharge Voltage High</source>
+      <translation>جهد الشحن المسبق لوحدة التيار المستمر مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="229"/>
+      <source>Converter IGBT/MOSFET Driver Error</source>
+      <translation>خطأ في محرك محول IGBT/MOSFET</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="230"/>
+      <source>Converter Error Power Control Loop</source>
+      <translation>خطأ في حلقة التحكم بالطاقة للمحول</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="231"/>
+      <source>Converter AC Frequency Detection</source>
+      <translation>كشف تردد التيار المتردد في المحول</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="232"/>
+      <source>Converter Control Value Fail</source>
+      <translation>فشل في قيمة تحكم المحول</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="233"/>
+      <source>Factory setting changed</source>
+      <translation>تم تغيير إعدادات المصنع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="234"/>
+      <source>Parameter changed in admin mode</source>
+      <translation>تم تغيير المعامل في وضع الإدارة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="235"/>
+      <source>Manual Intervention (ext. System)</source>
+      <translation>تدخل يدوي (نظام خارجي)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="238"/>
+      <source>Init failed</source>
+      <translation>فشل في البدء</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="239"/>
+      <source>Watchdog</source>
+      <translation>مراقب التوقيت</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="240"/>
+      <source>Inverter temperature high L1</source>
+      <translation>درجة حرارة محول التردد مرتفعة L1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="241"/>
+      <source>Inverter temperature high L2</source>
+      <translation>درجة حرارة محول التردد مرتفعة L2</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="242"/>
+      <source>Inverter temperature high L3</source>
+      <translation>درجة حرارة محول التردد مرتفعة L3</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="243"/>
+      <source>Inverter temperature high DC link</source>
+      <translation>درجة حرارة محول التردد مرتفعة برابط التيار المستمر</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="244"/>
+      <source>Inverter overload</source>
+      <translation>إفراط في تحيمل المعاكس</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="245"/>
+      <source>Inverter communication lost</source>
+      <translation>فقد الاتصال بالمعاكس</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="246"/>
+      <source>DC overload</source>
+      <translation>إفراط في تحميل التيار المستمر</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="247"/>
+      <source>DC overvoltage</source>
+      <translation>جهد كهربائي زائد في التيار المستمر</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="249"/>
+      <source>No connection</source>
+      <translation>ليس هناك اتصال</translation>
+    </message>
+  </context>
+  <context>
+    <name>GensetError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="83"/>
+      <source>No error</source>
+      <translation>لا يوجد خطأ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="96"/>
+      <source>Unknown error: %1</source>
+      <translation>خطأ غير معروف: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>Hatz</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="795"/>
+      <source>Unknown error: </source>
+      <translation>خطأ غير معروف:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="814"/>
+      <source>Oil pressure</source>
+      <translation>ضغط الزيت</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="815"/>
+      <source>Cylinder head overtemperature</source>
+      <translation>ارتفاع درجة حرارة الرأس الاسطوانية</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="816"/>
+      <source>Charge control</source>
+      <translation>التحكم في الشحن</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="817"/>
+      <source>Speed higher than expected</source>
+      <translation>السرعة أعلى من المتوقع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="818"/>
+      <source>Overspeed</source>
+      <translation>سرعة مرتفعة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="820"/>
+      <source>Oil temperature higher than expected</source>
+      <translation>درجة حرارة الزيت أعلى من المتوقع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="821"/>
+      <source>Oil temperature open circuit / short to power</source>
+      <translation>دائرة مفتوحة/قصر في طاقة مستشعر حرارة الزيت</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="822"/>
+      <source>Oil temperature short to ground</source>
+      <translation>دائرة قصر في مستشعر حرارة الزيت إلى الأرضي</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="823"/>
+      <source>Analog setpoint high / short to power</source>
+      <translation>نقطة ضبط تماثلية عالية/ بها قصر في الطاقة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="824"/>
+      <source>Analog setpoint low / short to ground</source>
+      <translation>نقطة ضبط تماثلية منخفضة/ بها قصر إلى الأرض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="825"/>
+      <source>TSC1 message receive timeout</source>
+      <translation>انتهاء وقت تلقي الرسالة TSC1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="826"/>
+      <source>CM1 message receive timeout</source>
+      <translation>انتهاء وقت تلقي الرسالة CM1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="827"/>
+      <source>Battery voltage high</source>
+      <translation>الجهد الكهربائي للبطارية مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="828"/>
+      <source>Battery voltage low</source>
+      <translation>الجهد الكهربائي للبطارية منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="829"/>
+      <source>Speed signal distorted</source>
+      <translation>خلل في سرعة الإشارة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="830"/>
+      <source>Internal 5V sensor supply high</source>
+      <translation>إمداد الاستشعار الداخلي بجهد 5 فولت مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="831"/>
+      <source>Internal 5V sensor supply low</source>
+      <translation>إمداد الاستشعار الداخلي بجهد 5 فولت منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="832"/>
+      <source>Barometric pressure high</source>
+      <translation>الضغط الجوي مرتفع</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="833"/>
+      <source>Barometric pressure low</source>
+      <translation>الضغط الجوي منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="834"/>
+      <source>Output fuelpump short to power</source>
+      <translation>قصر مخرج مضخة الوقود إلى الطاقة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="835"/>
+      <source>Output fuelpump short to ground</source>
+      <translation>قصر في مخرج مضخة الوقود إلى الأرض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="836"/>
+      <source>Output glow plug short to power</source>
+      <translation>قصر مخرج شمعة الإشعال إلى الطاقة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="837"/>
+      <source>Output glow plug short to ground</source>
+      <translation>قصر مخرج شمعة الإشعال إلى الأرض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="838"/>
+      <source>Injector open circuit/low side short to ground</source>
+      <translation>دائرة مفتوحة/ قصر في الجانب المنخفض إلى الأرض في الحاقن</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="839"/>
+      <source>Injector coil internal short circuit</source>
+      <translation>قصر داخلي في ملف الحاقن</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="840"/>
+      <source>Injector low side short to power</source>
+      <translation>قصر في الطاقة في مقاومة الجانب المنخفض للحاقن</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="841"/>
+      <source>Service hours expired</source>
+      <translation>انتهاء صلاحية ساعات الخدمة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="845"/>
+      <source>Processor failure</source>
+      <translation>فشل في التشغيل</translation>
+    </message>
+  </context>
+  <context>
+    <name>QObject</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="125"/>
+      <source>Fuel</source>
+      <translation>وقود</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="126"/>
+      <source>Fresh water</source>
+      <translation>ماء نقي</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="127"/>
+      <source>Waste water</source>
+      <translation>ماء فاسد</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="128"/>
+      <source>Live well</source>
+      <translation>حيوية جيدة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="129"/>
+      <source>Oil</source>
+      <translation>زيت</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="130"/>
+      <source>Black water (sewage)</source>
+      <translation>ماء أسود (مياه الصرف الصحي)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="131"/>
+      <source>Gasoline</source>
+      <translation>البنزين</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="132"/>
+      <source>Diesel</source>
+      <translation>الديزل</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="133"/>
+      <source>LPG</source>
+      <translation>الغاز النفطي المسال</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="134"/>
+      <source>LNG</source>
+      <translation>الغاز الطبيعي المسال</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="135"/>
+      <source>Hydraulic oil</source>
+      <translation>زيت هيدروليكي</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="136"/>
+      <source>Raw water</source>
+      <translation>ماء غير معالج</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="143"/>
+      <source>Unknown</source>
+      <translation>مجهول</translation>
+    </message>
+  </context>
+  <context>
+    <name>Wakespeed</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="138"/>
+      <source>Unknown error: </source>
+      <translation>خطأ غير معروف:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="151"/>
+      <source>Internal error</source>
+      <translation>خطأ داخلي</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="156"/>
+      <source>No error</source>
+      <translation>لا يوجد خطأ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="159"/>
+      <source>Battery high temperature</source>
+      <translation>بطارية مرتفعة الحرارة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="162"/>
+      <source>Battery high voltage</source>
+      <translation>بطارية مرتفعة التيار</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="165"/>
+      <source>Battery low voltage</source>
+      <translation>الجهد الكهربائي للبطارية منخفض</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="168"/>
+      <source>Battery voltage exceeded configured max</source>
+      <translation>جهد البطارية تجاوز الحد الأقصى المحدد</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="171"/>
+      <source>Battery temperature sensor defective</source>
+      <translation>مستشعر درجة حرارة البطارية معيب</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="175"/>
+      <source>Alternator high temperature</source>
+      <translation>ارتفاع درجة حرارة مولد التيار</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="178"/>
+      <source>Alternator high RPM</source>
+      <translation>ارتفاع عدد دورات مولد التيار</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="181"/>
+      <source>Field drive FET high temperature</source>
+      <translation>ارتفاع درجة حرارة ترانزستور المجال المؤثر لمحرك المجال</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="184"/>
+      <source>Required sensor missing</source>
+      <translation>الحساس المطلوب مفقود</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="187"/>
+      <source>Alternator low voltage</source>
+      <translation>انخفاض الجهد الكهربي لمولد التيار</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="190"/>
+      <source>Alternator high voltage offset</source>
+      <translation>تعديل الجهد الكهربي المرتفع لمولد التيار</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="193"/>
+      <source>Alternator Voltage exceeded configured max</source>
+      <translation>تجاوز الجهد الكهربي لمولد التيار الحد الأقصى المحدد</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="196"/>
+      <source>Alternator high voltage</source>
+      <translation>مولد التيار ذو الجهد العالي</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="199"/>
+      <source>Battery disconnected</source>
+      <translation>فصل البطارية</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="202"/>
+      <source>Battery high voltage disconnect</source>
+      <translation>فصل البطارية عالية الجهد</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="205"/>
+      <source>Battery instance ouf of range</source>
+      <translation>البطارية خارج النطاق</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="208"/>
+      <source>Too many BMS's</source>
+      <translation>عدد كبير للغاية من BMS</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="211"/>
+      <source>Battery about to disconnect</source>
+      <translation>البطارية على وشك الفصل</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="214"/>
+      <source>Too many devices to track</source>
+      <translation>عدد كبير للغاية من الأجهزة التي يتعين تتبعها</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="217"/>
+      <source>Battery low voltage disconnect</source>
+      <translation>فصل البطارية منخفضة الجهد</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="220"/>
+      <source>Battery high current disconnect</source>
+      <translation>فصل البطارية مرتفعة التيار</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="223"/>
+      <source>Battery high temperature disconnect</source>
+      <translation>فصل البطارية ذات درجة الحرارة المرتفعة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="226"/>
+      <source>Battery low temperature disconnect</source>
+      <translation>فصل البطارية ذات درجة الحرارة المنخفضة</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="229"/>
+      <source>BMS connection lost</source>
+      <translation>اتصال إدارة نظام البطاريات مفقود</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="232"/>
+      <source>ATC Disabled</source>
+      <translation>تعطيل ATC</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="235"/>
+      <source>DC/DC converter not ready</source>
+      <translation>محول الجهد المستمر غير جاهز</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="238"/>
+      <source>DC/DC high primary voltage</source>
+      <translation>ارتفاع الجهد الكهربي الرئيسي للجهد المستمر</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="241"/>
+      <source>DC/DC low primary voltage</source>
+      <translation>انخفاض الجهد الكهربي الرئيسي للجهد المستمر</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="244"/>
+      <source>DC/DC high secondary voltage</source>
+      <translation>ارتفاع الجهد الكهربي الثانوي للجهد المستمر</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="247"/>
+      <source>DC/DC low secondary voltage</source>
+      <translation>انخفاض الجهد الكهربي الثانوي للجهد المستمر</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="250"/>
+      <source>DC/DC high temperature</source>
+      <translation>ارتفاع درجة حرارة الجهد المستمر</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="253"/>
+      <source>DC/DC misconfiguration</source>
+      <translation>خطأ إعداد الجهد المستمر</translation>
     </message>
   </context>
 </TS>

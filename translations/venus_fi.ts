@@ -134,6 +134,46 @@
       <source>Pre charge timeout</source>
       <translation>Esilatauksen aikakatkaisu</translation>
     </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="94"/>
+      <source>ATC/ATD failure</source>
+      <translation>ATC/ATD-vika</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="98"/>
+      <source>Calibration data lost</source>
+      <translation>Kalibrointitiedot kadonneet</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="102"/>
+      <source>Settings invalid</source>
+      <translation>Asetukset virheelliset</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="105"/>
+      <source>Interlock</source>
+      <translation>Lukitus</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="108"/>
+      <source>Emergency stop</source>
+      <translation>Hätäpysäytys</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="111"/>
+      <source>Communication timeout</source>
+      <translation>Tiedonsiirto aikakatkaistiin</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="114"/>
+      <source>Safety lock</source>
+      <translation>Turvalukko</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="117"/>
+      <source>Terminal over temperature</source>
+      <translation>Liittimen ylilämpötila</translation>
+    </message>
   </context>
   <context>
     <name>ChargerError</name>
@@ -461,6 +501,81 @@
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="83"/>
       <source>15V supply error</source>
       <translation>15V syöttövirhe</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="23"/>
+      <source>Battery relay fault</source>
+      <translation>Akun releen vika</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="24"/>
+      <source>Battery not found</source>
+      <translation>Akkua ei löytynyt</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="49"/>
+      <source>PV isolation failure</source>
+      <translation>PV-eristysvika</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="99"/>
+      <source>PV Input shutdown</source>
+      <translation>PV-tulon alasajo</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="115"/>
+      <source>Charger pre-charge failed</source>
+      <translation>Laturin esilataus epäonnistui</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="116"/>
+      <source>Charger solar relay failed</source>
+      <translation>Laturin aurinkopaneelirele vikaantui</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="117"/>
+      <source>Charger solar short</source>
+      <translation>Laturin aurinkopaneelipiirin oikosulku</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="118"/>
+      <source>Charger solar connect failed</source>
+      <translation>Laturin aurinkopaneelin kytkentä epäonnistui</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="72"/>
+      <source>Phase rotation</source>
+      <translation>Vaihekierto</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="73"/>
+      <source>Multiple AC inputs</source>
+      <translation>Useita AC-tuloja</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="74"/>
+      <source>Too many units in parallel</source>
+      <translation>Liian monta yksikköä rinnakkain</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="76"/>
+      <source>Network incomplete</source>
+      <translation>Verkko puutteellinen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="77"/>
+      <source>Settings sync disabled</source>
+      <translation>Asetusten synkronointi pois käytöstä</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="89"/>
+      <source>kWh counters invalid</source>
+      <translation>kWh-laskurit virheelliset</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="93"/>
+      <source>GFCI sensor error</source>
+      <translation>GFCI-anturivirhe</translation>
     </message>
   </context>
   <context>
@@ -1394,6 +1509,51 @@
       <source>Distributor %1 connection lost</source>
       <translation>Jakelija %1 -yhteys katkennut</translation>
     </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="350"/>
+      <source>High cell voltage</source>
+      <translation>Korkea kennon jännite</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="372"/>
+      <source>Battery communication lost</source>
+      <translation>Yhteys akkuun katkesi</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="373"/>
+      <source>To update battery: https://ve3.nl/ngut</source>
+      <translation>Akun päivittämiseksi: https://ve3.nl/ngut</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="374"/>
+      <source>Parallel BMS connection lost</source>
+      <translation>Rinnakkainen BMS-yhteys katkesi</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="375"/>
+      <source>Cell measurements fault</source>
+      <translation>Kennomittausvirhe</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="376"/>
+      <source>Communication error</source>
+      <translation>Viestintävirhe</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="377"/>
+      <source>Invalid battery configuration</source>
+      <translation>Virheellinen akun kokoonpano</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="378"/>
+      <source>Incorrect number of batteries</source>
+      <translation>Väärä määrä akkuja</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="379"/>
+      <source>Battery voltage not supported</source>
+      <translation>Akun jännitettä ei tueta</translation>
+    </message>
   </context>
   <context>
     <name>DeviceAlarms</name>
@@ -1536,6 +1696,141 @@
       <source>Low battery</source>
       <translation>Akku vähissä</translation>
     </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="53"/>
+      <source>DC generator is not providing power</source>
+      <translation>Tasavirtageneraattori ei tuota virtaa</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="55"/>
+      <source>GX Auto start/stop is disabled</source>
+      <translation>GX automaattinen käynnistys/pysäytys on poistettu käytöstä</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="56"/>
+      <source>Remote start is disabled on the genset</source>
+      <translation>Etäkäynnistys on poistettu käytöstä generaattorissa</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="57"/>
+      <source>Generator stopped due to low tank level</source>
+      <translation>Generaattori pysähtyi alhaisen säiliötason vuoksi</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="133"/>
+      <source>Grid lost</source>
+      <translation>Verkko katkennut</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="134"/>
+      <source>Phase rotation</source>
+      <translation>Vaihekierto</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="233"/>
+      <source>System incompatible for Opportunity Loads</source>
+      <translation>Järjestelmä ei ole yhteensopiva lisäkuormille</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="242"/>
+      <source>#01 GND not present</source>
+      <translation>#01 Maadoitus puuttuu</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="243"/>
+      <source>#02 Welded contacts</source>
+      <translation>#02 Kiinni hitsautuneet kontaktit</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="244"/>
+      <source>#03 CP input short-circuit</source>
+      <translation>#03 CP-tulon oikosulku</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="245"/>
+      <source>#04 Residual current</source>
+      <translation>#04 Vikavirta</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="246"/>
+      <source>#05 Over temperature</source>
+      <translation>#05 Ylilämpötila</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="247"/>
+      <source>#06 Light sensor IC fault</source>
+      <translation>#06 Valoanturin IC-vika</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="248"/>
+      <source>#07 Tamper detected</source>
+      <translation>#07 Peukalointi havaittu</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>Initial setup not completed</source>
+      <translation>Alkuasennusta ei ole suoritettu</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>EVCS externally blocked by grid operator</source>
+      <translation>Verkko-operaattori on estänyt EVCS:n ulkoisesti</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>EVCS high temperature detected</source>
+      <translation>EVCS:n korkea lämpötila havaittu</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>GX communication warning</source>
+      <translation>GX-tiedonsiirtovaroitus</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>Overload detected</source>
+      <translation>Ylikuormitus havaittu</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>Overload active</source>
+      <translation>Ylikuormitus aktiivinen</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>Scheduled mode failed - time sync issue</source>
+      <translation>Ajastettu tila epäonnistui - aikasiirto-ongelma</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>The charging current is limited by an external switch</source>
+      <translation>Latausvirtaa rajoitetaan ulkoisella kytkimellä</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="257"/>
+      <source>The charging current is limited due to inverter overtemperature</source>
+      <translation>Latausvirtaa rajoitetaan vaihtosuuntaajan ylilämmön vuoksi</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="258"/>
+      <source>Can't update display FW due to broken file. Please perform update again</source>
+      <translation>Näytön laiteohjelmistoa ei voida päivittää vioittuneen tiedoston vuoksi. Suorita päivitys uudelleen</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="259"/>
+      <source>Can't update display FW due to communication issues</source>
+      <translation>Näytön laiteohjelmistoa ei voida päivittää tiedonsiirto-ongelmien vuoksi</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="260"/>
+      <source>Updating display FW. EV charging will be available after a while</source>
+      <translation>Päivitetään näytön laiteohjelmistoa. Sähköauton lataus on käytettävissä hetken kuluttua</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="215"/>
+      <source>#46 Data partition full</source>
+      <translation>#46 Dataosio täynnä</translation>
+    </message>
   </context>
   <context>
     <name>VenusTankService</name>
@@ -1543,6 +1838,1136 @@
       <location filename="../src/venus_service.cpp" line="121"/>
       <source>tank</source>
       <translation>säiliö</translation>
+    </message>
+  </context>
+  <context>
+    <name>AlternatorError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="22"/>
+      <source>No error</source>
+      <translation>Ei virhettä</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="25"/>
+      <source>Unknown error: %1</source>
+      <translation>Tuntematon virhe: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>CRE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="855"/>
+      <source>Unknown error: </source>
+      <translation>Tuntematon virhe: </translation>
+    </message>
+  </context>
+  <context>
+    <name>CUMMINS</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="1034"/>
+      <source>Unknown error: </source>
+      <translation>Tuntematon virhe: </translation>
+    </message>
+  </context>
+  <context>
+    <name>DEIF</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="874"/>
+      <source>Unknown error: </source>
+      <translation>Tuntematon virhe: </translation>
+    </message>
+  </context>
+  <context>
+    <name>DSE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="259"/>
+      <source>Unknown error: </source>
+      <translation>Tuntematon virhe: </translation>
+    </message>
+  </context>
+  <context>
+    <name>FischerPanda</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="104"/>
+      <source>Unknown error: </source>
+      <translation>Tuntematon virhe: </translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="115"/>
+      <source>No error</source>
+      <translation>Ei virhettä</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage L1 too low</source>
+      <translation>AC-jännite L1 liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage too low</source>
+      <translation>AC-jännite liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage L1 too high</source>
+      <translation>AC-jännite L1 liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage too high</source>
+      <translation>AC-jännite liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency L1 too low</source>
+      <translation>AC-taajuus L1 liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency too low</source>
+      <translation>AC-taajuus liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency L1 too high</source>
+      <translation>AC-taajuus L1 liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency too high</source>
+      <translation>AC-taajuus liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current L1 too high</source>
+      <translation>AC-virta L1 liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current too high</source>
+      <translation>AC-virta liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power L1 too high</source>
+      <translation>AC-teho L1 liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power too high</source>
+      <translation>AC-teho liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="124"/>
+      <source>Emergency stop</source>
+      <translation>Hätäpysäytys</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="125"/>
+      <source>Servo current too high</source>
+      <translation>Servovirta liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="126"/>
+      <source>Oil pressure too low</source>
+      <translation>Öljynpaine liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="127"/>
+      <source>Oil pressure too high</source>
+      <translation>Öljynpaine liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="128"/>
+      <source>Engine temperature too low</source>
+      <translation>Moottorin lämpötila liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="129"/>
+      <source>Engine temperature too high</source>
+      <translation>Moottorin lämpötila liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="130"/>
+      <source>Winding temperature too low</source>
+      <translation>Käämityksen lämpötila liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="131"/>
+      <source>Winding temperature too high</source>
+      <translation>Käämityksen lämpötila liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="132"/>
+      <source>Exhaust temperature too low</source>
+      <translation>Pakokaasun lämpötila liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="133"/>
+      <source>Exhaust temperature too high</source>
+      <translation>Pakokaasun lämpötila liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="134"/>
+      <source>Electronic temperature low</source>
+      <translation>Elektroniikan lämpötila matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="135"/>
+      <source>Electronic temperature high</source>
+      <translation>Elektroniikan lämpötila korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="136"/>
+      <source>Starter voltage too low</source>
+      <translation>Käynnistimen jännite liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="137"/>
+      <source>Starter current too high</source>
+      <translation>Käynnistimen virta liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="138"/>
+      <source>Glow voltage too low</source>
+      <translation>Hehkutusjännite liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="139"/>
+      <source>Glow current too high</source>
+      <translation>Hehkutusvirta liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="140"/>
+      <source>Cold-Start-Aid voltage too high</source>
+      <translation>Kylmäkäynnistysavustimen jännite liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="141"/>
+      <source>Cold-Start-Aid current too high</source>
+      <translation>Kylmäkäynnistysavustimen virta liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="142"/>
+      <source>Fuel holding magnet voltage too low</source>
+      <translation>Polttoaineen pitomagneetin jännite liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="143"/>
+      <source>Fuel holding magnet current too high</source>
+      <translation>Polttoaineen pitomagneetin virta liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="144"/>
+      <source>Stop solenoid hold coil voltage too low</source>
+      <translation>Pysäytyssolenoidin pitokäämin jännite liian matala</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="145"/>
+      <source>Stop solenoid hold coil current too high</source>
+      <translation>Pysäytyssolenoidin pitokäämin virta liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="146"/>
+      <source>Stop solenoid pull coil voltage too low </source>
+      <translation>Pysäytyssolenoidin vetokäämin jännite liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="147"/>
+      <source>Stop solenoid pull coil current too high</source>
+      <translation>Pysäytyssolenoidin vetokäämin virta liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="148"/>
+      <source>Fan/water pump voltage too low</source>
+      <translation>Tuulettimen/vesipumpun jännite liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="149"/>
+      <source>Fan/water pump current too high</source>
+      <translation>Tuulettimen/vesipumpun virta liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="150"/>
+      <source>Current sensor voltage low</source>
+      <translation>Virtasensorin jännite alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="151"/>
+      <source>Current sensor current high</source>
+      <translation>Virtasensorin virta korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="152"/>
+      <source>Boost output voltage too low</source>
+      <translation>Tehostuslähdön jännite liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="153"/>
+      <source>Boost output current too high</source>
+      <translation>Tehostuslähdön virta liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="154"/>
+      <source>Bus supply voltage too low</source>
+      <translation>Väylän syöttöjännite liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="155"/>
+      <source>Bus supply current too high</source>
+      <translation>Väylän syöttövirta liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="156"/>
+      <source>Starter battery voltage too low</source>
+      <translation>Käynnistysakun jännite liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="157"/>
+      <source>Starter battery voltage too high</source>
+      <translation>Käynnistysakun jännite liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="158"/>
+      <source>Rotation too low</source>
+      <translation>Kierrosluku liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="159"/>
+      <source>Rotation too high</source>
+      <translation>Kierrosluku liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="160"/>
+      <source>Unexpected stop/problem with fuel supply</source>
+      <translation>Odottamaton pysäytys/ongelma polttoaineen syötössä</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="161"/>
+      <source>Power contactor voltage too low</source>
+      <translation>Tehokontaktorin jännite liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="162"/>
+      <source>Power contactor current too high</source>
+      <translation>Tehokontaktorin virta liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="163"/>
+      <source>AC voltage L2 too low</source>
+      <translation>AC-jännite L2 liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="164"/>
+      <source>AC voltage L2 too high</source>
+      <translation>AC-jännite L2 liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="165"/>
+      <source>AC frequency L2 too low</source>
+      <translation>AC-taajuus L2 liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="166"/>
+      <source>AC frequency L2 too high</source>
+      <translation>AC-taajuus L2 liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="167"/>
+      <source>AC current L2 too high</source>
+      <translation>AC-virta L2 liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="168"/>
+      <source>AC power L2 too high</source>
+      <translation>AC-teho L2 liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="169"/>
+      <source>AC voltage L3 too low</source>
+      <translation>AC-jännite L3 liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="170"/>
+      <source>AC voltage L3 too high</source>
+      <translation>AC-jännite L3 liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="171"/>
+      <source>AC frequency L3 too low</source>
+      <translation>AC-taajuus L3 liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="172"/>
+      <source>AC frequency L3 too high</source>
+      <translation>AC-taajuus L3 liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="173"/>
+      <source>AC current L3 too high</source>
+      <translation>AC-virta L3 liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="174"/>
+      <source>AC power L3 too high</source>
+      <translation>AC-teho L3 liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="175"/>
+      <source>Output Inverter voltage too low</source>
+      <translation>Lähtöinvertterin jännite liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="176"/>
+      <source>Output Inverter current too  high</source>
+      <translation>Lähtöinvertterin virta liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="177"/>
+      <source>Universal output (1A) voltage too low</source>
+      <translation>Yleislähdön (1A) jännite liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="178"/>
+      <source>Universal output (1A) current too high</source>
+      <translation>Yleislähdön (1A) virta liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="179"/>
+      <source>Universal output (5A) voltage too low</source>
+      <translation>Yleislähdön (5A) jännite liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="180"/>
+      <source>Universal output (5A) current too high</source>
+      <translation>Yleislähdön (5A) virta liian suuri</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="181"/>
+      <source>AGT DC voltage 1 low</source>
+      <translation>AGT DC-jännite 1 alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="182"/>
+      <source>AGT DC voltage 1 high</source>
+      <translation>AGT DC-jännite 1 korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="183"/>
+      <source>AGT DC current 1 low</source>
+      <translation>AGT DC-virta 1 alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="184"/>
+      <source>AGT DC current 1 high</source>
+      <translation>AGT DC-virta 1 korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="185"/>
+      <source>AGT DC voltage 2 low</source>
+      <translation>AGT DC-jännite 2 alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="186"/>
+      <source>AGT DC voltage 2 high</source>
+      <translation>AGT DC-jännite 2 korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="187"/>
+      <source>AGT DC current 2 low</source>
+      <translation>AGT DC-virta 2 alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="188"/>
+      <source>AGT DC current 2 high</source>
+      <translation>AGT DC-virta 2 korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="189"/>
+      <source>AGT B6 cooler low</source>
+      <translation>AGT B6 -jäähdytin alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="190"/>
+      <source>AGT B6 cooler high</source>
+      <translation>AGT B6 -jäähdytin korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="191"/>
+      <source>AGT B6 rail (-) low</source>
+      <translation>AGT B6 -kisko (-) alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="192"/>
+      <source>AGT B6 rail (-) high</source>
+      <translation>AGT B6 -kisko (-) korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="193"/>
+      <source>AGT B6 rail (+) low</source>
+      <translation>AGT B6 -kisko (+) alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="194"/>
+      <source>AGT B6 rail (+) high</source>
+      <translation>AGT B6 -kisko (+) korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="195"/>
+      <source>Fuel temperature too low</source>
+      <translation>Polttoaineen lämpötila liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="196"/>
+      <source>Fuel temperature too high</source>
+      <translation>Polttoaineen lämpötila liian korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="197"/>
+      <source>Fuel level too low</source>
+      <translation>Polttoaineen määrä liian alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="200"/>
+      <source>Lost control unit</source>
+      <translation>Ohjausyksikkö kadonnut</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="201"/>
+      <source>Lost panel</source>
+      <translation>Paneeli kadonnut</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="202"/>
+      <source>Service needed</source>
+      <translation>Huoltoa tarvitaan</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="203"/>
+      <source>Lost 3-phase module</source>
+      <translation>3-vaihemoduuli kadonnut</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="204"/>
+      <source>Lost AGT module</source>
+      <translation>AGT-moduuli kadonnut</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="205"/>
+      <source>Synchronization failure</source>
+      <translation>Synkronointivirhe</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="206"/>
+      <source>Lost external ECU</source>
+      <translation>Ulkoinen ECU kadonnut</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="207"/>
+      <source>Intake airfilter</source>
+      <translation>Imuilmansuodatin</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="208"/>
+      <source>Diagnostic message (ECU)</source>
+      <translation>Diagnostiikkaviesti (ECU)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="209"/>
+      <source>Lost sync. module</source>
+      <translation>Synkronointimoduuli kadonnut</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="210"/>
+      <source>Load-balance failed</source>
+      <translation>Kuorman tasapainotus epäonnistui</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="211"/>
+      <source>Sync-mode deactivated</source>
+      <translation>Synkronointitila deaktivoitu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="212"/>
+      <source>Red Stop Lamp (RSL)</source>
+      <translation>Punainen pysäytysvalo (RSL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="213"/>
+      <source>Amber Warning Lamp (AWL)</source>
+      <translation>Keltainen varoitusvalo (AWL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="214"/>
+      <source>Malfunction Indicator Lamp (MIL)</source>
+      <translation>Toimintahäiriön merkkivalo (MIL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="215"/>
+      <source>Protect Lamp (PL)</source>
+      <translation>Suojausvalo (PL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="216"/>
+      <source>Rotating field wrong</source>
+      <translation>Pyörimissuunta väärä</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="217"/>
+      <source>Fuel level sensor lost</source>
+      <translation>Polttoainemäärän tunnistin kadonnut</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="218"/>
+      <source>Starting without inverter</source>
+      <translation>Käynnistys ilman invertteriä</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="219"/>
+      <source>Bus #1 dead</source>
+      <translation>Väylä #1 poikki</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="220"/>
+      <source>Start request denied</source>
+      <translation>Käynnistyspyyntö evätty</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="221"/>
+      <source>Remote start denied</source>
+      <translation>Etäkäynnistys evätty</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="222"/>
+      <source>Forced switch off load relay</source>
+      <translation>Kuormitusreleen pakotettu katkaisu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="223"/>
+      <source>Synchronization Module is offline</source>
+      <translation>Synkronointimoduuli on offline-tilassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="224"/>
+      <source>Lost BMS</source>
+      <translation>BMS-yhteys katosi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="225"/>
+      <source>Converter DC Link Voltage Low/Reverse</source>
+      <translation>Muuntimen DC-linkkijännite alhainen/käänteinen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="226"/>
+      <source>Converter DC Link Current Low</source>
+      <translation>Muuntimen DC-linkkivirta alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="227"/>
+      <source>Converter DC Precharge Voltage Low</source>
+      <translation>Muuntimen DC-esilatausjännite alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="228"/>
+      <source>Converter DC Precharge Voltage High</source>
+      <translation>Muuntimen DC-esilatausjännite korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="229"/>
+      <source>Converter IGBT/MOSFET Driver Error</source>
+      <translation>Muuntimen IGBT/MOSFET-ohjainvirhe</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="230"/>
+      <source>Converter Error Power Control Loop</source>
+      <translation>Muuntimen virheellinen tehonohjaussilmukka</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="231"/>
+      <source>Converter AC Frequency Detection</source>
+      <translation>Muuntimen AC-taajuuden tunnistus</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="232"/>
+      <source>Converter Control Value Fail</source>
+      <translation>Muuntimen ohjausarvo epäonnistui</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="233"/>
+      <source>Factory setting changed</source>
+      <translation>Tehdasasetus muutettu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="234"/>
+      <source>Parameter changed in admin mode</source>
+      <translation>Parametriä muutettu ylläpitotilassa</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="235"/>
+      <source>Manual Intervention (ext. System)</source>
+      <translation>Manuaalinen väliintulo (ulk. järjestelmä)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="238"/>
+      <source>Init failed</source>
+      <translation>Alustus epäonnistui</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="239"/>
+      <source>Watchdog</source>
+      <translation>Valvontakello</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="240"/>
+      <source>Inverter temperature high L1</source>
+      <translation>Invertterin lämpötila korkea L1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="241"/>
+      <source>Inverter temperature high L2</source>
+      <translation>Invertterin lämpötila korkea L2</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="242"/>
+      <source>Inverter temperature high L3</source>
+      <translation>Invertterin lämpötila korkea L3</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="243"/>
+      <source>Inverter temperature high DC link</source>
+      <translation>Invertterin lämpötila korkea DC-linkki</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="244"/>
+      <source>Inverter overload</source>
+      <translation>Invertterin ylikuormitus</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="245"/>
+      <source>Inverter communication lost</source>
+      <translation>Invertterin tiedonsiirto katosi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="246"/>
+      <source>DC overload</source>
+      <translation>DC-ylikuormitus</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="247"/>
+      <source>DC overvoltage</source>
+      <translation>DC-ylijännite</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="249"/>
+      <source>No connection</source>
+      <translation>Ei yhteyttä</translation>
+    </message>
+  </context>
+  <context>
+    <name>GensetError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="83"/>
+      <source>No error</source>
+      <translation>Ei virhettä</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="96"/>
+      <source>Unknown error: %1</source>
+      <translation>Tuntematon virhe: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>Hatz</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="795"/>
+      <source>Unknown error: </source>
+      <translation>Tuntematon virhe: </translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="814"/>
+      <source>Oil pressure</source>
+      <translation>Öljynpaine</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="815"/>
+      <source>Cylinder head overtemperature</source>
+      <translation>Sylinterinkannen ylilämpötila</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="816"/>
+      <source>Charge control</source>
+      <translation>Latauksen ohjaus</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="817"/>
+      <source>Speed higher than expected</source>
+      <translation>Odotettua suurempi nopeus</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="818"/>
+      <source>Overspeed</source>
+      <translation>Ylinopeus</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="820"/>
+      <source>Oil temperature higher than expected</source>
+      <translation>Öljyn lämpötila odotettua korkeampi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="821"/>
+      <source>Oil temperature open circuit / short to power</source>
+      <translation>Öljyn lämpötila-anturin avoin virtapiiri / oikosulku jännitteeseen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="822"/>
+      <source>Oil temperature short to ground</source>
+      <translation>Öljyn lämpötila-anturin oikosulku maahan</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="823"/>
+      <source>Analog setpoint high / short to power</source>
+      <translation>Analoginen asetusarvo korkea / oikosulku jännitteeseen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="824"/>
+      <source>Analog setpoint low / short to ground</source>
+      <translation>Analoginen asetusarvo alhainen / oikosulku maahan</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="825"/>
+      <source>TSC1 message receive timeout</source>
+      <translation>TSC1-viestin vastaanotto aikakatkaistu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="826"/>
+      <source>CM1 message receive timeout</source>
+      <translation>CM1-viestin vastaanotto aikakatkaistu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="827"/>
+      <source>Battery voltage high</source>
+      <translation>Akun jännite korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="828"/>
+      <source>Battery voltage low</source>
+      <translation>Akun jännite alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="829"/>
+      <source>Speed signal distorted</source>
+      <translation>Vääristynyt nopeussignaali</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="830"/>
+      <source>Internal 5V sensor supply high</source>
+      <translation>Sisäinen 5 V:n anturin syöttö korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="831"/>
+      <source>Internal 5V sensor supply low</source>
+      <translation>Sisäinen 5 V:n anturin syöttö alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="832"/>
+      <source>Barometric pressure high</source>
+      <translation>Ilmanpaine korkea</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="833"/>
+      <source>Barometric pressure low</source>
+      <translation>Ilmanpaine alhainen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="834"/>
+      <source>Output fuelpump short to power</source>
+      <translation>Polttoainepumpun lähtö oikosulussa jännitteeseen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="835"/>
+      <source>Output fuelpump short to ground</source>
+      <translation>Polttoainepumpun lähtö oikosulussa maahan</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="836"/>
+      <source>Output glow plug short to power</source>
+      <translation>Hehkutulpan lähtö oikosulussa jännitteeseen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="837"/>
+      <source>Output glow plug short to ground</source>
+      <translation>Hehkutulpan lähtö oikosulussa maahan</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="838"/>
+      <source>Injector open circuit/low side short to ground</source>
+      <translation>Ruiskusuutin avoin virtapiiri / alapuolen oikosulku maahan</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="839"/>
+      <source>Injector coil internal short circuit</source>
+      <translation>Ruiskusuuttimen kelan sisäinen oikosulku</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="840"/>
+      <source>Injector low side short to power</source>
+      <translation>Ruiskusuuttimen alapuolen oikosulku jännitteeseen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="841"/>
+      <source>Service hours expired</source>
+      <translation>Huoltotunnit umpeutuneet</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="845"/>
+      <source>Processor failure</source>
+      <translation>Prosessorin vika</translation>
+    </message>
+  </context>
+  <context>
+    <name>QObject</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="125"/>
+      <source>Fuel</source>
+      <translation>Polttoaine</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="126"/>
+      <source>Fresh water</source>
+      <translation>Makeavesi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="127"/>
+      <source>Waste water</source>
+      <translation>Jätevesi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="128"/>
+      <source>Live well</source>
+      <translation>Elävien kalojen säiliö</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="129"/>
+      <source>Oil</source>
+      <translation>Öljy</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="130"/>
+      <source>Black water (sewage)</source>
+      <translation>Musta vesi (jätevesi)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="131"/>
+      <source>Gasoline</source>
+      <translation>Bensiini</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="132"/>
+      <source>Diesel</source>
+      <translation>Diesel</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="133"/>
+      <source>LPG</source>
+      <translation>Nestekaasu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="134"/>
+      <source>LNG</source>
+      <translation>LNG</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="135"/>
+      <source>Hydraulic oil</source>
+      <translation>Hydrauliöljy</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="136"/>
+      <source>Raw water</source>
+      <translation>Raakavesi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="143"/>
+      <source>Unknown</source>
+      <translation>Tuntematon</translation>
+    </message>
+  </context>
+  <context>
+    <name>Wakespeed</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="138"/>
+      <source>Unknown error: </source>
+      <translation>Tuntematon virhe: </translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="151"/>
+      <source>Internal error</source>
+      <translation>Sisäinen virhe</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="156"/>
+      <source>No error</source>
+      <translation>Ei virhettä</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="159"/>
+      <source>Battery high temperature</source>
+      <translation>Akun korkea lämpötila</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="162"/>
+      <source>Battery high voltage</source>
+      <translation>Akun korkea jännite</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="165"/>
+      <source>Battery low voltage</source>
+      <translation>Akun alhainen jännite</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="168"/>
+      <source>Battery voltage exceeded configured max</source>
+      <translation>Akun jännite ylitti määritetyn maksimin</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="171"/>
+      <source>Battery temperature sensor defective</source>
+      <translation>Akun lämpötila-anturi viallinen</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="175"/>
+      <source>Alternator high temperature</source>
+      <translation>Laturin korkea lämpötila</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="178"/>
+      <source>Alternator high RPM</source>
+      <translation>Laturin korkea kierrosluku</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="181"/>
+      <source>Field drive FET high temperature</source>
+      <translation>Kenttäohjaimen FET:n korkea lämpötila</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="184"/>
+      <source>Required sensor missing</source>
+      <translation>Vaadittu anturi puuttuu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="187"/>
+      <source>Alternator low voltage</source>
+      <translation>Laturin matala jännite</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="190"/>
+      <source>Alternator high voltage offset</source>
+      <translation>Laturin korkea jänniteoffsetti</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="193"/>
+      <source>Alternator Voltage exceeded configured max</source>
+      <translation>Laturin jännite ylitti määritetyn maksimin</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="196"/>
+      <source>Alternator high voltage</source>
+      <translation>Laturin korkea jännite</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="199"/>
+      <source>Battery disconnected</source>
+      <translation>Akku irrotettu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="202"/>
+      <source>Battery high voltage disconnect</source>
+      <translation>Akun korkea jännite katkaistu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="205"/>
+      <source>Battery instance ouf of range</source>
+      <translation>Akun instanssi kantaman ulkopuolella</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="208"/>
+      <source>Too many BMS's</source>
+      <translation>Liian monta BMS:ää</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="211"/>
+      <source>Battery about to disconnect</source>
+      <translation>Akku irrotetaan pian</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="214"/>
+      <source>Too many devices to track</source>
+      <translation>Liian monta laitetta seurattavaksi</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="217"/>
+      <source>Battery low voltage disconnect</source>
+      <translation>Akun alhainen jännite katkaistu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="220"/>
+      <source>Battery high current disconnect</source>
+      <translation>Akun korkea virta katkaistu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="223"/>
+      <source>Battery high temperature disconnect</source>
+      <translation>Akun korkea lämpötila katkaistu</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="226"/>
+      <source>Battery low temperature disconnect</source>
+      <translation>Akun matalan lämpötilan irrotus</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="229"/>
+      <source>BMS connection lost</source>
+      <translation>BMS-yhteys katkennut</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="232"/>
+      <source>ATC Disabled</source>
+      <translation>ATC poistettu käytöstä</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="235"/>
+      <source>DC/DC converter not ready</source>
+      <translation>DC/DC-muunnin ei ole valmis</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="238"/>
+      <source>DC/DC high primary voltage</source>
+      <translation>DC/DC korkea ensiöjännite</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="241"/>
+      <source>DC/DC low primary voltage</source>
+      <translation>DC/DC alhainen ensiöjännite</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="244"/>
+      <source>DC/DC high secondary voltage</source>
+      <translation>DC/DC korkea toisiojännite</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="247"/>
+      <source>DC/DC low secondary voltage</source>
+      <translation>DC/DC:n matala toisiojännite</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="250"/>
+      <source>DC/DC high temperature</source>
+      <translation>DC/DC:n korkea lämpötila</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="253"/>
+      <source>DC/DC misconfiguration</source>
+      <translation>DC/DC virheellinen konfiguraatio</translation>
     </message>
   </context>
 </TS>

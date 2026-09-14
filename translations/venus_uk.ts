@@ -11,28 +11,28 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="13"/>
       <source>Battery initialization error</source>
-      <translation>Помилка ініціалізації акумулятора</translation>
+      <translation>Помилка ініціалізації батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="16"/>
       <source>No batteries connected</source>
-      <translation>Аккумулятори не підключено</translation>
+      <translation>Батареї не підключено</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="19"/>
       <source>Unknown battery</source>
-      <translation>Невідомий акумулятор</translation>
+      <translation>Невідомий батарея</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="22"/>
       <source>Different battery types</source>
-      <translation>Різні типи акумуляторів</translation>
+      <translation>Різні типи батарей</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="25"/>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="40"/>
       <source>No. of batteries incorrect</source>
-      <translation>Кількість. акумуляторів неправильна</translation>
+      <translation>Кількість батарей неправильна</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="28"/>
@@ -52,7 +52,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="37"/>
       <source>No. of batteries in series incorrect</source>
-      <translation>Кількість. акумуляторів у серії неправильна</translation>
+      <translation>Кількість батарей у серії неправильна</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="44"/>
@@ -97,7 +97,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="68"/>
       <source>Battery comm. error</source>
-      <translation>Помилка. зв'язку з батареєю</translation>
+      <translation>Помилка звʼязку з батареєю</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="71"/>
@@ -112,7 +112,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="79"/>
       <source>Battery update error</source>
-      <translation>Помилка оновлення акумулятора</translation>
+      <translation>Помилка оновлення батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="82"/>
@@ -134,6 +134,46 @@
       <source>Pre charge timeout</source>
       <translation>Час очікування попереднього заряджання</translation>
     </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="94"/>
+      <source>ATC/ATD failure</source>
+      <translation>Збій ATC/ATD</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="98"/>
+      <source>Calibration data lost</source>
+      <translation>Дані калібрування втрачено</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="102"/>
+      <source>Settings invalid</source>
+      <translation>Налаштування недійсні</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="105"/>
+      <source>Interlock</source>
+      <translation>Блокування</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="108"/>
+      <source>Emergency stop</source>
+      <translation>Аварійна зупинка</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="111"/>
+      <source>Communication timeout</source>
+      <translation>Тайм-аут зв'язку</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="114"/>
+      <source>Safety lock</source>
+      <translation>Запобіжник</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/bms_error.cpp" line="117"/>
+      <source>Terminal over temperature</source>
+      <translation>Перегрів терміналу</translation>
+    </message>
   </context>
   <context>
     <name>ChargerError</name>
@@ -145,64 +185,64 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="9"/>
       <source>Battery high temperature</source>
-      <translation>Висока температура акумуляторної батареї</translation>
+      <translation>Висока температура батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="10"/>
       <source>Battery high voltage</source>
-      <translation>Висока напруга акумуляторної батареї</translation>
+      <translation>Висока напруга батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="11"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="12"/>
       <source>Battery Tsense miswired</source>
-      <translation>Неправильне підключення датчика температури акумулятора</translation>
+      <translation>Неправильне підключення датчика температури батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="13"/>
       <source>Battery Tsense missing</source>
-      <translation>Відсутній датчик температури акумулятора</translation>
+      <translation>Відсутній датчик температури батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="14"/>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="15"/>
       <source>Battery Vsense miswired</source>
-      <translation>Неправильне підключення датчика напруги акумулятора</translation>
+      <translation>Неправильне підключення датчика напруги батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="16"/>
       <source>Battery Vsense missing</source>
-      <translation>Відсутній датчик напруги акумулятора</translation>
+      <translation>Відсутній датчик напруги батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="17"/>
       <source>Battery high wire losses</source>
-      <translation>Високі втрати у проводах акумулятора</translation>
+      <translation>Високі втрати у проводах батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="18"/>
       <source>Battery low voltage</source>
-      <translation>Низька напруга акумуляторної батареї</translation>
+      <translation>Низька напруга батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="19"/>
       <source>Battery high ripple voltage</source>
-      <translation>Висока напруга пульсації акумулятора</translation>
+      <translation>Висока напруга пульсації батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="20"/>
       <source>Battery low state of charge</source>
-      <translation>Низький рівень заряду акумулятора</translation>
+      <translation>Низький рівень заряду батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="21"/>
       <source>Battery mid-point voltage issue</source>
-      <translation>Проблема із напругою в середній точці акумулятора</translation>
+      <translation>Проблема із напругою в середній точці батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="22"/>
       <source>Battery temperature too low</source>
-      <translation>Надто низька температура акумуляторної батареї</translation>
+      <translation>Занадто низька температура батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="24"/>
@@ -328,7 +368,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="52"/>
       <source>Inverter temp too high</source>
-      <translation>Надто висока температура інвертора</translation>
+      <translation>Занадто висока температура інвертора</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="53"/>
@@ -380,7 +420,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="65"/>
       <source>BMS connection lost</source>
-      <translation>Втрачено з’єднання BMS</translation>
+      <translation>Втрачено зʼєднання BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="66"/>
@@ -390,17 +430,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="68"/>
       <source>Memory write error</source>
-      <translation>Помилка запису в пам'ять</translation>
+      <translation>Помилка запису в памʼять</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="69"/>
       <source>CPU temperature too high</source>
-      <translation>Занадто висока температура ЦП</translation>
+      <translation>Занадто висока температура CPU</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="70"/>
       <source>Communication lost</source>
-      <translation>Втрачено зв'язок</translation>
+      <translation>Втрачено звʼязок</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="71"/>
@@ -462,6 +502,81 @@
       <source>15V supply error</source>
       <translation>Помилка живлення 15 В</translation>
     </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="23"/>
+      <source>Battery relay fault</source>
+      <translation>Несправність реле акумулятора</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="24"/>
+      <source>Battery not found</source>
+      <translation>Акумулятор не знайдено</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="49"/>
+      <source>PV isolation failure</source>
+      <translation>Збій ізоляції PV</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="99"/>
+      <source>PV Input shutdown</source>
+      <translation>Вимкнення PV входу</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="115"/>
+      <source>Charger pre-charge failed</source>
+      <translation>Помилка попереднього заряду зарядного пристрою</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="116"/>
+      <source>Charger solar relay failed</source>
+      <translation>Помилка сонячного реле зарядного пристрою</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="117"/>
+      <source>Charger solar short</source>
+      <translation>Коротке замикання сонячного входу зарядного пристрою</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="118"/>
+      <source>Charger solar connect failed</source>
+      <translation>Помилка підключення сонячного входу зарядного пристрою</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="72"/>
+      <source>Phase rotation</source>
+      <translation>Чергування фаз</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="73"/>
+      <source>Multiple AC inputs</source>
+      <translation>Кілька входів змінного струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="74"/>
+      <source>Too many units in parallel</source>
+      <translation>Забагато паралельно підключених пристроїв</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="76"/>
+      <source>Network incomplete</source>
+      <translation>Мережа неповна</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="77"/>
+      <source>Settings sync disabled</source>
+      <translation>Синхронізацію налаштувань вимкнено</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="89"/>
+      <source>kWh counters invalid</source>
+      <translation>лічильники кВт-год недійсні</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/charger_error.cpp" line="93"/>
+      <source>GFCI sensor error</source>
+      <translation>Помилка датчика GFCI</translation>
+    </message>
   </context>
   <context>
     <name>DBusTankService</name>
@@ -483,7 +598,7 @@
     <message>
       <location filename="../src/dbus_service.cpp" line="182"/>
       <source>Live well</source>
-      <translation>Активна свердловина</translation>
+      <translation>Свердловина</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="183"/>
@@ -503,17 +618,17 @@
     <message>
       <location filename="../src/dbus_service.cpp" line="186"/>
       <source>Diesel</source>
-      <translation>Дизель</translation>
+      <translation>Дизельне паливо</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="187"/>
       <source>LPG</source>
-      <translation>ЗНГ</translation>
+      <translation>LPG</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="188"/>
       <source>LNG</source>
-      <translation>ЗПГ</translation>
+      <translation>LNG</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="189"/>
@@ -528,7 +643,7 @@
     <message>
       <location filename="../src/dbus_service.cpp" line="203"/>
       <source>Unknown</source>
-      <translation>Невідомий</translation>
+      <translation>Невідомо</translation>
     </message>
     <message>
       <location filename="../src/dbus_service.cpp" line="239"/>
@@ -602,7 +717,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="248"/>
       <source>State of health</source>
-      <translation>Стан здоров'я</translation>
+      <translation>Стан здоровʼя</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="249"/>
@@ -662,7 +777,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="259"/>
       <source>Battery temperature sensor</source>
-      <translation>Датчик температури акумулятора</translation>
+      <translation>Датчик температури батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="260"/>
@@ -692,7 +807,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="267"/>
       <source>Distributor %1 connection lost</source>
-      <translation>Втрачено з’єднання з розподільником %1</translation>
+      <translation>Втрачено зʼєднання з розподільником %1</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="275"/>
@@ -721,7 +836,7 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="335"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="342"/>
       <source>Low battery voltage</source>
-      <translation>Низька напруга акумуляторної батареї</translation>
+      <translation>Низька напруга батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="295"/>
@@ -773,12 +888,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="314"/>
       <source>High DC voltage</source>
-      <translation>Висока напруга постійного струму</translation>
+      <translation>Висока напруга DC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="315"/>
       <source>High DC current</source>
-      <translation>Високий постійний струм</translation>
+      <translation>Високий струм DC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="318"/>
@@ -788,13 +903,13 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="319"/>
       <source>BMS connection lost</source>
-      <translation>Втрачено з’єднання BMS</translation>
+      <translation>Втрачено зʼєднання BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="323"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="348"/>
       <source>Low batttery voltage</source>
-      <translation>Низька напруга акумулятора</translation>
+      <translation>Низька напруга батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="324"/>
@@ -802,7 +917,7 @@
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="343"/>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="349"/>
       <source>High battery voltage</source>
-      <translation>Висока напруга акумулятора</translation>
+      <translation>Висока напруга батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="325"/>
@@ -831,7 +946,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="361"/>
       <source>Generator not detected at AC input</source>
-      <translation>Генератор не виявлено на вході змінного струму</translation>
+      <translation>Генератор не виявлено на вході AC</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="362"/>
@@ -866,18 +981,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="390"/>
       <source>Low level alarm</source>
-      <translation>Тривога через низький рівень</translation>
+      <translation>Тривога: низький рівень</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="391"/>
       <source>High level alarm</source>
-      <translation>Тривога через високий рівень</translation>
+      <translation>Тривога: високий рівень</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="396"/>
       <source>#42 Storage is corrupt on this device</source>
-      <translation>#42 Диск пошкоджено на цьому пристрої
-</translation>
+      <translation>#42 Диск пошкоджено на цьому пристрої</translation>
     </message>
   </context>
   <context>
@@ -933,12 +1047,12 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="223"/>
       <source>Low battery voltage</source>
-      <translation>Низька напруга акумуляторної батареї</translation>
+      <translation>Низька напруга батареї</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="224"/>
       <source>High DC ripple</source>
-      <translation>Високі пульсації постійного струму</translation>
+      <translation>Високі пульсації DC</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="225"/>
@@ -973,12 +1087,12 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="241"/>
       <source>High DC voltage</source>
-      <translation>Висока напруга постійного струму</translation>
+      <translation>Висока напруга DC</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
       <source>High DC current</source>
-      <translation>Високий постійний струм</translation>
+      <translation>Високий струм DC</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="245"/>
@@ -988,7 +1102,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="246"/>
       <source>BMS connection lost</source>
-      <translation>Втрачено з’єднання BMS</translation>
+      <translation>Втрачено зʼєднання BMS</translation>
     </message>
   </context>
   <context>
@@ -1006,17 +1120,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="16"/>
       <source>Expected devices error</source>
-      <translation>Очікувана помилка пристроїв</translation>
+      <translation>Помилка очікуваних пристроїв</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="19"/>
       <source>No other device detected</source>
-      <translation>Інші пристрої не виявлено</translation>
+      <translation>Інший пристрій не виявлено</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="22"/>
       <source>Overvoltage on AC-out</source>
-      <translation>Перенапруга на виході змінного струму</translation>
+      <translation>Перенапруга на AC-out</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="25"/>
@@ -1031,7 +1145,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="31"/>
       <source>Ground relay test failed</source>
-      <translation>Не вдалося перевірити реле захисту від замикання на землю</translation>
+      <translation>Помилка тесту реле заземлення</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="34"/>
@@ -1041,12 +1155,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="37"/>
       <source>Grid relay test fault</source>
-      <translation>Не вдалося перевірити реле мережі</translation>
+      <translation>Помилка тесту реле мережі</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="40"/>
       <source>Config mismatch with 2nd mcu</source>
-      <translation>Невідповідність конфігурації другому мікроконтролеру</translation>
+      <translation>Невідповідність конфігурації другому MCU</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="43"/>
@@ -1056,27 +1170,27 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="46"/>
       <source>Awaiting configuration or dongle missing</source>
-      <translation>Очікується налаштування або відсутній адаптер</translation>
+      <translation>Очікування конфігурації або відсутній адаптер</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="49"/>
       <source>Phase master missing</source>
-      <translation>Відсутній головний фази</translation>
+      <translation>Відсутній фазовий головний пристрій</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="52"/>
       <source>Overvoltage has occurred</source>
-      <translation>Виникла перенапруга</translation>
+      <translation>Сталася перенапруга</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="55"/>
       <source>Slave does not have AC input!</source>
-      <translation>Керований пристрій не має входу змінного струму!</translation>
+      <translation>Підлеглий пристрій не має входу AC!</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="58"/>
       <source>Device can't be slave</source>
-      <translation>Пристрій не може бути керованим</translation>
+      <translation>Пристрій не може бути підлеглим</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="61"/>
@@ -1086,7 +1200,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="64"/>
       <source>Firmware incompatibiltiy</source>
-      <translation>Несумісність мікропрограми</translation>
+      <translation>Несумісність прошивки</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="67"/>
@@ -1096,7 +1210,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="70"/>
       <source>Failing relay test prevents connection</source>
-      <translation>Тест поламаного реле блокує звʼязок</translation>
+      <translation>Неуспішний тест реле перешкоджає зʼєднанню</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/vebus_error.cpp" line="73"/>
@@ -1119,22 +1233,22 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="124"/>
       <source>Battery high temperature</source>
-      <translation>Висока температура акумуляторної батареї</translation>
+      <translation>Висока температура батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="127"/>
       <source>Battery high voltage</source>
-      <translation>Висока напруга акумуляторної батареї</translation>
+      <translation>Висока напруга батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="130"/>
       <source>Battery low voltage</source>
-      <translation>Низька напруга акумуляторної батареї</translation>
+      <translation>Низька напруга батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="133"/>
       <source>Battery voltage exceeded configured max</source>
-      <translation>Напруга акумуляторної батареї перевищує налаштований максимум</translation>
+      <translation>Напруга батареї перевищує налаштований максимум</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="137"/>
@@ -1174,27 +1288,27 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="158"/>
       <source>Battery disconnected</source>
-      <translation>Акумуляторну батарею від’єднано</translation>
+      <translation>Батареї відʼєднано</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="161"/>
       <source>Battery high voltage disconnect</source>
-      <translation>Від’єднання за високої напруги акумуляторної батареї</translation>
+      <translation>Відʼєднання за високої напруги батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="164"/>
       <source>Battery instance ouf of range</source>
-      <translation>Екземпляр акумуляторної батареї поза зоною</translation>
+      <translation>Екземпляр батареї поза зоною</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="167"/>
       <source>Too many BMS's</source>
-      <translation>Надто багато BMS</translation>
+      <translation>Занадто багато BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="170"/>
       <source>Battery about to disconnect</source>
-      <translation>Акумуляторна батарея скоро від’єднається</translation>
+      <translation>Батареї скоро відʼєднається</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="173"/>
@@ -1204,27 +1318,27 @@
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="176"/>
       <source>Battery low voltage disconnect</source>
-      <translation>Від’єднання за низької напруги акумуляторної батареї</translation>
+      <translation>Відʼєднання за низької напруги батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="179"/>
       <source>Battery high current disconnect</source>
-      <translation>Від’єднання за високого струму акумуляторної батареї</translation>
+      <translation>Відʼєднання за високого струму батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="182"/>
       <source>Battery high temperature disconnect</source>
-      <translation>Від’єднання за високої температури акумуляторної батареї</translation>
+      <translation>Відʼєднання за високої температури батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="185"/>
       <source>Battery low temperature disconnect</source>
-      <translation>Від’єднання за низької температури акумуляторної батареї</translation>
+      <translation>Відʼєднання за низької температури батареї</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="188"/>
       <source>BMS connection lost</source>
-      <translation>Втрачено з’єднання BMS</translation>
+      <translation>Втрачено зʼєднання BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/wakespeed_error.cpp" line="191"/>
@@ -1312,7 +1426,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="297"/>
       <source>State of health</source>
-      <translation>Стан здоров'я</translation>
+      <translation>Стан здоровʼя</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="298"/>
@@ -1368,7 +1482,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="308"/>
       <source>Battery temperature sensor</source>
-      <translation>Датчик температури акумулятора</translation>
+      <translation>Датчик температури батареї</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="309"/>
@@ -1393,7 +1507,52 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="326"/>
       <source>Distributor %1 connection lost</source>
-      <translation>Втрачено з’єднання з розподільником %1</translation>
+      <translation>Втрачено зʼєднання з розподільником %1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="350"/>
+      <source>High cell voltage</source>
+      <translation>Висока напруга на елементах</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="372"/>
+      <source>Battery communication lost</source>
+      <translation>Втрачено звʼязок з батареєю</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="373"/>
+      <source>To update battery: https://ve3.nl/ngut</source>
+      <translation>Для оновлення акумулятора: https://ve3.nl/ngut</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="374"/>
+      <source>Parallel BMS connection lost</source>
+      <translation>Втрачено зв'язок із паралельною BMS</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="375"/>
+      <source>Cell measurements fault</source>
+      <translation>Помилка вимірювання комірок</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="376"/>
+      <source>Communication error</source>
+      <translation>Помилка зв'язку</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="377"/>
+      <source>Invalid battery configuration</source>
+      <translation>Неправильна конфігурація батареї</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="378"/>
+      <source>Incorrect number of batteries</source>
+      <translation>Неправильна кількість батарейок</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="379"/>
+      <source>Battery voltage not supported</source>
+      <translation>Напруга акумулятора не підтримується</translation>
     </message>
   </context>
   <context>
@@ -1401,7 +1560,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="42"/>
       <source>Generator not detected at AC input</source>
-      <translation>Генератор не виявлено на вході змінного струму</translation>
+      <translation>Генератор не виявлено на вході AC</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="43"/>
@@ -1419,7 +1578,7 @@
       <location filename="../src/alarm_item.cpp" line="86"/>
       <location filename="../src/alarm_item.cpp" line="103"/>
       <source>Low battery voltage</source>
-      <translation>Низька напруга акумуляторної батареї</translation>
+      <translation>Низька напруга батареї</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="63"/>
@@ -1427,7 +1586,7 @@
       <location filename="../src/alarm_item.cpp" line="87"/>
       <location filename="../src/alarm_item.cpp" line="104"/>
       <source>High battery voltage</source>
-      <translation>Висока напруга акумулятора</translation>
+      <translation>Висока напруга батареї</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="64"/>
@@ -1469,7 +1628,7 @@
       <location filename="../src/alarm_item.cpp" line="93"/>
       <location filename="../src/alarm_item.cpp" line="109"/>
       <source>High DC ripple</source>
-      <translation>Високі пульсації постійного струму</translation>
+      <translation>Високі пульсації DC</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="94"/>
@@ -1495,12 +1654,12 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="148"/>
       <source>Low level alarm</source>
-      <translation>Сигнал тривоги через низький рівень</translation>
+      <translation>Тривога: низький рівень</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="149"/>
       <source>High level alarm</source>
-      <translation>Сигнал тривоги через високий рівень</translation>
+      <translation>Тривога: високий рівень</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="158"/>
@@ -1535,7 +1694,142 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="202"/>
       <source>Low battery</source>
-      <translation>Низький рівень заряду акумуляторної батареї</translation>
+      <translation>Низький рівень заряду батареї</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="53"/>
+      <source>DC generator is not providing power</source>
+      <translation>Генератор постійного струму не подає живлення</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="55"/>
+      <source>GX Auto start/stop is disabled</source>
+      <translation>Автоматичний запуск/зупинка GX вимкнено</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="56"/>
+      <source>Remote start is disabled on the genset</source>
+      <translation>Дистанційний запуск вимкнено на генераторі</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="57"/>
+      <source>Generator stopped due to low tank level</source>
+      <translation>Генератор зупинено через низький рівень у баку</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="133"/>
+      <source>Grid lost</source>
+      <translation>Енергомережа втрачена</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="134"/>
+      <source>Phase rotation</source>
+      <translation>Чергування фаз</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="233"/>
+      <source>System incompatible for Opportunity Loads</source>
+      <translation>Система несумісна для резервних навантажень</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="242"/>
+      <source>#01 GND not present</source>
+      <translation>#01 Відсутнє заземлення (GND)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="243"/>
+      <source>#02 Welded contacts</source>
+      <translation>#02 Зварені контакти</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="244"/>
+      <source>#03 CP input short-circuit</source>
+      <translation>#03 Коротке замикання входу CP</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="245"/>
+      <source>#04 Residual current</source>
+      <translation>#04 Залишковий струм</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="246"/>
+      <source>#05 Over temperature</source>
+      <translation>#05 Перегрів</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="247"/>
+      <source>#06 Light sensor IC fault</source>
+      <translation>#06 Помилка мікросхеми датчика світла</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="248"/>
+      <source>#07 Tamper detected</source>
+      <translation>#07 Виявлено втручання</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>Initial setup not completed</source>
+      <translation>Початкове налаштування не завершено</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>EVCS externally blocked by grid operator</source>
+      <translation>EVCS заблоковано ззовні оператором мережі</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>EVCS high temperature detected</source>
+      <translation>Виявлено високу температуру EVCS</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>GX communication warning</source>
+      <translation>Попередження зв'язку GX</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>Overload detected</source>
+      <translation>Виявлено перевантаження</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>Overload active</source>
+      <translation>Перевантаження активне</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>Scheduled mode failed - time sync issue</source>
+      <translation>Збій за розкладом - проблема синхронізації часу</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>The charging current is limited by an external switch</source>
+      <translation>Струм заряджання обмежено зовнішнім перемикачем</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="257"/>
+      <source>The charging current is limited due to inverter overtemperature</source>
+      <translation>Струм заряджання обмежено через перегрів інвертора</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="258"/>
+      <source>Can't update display FW due to broken file. Please perform update again</source>
+      <translation>Не вдається оновити прошивку дисплея через пошкоджений файл. Будь ласка, виконайте оновлення знову</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="259"/>
+      <source>Can't update display FW due to communication issues</source>
+      <translation>Не вдається оновити прошивку дисплея через проблеми зі зв'язком</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="260"/>
+      <source>Updating display FW. EV charging will be available after a while</source>
+      <translation>Оновлення прошивки дисплея. Заряджання електромобіля буде доступне через деякий час</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="215"/>
+      <source>#46 Data partition full</source>
+      <translation>#46 Розділ даних заповнено</translation>
     </message>
   </context>
   <context>
@@ -1544,6 +1838,1136 @@
       <location filename="../src/venus_service.cpp" line="121"/>
       <source>tank</source>
       <translation>Ємність</translation>
+    </message>
+  </context>
+  <context>
+    <name>AlternatorError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="22"/>
+      <source>No error</source>
+      <translation>Помилки немає</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="25"/>
+      <source>Unknown error: %1</source>
+      <translation>Невідома помилка: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>CRE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="855"/>
+      <source>Unknown error: </source>
+      <translation>Невідома помилка:</translation>
+    </message>
+  </context>
+  <context>
+    <name>CUMMINS</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="1034"/>
+      <source>Unknown error: </source>
+      <translation>Невідома помилка:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DEIF</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="874"/>
+      <source>Unknown error: </source>
+      <translation>Невідома помилка:</translation>
+    </message>
+  </context>
+  <context>
+    <name>DSE</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="259"/>
+      <source>Unknown error: </source>
+      <translation>Невідома помилка:</translation>
+    </message>
+  </context>
+  <context>
+    <name>FischerPanda</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="104"/>
+      <source>Unknown error: </source>
+      <translation>Невідома помилка: </translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="115"/>
+      <source>No error</source>
+      <translation>Немає помилки</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage L1 too low</source>
+      <translation>Напруга змінного струму L1 занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="118"/>
+      <source>AC voltage too low</source>
+      <translation>Напруга змінного струму занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage L1 too high</source>
+      <translation>Напруга змінного струму L1 зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="119"/>
+      <source>AC voltage too high</source>
+      <translation>Напруга змінного струму зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency L1 too low</source>
+      <translation>Частота змінного струму L1 занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="120"/>
+      <source>AC frequency too low</source>
+      <translation>Частота змінного струму занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency L1 too high</source>
+      <translation>Частота змінного струму L1 зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="121"/>
+      <source>AC frequency too high</source>
+      <translation>Частота змінного струму зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current L1 too high</source>
+      <translation>Струм змінного струму L1 зависокий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="122"/>
+      <source>AC current too high</source>
+      <translation>Струм змінного струму зависокий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power L1 too high</source>
+      <translation>Потужність змінного струму L1 зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="123"/>
+      <source>AC power too high</source>
+      <translation>Потужність змінного струму зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="124"/>
+      <source>Emergency stop</source>
+      <translation>Аварійна зупинка</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="125"/>
+      <source>Servo current too high</source>
+      <translation>Струм сервоприводу зависокий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="126"/>
+      <source>Oil pressure too low</source>
+      <translation>Тиск мастила занизький</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="127"/>
+      <source>Oil pressure too high</source>
+      <translation>Тиск мастила зависокий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="128"/>
+      <source>Engine temperature too low</source>
+      <translation>Температура двигуна занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="129"/>
+      <source>Engine temperature too high</source>
+      <translation>Температура двигуна зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="130"/>
+      <source>Winding temperature too low</source>
+      <translation>Температура обмотки занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="131"/>
+      <source>Winding temperature too high</source>
+      <translation>Температура обмотки зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="132"/>
+      <source>Exhaust temperature too low</source>
+      <translation>Температура вихлопу занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="133"/>
+      <source>Exhaust temperature too high</source>
+      <translation>Температура вихлопу зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="134"/>
+      <source>Electronic temperature low</source>
+      <translation>Температура електроніки низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="135"/>
+      <source>Electronic temperature high</source>
+      <translation>Температура електроніки висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="136"/>
+      <source>Starter voltage too low</source>
+      <translation>Напруга стартера занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="137"/>
+      <source>Starter current too high</source>
+      <translation>Струм стартера зависокий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="138"/>
+      <source>Glow voltage too low</source>
+      <translation>Напруга свічок розжарювання занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="139"/>
+      <source>Glow current too high</source>
+      <translation>Струм свічок розжарювання зависокий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="140"/>
+      <source>Cold-Start-Aid voltage too high</source>
+      <translation>Напруга підігрівача холодного пуску зависока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="141"/>
+      <source>Cold-Start-Aid current too high</source>
+      <translation>Струм підігрівача холодного пуску зависокий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="142"/>
+      <source>Fuel holding magnet voltage too low</source>
+      <translation>Напруга утримуючого магніту палива занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="143"/>
+      <source>Fuel holding magnet current too high</source>
+      <translation>Струм утримуючого магніту палива зависокий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="144"/>
+      <source>Stop solenoid hold coil voltage too low</source>
+      <translation>Напруга котушки утримання стопорного соленоїда занизька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="145"/>
+      <source>Stop solenoid hold coil current too high</source>
+      <translation>Високий струм утримування електромагнітної котушки зупинки</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="146"/>
+      <source>Stop solenoid pull coil voltage too low </source>
+      <translation>Занадто низька напруга на котушці електромагніту зупинки</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="147"/>
+      <source>Stop solenoid pull coil current too high</source>
+      <translation>Занадто високий струм тягової котушки електромагнітної зупинки</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="148"/>
+      <source>Fan/water pump voltage too low</source>
+      <translation>Занадто низька напруга вентилятора/водяного насоса</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="149"/>
+      <source>Fan/water pump current too high</source>
+      <translation>Занадто високий струм вентилятора/водяного насоса</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="150"/>
+      <source>Current sensor voltage low</source>
+      <translation>Напруга датчика струму низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="151"/>
+      <source>Current sensor current high</source>
+      <translation>Високий струм датчика струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="152"/>
+      <source>Boost output voltage too low</source>
+      <translation>Занадто низька вихідна напруга підсилювача</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="153"/>
+      <source>Boost output current too high</source>
+      <translation>Надто високий вихідний струм підвищення</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="154"/>
+      <source>Bus supply voltage too low</source>
+      <translation>Занадто низька напруга живлення шини</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="155"/>
+      <source>Bus supply current too high</source>
+      <translation>Занадто високий струм живлення шини</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="156"/>
+      <source>Starter battery voltage too low</source>
+      <translation>Занадто низька напруга акумулятора стартера</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="157"/>
+      <source>Starter battery voltage too high</source>
+      <translation>Занадто висока напруга акумулятора стартера</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="158"/>
+      <source>Rotation too low</source>
+      <translation>Обертання надто низьке</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="159"/>
+      <source>Rotation too high</source>
+      <translation>Обертання занадто високе</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="160"/>
+      <source>Unexpected stop/problem with fuel supply</source>
+      <translation>Несподівана зупинка/проблема з подачею палива</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="161"/>
+      <source>Power contactor voltage too low</source>
+      <translation>Занадто низька напруга силового контактора</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="162"/>
+      <source>Power contactor current too high</source>
+      <translation>Занадто високий струм силового контактора</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="163"/>
+      <source>AC voltage L2 too low</source>
+      <translation>Напруга змінного струму L2 занадто низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="164"/>
+      <source>AC voltage L2 too high</source>
+      <translation>Напруга змінного струму L2 занадто висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="165"/>
+      <source>AC frequency L2 too low</source>
+      <translation>Частота змінного струму L2 занадто низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="166"/>
+      <source>AC frequency L2 too high</source>
+      <translation>Частота змінного струму L2 занадто висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="167"/>
+      <source>AC current L2 too high</source>
+      <translation>Змінний струм L2 занадто високий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="168"/>
+      <source>AC power L2 too high</source>
+      <translation>Потужність змінного струму L2 занадто висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="169"/>
+      <source>AC voltage L3 too low</source>
+      <translation>Напруга змінного струму L3 занадто низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="170"/>
+      <source>AC voltage L3 too high</source>
+      <translation>Напруга змінного струму L3 занадто висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="171"/>
+      <source>AC frequency L3 too low</source>
+      <translation>Частота змінного струму L3 занадто низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="172"/>
+      <source>AC frequency L3 too high</source>
+      <translation>Частота змінного струму L3 занадто висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="173"/>
+      <source>AC current L3 too high</source>
+      <translation>Змінний струм L3 занадто високий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="174"/>
+      <source>AC power L3 too high</source>
+      <translation>Потужність змінного струму L3 надто висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="175"/>
+      <source>Output Inverter voltage too low</source>
+      <translation>Вихідна напруга інвертора занадто низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="176"/>
+      <source>Output Inverter current too  high</source>
+      <translation>Вихідний струм інвертора занадто високий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="177"/>
+      <source>Universal output (1A) voltage too low</source>
+      <translation>Занадто низька напруга на універсальному виході (1А)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="178"/>
+      <source>Universal output (1A) current too high</source>
+      <translation>Занадто високий струм універсального виходу (1А)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="179"/>
+      <source>Universal output (5A) voltage too low</source>
+      <translation>Занадто низька напруга на універсальному виході (5А)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="180"/>
+      <source>Universal output (5A) current too high</source>
+      <translation>Занадто високий струм універсального виходу (5А)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="181"/>
+      <source>AGT DC voltage 1 low</source>
+      <translation>Напруга постійного струму AGT 1 низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="182"/>
+      <source>AGT DC voltage 1 high</source>
+      <translation>Напруга постійного струму AGT 1 висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="183"/>
+      <source>AGT DC current 1 low</source>
+      <translation>AGT постійний струм 1 низький</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="184"/>
+      <source>AGT DC current 1 high</source>
+      <translation>AGT постійний струм 1 високий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="185"/>
+      <source>AGT DC voltage 2 low</source>
+      <translation>Напруга постійного струму AGT 2 низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="186"/>
+      <source>AGT DC voltage 2 high</source>
+      <translation>Напруга постійного струму AGT 2 висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="187"/>
+      <source>AGT DC current 2 low</source>
+      <translation>AGT постійний струм 2 низький</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="188"/>
+      <source>AGT DC current 2 high</source>
+      <translation>AGT постійний струм 2 високий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="189"/>
+      <source>AGT B6 cooler low</source>
+      <translation>AGT B6 кулер низький</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="190"/>
+      <source>AGT B6 cooler high</source>
+      <translation>AGT B6 кулер високий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="191"/>
+      <source>AGT B6 rail (-) low</source>
+      <translation>AGT B6 рейка (-) низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="192"/>
+      <source>AGT B6 rail (-) high</source>
+      <translation>AGT B6 рейка (-) висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="193"/>
+      <source>AGT B6 rail (+) low</source>
+      <translation>AGT B6 рейка (+) низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="194"/>
+      <source>AGT B6 rail (+) high</source>
+      <translation>AGT B6 рейка (+) висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="195"/>
+      <source>Fuel temperature too low</source>
+      <translation>Занизька температура палива</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="196"/>
+      <source>Fuel temperature too high</source>
+      <translation>Надто висока температура палива</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="197"/>
+      <source>Fuel level too low</source>
+      <translation>Занадто низький рівень палива</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="200"/>
+      <source>Lost control unit</source>
+      <translation>Втрачений блок управління</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="201"/>
+      <source>Lost panel</source>
+      <translation>Втрачена панель</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="202"/>
+      <source>Service needed</source>
+      <translation>Потрібен сервіс</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="203"/>
+      <source>Lost 3-phase module</source>
+      <translation>Пропав 3-фазний модуль</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="204"/>
+      <source>Lost AGT module</source>
+      <translation>Втрачений модуль AGT</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="205"/>
+      <source>Synchronization failure</source>
+      <translation>Помилка синхронізації</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="206"/>
+      <source>Lost external ECU</source>
+      <translation>Загублений зовнішній блок управління</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="207"/>
+      <source>Intake airfilter</source>
+      <translation>Впускний повітряний фільтр</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="208"/>
+      <source>Diagnostic message (ECU)</source>
+      <translation>Діагностичне повідомлення (ECU)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="209"/>
+      <source>Lost sync. module</source>
+      <translation>Втрачено модуль синхронізації</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="210"/>
+      <source>Load-balance failed</source>
+      <translation>Помилка балансування навантаження</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="211"/>
+      <source>Sync-mode deactivated</source>
+      <translation>Режим синхронізації вимкнено</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="212"/>
+      <source>Red Stop Lamp (RSL)</source>
+      <translation>Червоний стоп-сигнал (RSL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="213"/>
+      <source>Amber Warning Lamp (AWL)</source>
+      <translation>Янтарна сигнальна лампа (AWL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="214"/>
+      <source>Malfunction Indicator Lamp (MIL)</source>
+      <translation>Індикаторна лампа несправності (MIL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="215"/>
+      <source>Protect Lamp (PL)</source>
+      <translation>Захисна лампа (PL)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="216"/>
+      <source>Rotating field wrong</source>
+      <translation>Поле обертання неправильне</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="217"/>
+      <source>Fuel level sensor lost</source>
+      <translation>Збитий датчик рівня палива</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="218"/>
+      <source>Starting without inverter</source>
+      <translation>Запуск без інвертора</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="219"/>
+      <source>Bus #1 dead</source>
+      <translation>Шина №1 не відповідає</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="220"/>
+      <source>Start request denied</source>
+      <translation>Запит на запуск відхилено</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="221"/>
+      <source>Remote start denied</source>
+      <translation>Віддалений запуск заборонено</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="222"/>
+      <source>Forced switch off load relay</source>
+      <translation>Реле примусового вимкнення навантаження</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="223"/>
+      <source>Synchronization Module is offline</source>
+      <translation>Модуль синхронізації не працює</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="224"/>
+      <source>Lost BMS</source>
+      <translation>Втрачено BMS</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="225"/>
+      <source>Converter DC Link Voltage Low/Reverse</source>
+      <translation>Перетворювач напруги ланки постійного струму Низька/Реверс</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="226"/>
+      <source>Converter DC Link Current Low</source>
+      <translation>Перетворювач постійного струму Низький струм ланки постійного струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="227"/>
+      <source>Converter DC Precharge Voltage Low</source>
+      <translation>Перетворювач постійного струму Напруга попереднього заряду низька</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="228"/>
+      <source>Converter DC Precharge Voltage High</source>
+      <translation>Перетворювач постійного струму Напруга попереднього заряду Висока</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="229"/>
+      <source>Converter IGBT/MOSFET Driver Error</source>
+      <translation>Помилка драйвера IGBT/MOSFET перетворювача Помилка драйвера IGBT/MOSFET</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="230"/>
+      <source>Converter Error Power Control Loop</source>
+      <translation>Контур регулювання потужності помилки перетворювача</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="231"/>
+      <source>Converter AC Frequency Detection</source>
+      <translation>Виявлення частоти AC перетворювача</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="232"/>
+      <source>Converter Control Value Fail</source>
+      <translation>Помилка значення керування перетворювача</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="233"/>
+      <source>Factory setting changed</source>
+      <translation>Змінено заводські налаштування</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="234"/>
+      <source>Parameter changed in admin mode</source>
+      <translation>Параметр змінено в режимі адміністратора</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="235"/>
+      <source>Manual Intervention (ext. System)</source>
+      <translation>Ручне втручання (додаткова система)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="238"/>
+      <source>Init failed</source>
+      <translation>Помилка ініціалізації</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="239"/>
+      <source>Watchdog</source>
+      <translation>Сторожовий таймер</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="240"/>
+      <source>Inverter temperature high L1</source>
+      <translation>Висока температура інвертора L1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="241"/>
+      <source>Inverter temperature high L2</source>
+      <translation>Висока температура інвертора L2</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="242"/>
+      <source>Inverter temperature high L3</source>
+      <translation>Висока температура інвертора L3</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="243"/>
+      <source>Inverter temperature high DC link</source>
+      <translation>Висока температура інвертора в ланці постійного струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="244"/>
+      <source>Inverter overload</source>
+      <translation>Перевантаження інвертора</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="245"/>
+      <source>Inverter communication lost</source>
+      <translation>Зв'язок інвертора втрачено</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="246"/>
+      <source>DC overload</source>
+      <translation>Перенавантаження постійним струмом</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="247"/>
+      <source>DC overvoltage</source>
+      <translation>Перенапруга постійного струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="249"/>
+      <source>No connection</source>
+      <translation>Немає зв'язку</translation>
+    </message>
+  </context>
+  <context>
+    <name>GensetError</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="83"/>
+      <source>No error</source>
+      <translation>Помилки немає</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="96"/>
+      <source>Unknown error: %1</source>
+      <translation>Невідома помилка: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>Hatz</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="795"/>
+      <source>Unknown error: </source>
+      <translation>Невідома помилка:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="814"/>
+      <source>Oil pressure</source>
+      <translation>Тиск мастила</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="815"/>
+      <source>Cylinder head overtemperature</source>
+      <translation>Перегрів головки циліндра</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="816"/>
+      <source>Charge control</source>
+      <translation>Контроль заряду</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="817"/>
+      <source>Speed higher than expected</source>
+      <translation>Швидкість вища, ніж очікувалося</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="818"/>
+      <source>Overspeed</source>
+      <translation>Перевищення швидкості</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="820"/>
+      <source>Oil temperature higher than expected</source>
+      <translation>Температура мастила вища за очікувану</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="821"/>
+      <source>Oil temperature open circuit / short to power</source>
+      <translation>Розірване коло датчика температури мастила / коротке замикання на живлення</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="822"/>
+      <source>Oil temperature short to ground</source>
+      <translation>Коротке замикання датчика температури мастила на землю</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="823"/>
+      <source>Analog setpoint high / short to power</source>
+      <translation>Аналогове задане значення високе / коротке замикання на живлення</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="824"/>
+      <source>Analog setpoint low / short to ground</source>
+      <translation>Аналогова уставка низька / замикання на землю</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="825"/>
+      <source>TSC1 message receive timeout</source>
+      <translation>Тайм-аут прийому повідомлення TSC1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="826"/>
+      <source>CM1 message receive timeout</source>
+      <translation>Тайм-аут прийому повідомлення CM1</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="827"/>
+      <source>Battery voltage high</source>
+      <translation>Висока напруга акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="828"/>
+      <source>Battery voltage low</source>
+      <translation>Низька напруга акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="829"/>
+      <source>Speed signal distorted</source>
+      <translation>Сигнал швидкості спотворено</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="830"/>
+      <source>Internal 5V sensor supply high</source>
+      <translation>Внутрішнє живлення датчика 5В високе</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="831"/>
+      <source>Internal 5V sensor supply low</source>
+      <translation>Низький рівень живлення внутрішнього датчика 5В</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="832"/>
+      <source>Barometric pressure high</source>
+      <translation>Барометричний тиск високий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="833"/>
+      <source>Barometric pressure low</source>
+      <translation>Барометричний тиск низький</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="834"/>
+      <source>Output fuelpump short to power</source>
+      <translation>Вихідний паливний насос закорочений на живлення</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="835"/>
+      <source>Output fuelpump short to ground</source>
+      <translation>Вихідний паливний насос закорочений на землю</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="836"/>
+      <source>Output glow plug short to power</source>
+      <translation>Вихідна свічка розжарювання закорочена на живлення</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="837"/>
+      <source>Output glow plug short to ground</source>
+      <translation>Вихідна свічка розжарювання замкнена на землю</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="838"/>
+      <source>Injector open circuit/low side short to ground</source>
+      <translation>Обрив інжектора / замикання на землю з нижньої сторони</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="839"/>
+      <source>Injector coil internal short circuit</source>
+      <translation>Внутрішнє коротке замикання котушки інжектора</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="840"/>
+      <source>Injector low side short to power</source>
+      <translation>Нижня сторона інжектора замкнута на живлення</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="841"/>
+      <source>Service hours expired</source>
+      <translation>Час обслуговування закінчився</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/genset_error.cpp" line="845"/>
+      <source>Processor failure</source>
+      <translation>Несправність процесора</translation>
+    </message>
+  </context>
+  <context>
+    <name>QObject</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="125"/>
+      <source>Fuel</source>
+      <translation>Паливо</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="126"/>
+      <source>Fresh water</source>
+      <translation>Прісна вода</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="127"/>
+      <source>Waste water</source>
+      <translation>Стічні води</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="128"/>
+      <source>Live well</source>
+      <translation>Свердловина під тиском</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="129"/>
+      <source>Oil</source>
+      <translation>Олива</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="130"/>
+      <source>Black water (sewage)</source>
+      <translation>Стічні води (з каналізації)</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="131"/>
+      <source>Gasoline</source>
+      <translation>Бензин</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="132"/>
+      <source>Diesel</source>
+      <translation>Дизельне паливо</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="133"/>
+      <source>LPG</source>
+      <translation>ЗНГ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="134"/>
+      <source>LNG</source>
+      <translation>ЗПГ</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="135"/>
+      <source>Hydraulic oil</source>
+      <translation>Гідравлічна олива</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="136"/>
+      <source>Raw water</source>
+      <translation>Неочищена вода</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/venus_types.cpp" line="143"/>
+      <source>Unknown</source>
+      <translation>Невідомий</translation>
+    </message>
+  </context>
+  <context>
+    <name>Wakespeed</name>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="138"/>
+      <source>Unknown error: </source>
+      <translation>Невідома помилка:</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="151"/>
+      <source>Internal error</source>
+      <translation>Внутрішня помилка</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="156"/>
+      <source>No error</source>
+      <translation>Помилки немає</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="159"/>
+      <source>Battery high temperature</source>
+      <translation>Висока температура акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="162"/>
+      <source>Battery high voltage</source>
+      <translation>Висока напруга акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="165"/>
+      <source>Battery low voltage</source>
+      <translation>Низька напруга акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="168"/>
+      <source>Battery voltage exceeded configured max</source>
+      <translation>Напруга акумуляторної батареї перевищує налаштований максимум</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="171"/>
+      <source>Battery temperature sensor defective</source>
+      <translation>Несправний датчик температури батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="175"/>
+      <source>Alternator high temperature</source>
+      <translation>Висока температура генератора змінного струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="178"/>
+      <source>Alternator high RPM</source>
+      <translation>Високі оберти генератора змінного струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="181"/>
+      <source>Field drive FET high temperature</source>
+      <translation>Висока температура польового транзистора FET</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="184"/>
+      <source>Required sensor missing</source>
+      <translation>Відсутній потрібний датчик</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="187"/>
+      <source>Alternator low voltage</source>
+      <translation>Низька напруга генератора змінного струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="190"/>
+      <source>Alternator high voltage offset</source>
+      <translation>Зміщення високої напруги генератора змінного струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="193"/>
+      <source>Alternator Voltage exceeded configured max</source>
+      <translation>Напруга генератора змінного струму перевищує налаштований максимум</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="196"/>
+      <source>Alternator high voltage</source>
+      <translation>Високовольтний генератор змінного струму</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="199"/>
+      <source>Battery disconnected</source>
+      <translation>Акумуляторну батарею від’єднано</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="202"/>
+      <source>Battery high voltage disconnect</source>
+      <translation>Від’єднання за високої напруги акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="205"/>
+      <source>Battery instance ouf of range</source>
+      <translation>Екземпляр акумуляторної батареї поза зоною</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="208"/>
+      <source>Too many BMS's</source>
+      <translation>Надто багато BMS</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="211"/>
+      <source>Battery about to disconnect</source>
+      <translation>Акумуляторна батарея скоро від’єднається</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="214"/>
+      <source>Too many devices to track</source>
+      <translation>Занадто багато пристроїв для відстеження</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="217"/>
+      <source>Battery low voltage disconnect</source>
+      <translation>Від’єднання за низької напруги акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="220"/>
+      <source>Battery high current disconnect</source>
+      <translation>Від’єднання за високого струму акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="223"/>
+      <source>Battery high temperature disconnect</source>
+      <translation>Від’єднання за високої температури акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="226"/>
+      <source>Battery low temperature disconnect</source>
+      <translation>Від’єднання за низької температури акумуляторної батареї</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="229"/>
+      <source>BMS connection lost</source>
+      <translation>Втрачено з’єднання BMS</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="232"/>
+      <source>ATC Disabled</source>
+      <translation>ATC вимкнено</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="235"/>
+      <source>DC/DC converter not ready</source>
+      <translation>Перетворювач пост. ст./пост. ст. не готовий</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="238"/>
+      <source>DC/DC high primary voltage</source>
+      <translation>Висока первинна напруга пост. ст./пост. ст.</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="241"/>
+      <source>DC/DC low primary voltage</source>
+      <translation>Низька первинна напруга пост. ст./пост. ст.</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="244"/>
+      <source>DC/DC high secondary voltage</source>
+      <translation>Висока вторинна напруга пост. ст./пост. ст.</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="247"/>
+      <source>DC/DC low secondary voltage</source>
+      <translation>Низька вторинна напруга пост. ст./пост. ст.</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="250"/>
+      <source>DC/DC high temperature</source>
+      <translation>Висока температура пост. ст./пост. ст.</translation>
+    </message>
+    <message>
+      <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="253"/>
+      <source>DC/DC misconfiguration</source>
+      <translation>Неправильна конфігурація пост. ст./пост. ст.</translation>
     </message>
   </context>
 </TS>
