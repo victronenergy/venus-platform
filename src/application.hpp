@@ -73,6 +73,7 @@ public:
 	static int run(QString const &cmd, const QStringList &args = QStringList());
 	static bool setRootPassword(QString password);
 	static void invalidateAuthenticatedSessions();
+	static bool isOciImage();
 	bool silenceBuzzer();
 
 	static int runningGuiVersion() {

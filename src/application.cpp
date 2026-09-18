@@ -793,6 +793,8 @@ void Application::start()
 	mService->itemGetOrCreateAndProduce("ProductName", "GX Device");
 	mService->itemGetOrCreateAndProduce("DeviceInstance", 0);
 
+	mService->itemGetOrCreateAndProduce("Device/IsContainer", isOciImage());
+
 	manageDaemontoolsServices();
 
 	createItemsForFlashmq();
@@ -945,6 +947,12 @@ QProcess *Application::spawn(QString const &cmd, const QStringList &args)
 	connect(proc, &QProcess::finished, proc, &QObject::deleteLater);
 	proc->start(cmd, args);
 	return proc;
+}
+
+// only OCI images ship this marker
+bool Application::isOciImage()
+{
+	return QFile(machineRuntimeDir.filePath("container")).exists();
 }
 
 int Application::run(QString const &cmd, const QStringList &args)
