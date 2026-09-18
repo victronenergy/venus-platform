@@ -793,6 +793,12 @@ void Application::start()
 	mService->itemGetOrCreateAndProduce("ProductName", "GX Device");
 	mService->itemGetOrCreateAndProduce("DeviceInstance", 0);
 
+#ifdef VENUS_CONTAINER
+	mService->itemGetOrCreateAndProduce("Device/IsContainer", true);
+#else
+	mService->itemGetOrCreateAndProduce("Device/IsContainer", false);
+#endif
+
 	manageDaemontoolsServices();
 
 	createItemsForFlashmq();
