@@ -793,6 +793,15 @@ void Application::start()
 	mService->itemGetOrCreateAndProduce("ProductName", "GX Device");
 	mService->itemGetOrCreateAndProduce("DeviceInstance", 0);
 
+	// baked in at compile time (see project.pro / VENUS_CONTAINER), not derived
+	// from the presence/absence of some other capability - those can change
+	// independently of whether this is a container build.
+#ifdef VENUS_CONTAINER
+	mService->itemGetOrCreateAndProduce("Device/IsContainer", true);
+#else
+	mService->itemGetOrCreateAndProduce("Device/IsContainer", false);
+#endif
+
 	manageDaemontoolsServices();
 
 	createItemsForFlashmq();
