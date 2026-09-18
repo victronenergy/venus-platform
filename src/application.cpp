@@ -800,6 +800,7 @@ void Application::start()
 
 	mService->itemGetOrCreateAndProduce("ProductName", "GX Device");
 	mService->itemGetOrCreateAndProduce("DeviceInstance", 0);
+	mService->itemGetOrCreateAndProduce("Device/IsContainer", isContainer() ? 1 : 0);
 
 	manageDaemontoolsServices();
 

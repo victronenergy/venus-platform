@@ -1,3 +1,5 @@
+#include <QFile>
+
 #include <veutil/qt/ve_qitem.hpp>
 
 #include <fstream>
@@ -33,4 +35,10 @@ int getSystemUptimeInSeconds()
 		return -1;
 
 	return static_cast<int>(uptime);
+}
+
+// Installed by the container image, so that the package itself is the same for GX devices.
+bool isContainer()
+{
+	return QFile::exists("/etc/venus/container");
 }

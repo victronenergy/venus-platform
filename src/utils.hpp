@@ -4,3 +4,4 @@
 
 void setWifiHotspotAndBluetooth(VeQItemSettings *settings, const int val);
 int getSystemUptimeInSeconds();
+bool isContainer();
