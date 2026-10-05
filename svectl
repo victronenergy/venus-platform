@@ -50,6 +50,7 @@ contains() {
 
 reset_config() {
     PARAMS=""
+    OPTIONAL_PARAMS=""
     PARAM_HELP=""
     SERVICE_EXT=""
 }
@@ -93,6 +94,12 @@ parse_config_file() {
                     "PARAM")
                         param="${value%%:*}"
                         PARAMS="${PARAMS} $param"
+                        PARAM_HELP="${PARAM_HELP}$value\n"
+                    ;;
+                    # Optional parameters are replaced by nothing when not set.
+                    "OPTIONAL_PARAM")
+                        param="${value%%:*}"
+                        OPTIONAL_PARAMS="${OPTIONAL_PARAMS} $param"
                         PARAM_HELP="${PARAM_HELP}$value\n"
                     ;;
                     "SERVICE_EXT")
@@ -210,9 +217,16 @@ for arg in $PARAMS; do
     fi
 done
 
+# optional variables which are not set, are removed.
+for arg in $OPTIONAL_PARAMS; do
+    if ! contains "$vars" "$arg" ; then
+        subst="$subst -e 's:$arg::'"
+    fi
+done
+
 # make sure no garbage is set.
 for var in $vars; do
-    if ! contains "$PARAMS" "$var" ; then
+    if ! contains "$PARAMS $OPTIONAL_PARAMS" "$var" ; then
         echo "$var is defined, but is not valid"
         exit 1
     fi
