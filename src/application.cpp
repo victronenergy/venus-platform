@@ -483,20 +483,28 @@ void Application::setRunningGui(QVariant version)
 
 void Application::onRunningGuiVersionObtained(QVariant var)
 {
+	if (!var.isValid())
+		return;
 	// Switch the index page of the webserver as well.
 	// make sure this is also done on device without gui-v2 / screen
-	if (mRunningGuiSetting.isValid() && var.isValid())
+	if (mRunningGuiSetting.isValid())
 		system("/etc/venus/www.d/create-gui-redirect.sh");
 	mRunningGuiSetting = var;
 
-	if (var.isValid() && !mOnScreenGuiv2Supported)
-		var = 1;
+	// New UI selected, but on-screen GUI v2 is not supported
+	// No need to start gui-v1 instead, so stop the gui-switcher
+	if (var.toInt() == 2 && !mOnScreenGuiv2Supported)
+		if (mGuiSwitcher)
+			mGuiSwitcher->stop();
 
 	if (mRunningGui != var) {
-		if (mRunningGui.isValid() && var.isValid())
-			if (mGuiSwitcher)
-				mGuiSwitcher->restart();
-
+		if (mRunningGui.isValid())
+			if (mGuiSwitcher) {
+				if (mGuiSwitcher->isUp())
+					mGuiSwitcher->restart();
+				else
+					mGuiSwitcher->start();
+			}
 		setRunningGui(var);
 	}
 }
