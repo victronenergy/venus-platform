@@ -334,6 +334,9 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 	item = settings->root()->itemGetOrCreate("Settings/Network/VrmPortal");
 	item->getValueAndChanges(this, &SecurityProfiles::onVrmPortalChange);
 
+	item = settings->root()->itemGetOrCreate("Settings/System/RemoteSupport");
+	item->getValueAndChanges(this, &SecurityProfiles::onRemoteSupportChanged);
+
 	item = pltService->itemGetOrCreate("Tokens/Users");
 	item->getValueAndChanges(this, &SecurityProfiles::onTokenChange);
 
@@ -369,18 +372,32 @@ void SecurityProfiles::onVrmPortalChange(QVariant const &var)
 		// but since if can log to offline storage, the process shouldn't be disabled
 		// from here, but vrmlogger should handle that itself.
 
-		// The Remote tunnel also depends on this setting, but also many more.. So it
+		// The Remote tunnel also depends on this setting, but also on many more. So it
 		// is handled separately in the VrmTunnelSetup class above.
 
-		mMqttBridgeRegistrator->setVrmPortalMode(var);
-
-		// Flashmq depends on the settings as well, since off, read-only and full change
-		// the bridge configuration. Trigger the MQTT registration for changes to
-		// read-only and full, so the config gets updated.
-		mMqttBridgeRegistrator->resolve();
+		resolveBridgeRegistrator();
 
 		enableMqttBridge(false);
 	}
+}
+
+void SecurityProfiles::onRemoteSupportChanged(const QVariant &var)
+{
+	if (var != mRemoteSupport) {
+		mRemoteSupport = var;
+
+		resolveBridgeRegistrator();
+	}
+}
+
+void SecurityProfiles::resolveBridgeRegistrator()
+{
+	mMqttBridgeRegistrator->setRunConditions(mVrmPortal, mRemoteSupport);
+
+	// Flashmq depends on the settings as well, since 'off', 'read-only' and 'full' change
+	// the bridge configuration. Trigger the MQTT registration for changes to
+	// 'read-only' and 'full', so the config gets updated.
+	mMqttBridgeRegistrator->resolve();
 }
 
 void SecurityProfiles::onTokenChange(const QVariant &var)

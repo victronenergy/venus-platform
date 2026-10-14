@@ -122,6 +122,7 @@ private slots:
 	void onMqttAccessChanged(QVariant const &var);
 	void onSecurityProfileChanged(QVariant const &var);
 	void onVrmPortalChange(QVariant const &var);
+	void onRemoteSupportChanged(QVariant const &var);
 	void onTokenChange(QVariant const &var);
 
 private:
@@ -129,10 +130,12 @@ private:
 	void enableMqttBridge(bool configChanged = false);
 	void enableMqttOnLan(bool enabled);
 	void enableMqttOnLanInsecure(bool enabled);
+	void resolveBridgeRegistrator();
 
 	QVariant mMqttAccess;
 	QVariant mSecurityProfile;
 	QVariant mVrmPortal;
+	QVariant mRemoteSupport;
 	int mTokenCount = -1;
 
 	// These are QVariant, just to unequal fo false for startup/init

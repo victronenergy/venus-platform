@@ -279,9 +279,10 @@ int VeQItemMqttBridgeRegistrator::setValue(const QVariant &value)
 	return resolve();
 }
 
-void VeQItemMqttBridgeRegistrator::setVrmPortalMode(const QVariant &mode)
+void VeQItemMqttBridgeRegistrator::setRunConditions(const QVariant &vrm_portal_mode, const QVariant &remote_support)
 {
-	this->mVrmPortalMode = mode;
+	this->mVrmPortalMode = vrm_portal_mode;
+	this->mRemoteSupport = remote_support;
 
 	if (mRegistrationIsDeferred) {
 		mRegistrationIsDeferred = false;
@@ -291,14 +292,14 @@ void VeQItemMqttBridgeRegistrator::setVrmPortalMode(const QVariant &mode)
 
 int VeQItemMqttBridgeRegistrator::resolve()
 {
-	if (!mVrmPortalMode.isValid()) {
+	if (!mVrmPortalMode.isValid() || !mRemoteSupport.isValid()) {
 		mRegistrationIsDeferred = true;
 		return 0;
 	}
 
-	if (mVrmPortalMode.toInt() == VRM_PORTAL_OFF) {
+	if (mVrmPortalMode.toInt() == VRM_PORTAL_OFF && mRemoteSupport.toInt() == 0) {
 		if (mRegistrator) {
-			qDebug() << "[VeQItemMqttBridgeRegistrator] VRM portal mode switched off, aborting running registration request.";
+			qDebug() << "[VeQItemMqttBridgeRegistrator] VRM portal mode switched off and no remote support: aborting running registration request.";
 			mRegistrator->stop();
 			mRegistrator.reset();
 		}

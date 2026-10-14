@@ -56,7 +56,7 @@ public:
 	VeQItemMqttBridgeRegistrator(VeQItem *pltService);
 
 	int setValue(const QVariant &value) override;
-	void setVrmPortalMode(const QVariant &mode);
+	void setRunConditions(const QVariant &vrm_portal_mode, const QVariant &remote_support);
 	int resolve();
 
 signals:
@@ -66,6 +66,7 @@ private:
 	bool mRegistrationIsDeferred = false;
 	QString mVrmId;
 	QVariant mVrmPortalMode;
+	QVariant mRemoteSupport;
 	QScopedPointer<VrmTokenRegistrator, QScopedPointerDeleteLater> mRegistrator;
 
 private slots:
