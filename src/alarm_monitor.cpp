@@ -158,9 +158,8 @@ void AlarmMonitor::settingStateChanged(VeQItem::State state)
 
 	/* Setting not present, allow warnings and alarms */
 	mEnabledNotifications = ALARM_AND_WARNING;
-	auto placeholder =
-		disconnect(sender(), SIGNAL(stateChanged(VeQItem::State)), this,
-				   SLOT(settingStateChanged(VeQItem::State)));
+	VeQItem *item = qobject_cast<VeQItem *>(sender());
+	disconnect(item, &VeQItem::stateChanged, this, &AlarmMonitor::settingStateChanged);
 }
 
 void AlarmMonitor::addNotification(Notification::Type type)

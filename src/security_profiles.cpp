@@ -230,7 +230,8 @@ VrmTunnelSetup::VrmTunnelSetup(VeQItem *pltService, VeQItemSettings *settings,
 	mVrmPortal = settings->root()->itemGetOrCreate("Settings/Network/VrmPortal");
 	mVrmPortal->getValueAndChanges(this, &VrmTunnelSetup::checkVrmTunnel);
 
-	connect(qApp, SIGNAL(runningGuiVersionChanged()), this, SLOT(checkVrmTunnel()));
+	Application *app = qobject_cast<Application *>(qApp);
+	connect(app, &Application::runningGuiVersionChanged, this, &VrmTunnelSetup::checkVrmTunnel);
 	checkVrmTunnel();
 
 	// Even if gui-v1 is running, it only needs a tunnel when also VNC is anabled and
