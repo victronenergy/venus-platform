@@ -7,7 +7,7 @@ Buzzer::Buzzer(const QString &buzzerPath, QObject *parent) :
 	mBuzzerToggle(false)
 {
 	mBuzzerItem = VeQItems::getRoot()->itemGetOrCreate(buzzerPath);
-	connect(mBuzzerItem, SIGNAL(stateChanged(VeQItem::State)), this, SLOT(onItemStateChanged()));
+	connect(mBuzzerItem, &VeQItem::stateChanged, this, &Buzzer::onItemStateChanged);
 	mBuzzerItem->getValue();
 }
 

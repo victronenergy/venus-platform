@@ -421,7 +421,7 @@ AlarmBusitems::AlarmBusitems(VenusServices *services, Notifications *notificatio
 	QObject(services),
 	mNotifications(notifications)
 {
-	connect(services, SIGNAL(found(VenusService*)), SLOT(onVenusServiceFound(VenusService*)));
+	connect(services, &VenusServices::found, this, &AlarmBusitems::onVenusServiceFound);
 }
 
 void AlarmBusitems::onVenusServiceFound(VenusService *service)

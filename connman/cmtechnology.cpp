@@ -23,8 +23,8 @@ CmTechnology::CmTechnology(const QString& path, const QVariantMap& properties, Q
 	mPath = path;
 	mProperties = properties;
 
-	QObject::connect(&mTechnology, SIGNAL(PropertyChanged(QString,QDBusVariant)),
-					 SLOT(propertyChanged(QString,QDBusVariant)));
+	QObject::connect(&mTechnology, &CmTechnologyInterface::PropertyChanged,
+					 this, &CmTechnology::propertyChanged);
 }
 
 CmTechnology::~CmTechnology()
@@ -36,7 +36,7 @@ void CmTechnology::scan()
 {
 	QDBusPendingReply<> reply = mTechnology.Scan();
 	QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
-	QObject::connect(watcher, SIGNAL(finished(QDBusPendingCallWatcher*)), SLOT(dbusReply(QDBusPendingCallWatcher*)));
+	QObject::connect(watcher, &QDBusPendingCallWatcher::finished, this, &CmTechnology::dbusReply);
 }
 
 void CmTechnology::propertyChanged(const QString& name, const QDBusVariant& value)

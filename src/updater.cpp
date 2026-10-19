@@ -48,8 +48,8 @@ SwuUpdateMonitor::SwuUpdateMonitor(const QString &cmd, const QStringList &args, 
 	setParent(proc);
 	mWatcher.addPath("/tmp");
 
-	connect(&mSocket, SIGNAL(readyRead()), SLOT(onReadReady()));
-	connect(&mWatcher, SIGNAL(directoryChanged(QString)), SLOT(onTmpChanged()));
+	connect(&mSocket, &QIODevice::readyRead, this, &SwuUpdateMonitor::onReadReady);
+	connect(&mWatcher, &QFileSystemWatcher::directoryChanged, this, &SwuUpdateMonitor::onTmpChanged);
 
 	openSocket();
 }
@@ -162,8 +162,7 @@ Updater::Updater(VeQItem *parentItem, QObject *parent) :
 
 	getRootfsInfoFromFile(versionFile);
 
-	connect(&mUpdateWatcher, SIGNAL(fileChanged(QString)),
-			SLOT(checkFile(QString)));
+	connect(&mUpdateWatcher, &QFileSystemWatcher::fileChanged, this, &Updater::checkFile);
 
 	mItem->itemGetOrCreate("Backup")->itemAddChild("Activate", new VeQItemSwitchVersion());
 

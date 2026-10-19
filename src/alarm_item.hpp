@@ -127,7 +127,7 @@ private:
 		mNotification = mVebusAlarms->notifications()->addNotification(
 					Notification::WARNING, "#51 mk3 firmware needs update",
 											"see Device list -> Inverter/charger entry", "");
-		connect(mNotification, SIGNAL(destroyed()), this, SLOT(notificationDestroyed()));
+		connect(mNotification, &QObject::destroyed, this, &mk3FirmwareUpdateNotification::notificationDestroyed);
 	}
 
 	VeQItem *mk3Version;

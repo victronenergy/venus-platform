@@ -5,7 +5,7 @@
 
 void VenusServices::initialScan()
 {
-	connect(mQItemServices, SIGNAL(childAdded(VeQItem*)), SLOT(onServiceAdded(VeQItem*)));
+	connect(mQItemServices, &VeQItem::childAdded, this, &VenusServices::onServiceAdded);
 
 	for (VeQItem *service: mQItemServices->itemChildren())
 		onServiceAdded(service);
@@ -19,8 +19,8 @@ void VenusServices::onServiceAdded(VeQItem *serviceItem)
 	if (service == nullptr)
 		return;
 	service->setParent(this);
-	connect(service, SIGNAL(serviceDestroyed()), SLOT(onServiceDestoyed()));
-	connect(service, SIGNAL(initialized()), SLOT(onServiceInitialized()));
+	connect(service, &VenusService::serviceDestroyed, this, &VenusServices::onServiceDestoyed);
+	connect(service, &VenusService::initialized, this, &VenusServices::onServiceInitialized);
 }
 
 void VenusServices::onServiceDestoyed()

@@ -17,8 +17,8 @@ VenusService::VenusService(VeQItem *serviceItem, VenusServiceType serviceType, Q
 	connect(item("ProductName"), &VeQItem::stateChanged, this, &VenusService::updateDescription);
 	item("ProductName")->getValueAndChanges(this, &VenusService::updateDescription, VeQItem::DoFetch, Qt::QueuedConnection);
 	item("CustomName")->getValueAndChanges(this, &VenusService::updateDescription, VeQItem::DoFetch, Qt::QueuedConnection);
-	connect(serviceItem, SIGNAL(stateChanged(VeQItem::State)), SIGNAL(connectedChanged()));
-	connect(serviceItem, SIGNAL(stateChanged(VeQItem::State)), SLOT(updateDescription()));
+	connect(serviceItem, &VeQItem::stateChanged, this, &VenusService::connectedChanged);
+	connect(serviceItem, &VeQItem::stateChanged, this, &VenusService::updateDescription);
 }
 
 VenusService::~VenusService()

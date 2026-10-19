@@ -220,8 +220,8 @@ int VeQItemReboot::setValue(const QVariant &value)
 
 	QTimer *timer = new QTimer(this);
 	timer->setSingleShot(true);
-	connect(timer, SIGNAL(timeout()), this, SLOT(doReboot()));
-	connect(timer, SIGNAL(timeout()), timer, SLOT(deleteLater())); // a bit silly, rebooting anyway..
+	connect(timer, &QTimer::timeout, this, &VeQItemReboot::doReboot);
+	connect(timer, &QTimer::timeout, timer, &QObject::deleteLater); // a bit silly, rebooting anyway..
 	timer->start(2000);
 	produceValue(1);
 
@@ -385,7 +385,7 @@ Application::Application::Application(int &argc, char **argv) :
 	mSettings = new VeQItemDbusSettings(producer->services(), QString("com.victronenergy.settings"));
 
 	VeQItem *item = mServices->itemGetOrCreate("com.victronenergy.settings");
-	connect(item, SIGNAL(stateChanged(VeQItem::State)), SLOT(onLocalSettingsStateChanged(VeQItem::State)));
+	connect(item, &VeQItem::stateChanged, this, &Application::onLocalSettingsStateChanged);
 	if (item->getState() == VeQItem::Synchronized) {
 		qDebug() << "Localsettings found";
 		init();
@@ -393,7 +393,7 @@ Application::Application::Application(int &argc, char **argv) :
 		qDebug() << "Localsettings not found";
 		mLocalSettingsTimeout.setSingleShot(true);
 		mLocalSettingsTimeout.setInterval(120000);
-		connect(&mLocalSettingsTimeout, SIGNAL(timeout()), SLOT(onLocalSettingsTimeout()));
+		connect(&mLocalSettingsTimeout, &QTimer::timeout, this, &Application::onLocalSettingsTimeout);
 		mLocalSettingsTimeout.start();
 	}
 }
@@ -505,7 +505,7 @@ void Application::onRunningGuiVersionObtained(QVariant var)
 void Application::onServiceAdded(VeQItem *var)
 {
 	if (var->id().startsWith("com.victronenergy.genset") || var->id().startsWith("com.victronenergy.dcgenset")) {
-		connect(var, SIGNAL(stateChanged(VeQItem::State)), SLOT(onGensetStateChanged(VeQItem::State)));
+		connect(var, &VeQItem::stateChanged, this, &Application::onGensetStateChanged);
 	} else if (var->id().startsWith("com.victronenergy.battery")) {
 		// Need to look at the product id to decide if the parallel bms service needs to start.
 		VeQItem *item = var->itemGetOrCreate("ProductId");
@@ -594,7 +594,7 @@ void Application::initDaemonStartupConditions(VeQItem *service)
 {
 	if (service->getState() == VeQItem::State::Synchronized) {
 		if (service->id().startsWith("com.victronenergy.genset") || service->id().startsWith("com.victronenergy.dcgenset")) {
-			connect(service, SIGNAL(stateChanged(VeQItem::State)), SLOT(onGensetStateChanged(VeQItem::State)));
+			connect(service, &VeQItem::stateChanged, this, &Application::onGensetStateChanged);
 			mGeneratorStarterConditions << service->id();
 		} else if (service->id().startsWith("com.victronenergy.battery")) {
 			VeQItem *item = service->itemGetOrCreate("ProductId");
@@ -627,7 +627,7 @@ void Application::manageDaemontoolsServices()
 	for (VeQItem *child: children)
 		initDaemonStartupConditions(child);
 
-	connect(mServices, SIGNAL(childAdded(VeQItem*)), SLOT(onServiceAdded(VeQItem*)));
+	connect(mServices, &VeQItem::childAdded, this, &Application::onServiceAdded);
 	manageGeneratorStartStop();
 
 	new DaemonToolsService(mSettings, "/service/dbus-ble-sensors", "Settings/Services/BleSensors", this,
@@ -806,7 +806,7 @@ void Application::start()
 	createItemsForFlashmq();
 
 	mCanInterfaceMonitor = new CanInterfaceMonitor(mSettings, mService, this);
-	connect(mCanInterfaceMonitor, SIGNAL(interfacesChanged()), SLOT(onCanInterfacesChanged()));
+	connect(mCanInterfaceMonitor, &CanInterfaceMonitor::interfacesChanged, this, &Application::onCanInterfacesChanged);
 	mCanInterfaceMonitor->enumerate();
 
 	mDisplayController = new DisplayController(mSettings, this);

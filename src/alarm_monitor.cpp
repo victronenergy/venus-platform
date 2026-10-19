@@ -158,7 +158,9 @@ void AlarmMonitor::settingStateChanged(VeQItem::State state)
 
 	/* Setting not present, allow warnings and alarms */
 	mEnabledNotifications = ALARM_AND_WARNING;
-	disconnect(sender(), SIGNAL(stateChanged(VeQItem::State)), this, SLOT(settingStateChanged(VeQItem::State)));
+	auto placeholder =
+		disconnect(sender(), SIGNAL(stateChanged(VeQItem::State)), this,
+				   SLOT(settingStateChanged(VeQItem::State)));
 }
 
 void AlarmMonitor::addNotification(Notification::Type type)
@@ -166,7 +168,7 @@ void AlarmMonitor::addNotification(Notification::Type type)
 	mNotification = mDeviceAlarms->notifications()->addNotification(type, mService->getDescription(),
 																		mBusitemValue->getText(), mDescription,
 																	mBusitemPathAlarm, mAlarmTrigger->getValue(), mService->getName());
-	connect(mNotification, SIGNAL(destroyed()), this, SLOT(notificationDestroyed()));
+	connect(mNotification, &QObject::destroyed, this, &AlarmMonitor::notificationDestroyed);
 }
 
 void AlarmMonitor::notificationDestroyed()

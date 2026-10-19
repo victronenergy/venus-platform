@@ -27,7 +27,7 @@ VeQItemGatewayEnabled::VeQItemGatewayEnabled(CmTechnology *tech) :
 	mTech(tech)
 {
 	produceValue(QVariant(tech->gatewayEnabled()));
-	connect(mTech, SIGNAL(gatewayEnabledChanged()), this, SLOT(updateGatewayEnabled()));
+	connect(mTech, &CmTechnology::gatewayEnabledChanged, this, &VeQItemGatewayEnabled::updateGatewayEnabled);
 }
 
 int VeQItemGatewayEnabled::setValue(const QVariant &value)
@@ -87,25 +87,25 @@ NetworkController::NetworkController(VeQItem *parentItem, QObject *parent)
 		}
 	}
 
-	connect(mConnman, SIGNAL(serviceListChanged()), this, SLOT(buildServicesList()));
-	connect(mConnman, SIGNAL(serviceChanged(QString,QVariantMap)), this, SLOT(buildServicesList()));
-	connect(mConnman, SIGNAL(serviceAdded(QString)), this, SLOT(onServiceAdded(QString)));
-	connect(mConnman, SIGNAL(serviceRemoved(QString)), this, SLOT(onServiceRemoved(QString)));
-	connect(parser, SIGNAL(jsonParsed(QJsonDocument)), this, SLOT(handleCommand(QJsonDocument)));
+	connect(mConnman, &CmManager::serviceListChanged, this, &NetworkController::buildServicesList);
+	connect(mConnman, &CmManager::serviceChanged, this, &NetworkController::buildServicesList);
+	connect(mConnman, &CmManager::serviceAdded, this, &NetworkController::onServiceAdded);
+	connect(mConnman, &CmManager::serviceRemoved, this, &NetworkController::onServiceRemoved);
+	connect(parser, &VeQItemJson::jsonParsed, this, &NetworkController::handleCommand);
 
 	buildServicesList();
 }
 
 void NetworkController::connectServiceSignals(CmService *service)
 {
-	connect(service, SIGNAL(ipv4Changed()), this, SLOT(buildServicesList()));
-	connect(service, SIGNAL(ipv4ConfigChanged()), this, SLOT(buildServicesList()));
-	connect(service, SIGNAL(nameserversChanged()), this, SLOT(buildServicesList()));
-	connect(service, SIGNAL(nameserversConfigChanged()), this, SLOT(buildServicesList()));
+	connect(service, &CmService::ipv4Changed, this, &NetworkController::buildServicesList);
+	connect(service, &CmService::ipv4ConfigChanged, this, &NetworkController::buildServicesList);
+	connect(service, &CmService::nameserversChanged, this, &NetworkController::buildServicesList);
+	connect(service, &CmService::nameserversConfigChanged, this, &NetworkController::buildServicesList);
 
 	if (service->type() == "wifi") {
-		connect(service, SIGNAL(stateChanged()), this, SLOT(updateWifiState()));
-		connect(service, SIGNAL(strengthChanged()), this, SLOT(updateWifiSignalStrength()));
+		connect(service, &CmService::stateChanged, this, &NetworkController::updateWifiState);
+		connect(service, &CmService::strengthChanged, this, &NetworkController::updateWifiSignalStrength);
 	}
 }
 

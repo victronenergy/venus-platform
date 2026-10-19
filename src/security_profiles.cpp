@@ -183,7 +183,7 @@ int SecurityApi::setValue(const QVariant &value)
 
 		configEvent = NETWORK_CONFIG_SECURITY_PROFILE_CHANGED;
 		QTimer *timer = new QTimer(this);
-		connect(timer, SIGNAL(timeout()), SLOT(restartWebserver()));
+		connect(timer, &QTimer::timeout, this, &SecurityApi::restartWebserver);
 		timer->setSingleShot(true);
 		timer->start(2000);
 	}
@@ -194,8 +194,8 @@ int SecurityApi::setValue(const QVariant &value)
 
 		QTimer *timer = new QTimer(this);
 		timer->setSingleShot(true);
-		connect(timer, SIGNAL(timeout()), this, SLOT(resetConfigEvent()));
-		connect(timer, SIGNAL(timeout()), timer, SLOT(deleteLater()));
+		connect(timer, &QTimer::timeout, this, &SecurityApi::resetConfigEvent);
+		connect(timer, &QTimer::timeout, timer, &QObject::deleteLater);
 		timer->start(1000);
 	}
 
@@ -239,7 +239,7 @@ VrmTunnelSetup::VrmTunnelSetup(VeQItem *pltService, VeQItemSettings *settings,
 	mVncEnabled->getValueAndChanges(this, &VrmTunnelSetup::checkVrmTunnel);
 
 	// Look for EV chargers
-	connect(venusServices, SIGNAL(found(VenusService*)), SLOT(onServiceFound(VenusService*)));
+	connect(venusServices, &VenusServices::found, this, &VrmTunnelSetup::onServiceFound);
 
 	// Large image services
 	if (serviceExists("node-red-venus")) {
@@ -317,7 +317,7 @@ SecurityProfiles::SecurityProfiles(VeQItem *pltService, VeQItemSettings *setting
 
 	mMqttBridgeRegistrator = new VeQItemMqttBridgeRegistrator(pltService);
 	pltService->itemGetOrCreate("Mqtt")->itemAddChild("RegisterOnVrm", mMqttBridgeRegistrator);
-	connect(mMqttBridgeRegistrator, SIGNAL(bridgeConfigChanged()), this, SLOT(onBridgeConfigChanged()));
+	connect(mMqttBridgeRegistrator, &VeQItemMqttBridgeRegistrator::bridgeConfigChanged, this, &SecurityProfiles::onBridgeConfigChanged);
 
 	pltService->itemGetOrCreate("Security")->itemAddChild("Api", new SecurityApi(pltService, settings));
 

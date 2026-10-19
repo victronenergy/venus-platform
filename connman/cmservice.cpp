@@ -42,8 +42,8 @@ CmService::CmService(const QString& path, const QVariantMap& properties, QObject
 {
 	mPath = path;
 	mProperties = properties;
-	QObject::connect(&mService, SIGNAL(PropertyChanged(QString,QDBusVariant)),
-			SLOT(propertyChanged(QString,QDBusVariant)));
+	QObject::connect(&mService, &CmServiceInterface::PropertyChanged,
+			this, &CmService::propertyChanged);
 }
 
 void CmService::autoConnect(const bool autoConnect)
@@ -70,7 +70,7 @@ void CmService::ipv4Config(const QVariantMap &config)
 {
 	QDBusPendingReply<> reply = mService.SetProperty(IPv4Config, QVariant(config));
 	QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
-	QObject::connect(watcher, SIGNAL(finished(QDBusPendingCallWatcher*)), SLOT(dbusReply(QDBusPendingCallWatcher*)));
+	QObject::connect(watcher, &QDBusPendingCallWatcher::finished, this, &CmService::dbusReply);
 }
 
 void CmService::ipv6Config(const QVariantMap &config)
@@ -87,7 +87,7 @@ void CmService::connect()
 {
 	QDBusPendingReply<> reply = mService.Connect();
 	QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
-	QObject::connect(watcher, SIGNAL(finished(QDBusPendingCallWatcher*)), SLOT(dbusReply(QDBusPendingCallWatcher*)));
+	QObject::connect(watcher, &QDBusPendingCallWatcher::finished, this, &CmService::dbusReply);
 }
 
 void CmService::disconnect()

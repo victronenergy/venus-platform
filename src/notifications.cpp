@@ -132,8 +132,8 @@ Notification *Notifications::addNotification(Notification::Type type, const QStr
 
 	notification = new Notification(type, devicename, description, value, serviceName, alarmTrigger, alarmValue, mNotificationsItem, index, this);
 	mNotifications.insert(0, notification);
-	connect(notification, SIGNAL(activeChanged(Notification *)), this, SLOT(activeChanged(Notification *)));
-	connect(notification, SIGNAL(acknowledgedChanged(Notification *)), this, SLOT(acknowledgedChanged(Notification *)));
+	connect(notification, &Notification::activeChanged, this, &Notifications::activeChanged);
+	connect(notification, &Notification::acknowledgedChanged, this, &Notifications::acknowledgedChanged);
 	mNumberOfNotificationsItem->produceValue(mNotifications.length());
 
 	if (type == Notification::ALARM) {

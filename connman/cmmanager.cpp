@@ -23,8 +23,8 @@ CmManager::CmManager(QObject *parent) :
 {
 	registerConnmanDataTypes();
 
-	QObject::connect(&mWatcher, SIGNAL(serviceRegistered(QString)),SLOT(connmanRegistered(QString)));
-	QObject::connect(&mWatcher, SIGNAL(serviceUnregistered(QString)), SLOT(connmanUnregistered(QString)));
+	QObject::connect(&mWatcher, &QDBusServiceWatcher::serviceRegistered,this, &CmManager::connmanRegistered);
+	QObject::connect(&mWatcher, &QDBusServiceWatcher::serviceUnregistered, this, &CmManager::connmanUnregistered);
 
 	if (mManager.isValid()) {
 		if (getProperties())
@@ -47,8 +47,8 @@ void CmManager::connect()
 {
 	connected = true;
 
-	QObject::connect(&mManager, SIGNAL(PropertyChanged(QString,QDBusVariant)),
-					 SLOT(propertyChanged(QString,QDBusVariant)));
+	QObject::connect(&mManager, &CmManangerInterface::PropertyChanged,
+					 this, &CmManager::propertyChanged);
 
 	if (getTechnologies())
 		connectTechnologies();
@@ -58,16 +58,16 @@ void CmManager::connect()
 
 void CmManager::connectTechnologies()
 {
-	QObject::connect(&mManager, SIGNAL(TechnologyAdded(QDBusObjectPath,QVariantMap)),
-					 SLOT(technologyAdded(QDBusObjectPath,QVariantMap)));
-	QObject::connect(&mManager, SIGNAL(TechnologyRemoved(QDBusObjectPath)),
-					 SLOT(technologyRemoved(QDBusObjectPath)));
+	QObject::connect(&mManager, &CmManangerInterface::TechnologyAdded,
+					 this, &CmManager::technologyAdded);
+	QObject::connect(&mManager, &CmManangerInterface::TechnologyRemoved,
+					 this, &CmManager::technologyRemoved);
 }
 
 void CmManager::connectServices()
 {
-	QObject::connect(&mManager, SIGNAL(ServicesChanged(ConnmanObjectList,QList<QDBusObjectPath>)),
-					 SLOT(servicesChanged(ConnmanObjectList,QList<QDBusObjectPath>)));
+	QObject::connect(&mManager, &CmManangerInterface::ServicesChanged,
+					 this, &CmManager::servicesChanged);
 }
 
 void CmManager::disconnect()
@@ -95,16 +95,16 @@ void CmManager::disconnect()
 
 void CmManager::disconnectTechnologies()
 {
-	QObject::disconnect(&mManager, SIGNAL(TechnologyAdded(const QDBusObjectPath &, const QVariantMap &)),
-			this, SLOT(technologyAdded(const QDBusObjectPath &, const QVariantMap &)));
-	QObject::disconnect(&mManager, SIGNAL(TechnologyRemoved(const QDBusObjectPath &)),
-			this, SLOT(technologyRemoved(const QDBusObjectPath &)));
+	QObject::disconnect(&mManager, &CmManangerInterface::TechnologyAdded,
+			this, &CmManager::technologyAdded);
+	QObject::disconnect(&mManager, &CmManangerInterface::TechnologyRemoved,
+			this, &CmManager::technologyRemoved);
 }
 
 void CmManager::disconnectServices()
 {
-	QObject::disconnect(&mManager, SIGNAL(ServicesChanged(ConnmanObjectList,QList<QDBusObjectPath>)),
-						this, SLOT(servicesChanged(ConnmanObjectList,QList<QDBusObjectPath>)));
+	QObject::disconnect(&mManager, &CmManangerInterface::ServicesChanged,
+						this, &CmManager::servicesChanged);
 }
 
 bool CmManager::getProperties()
@@ -241,7 +241,7 @@ CmAgent *CmManager::registerAgent(const QString &path)
 {
 	QDBusPendingReply<> reply = mManager.RegisterAgent(QDBusObjectPath(path));
 	QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
-	QObject::connect(watcher, SIGNAL(finished(QDBusPendingCallWatcher*)), SLOT(dbusReply(QDBusPendingCallWatcher*)));
+	QObject::connect(watcher, &QDBusPendingCallWatcher::finished, this, &CmManager::dbusReply);
 	mAgent.path(path);
 	return &mAgent;
 }
@@ -250,7 +250,7 @@ void CmManager::unRegisterAgent(const QString &path)
 {
 	QDBusPendingReply<> reply = mManager.UnRegisterAgent(QDBusObjectPath(path));
 	QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
-	QObject::connect(watcher, SIGNAL(finished(QDBusPendingCallWatcher*)), SLOT(dbusReply(QDBusPendingCallWatcher*)));
+	QObject::connect(watcher, &QDBusPendingCallWatcher::finished, this, &CmManager::dbusReply);
 	mAgent.path(path);
 }
 
