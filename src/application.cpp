@@ -10,6 +10,7 @@
 
 #include "application.hpp"
 #include "modifications_check.hpp"
+#include "node_red_flows.hpp"
 #include "security_profiles.hpp"
 #include "time.hpp"
 #include "utils.hpp"
@@ -273,9 +274,9 @@ int VeQItemNodeRedReset::setValue(const QVariant &value)
 		mNodeRed->stop();
 		mNodeRed->waitTillDown();
 
-		cleanDir("/data/home/nodered/.cache");
-		cleanDir("/data/home/nodered/.node-red");
-		cleanDir("/data/home/nodered/.npm");
+		cleanDir(NodeRedHome + "/.cache");
+		cleanDir(NodeRedHome + "/.node-red");
+		cleanDir(NodeRedHome + "/.npm");
 	}
 
 	return VeQItemAction::setValue(value);
@@ -679,6 +680,7 @@ void Application::manageDaemontoolsServices()
 							   mSettings->root()->itemGetOrCreate("Settings/Services/NodeRed"));
 		VeQItemNodeRedReset *reset = new VeQItemNodeRedReset(mNodeRed, mService->itemGet("Services/NodeRed/Mode"));
 		mService->itemGetOrCreate("Services/NodeRed")->itemAddChild("FactoryReset", reset);
+		new NodeRedFlows(mService->itemGetOrCreate("Services/NodeRed"), mNodeRed);
 	}
 
 	if (serviceExists("signalk-server")) {

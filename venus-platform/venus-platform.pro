@@ -29,6 +29,8 @@ HEADERS = \
 	../src/mqtt_bridge_registrator.hpp \
 	../src/netlink_monitor.hpp \
 	../src/network_controller.hpp \
+	../src/node_red_flow_file.hpp \
+	../src/node_red_flows.hpp \
 	../src/notification.hpp \
 	../src/notifications.hpp \
 	../src/relay.hpp \
@@ -54,6 +56,8 @@ SOURCES = \
 	../src/mqtt_bridge_registrator.cpp \
 	../src/netlink_monitor.cpp \
 	../src/network_controller.cpp \
+	../src/node_red_flow_file.cpp \
+	../src/node_red_flows.cpp \
 	../src/notification.cpp \
 	../src/notifications.cpp \
 	../src/relay.cpp \
