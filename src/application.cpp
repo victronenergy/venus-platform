@@ -346,6 +346,7 @@ public:
 		add("Services/Eebus", 0, 0, 1);
 		add("Services/EthernetLinkLocal", 1, 0, 1);
 		add("Services/Evcc", 1, 0, 1);
+		add("Services/Fronius", 1, 0, 1);
 		add("Services/Modbus", 0, 0, 1);
 		add("Services/MqttLocal", 0, 0, 2);
 		add("Services/NodeRed", 0, 0, 2);
@@ -643,6 +644,9 @@ void Application::manageDaemontoolsServices()
 
 	new DaemonToolsService(mSettings, "/service/dbus-shelly", "Settings/Services/Shelly",
 						   this, QStringList() << "-s" << "dbus-shelly");
+
+	new DaemonToolsService(mSettings, "/service/dbus-fronius", "Settings/Services/Fronius",
+						   this, QStringList() << "-s" << "dbus-fronius");
 
 	new DaemonToolsService(mSettings, "/service/avahi-autoipd", "Settings/Services/EthernetLinkLocal",
 						   this, QStringList() << "-s" << "avahi-autoipd");
