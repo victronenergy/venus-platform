@@ -103,6 +103,7 @@ protected slots:
 	void onServiceAdded(VeQItem *var);
 	void onGensetStateChanged(VeQItem::State state);
 	void onBatteryProductIdChanged(QVariant var);
+	void onVebusAcSensorCountChanged(QVariant var);
 	void checkDataPartitionUsedSpace();
 	void onNetlinkAddressAdded(const QString &iface, const QString &address);
 	void onNetlinkAddressRemoved(const QString &iface, const QString &address);
@@ -155,6 +156,7 @@ private:
 
 	DaemonToolsService *mGeneratorStarter = nullptr;
 	DaemonToolsService *mParallelBmsStarter = nullptr;
+	DaemonToolsService *mVebusToPvinverterStarter = nullptr;
 	DaemonToolsService *mOpportunityLoadsStarter = nullptr;
 	QList<QString> mGeneratorStarterConditions;
 	QList<QString> mParallelBmsConditions;

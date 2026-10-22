@@ -510,6 +510,10 @@ void Application::onServiceAdded(VeQItem *var)
 		// Need to look at the product id to decide if the parallel bms service needs to start.
 		VeQItem *item = var->itemGetOrCreate("ProductId");
 		item->getValueAndChanges(this, &Application::onBatteryProductIdChanged);
+	} else if (var->id().startsWith("com.victronenergy.vebus")) {
+		// Need to look at the AC sensor count to decide if dbus-vebus-to-pvinverter needs to start.
+		VeQItem *item = var->itemGetOrCreate("AcSensor/Count");
+		item->getValueAndChanges(this, &Application::onVebusAcSensorCountChanged);
 	}
 }
 
@@ -540,6 +544,15 @@ void Application::onBatteryProductIdChanged(QVariant var)
 		mParallelBmsConditions.removeAll(parent->id());
 	}
 	manageParallelBms();
+}
+
+// Once started, dbus-vebus-to-pvinverter is left running, even if the sensors disappear again.
+void Application::onVebusAcSensorCountChanged(QVariant var)
+{
+	if (!mVebusToPvinverterStarter)
+		return;
+	if (var.isValid() && var.toInt() > 0)
+		mVebusToPvinverterStarter->install();
 }
 
 void Application::onRelaySettingChanged(QVariant var)
@@ -599,6 +612,9 @@ void Application::initDaemonStartupConditions(VeQItem *service)
 		} else if (service->id().startsWith("com.victronenergy.battery")) {
 			VeQItem *item = service->itemGetOrCreate("ProductId");
 			item->getValueAndChanges(this, &Application::onBatteryProductIdChanged);
+		} else if (service->id().startsWith("com.victronenergy.vebus")) {
+			VeQItem *item = service->itemGetOrCreate("AcSensor/Count");
+			item->getValueAndChanges(this, &Application::onVebusAcSensorCountChanged);
 		}
 	}
 }
@@ -619,6 +635,8 @@ void Application::manageDaemontoolsServices()
 	item->getValueAndChanges(this, &Application::onRunningGuiVersionObtained);
 
 	mParallelBmsStarter = new DaemonToolsService("/service/dbus-parallel-bms");
+	mVebusToPvinverterStarter = new DaemonToolsService(mSettings, "/service/dbus-vebus-to-pvinverter",
+						QStringList(), this, false, QStringList() << "-s" << "dbus-vebus-to-pvinverter");
 	mGeneratorStarter = new DaemonToolsService("/service/dbus-generator");
 	item = mSettings->root()->itemGetOrCreate("Settings/Relay/Function");
 	item->getValueAndChanges(this, &Application::onRelaySettingChanged);
