@@ -157,6 +157,7 @@ private:
 	DaemonToolsService *mGeneratorStarter = nullptr;
 	DaemonToolsService *mParallelBmsStarter = nullptr;
 	DaemonToolsService *mVebusToPvinverterStarter = nullptr;
+	DaemonToolsService *mAcSystemStarter = nullptr;
 	DaemonToolsService *mOpportunityLoadsStarter = nullptr;
 	QList<QString> mGeneratorStarterConditions;
 	QList<QString> mParallelBmsConditions;

@@ -514,6 +514,11 @@ void Application::onServiceAdded(VeQItem *var)
 		// Need to look at the AC sensor count to decide if dbus-vebus-to-pvinverter needs to start.
 		VeQItem *item = var->itemGetOrCreate("AcSensor/Count");
 		item->getValueAndChanges(this, &Application::onVebusAcSensorCountChanged);
+	} else if (var->id().startsWith("com.victronenergy.multi")) {
+		// Start dbus-acsystem when a Multi-RS is seen.  Leave it running
+		// once seen.
+		if (mAcSystemStarter)
+			mAcSystemStarter->install();
 	}
 }
 
@@ -615,6 +620,9 @@ void Application::initDaemonStartupConditions(VeQItem *service)
 		} else if (service->id().startsWith("com.victronenergy.vebus")) {
 			VeQItem *item = service->itemGetOrCreate("AcSensor/Count");
 			item->getValueAndChanges(this, &Application::onVebusAcSensorCountChanged);
+		} else if (service->id().startsWith("com.victronenergy.multi")) {
+			if (mAcSystemStarter)
+				mAcSystemStarter->install();
 		}
 	}
 }
@@ -637,6 +645,8 @@ void Application::manageDaemontoolsServices()
 	mParallelBmsStarter = new DaemonToolsService("/service/dbus-parallel-bms");
 	mVebusToPvinverterStarter = new DaemonToolsService(mSettings, "/service/dbus-vebus-to-pvinverter",
 						QStringList(), this, false, QStringList() << "-s" << "dbus-vebus-to-pvinverter");
+	mAcSystemStarter = new DaemonToolsService(mSettings, "/service/dbus-acsystem",
+						QStringList(), this, false, QStringList() << "-s" << "dbus-acsystem");
 	mGeneratorStarter = new DaemonToolsService("/service/dbus-generator");
 	item = mSettings->root()->itemGetOrCreate("Settings/Relay/Function");
 	item->getValueAndChanges(this, &Application::onRelaySettingChanged);
