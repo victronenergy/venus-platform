@@ -99,6 +99,7 @@ protected slots:
 	void onAccessPointPasswordChanged(QVariant var);
 	void onRunningGuiVersionObtained(QVariant var);
 	void onRelaySettingChanged(QVariant var);
+	void onSwitchableOutputGeneratorStartStopChanged(bool needed);
 	void manageOpportunityLoads();
 	void onServiceAdded(VeQItem *var);
 	void onGensetStateChanged(VeQItem::State state);

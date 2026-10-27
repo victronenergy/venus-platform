@@ -551,6 +551,17 @@ void Application::onRelaySettingChanged(QVariant var)
 	manageGeneratorStartStop();
 }
 
+void Application::onSwitchableOutputGeneratorStartStopChanged(bool needed)
+{
+	// Tells dbus-generator whether the startstop0 instance, driving the switchable outputs, is needed.
+	mService->itemGetOrCreateAndProduce("Generator/StartStop0/Needed", needed ? 1 : 0);
+	if (needed)
+		mGeneratorStarterConditions << "SwitchableOutput";
+	else
+		mGeneratorStarterConditions.removeAll("SwitchableOutput");
+	manageGeneratorStartStop();
+}
+
 void Application::manageGeneratorStartStop()
 {
 	if (!mGeneratorStarter)
@@ -851,7 +862,11 @@ void Application::start()
 
 	mVebusBackup = new VebusBackupServiceRegistrator(mService, mVenusServices, this);
 
-	new SwitchableOutputMonitor(mNotifications, mVenusServices);
+	mService->itemGetOrCreateAndProduce("Generator/StartStop0/Needed", 0);
+	SwitchableOutputMonitor *switchableOutputMonitor = new SwitchableOutputMonitor(mNotifications, mVenusServices,
+																				   mService->itemGetOrCreate("Generator/StartStop0"));
+	connect(switchableOutputMonitor, &SwitchableOutputMonitor::generatorStartStopNeededChanged,
+			this, &Application::onSwitchableOutputGeneratorStartStopChanged);
 
 	new SecurityProfiles(mService, mSettings, mVenusServices, this);
 
