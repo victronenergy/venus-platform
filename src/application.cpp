@@ -296,7 +296,8 @@ public:
 		// When shipped with a newer version it should be fine. Since the mk3 version is unknown
 		// without the service being started (which will update it), check the installer date instead.
 		enum Mk3Update mk3update = !installerVersion.isEmpty() && installerVersion >= "202210050000" ? NOT_APPLICABLE : DISALLOWED;
-		int defaultGui = !installerVersion.isEmpty() && installerVersion >= "202502010000" ? 2 : 1;
+		int minGui = guiv1Installed() ? 1 : 2;
+		int defaultGui = !guiv1Installed() || (!installerVersion.isEmpty() && installerVersion >= "202502010000") ? 2 : 1;
 
 		QString mBacklightDevice = getFeature("backlight_device");
 
@@ -331,7 +332,7 @@ public:
 		add("Gui/DemoMode", 0, 0, 3);
 		add("Gui/DisplayOff", 600, 0, 0);
 		add("Gui/Language", "en");
-		add("Gui/RunningVersion", defaultGui, 1, 2);
+		add("Gui/RunningVersion", defaultGui, minGui, 2);
 		add("Gui/TouchEnabled", 1, 0, 1);
 		if (LedController::hasLeds())
 			add("LEDs/Enable", 1, 0, 1);
@@ -490,7 +491,8 @@ void Application::onRunningGuiVersionObtained(QVariant var)
 		system("/etc/venus/www.d/create-gui-redirect.sh");
 	mRunningGuiSetting = var;
 
-	if (var.isValid() && !mOnScreenGuiv2Supported)
+	// Without an on screen gui-v2, start-gui runs gui-v1, if installed.
+	if (var.isValid() && !mOnScreenGuiv2Supported && guiv1Installed())
 		var = 1;
 
 	if (mRunningGui != var) {
@@ -800,6 +802,7 @@ void Application::start()
 
 	mService->itemGetOrCreateAndProduce("ProductName", "GX Device");
 	mService->itemGetOrCreateAndProduce("DeviceInstance", 0);
+	mService->itemGetOrCreateAndProduce("Device/IsContainer", isContainer() ? 1 : 0);
 
 	manageDaemontoolsServices();
 
@@ -832,6 +835,12 @@ void Application::start()
 	mService->itemGetOrCreateAndProduce("Device/ProductId", QString(proc->readAllStandardOutput().trimmed()));
 
 	QString model = readFirstLineFromFile("/sys/firmware/devicetree/base/model");
+	// A container has no device tree.
+	if (model.isEmpty()) {
+		proc = Application::spawn("/usr/bin/product-name");
+		proc->waitForFinished();
+		model = QString(proc->readAllStandardOutput().trimmed());
+	}
 	mService->itemGetOrCreateAndProduce("Device/Model", model);
 	QString serial = readFirstLineFromFile("/data/venus/serial-number");
 	mService->itemGetOrCreateAndProduce("Device/HQSerialNumber", serial);
