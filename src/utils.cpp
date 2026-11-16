@@ -42,3 +42,9 @@ bool isContainer()
 {
 	return QFile::exists("/etc/venus/container");
 }
+
+// The container image has no gui-v1.
+bool guiv1Installed()
+{
+	return QFile::exists("/opt/victronenergy/gui/start-gui.sh");
+}
