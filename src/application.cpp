@@ -491,7 +491,8 @@ void Application::onRunningGuiVersionObtained(QVariant var)
 		system("/etc/venus/www.d/create-gui-redirect.sh");
 	mRunningGuiSetting = var;
 
-	if (var.isValid() && !mOnScreenGuiv2Supported)
+	// Without an on screen gui-v2, start-gui runs gui-v1, if installed.
+	if (var.isValid() && !mOnScreenGuiv2Supported && guiv1Installed())
 		var = 1;
 
 	if (mRunningGui != var) {
