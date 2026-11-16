@@ -835,6 +835,12 @@ void Application::start()
 	mService->itemGetOrCreateAndProduce("Device/ProductId", QString(proc->readAllStandardOutput().trimmed()));
 
 	QString model = readFirstLineFromFile("/sys/firmware/devicetree/base/model");
+	// A container has no device tree.
+	if (model.isEmpty()) {
+		proc = Application::spawn("/usr/bin/product-name");
+		proc->waitForFinished();
+		model = QString(proc->readAllStandardOutput().trimmed());
+	}
 	mService->itemGetOrCreateAndProduce("Device/Model", model);
 	QString serial = readFirstLineFromFile("/data/venus/serial-number");
 	mService->itemGetOrCreateAndProduce("Device/HQSerialNumber", serial);
