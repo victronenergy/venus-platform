@@ -136,8 +136,10 @@ public:
 
 		// Simple inject format
 		if (list.size() == 3) {
-			mNotifications->addNotification(type, devicename, "", description, "")->setActive(false);
-			return VeQItemAction::setValue(value);
+			Notification* notification = mNotifications->addNotification(type, devicename, "", description, "");
+			notification->setActive(false);
+			VeQItemAction::setValue(value);
+			return notification->getIndex();
 		}
 
 		// Extended inject format
