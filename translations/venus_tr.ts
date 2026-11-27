@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>Sistem Fırsat Yükleri için uyumlu değil</translation>
+      <translation>Sistem Opportunity Loads ile uyumlu değil</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>İlk kurulum tamamlanmadı</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 İlk kurulum tamamlanmadı</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>EVCS şebeke operatörü tarafından harici olarak engellendi</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 EVCS şebeke operatörü tarafından harici olarak engellendi</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>EVCS yüksek sıcaklık algılandı</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 EVCS yüksek sıcaklık algılandı</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>GX iletişim uyarısı</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 GX iletişim uyarısı</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>Aşırı yük algılandı</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 Aşırı yük algılandı</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>Aşırı yük aktif</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 Aşırı yük aktif</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>Zamanlanmış mod başarısız oldu - zaman senkronizasyonu sorunu</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 Zamanlanmış mod başarısız oldu - zaman senkronizasyonu sorunu</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>Şarj akımı harici bir anahtarla sınırlandırıldı</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 Şarj akımı harici bir anahtarla sınırlandırıldı</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>İnverter aşırı sıcaklığı nedeniyle şarj akımı sınırlandırıldı</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 İnverter aşırı sıcaklığı nedeniyle şarj akımı sınırlandırıldı</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>Bozuk dosya nedeniyle ekran yazılımı güncellenemiyor. Lütfen güncellemeyi tekrar yapın</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 Bozuk dosya nedeniyle ekran yazılımı güncellenemiyor. Lütfen güncellemeyi tekrar yapın</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>İletişim sorunları nedeniyle ekran yazılımı güncellenemiyor</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 İletişim sorunları nedeniyle ekran yazılımı güncellenemiyor</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>Ekran yazılımı güncelleniyor. EV şarjı bir süre sonra kullanılabilir olacak</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 Ekran yazılımı güncelleniyor. EV şarjı bir süre sonra kullanılabilir olacak</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 Veri bölümü dolu</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 Kaynaklı kontaklar L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 Kaynaklı kontaklar L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 Kaynaklı kontaklar L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 Kaynaklı kontaklar nötr hattı</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N ters çevrilmiş</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N ters çevrilmiş ve/veya GND yok</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 RCD IC arızası</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 EV kablo arızası</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 GX cihaz sertifikası uyuşmazlığı. Lütfen eşleştirme işlemini tekrarlayın</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 Şarj akımı EV kablosu nominal değeri ile sınırlandırıldı</translation>
     </message>
   </context>
   <context>

@@ -52,7 +52,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="37"/>
       <source>No. of batteries in series incorrect</source>
-      <translation>Počet nesprávných baterií v sérii</translation>
+      <translation>Nesprávný počet baterií v sérii</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="44"/>
@@ -172,7 +172,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/bms_error.cpp" line="117"/>
       <source>Terminal over temperature</source>
-      <translation>Přehřátí terminálu</translation>
+      <translation>Přehřátí svorky</translation>
     </message>
   </context>
   <context>
@@ -515,12 +515,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="49"/>
       <source>PV isolation failure</source>
-      <translation>Selhání izolace fotovoltaického panelu</translation>
+      <translation>Porucha izolace FV</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="99"/>
       <source>PV Input shutdown</source>
-      <translation>Vypnutí vstupu PV</translation>
+      <translation>Vypnutí FV vstupu</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="115"/>
@@ -545,12 +545,12 @@
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="72"/>
       <source>Phase rotation</source>
-      <translation>Otáčení fáze</translation>
+      <translation>Pořadí fází</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="73"/>
       <source>Multiple AC inputs</source>
-      <translation>Více vstupů střídavého proudu</translation>
+      <translation>Více AC vstupů</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/charger_error.cpp" line="74"/>
@@ -966,7 +966,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="378"/>
       <source>Grid meter not found #49</source>
-      <translation>Elektroměr nebyl nalezen #49</translation>
+      <translation>Elektroměr sítě nebyl nalezen #49</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/notificationdescriptions.cpp" line="383"/>
@@ -1512,7 +1512,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="350"/>
       <source>High cell voltage</source>
-      <translation>Vysoké napětí článků</translation>
+      <translation>Vysoké napětí článku</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="372"/>
@@ -1649,7 +1649,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="139"/>
       <source>Grid meter not found #49</source>
-      <translation>Elektroměr nebyl nalezen #49</translation>
+      <translation>Elektroměr sítě nebyl nalezen #49</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="148"/>
@@ -1699,7 +1699,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="53"/>
       <source>DC generator is not providing power</source>
-      <translation>Stejnosměrný generátor nedodává energii</translation>
+      <translation>DC generátor nedodává výkon</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="55"/>
@@ -1724,12 +1724,12 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="134"/>
       <source>Phase rotation</source>
-      <translation>Otáčení fáze</translation>
+      <translation>Pořadí fází</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>Systém není kompatibilní s příležitostnou zátěží</translation>
+      <translation>Systém není kompatibilní s Opportunity Loads</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1749,7 +1749,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="245"/>
       <source>#04 Residual current</source>
-      <translation>#04 Zbytkový proud</translation>
+      <translation>#04 Reziduální proud</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="246"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>Počáteční nastavení nebylo dokončeno</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 Počáteční nastavení nebylo dokončeno</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>EVCS externě zablokováno provozovatelem sítě</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 EVCS externě zablokováno provozovatelem sítě</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>Zjištěna vysoká teplota EVCS</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 Zjištěna vysoká teplota EVCS</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>Varování komunikace GX</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 Upozornění komunikace GX</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>Zjištěno přetížení</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 Zjištěno přetížení</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>Přetížení aktivní</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 Přetížení aktivní</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>Plánovaný režim selhal – problém se synchronizací času</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 Plánovaný režim selhal – problém se synchronizací času</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>Nabíjecí proud je omezen externím spínačem</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 Nabíjecí proud je omezen externím spínačem</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>Nabíjecí proud je omezen z důvodu přehřátí střídače</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 Nabíjecí proud je omezen z důvodu přehřátí měniče</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>Nelze aktualizovat FW displeje kvůli poškozenému souboru. Proveďte aktualizaci znovu</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 Nelze aktualizovat FW displeje kvůli poškozenému souboru. Proveďte aktualizaci znovu</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>Nelze aktualizovat FW displeje kvůli problémům s komunikací</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 Nelze aktualizovat FW displeje kvůli problémům s komunikací</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>Aktualizace FW displeje. Nabíjení elektromobilu bude k dispozici za chvíli</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 Aktualizace FW displeje. Nabíjení elektromobilu bude k dispozici za chvíli</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 Datový oddíl je plný</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 Svařené kontakty L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 Svařené kontakty L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 Svařené kontakty L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 Svařené kontakty nulového vodiče</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 Prohozené L1-N</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 Prohozené L1-N a/nebo chybí GND</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 Chyba RCD IC</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 Chyba EV kabelu</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 Neshoda certifikátu zařízení GX. Opakujte proces párování</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 Nabíjecí proud omezen jmenovitou hodnotou EV kabelu</translation>
     </message>
   </context>
   <context>
@@ -2065,17 +2115,17 @@
     <message>
       <location filename="../ext/veutil/src/qt/genset_error.cpp" line="145"/>
       <source>Stop solenoid hold coil current too high</source>
-      <translation>Proud stojícího elektromagnetu cívky je příliš vysoký</translation>
+      <translation>Proud přídržné cívky solenoidu zastavení je příliš vysoký</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/genset_error.cpp" line="146"/>
       <source>Stop solenoid pull coil voltage too low </source>
-      <translation>Příliš nízké napětí na tahové cívce elektromagnetické brzdy</translation>
+      <translation>Napětí přítahové cívky solenoidu zastavení je příliš nízké</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/genset_error.cpp" line="147"/>
       <source>Stop solenoid pull coil current too high</source>
-      <translation>Proud stojícího elektromagnetu tažné cívky je příliš vysoký</translation>
+      <translation>Proud přítahové cívky solenoidu zastavení je příliš vysoký</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/genset_error.cpp" line="148"/>
@@ -2095,7 +2145,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/genset_error.cpp" line="151"/>
       <source>Current sensor current high</source>
-      <translation>Proudový snímač proudu vysoký</translation>
+      <translation>Proud proudového snímače je příliš vysoký</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/genset_error.cpp" line="152"/>
@@ -2515,7 +2565,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/genset_error.cpp" line="239"/>
       <source>Watchdog</source>
-      <translation>Hlídací pes</translation>
+      <translation>Watchdog</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/genset_error.cpp" line="240"/>
@@ -2744,7 +2794,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/venus_types.cpp" line="128"/>
       <source>Live well</source>
-      <translation>Nádrž na vodu</translation>
+      <translation>Nádrž na živé ryby</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/venus_types.cpp" line="129"/>
@@ -2784,7 +2834,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/venus_types.cpp" line="136"/>
       <source>Raw water</source>
-      <translation>Surová voda</translation>
+      <translation>Neupravená voda</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/venus_types.cpp" line="143"/>
@@ -2862,7 +2912,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="190"/>
       <source>Alternator high voltage offset</source>
-      <translation>Posunutí vysokého napětí alternátoru</translation>
+      <translation>Velká odchylka napětí alternátoru</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="193"/>
@@ -2887,7 +2937,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="205"/>
       <source>Battery instance ouf of range</source>
-      <translation>Akumulátor mimo rozsah</translation>
+      <translation>Instance baterie mimo rozsah</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="208"/>
@@ -2927,7 +2977,7 @@
     <message>
       <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="229"/>
       <source>BMS connection lost</source>
-      <translation>Ztráta BMS komunikace</translation>
+      <translation>Ztráta komunikace s BMS</translation>
     </message>
     <message>
       <location filename="../ext/veutil/src/qt/alternator_error.cpp" line="232"/>

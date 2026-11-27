@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>Système incompatible pour les charges opportunistes</translation>
+      <translation>Système non compatible avec Opportunity Loads</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>Configuration initiale non terminée</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 Configuration initiale non terminée</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>EVCS bloqué de l'extérieur par le gestionnaire de réseau</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 EVCS bloqué de l'extérieur par le gestionnaire de réseau</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>Température élevée détectée sur l'EVCS</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 Température élevée détectée sur l'EVCS</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>Avertissement de communication GX</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 Avertissement de communication GX</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>Surcharge détectée</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 Surcharge détectée</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>Surcharge active</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 Surcharge active</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>Échec du mode programmé - problème de synchronisation temporelle</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 Échec du mode programmé - problème de synchronisation temporelle</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>Le courant de charge est limité par un commutateur externe</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 Le courant de charge est limité par un commutateur externe</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>Le courant de charge est limité en raison d'une surchauffe du convertisseur</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 Le courant de charge est limité en raison d'une surchauffe du convertisseur</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>Impossible de mettre à jour le micrologiciel de l'écran en raison d'un fichier corrompu. Veuillez relancer la mise à jour</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 Impossible de mettre à jour le micrologiciel de l'écran en raison d'un fichier corrompu. Veuillez relancer la mise à jour</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>Impossible de mettre à jour le micrologiciel de l'écran en raison de problèmes de communication</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 Impossible de mettre à jour le micrologiciel de l'écran en raison de problèmes de communication</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>Mise à jour du micrologiciel de l'écran en cours. La recharge du VE sera disponible dans un instant</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 Mise à jour du micrologiciel de l'écran en cours. La recharge du VE sera disponible dans un instant</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 Partition de données pleine</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 Contacts soudés L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 Contacts soudés L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 Contacts soudés L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 Contacts soudés ligne neutre</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N inversés</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N inversés et/ou pas de terre</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 Défaut RCD IC</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 Défaut câble VE</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 Non-concordance de certificat de l'appareil GX. Veuillez répéter le processus d'appairage</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 Courant de charge limité par le calibre du câble VE</translation>
     </message>
   </context>
   <context>

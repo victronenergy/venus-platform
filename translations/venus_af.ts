@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>Stelsel onversoenbaar vir Geleentheidsladings</translation>
+      <translation>Stelsel nie versoenbaar met Opportunity Loads nie</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>Aanvanklike opstelling nie voltooi nie</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 Aanvanklike opstelling nie voltooi nie</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>EVCS ekstern geblokkeer deur netwerkoperateur</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 EVCS ekstern geblokkeer deur netwerkoperateur</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>EVCS hoë temperatuur bespeur</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 EVCS hoë temperatuur bespeur</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>GX-kommunikasiewaarskuwing</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 GX-kommunikasiewaarskuwing</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>Oorlading bespeur</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 Oorlading bespeur</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>Oorlading aktief</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 Oorlading aktief</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>Geskeduleerde modus het misluk - tydsinchronisasieprobleem</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 Geskeduleerde modus het misluk - tydsinchronisasieprobleem</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>Die laaistroom word beperk deur 'n eksterne skakelaar</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 Die laaistroom word beperk deur 'n eksterne skakelaar</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>Die laaistroom word beperk weens omskakelaar-oortemperatuur</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 Die laaistroom word beperk weens omskakelaar-oortemperatuur</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>Kan nie skerm-FW opdateer nie weens beskadigde lêer. Voer asseblief opdatering weer uit</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 Kan nie skerm-FW opdateer nie weens beskadigde lêer. Voer asseblief opdatering weer uit</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>Kan nie skerm-FW opdateer nie weens kommunikasieprobleme</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 Kan nie skerm-FW opdateer nie weens kommunikasieprobleme</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>Skerm-FW word opgedateer. EV-laai sal oor 'n rukkie beskikbaar wees</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 Skerm-FW word opgedateer. EV-laai sal oor 'n rukkie beskikbaar wees</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 Datapartisie vol</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 Gesweiste kontakte L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 Gesweiste kontakte L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 Gesweiste kontakte L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 Gesweiste kontakte neutrale lyn</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N omgeruil</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N omgeruil en/of geen GND</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 RCD IC-fout</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 EV-kabelfout</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 GX-toestelsertifikaat pas nie. Herhaal asseblief die saambindproses</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 Laaistroom beperk deur EV-kabelaanslag</translation>
     </message>
   </context>
   <context>

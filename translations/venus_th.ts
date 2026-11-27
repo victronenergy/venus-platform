@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>ระบบไม่รองรับสำหรับ Opportunity Loads</translation>
+      <translation>ระบบไม่รองรับ Opportunity Loads</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>การตั้งค่าเริ่มต้นยังไม่เสร็จสมบูรณ์</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 การตั้งค่าเริ่มต้นยังไม่เสร็จสมบูรณ์</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>EVCS ถูกบล็อกจากภายนอกโดยผู้ให้บริการโครงข่ายไฟฟ้า</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 EVCS ถูกบล็อกจากภายนอกโดยผู้ให้บริการโครงข่ายไฟฟ้า</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>ตรวจพบอุณหภูมิ EVCS สูง</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 ตรวจพบอุณหภูมิ EVCS สูง</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>คำเตือนการสื่อสารของ GX</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 คำเตือนการสื่อสารของ GX</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>ตรวจพบการใช้งานเกินกำลัง (โอเวอร์โหลด)</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 ตรวจพบการใช้งานเกินกำลัง (โอเวอร์โหลด)</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>กำลังเกิดการใช้งานเกินกำลัง (โอเวอร์โหลด)</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 กำลังเกิดการใช้งานเกินกำลัง (โอเวอร์โหลด)</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>โหมดตั้งเวลาล้มเหลว - เกิดปัญหาการซิงค์เวลา</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 โหมดตั้งเวลาล้มเหลว - เกิดปัญหาการซิงค์เวลา</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>กระแสไฟชาร์จถูกจำกัดโดยสวิตช์ภายนอก</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 กระแสไฟชาร์จถูกจำกัดโดยสวิตช์ภายนอก</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>กระแสไฟชาร์จถูกจำกัดเนื่องจากอุณหภูมิอินเวอร์เตอร์สูงเกินไป</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 กระแสไฟชาร์จถูกจำกัดเนื่องจากอุณหภูมิอินเวอร์เตอร์สูงเกินไป</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>ไม่สามารถอัปเดต FW ของจอแสดงผลได้เนื่องจากไฟล์เสียหาย โปรดดำเนินการอัปเดตอีกครั้ง</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 ไม่สามารถอัปเดต FW ของจอแสดงผลได้เนื่องจากไฟล์เสียหาย โปรดดำเนินการอัปเดตอีกครั้ง</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>ไม่สามารถอัปเดต FW ของจอแสดงผลได้เนื่องจากปัญหาการสื่อสาร</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 ไม่สามารถอัปเดต FW ของจอแสดงผลได้เนื่องจากปัญหาการสื่อสาร</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>กำลังอัปเดต FW ของจอแสดงผล การชาร์จ EV จะพร้อมใช้งานหลังจากนี้สักครู่</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 กำลังอัปเดต FW ของจอแสดงผล การชาร์จ EV จะพร้อมใช้งานหลังจากนี้สักครู่</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 พาร์ติชันข้อมูลเต็ม</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 หน้าสัมผัส L1 เชื่อมติดกัน</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 หน้าสัมผัส L2 เชื่อมติดกัน</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 หน้าสัมผัส L3 เชื่อมติดกัน</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 หน้าสัมผัสสายนิวทรัลเชื่อมติดกัน</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N สลับขั้ว</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N สลับขั้ว และ/หรือ ไม่มีสายดิน (GND)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 RCD IC ขัดข้อง</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 สายชาร์จ EV ขัดข้อง</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 ใบรับรองอุปกรณ์ GX ไม่ตรงกัน โปรดทำตามขั้นตอนการจับคู่อีกครั้ง</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 กระแสการชาร์จถูกจำกัดโดยพิกัดของสายชาร์จ EV</translation>
     </message>
   </context>
   <context>

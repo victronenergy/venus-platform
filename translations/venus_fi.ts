@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>Järjestelmä ei ole yhteensopiva lisäkuormille</translation>
+      <translation>Järjestelmä ei ole yhteensopiva Opportunity Loads -toiminnon kanssa</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>Alkuasennusta ei ole suoritettu</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 Alkuasennusta ei ole suoritettu</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>Verkko-operaattori on estänyt EVCS:n ulkoisesti</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 Verkko-operaattori on estänyt EVCS:n ulkoisesti</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>EVCS:n korkea lämpötila havaittu</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 EVCS:n korkea lämpötila havaittu</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>GX-tiedonsiirtovaroitus</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 GX-tiedonsiirtovaroitus</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>Ylikuormitus havaittu</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 Ylikuormitus havaittu</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>Ylikuormitus aktiivinen</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 Ylikuormitus aktiivinen</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>Ajastettu tila epäonnistui - aikasiirto-ongelma</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 Ajastettu tila epäonnistui - aikasiirto-ongelma</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>Latausvirtaa rajoitetaan ulkoisella kytkimellä</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 Latausvirtaa rajoitetaan ulkoisella kytkimellä</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>Latausvirtaa rajoitetaan vaihtosuuntaajan ylilämmön vuoksi</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 Latausvirtaa rajoitetaan vaihtosuuntaajan ylilämmön vuoksi</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>Näytön laiteohjelmistoa ei voida päivittää vioittuneen tiedoston vuoksi. Suorita päivitys uudelleen</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 Näytön laiteohjelmistoa ei voida päivittää vioittuneen tiedoston vuoksi. Suorita päivitys uudelleen</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>Näytön laiteohjelmistoa ei voida päivittää tiedonsiirto-ongelmien vuoksi</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 Näytön laiteohjelmistoa ei voida päivittää tiedonsiirto-ongelmien vuoksi</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>Päivitetään näytön laiteohjelmistoa. Sähköauton lataus on käytettävissä hetken kuluttua</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 Päivitetään näytön laiteohjelmistoa. Sähköauton lataus on käytettävissä hetken kuluttua</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 Dataosio täynnä</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 Kiinni hitsautuneet koskettimet L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 Kiinni hitsautuneet koskettimet L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 Kiinni hitsautuneet koskettimet L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 Kiinni hitsautuneet koskettimet nollajohdin</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N vaihtuneet</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N vaihtuneet ja/tai ei maadoitusta</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 Vikavirtasuojan (RCD) IC-vika</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 EV-kaapelivika</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 GX-laitteen sertifikaattivirhe. Ole hyvä ja toista pariliitoksen muodostus</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 Latausvirtaa rajoittaa EV-kaapelin nimellisarvo</translation>
     </message>
   </context>
   <context>

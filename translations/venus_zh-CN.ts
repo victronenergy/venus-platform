@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>系统不兼容机会负载</translation>
+      <translation>系统与 Opportunity Loads 不兼容</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>初始设置未完成</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 初始设置未完成</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>EVCS 被电网运营商外部阻止</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 EVCS 被电网运营商外部阻止</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>检测到 EVCS 高温</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 检测到 EVCS 高温</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>GX 通信警告</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 GX 通信警告</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>检测到过载</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 检测到过载</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>过载保护已触发</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 过载保护已触发</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>计划模式失败 - 时间同步问题</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 计划模式失败 - 时间同步问题</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>充电电流受到外部开关的限制</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 充电电流受到外部开关的限制</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>由于逆变器过温，充电电流受到限制</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 由于逆变器过温，充电电流受到限制</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>由于文件损坏无法更新显示屏固件。请重新进行更新</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 由于文件损坏无法更新显示屏固件。请重新进行更新</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>由于通信问题无法更新显示屏固件</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 由于通信问题无法更新显示屏固件</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>正在更新显示屏固件。稍后可进行电动汽车充电</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 正在更新显示屏固件。稍后可进行电动汽车充电</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 数据分区已满</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 触点熔焊 L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 触点熔焊 L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 触点熔焊 L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 触点熔焊中性线</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N 反接</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N 反接和/或无接地</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 RCD 芯片故障</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 电动汽车线缆故障</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 GX 设备证书不匹配。请重新进行配对</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 充电电流受限于电动汽车线缆额定值</translation>
     </message>
   </context>
   <context>

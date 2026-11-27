@@ -1730,7 +1730,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>기회 부하(Opportunity Loads)와 호환되지 않는 시스템</translation>
+      <translation>시스템이 Opportunity Loads와 호환되지 않음</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1769,68 +1769,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>초기 설정 미완료</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 초기 설정 미완료</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>전력망 사업자에 의해 EVCS 외부 차단됨</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 전력망 사업자에 의해 EVCS 외부 차단됨</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>EVCS 고온 감지됨</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 EVCS 고온 감지됨</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>GX 통신 경고</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 GX 통신 경고</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>과부하 감지됨</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 과부하 감지됨</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>과부하 작동 중</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 과부하 작동 중</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>예약 모드 실패 - 시간 동기화 문제</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 예약 모드 실패 - 시간 동기화 문제</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>외부 스위치에 의해 충전 전류가 제한됨</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 외부 스위치에 의해 충전 전류가 제한됨</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>인버터 과열로 인해 충전 전류가 제한됨</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 인버터 과열로 인해 충전 전류가 제한됨</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>파일 손상으로 인해 디스플레이 펌웨어를 업데이트할 수 없습니다. 업데이트를 다시 수행하십시오</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 파일 손상으로 인해 디스플레이 펌웨어를 업데이트할 수 없습니다. 업데이트를 다시 수행하십시오</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>통신 문제로 인해 디스플레이 펌웨어를 업데이트할 수 없습니다</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 통신 문제로 인해 디스플레이 펌웨어를 업데이트할 수 없습니다</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>디스플레이 펌웨어 업데이트 중입니다. 잠시 후 전기차 충전이 가능합니다</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 디스플레이 펌웨어 업데이트 중입니다. 잠시 후 전기차 충전이 가능합니다</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 데이터 파티션 가득 참</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 L1 접점 융착</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 L2 접점 융착</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 L3 접점 융착</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 중성선 접점 융착</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N 역결선</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N 역결선 및/또는 접지(GND) 없음</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 RCD IC 오류</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 EV 케이블 오류</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 GX 장치 인증서 불일치. 페어링 과정을 다시 시도해 주세요</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 EV 케이블 정격에 의해 충전 전류 제한됨</translation>
     </message>
   </context>
   <context>

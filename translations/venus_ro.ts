@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>Sistem incompatibil pentru sarcini de oportunitate (Opportunity Loads)</translation>
+      <translation>Sistem incompatibil cu Opportunity Loads</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>Configurarea inițială nu a fost finalizată</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 Configurarea inițială nu a fost finalizată</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>EVCS blocat extern de operatorul de rețea</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 EVCS blocat extern de operatorul de rețea</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>Temperatură ridicată EVCS detectată</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 Temperatură ridicată EVCS detectată</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>Avertisment de comunicare GX</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 Avertisment de comunicare GX</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>Suprasarcină detectată</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 Suprasarcină detectată</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>Suprasarcină activă</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 Suprasarcină activă</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>Modul programat a eșuat - problemă de sincronizare a orei</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 Modul programat a eșuat - problemă de sincronizare a orei</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>Curentul de încărcare este limitat de un comutator extern</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 Curentul de încărcare este limitat de un comutator extern</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>Curentul de încărcare este limitat din cauza supratemperaturii invertorului</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 Curentul de încărcare este limitat din cauza supratemperaturii invertorului</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>Nu se poate actualiza FW-ul afișajului din cauza fișierului corupt. Vă rugăm să reluați actualizarea</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 Nu se poate actualiza FW-ul afișajului din cauza fișierului corupt. Vă rugăm să reluați actualizarea</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>Nu se poate actualiza FW-ul afișajului din cauza problemelor de comunicare</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 Nu se poate actualiza FW-ul afișajului din cauza problemelor de comunicare</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>Se actualizează FW-ul afișajului. Încărcarea vehiculului electric va fi disponibilă în curând</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 Se actualizează FW-ul afișajului. Încărcarea vehiculului electric va fi disponibilă în curând</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 Partiția de date este plină</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 Contacte sudate L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 Contacte sudate L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 Contacte sudate L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 Contacte sudate pe linia neutră</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N inversate</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N inversate și/sau lipsă împământare (GND)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 Eroare RCD IC</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 Eroare cablu EV</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 Nepotrivire certificat dispozitiv GX. Vă rugăm să repetați procesul de asociere</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 Curentul de încărcare este limitat de capacitatea nominală a cablului EV</translation>
     </message>
   </context>
   <context>

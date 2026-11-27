@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>Система несумісна для резервних навантажень</translation>
+      <translation>Система несумісна з Opportunity Loads</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>Початкове налаштування не завершено</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 Початкове налаштування не завершено</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>EVCS заблоковано ззовні оператором мережі</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 EVCS заблоковано ззовні оператором мережі</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>Виявлено високу температуру EVCS</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 Виявлено високу температуру EVCS</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>Попередження зв'язку GX</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 Попередження зв'язку GX</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>Виявлено перевантаження</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 Виявлено перевантаження</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>Перевантаження активне</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 Перевантаження активне</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>Збій за розкладом - проблема синхронізації часу</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 Збій за розкладом - проблема синхронізації часу</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>Струм заряджання обмежено зовнішнім перемикачем</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 Струм заряджання обмежено зовнішнім перемикачем</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>Струм заряджання обмежено через перегрів інвертора</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 Струм заряджання обмежено через перегрів інвертора</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>Не вдається оновити прошивку дисплея через пошкоджений файл. Будь ласка, виконайте оновлення знову</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 Не вдається оновити прошивку дисплея через пошкоджений файл. Будь ласка, виконайте оновлення знову</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>Не вдається оновити прошивку дисплея через проблеми зі зв'язком</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 Не вдається оновити прошивку дисплея через проблеми зі зв'язком</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>Оновлення прошивки дисплея. Заряджання електромобіля буде доступне через деякий час</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 Оновлення прошивки дисплея. Заряджання електромобіля буде доступне через деякий час</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 Розділ даних заповнено</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 Зварені контакти L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 Зварені контакти L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 Зварені контакти L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 Зварені контакти нейтральної лінії</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N переплутані місцями</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N переплутані місцями та/або відсутнє заземлення</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 Помилка мікросхеми ПЗВ</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 Несправність кабелю електромобіля</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 Невідповідність сертифіката пристрою GX. Будь ласка, повторіть процес створення пари</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 Струм заряджання обмежений номіналом кабелю електромобіля</translation>
     </message>
   </context>
   <context>

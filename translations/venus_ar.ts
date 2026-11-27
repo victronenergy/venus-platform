@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>النظام غير متوافق مع أحمال الفرص (Opportunity Loads)</translation>
+      <translation>النظام غير متوافق مع Opportunity Loads</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>لم يكتمل الإعداد الأولي</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 لم يكتمل الإعداد الأولي</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>محطة شحن المركبات الكهربائية محظورة خارجيًا بواسطة مشغل الشبكة</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 محطة شحن المركبات الكهربائية محظورة خارجيًا بواسطة مشغل الشبكة</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>تم اكتشاف ارتفاع في درجة حرارة محطة شحن المركبات الكهربائية</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 تم اكتشاف ارتفاع في درجة حرارة محطة شحن المركبات الكهربائية</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>تحذير اتصال GX</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 تحذير اتصال GX</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>تم اكتشاف حمل زائد</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 تم اكتشاف حمل زائد</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>الحمل الزائد نشط</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 الحمل الزائد نشط</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>فشل الوضع المجدول - مشكلة في مزامنة الوقت</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 فشل الوضع المجدول - مشكلة في مزامنة الوقت</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>تيار الشحن محدود بواسطة مفتاح خارجي</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 تيار الشحن محدود بواسطة مفتاح خارجي</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>تيار الشحن محدود بسبب ارتفاع درجة حرارة العاكس</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 تيار الشحن محدود بسبب ارتفاع درجة حرارة العاكس</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>تعذر تحديث البرامج الثابتة للشاشة بسبب ملف تالف. يرجى إجراء التحديث مرة أخرى</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 تعذر تحديث البرامج الثابتة للشاشة بسبب ملف تالف. يرجى إجراء التحديث مرة أخرى</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>تعذر تحديث البرامج الثابتة للشاشة بسبب مشاكل في الاتصال</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 تعذر تحديث البرامج الثابتة للشاشة بسبب مشاكل في الاتصال</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>جارٍ تحديث البرامج الثابتة للشاشة. سيكون شحن المركبات الكهربائية متاحًا بعد قليل</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 جارٍ تحديث البرامج الثابتة للشاشة. سيكون شحن المركبات الكهربائية متاحًا بعد قليل</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 قسم البيانات ممتلئ</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 نقاط التلامس ملحومة L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 نقاط التلامس ملحومة L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 نقاط التلامس ملحومة L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 نقاط تلامس الخط المحايد ملحومة</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 تم عكس L1-N</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 تم عكس L1-N و/أو لا يوجد تأريض GND</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 خطأ في دائرة قاطع التيار المتبقي (RCD IC)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 خطأ في كابل المركبة الكهربائية (EV)</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 عدم تطابق شهادة جهاز GX. يرجى تكرار عملية الاقتران</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 تيار الشحن محدود بتصنيف كابل المركبة الكهربائية (EV)</translation>
     </message>
   </context>
   <context>

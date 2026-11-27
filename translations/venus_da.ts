@@ -1729,7 +1729,7 @@
     <message>
       <location filename="../src/alarm_item.cpp" line="233"/>
       <source>System incompatible for Opportunity Loads</source>
-      <translation>System inkompatibelt til lejlighedsbelastninger</translation>
+      <translation>Systemet er ikke kompatibelt med Opportunity Loads</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="242"/>
@@ -1768,68 +1768,118 @@
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="249"/>
-      <source>Initial setup not completed</source>
-      <translation>Indledende opsætning ikke fuldført</translation>
+      <source>#101 Initial setup not completed</source>
+      <translation>#101 Indledende opsætning ikke fuldført</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="250"/>
-      <source>EVCS externally blocked by grid operator</source>
-      <translation>EVCS blokeret eksternt af netoperatør</translation>
+      <source>#102 EVCS externally blocked by grid operator</source>
+      <translation>#102 EVCS blokeret eksternt af netoperatør</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="251"/>
-      <source>EVCS high temperature detected</source>
-      <translation>EVCS høj temperatur registreret</translation>
+      <source>#103 EVCS high temperature detected</source>
+      <translation>#103 EVCS høj temperatur registreret</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="252"/>
-      <source>GX communication warning</source>
-      <translation>GX-kommunikationsadvarsel</translation>
+      <source>#104 GX communication warning</source>
+      <translation>#104 GX-kommunikationsadvarsel</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="253"/>
-      <source>Overload detected</source>
-      <translation>Overbelastning registreret</translation>
+      <source>#105 Overload detected</source>
+      <translation>#105 Overbelastning registreret</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="254"/>
-      <source>Overload active</source>
-      <translation>Overbelastning aktiv</translation>
+      <source>#106 Overload active</source>
+      <translation>#106 Overbelastning aktiv</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="255"/>
-      <source>Scheduled mode failed - time sync issue</source>
-      <translation>Planlagt tilstand mislykkedes - problem med tidssynkronisering</translation>
+      <source>#107 Scheduled mode failed - time sync issue</source>
+      <translation>#107 Planlagt tilstand mislykkedes - problem med tidssynkronisering</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="256"/>
-      <source>The charging current is limited by an external switch</source>
-      <translation>Ladestrømmen er begrænset af en ekstern afbryder</translation>
+      <source>#108 The charging current is limited by an external switch</source>
+      <translation>#108 Ladestrømmen er begrænset af en ekstern afbryder</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="257"/>
-      <source>The charging current is limited due to inverter overtemperature</source>
-      <translation>Ladestrømmen er begrænset på grund af overtemperatur i inverteren</translation>
+      <source>#109 The charging current is limited due to inverter overtemperature</source>
+      <translation>#109 Ladestrømmen er begrænset på grund af overtemperatur i inverteren</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="258"/>
-      <source>Can't update display FW due to broken file. Please perform update again</source>
-      <translation>Kan ikke opdatere display-FW på grund af beskadiget fil. Udfør venligst opdatering igen</translation>
+      <source>#110 Can't update display FW due to broken file. Please perform update again</source>
+      <translation>#110 Kan ikke opdatere display-FW på grund af beskadiget fil. Udfør venligst opdatering igen</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="259"/>
-      <source>Can't update display FW due to communication issues</source>
-      <translation>Kan ikke opdatere display-FW på grund af kommunikationsproblemer</translation>
+      <source>#111 Can't update display FW due to communication issues</source>
+      <translation>#111 Kan ikke opdatere display-FW på grund af kommunikationsproblemer</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="260"/>
-      <source>Updating display FW. EV charging will be available after a while</source>
-      <translation>Opdaterer display-FW. EV-opladning vil være tilgængelig om et øjeblik</translation>
+      <source>#112 Updating display FW. EV charging will be available after a while</source>
+      <translation>#112 Opdaterer display-FW. EV-opladning vil være tilgængelig om et øjeblik</translation>
     </message>
     <message>
       <location filename="../src/alarm_item.cpp" line="215"/>
       <source>#46 Data partition full</source>
       <translation>#46 Datapartition fuld</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="249"/>
+      <source>#31 Welded contacts L1</source>
+      <translation>#31 Svejsede kontakter L1</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="250"/>
+      <source>#32 Welded contacts L2</source>
+      <translation>#32 Svejsede kontakter L2</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="251"/>
+      <source>#33 Welded contacts L3</source>
+      <translation>#33 Svejsede kontakter L3</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="252"/>
+      <source>#34 Welded contacts neutral line</source>
+      <translation>#34 Svejsede kontakter neutralleder</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="253"/>
+      <source>#35 L1-N reversed</source>
+      <translation>#35 L1-N ombyttet</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="254"/>
+      <source>#36 L1-N reversed and/or no GND</source>
+      <translation>#36 L1-N ombyttet og/eller ingen GND</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="255"/>
+      <source>#37 RCD IC fault</source>
+      <translation>#37 RCD IC-fejl</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="256"/>
+      <source>#38 EV cable fault</source>
+      <translation>#38 EV-kabelfejl</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="269"/>
+      <source>#113 GX device certificate mismatch. Please repeat the pairing process</source>
+      <translation>#113 Uoverensstemmelse i GX-enhedscertifikat. Gentag venligst parringsprocessen</translation>
+    </message>
+    <message>
+      <location filename="../src/alarm_item.cpp" line="270"/>
+      <source>#131 Charging current limited by EV cable rating</source>
+      <translation>#131 Ladestrøm begrænset af EV-kablets mærkeværdi</translation>
     </message>
   </context>
   <context>
